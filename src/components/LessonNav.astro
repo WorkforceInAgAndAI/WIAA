@@ -1,0 +1,109 @@
+---
+interface NavLink {
+  href?: string;
+  label: string;
+}
+
+interface Props {
+  prev?: NavLink;
+  next?: NavLink;
+  progress: string;
+}
+
+const { prev, next, progress } = Astro.props;
+---
+
+<nav class="lesson-nav">
+  <div class="nav-btn-container">
+    {prev && prev.href ? (
+      <a href={prev.href} class="btn nav-btn prev">{prev.label}</a>
+    ) : (
+      <div></div>
+    )}
+  </div>
+  
+  <div class="progress-indicator">
+    {progress}
+  </div>
+  
+  <div class="nav-btn-container">
+    {next && next.href ? (
+      <a href={next.href} class="btn nav-btn next">{next.label}</a>
+    ) : (
+      <div></div>
+    )}
+  </div>
+</nav>
+
+<style>
+  .lesson-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 2px solid var(--isu-gold);
+  }
+
+  .nav-btn-container {
+    flex: 1;
+  }
+
+  .nav-btn-container:last-child {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .nav-btn {
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-weight: 600;
+    transition: all 0.2s;
+    display: inline-block;
+  }
+
+  .nav-btn.prev {
+    background: #999;
+    color: white;
+  }
+
+  .nav-btn.prev:hover {
+    background: #777;
+  }
+
+  .nav-btn.next {
+    background: var(--isu-red);
+    color: white;
+  }
+
+  .nav-btn.next:hover {
+    background: var(--isu-dark-red);
+  }
+
+  .progress-indicator {
+    flex: 1;
+    text-align: center;
+    color: var(--text-light);
+    font-weight: 500;
+  }
+
+  @media (max-width: 768px) {
+    .lesson-nav {
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .nav-btn-container {
+      width: 100%;
+    }
+
+    .nav-btn-container:last-child {
+      justify-content: flex-start;
+    }
+
+    .progress-indicator {
+      order: -1;
+      margin-bottom: 10px;
+    }
+  }
+</style>

@@ -1,0 +1,24 @@
+[
+  {
+    "q": "What is the maximum weight of a small unmanned aerial system that falls under the FAA's Part 107 license?",
+    "options": [
+      "25 pounds",
+      "35 pounds",
+      "45 pounds",
+      "55 pounds"
+    ],
+    "correct": 3,
+    "explain": "Small unmanned aerial systems less than 55 pounds in weight fall under Part 107 regulations."
+  },
+  {
+    "q": "What is the maximum altitude you can fly a drone in Part 107?",
+    "options": [
+      "100 feet",
+      "200 feet",
+      "300 feet",
+      "400 feet"
+    ],
+    "correct": 3,
+    "explain": "Part 107 regulations limit drones to 400 feet above the ground level."
+  }
+]

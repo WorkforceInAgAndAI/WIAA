@@ -1,0 +1,35 @@
+[
+  {
+    "q": "How can AI help a farmer process drone imagery?",
+    "options": [
+      "AI can grow plants faster",
+      "AI can quickly analyze thousands of images to identify weeds and stressed areas",
+      "AI can operate farming equipment automatically",
+      "AI can predict the weather perfectly"
+    ],
+    "correct": 1,
+    "explain": "AI excels at analyzing large amounts of data quickly to identify problems like weeds and stressed areas in fields."
+  },
+  {
+    "q": "Which AI tool would you use to count weeds in a field image?",
+    "options": [
+      "Vision Model",
+      "Classification Model",
+      "Quantification Model",
+      "Prediction Model"
+    ],
+    "correct": 2,
+    "explain": "Quantification models provide numeric outputs, perfect for counting objects."
+  },
+  {
+    "q": "When developing AI models, when is human-in-the-loop especially important?",
+    "options": [
+      "Data collection",
+      "Labeling data",
+      "Training the model",
+      "Model testing"
+    ],
+    "correct": 1,
+    "explain": "Humans can use their domain expertise to label data accurately and precisely so the model is trained on quality data and is more likely to perform precisely and accurately in real-world conditions."
+  }
+]

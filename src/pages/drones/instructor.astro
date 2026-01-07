@@ -1,0 +1,597 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+// Import quiz data - keep in public folder but import as modules
+import quiz02Raw from '../../../public/data/quizzes/02-introduction.json?raw';
+import quiz03Raw from '../../../public/data/quizzes/03-parts-types.json?raw';
+import quiz04Raw from '../../../public/data/quizzes/04-sensors.json?raw';
+import quiz05Raw from '../../../public/data/quizzes/05-ai-agriculture.json?raw';
+import quiz06Raw from '../../../public/data/quizzes/06-faa-safety.json?raw';
+import quiz07Raw from '../../../public/data/quizzes/07-careers.json?raw';
+
+// Parse the raw JSON strings
+const quiz02 = JSON.parse(quiz02Raw);
+const quiz03 = JSON.parse(quiz03Raw);
+const quiz04 = JSON.parse(quiz04Raw);
+const quiz05 = JSON.parse(quiz05Raw);
+const quiz06 = JSON.parse(quiz06Raw);
+const quiz07 = JSON.parse(quiz07Raw);
+
+const chapters = [
+  { num: 1, title: "Learning goals", hasQuiz: false, hasResources: false },
+  { num: 2, title: "Introduction to drones", hasQuiz: true, hasResources: true, quiz: quiz02 },
+  { num: 3, title: "Drone parts & types", hasQuiz: true, hasResources: true, quiz: quiz03 },
+  { num: 4, title: "Sensors & data collection", hasQuiz: true, hasResources: true, quiz: quiz04 },
+  { num: 5, title: "AI in agriculture", hasQuiz: true, hasResources: true, quiz: quiz05 },
+  { num: 6, title: "FAA Part 107 & safety", hasQuiz: true, hasResources: true, quiz: quiz06 },
+  { num: 7, title: "Careers in drones & AI", hasQuiz: true, hasResources: true, quiz: quiz07 },
+  { num: 8, title: "References", hasQuiz: false, hasResources: false }
+];
+
+const instructorResources = [
+  {
+    chapter: 2,
+    resources: [
+      {
+        title: "Slides: Introduction to Drones & Drone Parts and Types",
+        description: "PowerPoint presentation",
+        file: "/downloads/WIAA_UAV_Slides_IntroductionToDrones_DronePartsAndTypes.zip"
+      }
+    ]
+  },
+  {
+    chapter: 3,
+    resources: [
+      {
+        title: "Slides: Introduction to Drones & Drone Parts and Types",
+        description: "PowerPoint presentation",
+        file: "/downloads/WIAA_UAV_Slides_IntroductionToDrones_DronePartsAndTypes.zip"
+      },
+      {
+        title: "Slides: Introduction to Drones & Drone Parts and Types - Drone Kit Part 1",
+        description: "PowerPoint presentation",
+        file: "/downloads/WIAA_UAV_Slides_IntroductionToDrones_DronePartsAndTypes_DroneKit_TP1.zip"
+      },
+      {
+        title: "Slides: Introduction to Drones & Drone Parts and Types - Drone Kit Part 2",
+        description: "PowerPoint presentation",
+        file: "/downloads/WIAA_UAV_Slides_IntroductionToDrones_DronePartsAndTypes_DroneKit_TP2.zip"
+      },
+      {
+        title: "Slides: Introduction to Drones & Drone Parts and Types - Drone Kit Part 3",
+        description: "PowerPoint presentation",
+        file: "/downloads/WIAA_UAV_Slides_IntroductionToDrones_DronePartsAndTypes_DroneKit_TP3.zip"
+      },
+      {
+        title: "Slides: Introduction to Drones & Drone Parts and Types - Drone Kit Part 4",
+        description: "PowerPoint presentation",
+        file: "/downloads/WIAA_UAV_Slides_IntroductionToDrones_DronePartsAndTypes_DroneKit_TP4.zip"
+      },
+      {
+        title: "Slides: Introduction to Drones & Drone Parts and Types - Drone Kit Part 5",
+        description: "PowerPoint presentation",
+        file: "/downloads/WIAA_UAV_Slides_IntroductionToDrones_DronePartsAndTypes_DroneKit_TP5.zip"
+      }
+    ]
+  },
+  {
+    chapter: 4,
+    resources: [
+      {
+        title: "Slides: Sensors and Data Collection",
+        description: "PowerPoint presentation",
+        file: "/downloads/WIAA_UAV_Slides_SensorsAndDataCollection.zip"
+      }
+    ]
+  },
+  {
+    chapter: 5,
+    resources: [
+      {
+        title: "Slides: Artificial Intelligence in Agriculture",
+        description: "PowerPoint presentation",
+        file: "/downloads/WIAA_UAV_Slides_ArtificialInteligenceInAgriculture.zip"
+      }
+    ]
+  },
+  {
+    chapter: 6,
+    resources: [
+      {
+        title: "Slides: FAA Part 107 and Drone Safety",
+        description: "PowerPoint presentation",
+        file: "/downloads/WIAA_UAV_Slides_FAAPart107AndDroneSafety.zip"
+      },
+      {
+        title: "FAA Part 107 Honorary Pilot's Exam",
+        description: "Mock exam for students",
+        file: "/downloads/WIAA_DroneActivities_Part107Quiz.zip"
+      },
+      {
+        title: "Honorary Remote Pilot Certificates",
+        description: "Student certificates",
+        file: "/downloads/HonoraryRemotePilotCertificates.zip"
+      }
+    ]
+  },
+  {
+    chapter: 7,
+    resources: [
+      {
+        title: "Slides: Careers in Agriculture and AI",
+        description: "PowerPoint presentation",
+        file: "/downloads/WIAA_UAV_Slides_Careers.zip"
+      }
+    ]
+  }
+];
+
+const additionalResources = [
+  {
+    title: "Stations and Solution Innovator Activity Slides",
+    description: "PowerPoint slides for hands-on activities",
+    file: "/downloads/WIAA_UAV_Stations_SolutionInnovator.zip"
+  },
+  {
+    title: "Station Instructor Guide",
+    description: "Instructional document for executing stations",
+    file: "/downloads/WIAA_UAV_FullDay_Stations.zip"
+  },
+  {
+    title: "Solution Innovator Handout",
+    description: "Student handout for activity",
+    file: "/downloads/SolitionInnovatorActivityWorksheet.zip"
+  },
+  {
+    title: "Drone Processing Pipeline Activity Slides - Part 1",
+    description: "PowerPoint presentation",
+    file: "/downloads/WIAA_UAV_Slides_ImageProcessingPipeline_PT1.zip"
+  },
+  {
+    title: "Drone Processing Pipeline Activity Slides - Part 2",
+    description: "PowerPoint presentation",
+    file: "/downloads/WIAA_UAV_Slides_ImageProcessingPipeline_PT2.zip"
+  },
+  {
+    title: "Drone Processing Pipeline Activity Slides - Part 3",
+    description: "PowerPoint presentation",
+    file: "/downloads/WIAA_UAV_Slides_ImageProcessingPipeline_PT3.zip"
+  },
+  {
+    title: "Drone Processing Pipeline Activity Handout",
+    description: "Student handout",
+    file: "/downloads/ImageProcessingPipelineActivityHandout.zip"
+  },
+  {
+    title: "Drone Processing Pipeline No Overlap Handout",
+    description: "Student handout variant",
+    file: "/downloads/DroneProcessingPipeline_NoOverlapHandout.zip"
+  },
+  {
+    title: "Drone Processing Pipeline Overlap Handout",
+    description: "Student handout variant",
+    file: "/downloads/DroneProcessingPipeline_OverlapHandout.zip"
+  },
+  {
+    title: "Scouting Mission Slides",
+    description: "PowerPoint presentation",
+    file: "/downloads/WIAA_UAV_Slides_DroneScoutingMissinon.zip"
+  },
+  {
+    title: "Scouting Mission Handout",
+    description: "Student worksheet",
+    file: "/downloads/ScoutingMissionActivityWorksheet.zip"
+  }
+];
+---
+
+<BaseLayout title="Instructor Resources">
+  <div class="container">
+    <div class="instructor-layout">
+      <!-- Left Sidebar Navigation -->
+      <aside class="instructor-sidebar">
+        <h3>Quick Navigation</h3>
+        <nav class="chapter-nav">
+          {chapters.map(chapter => (
+            <a 
+              href={`#chapter-${chapter.num}`} 
+              class="nav-link"
+            >
+              Chapter {chapter.num}: {chapter.title}
+            </a>
+          ))}
+          <a href="#additional-resources" class="nav-link">
+            Additional Resources
+          </a>
+        </nav>
+      </aside>
+
+      <!-- Main Content -->
+      <div class="instructor-content">
+        <div class="page-header">
+          <h1>Instructor Resources</h1>
+          <p>Comprehensive teaching materials, quiz answers, and downloadable resources for the drone curriculum.</p>
+          <div class="tab-buttons">
+            <a href="/drones" class="tab-btn">Learning Module</a>
+            <a href="/drones/instructor" class="tab-btn active">Instructor Resources</a>
+          </div>
+        </div>
+
+        <!-- Chapter-Specific Resources -->
+        <div class="chapter-sections">
+          {chapters.map(chapter => (
+            <div class="chapter-section" id={`chapter-${chapter.num}`}>
+              <h2>Chapter {chapter.num}: {chapter.title}</h2>
+              
+              {chapter.hasQuiz && chapter.quiz && (
+                <div class="quiz-answers">
+                  <h3><i class="fas fa-check-circle"></i> Quiz Answer Key</h3>
+                  <div class="answer-list">
+                    {chapter.quiz.map((question, idx) => (
+                      <div class="answer-item">
+                        <h4>Question {idx + 1}: {question.q}</h4>
+                        <p class="correct-answer">
+                          <strong>Correct Answer:</strong> {question.options[question.correct]}
+                        </p>
+                        <p class="explanation">
+                          <strong>Explanation:</strong> {question.explain}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+              
+              {chapter.hasResources && (
+                <div class="downloadable-resources">
+                  <h3><i class="fas fa-download"></i> Downloadable Resources</h3>
+                  <div class="resource-grid">
+                    {instructorResources
+                      .filter(r => r.chapter === chapter.num)
+                      .flatMap(r => r.resources)
+                      .map(resource => (
+                        <div class="resource-card">
+                          <div class="resource-icon">
+                            <i class="fas fa-file-archive"></i>
+                          </div>
+                          <div class="resource-info">
+                            <h4>{resource.title}</h4>
+                            <p>{resource.description}</p>
+                            <a href={resource.file} download class="btn btn-primary btn-sm">
+                              <i class="fas fa-download"></i> Download
+                            </a>
+                          </div>
+                        </div>
+                      ))}
+                  </div>
+                </div>
+              )}
+              
+              {!chapter.hasQuiz && !chapter.hasResources && (
+                <p class="no-resources">No additional instructor resources for this chapter.</p>
+              )}
+            </div>
+          ))}
+        </div>
+
+        <!-- Additional Resources Section -->
+        <div class="additional-section" id="additional-resources">
+          <h2><i class="fas fa-plus-circle"></i> Additional Resources</h2>
+          <p class="section-description">
+            Supplemental activities, extended lessons, and hands-on project materials.
+          </p>
+          <div class="resource-grid">
+            {additionalResources.map(resource => (
+              <div class="resource-card">
+                <div class="resource-icon">
+                  <i class="fas fa-file-archive"></i>
+                </div>
+                <div class="resource-info">
+                  <h4>{resource.title}</h4>
+                  <p>{resource.description}</p>
+                  <a href={resource.file} download class="btn btn-primary btn-sm">
+                    <i class="fas fa-download"></i> Download
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .container {
+    max-width: 1400px;
+    margin: 30px auto;
+    padding: 0 20px;
+  }
+
+  .instructor-layout {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    gap: 24px;
+    align-items: start;
+  }
+
+  /* Sidebar Navigation */
+  .instructor-sidebar {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid var(--border-light);
+    position: sticky;
+    top: 90px;
+    height: fit-content;
+  }
+
+  .instructor-sidebar h3 {
+    color: var(--isu-red);
+    margin-bottom: 15px;
+    font-size: 1.1em;
+    border-bottom: 2px solid var(--isu-gold);
+    padding-bottom: 10px;
+  }
+
+  .chapter-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .nav-link {
+    padding: 10px 12px;
+    background: #f5f5f5;
+    border-radius: 4px;
+    color: var(--text-dark);
+    text-decoration: none;
+    transition: all 0.2s;
+    font-size: 0.9em;
+    border-left: 3px solid transparent;
+  }
+
+  .nav-link:hover {
+    background: var(--isu-red);
+    color: white;
+    border-left-color: var(--isu-gold);
+  }
+
+  /* Main Content */
+  .instructor-content {
+    min-width: 0;
+  }
+
+  .page-header {
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    border: 2px solid var(--isu-gold);
+    margin-bottom: 30px;
+  }
+
+  .page-header h1 {
+    margin-bottom: 10px;
+  }
+
+  .page-header p {
+    color: var(--text-medium);
+    margin-bottom: 20px;
+  }
+
+  .tab-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+    border-top: 2px solid var(--border-light);
+    padding-top: 20px;
+  }
+
+  .tab-btn {
+    flex: 1;
+    padding: 12px 20px;
+    background: #f5f5f5;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s;
+    text-align: center;
+    text-decoration: none;
+    color: var(--text-medium);
+  }
+
+  .tab-btn:hover {
+    background: #e8e8e8;
+  }
+
+  .tab-btn.active {
+    background: var(--isu-red);
+    color: white;
+  }
+
+  .chapter-section {
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    border: 1px solid var(--border-light);
+    margin-bottom: 30px;
+    scroll-margin-top: 100px;
+  }
+
+  .chapter-section h2 {
+    color: var(--isu-red);
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid var(--isu-gold);
+  }
+
+  .chapter-section h3 {
+    color: var(--isu-red);
+    margin: 25px 0 20px;
+    font-size: 1.2em;
+  }
+
+  .chapter-section h3 i {
+    margin-right: 8px;
+  }
+
+  .quiz-answers {
+    background: #fff5f5;
+    padding: 25px;
+    border-radius: 8px;
+    border-left: 4px solid var(--isu-red);
+    margin-bottom: 30px;
+  }
+
+  .answer-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .answer-item {
+    background: white;
+    padding: 20px;
+    border-radius: 6px;
+    border-left: 3px solid var(--isu-gold);
+  }
+
+  .answer-item h4 {
+    color: var(--isu-red);
+    margin-bottom: 12px;
+  }
+
+  .correct-answer {
+    background: #d4f4dd;
+    padding: 10px 15px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    color: #155724;
+  }
+
+  .explanation {
+    color: var(--text-medium);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .downloadable-resources {
+    background: #f9f7f4;
+    padding: 25px;
+    border-radius: 8px;
+    border-left: 4px solid var(--isu-gold);
+  }
+
+  .resource-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+  }
+
+  .resource-card {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid var(--border-light);
+    display: flex;
+    gap: 15px;
+    transition: all 0.2s;
+  }
+
+  .resource-card:hover {
+    box-shadow: 0 4px 12px rgba(196, 30, 58, 0.1);
+    border-color: var(--isu-red);
+  }
+
+  .resource-icon {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, var(--isu-red), var(--isu-dark-red));
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.5em;
+    flex-shrink: 0;
+  }
+
+  .resource-info {
+    flex: 1;
+  }
+
+  .resource-info h4 {
+    color: var(--isu-red);
+    margin-bottom: 5px;
+    font-size: 1em;
+  }
+
+  .resource-info p {
+    color: var(--text-light);
+    font-size: 0.9em;
+    margin-bottom: 12px;
+  }
+
+  .btn-sm {
+    padding: 8px 16px;
+    font-size: 0.9em;
+  }
+
+  .btn-sm i {
+    margin-right: 5px;
+  }
+
+  .no-resources {
+    color: var(--text-light);
+    font-style: italic;
+    padding: 20px;
+    text-align: center;
+    background: #f9f7f4;
+    border-radius: 6px;
+  }
+
+  .additional-section {
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    border: 2px solid var(--isu-gold);
+    margin-bottom: 30px;
+    scroll-margin-top: 100px;
+  }
+
+  .additional-section h2 {
+    color: var(--isu-red);
+    margin-bottom: 15px;
+  }
+
+  .additional-section h2 i {
+    margin-right: 10px;
+  }
+
+  .section-description {
+    color: var(--text-medium);
+    margin-bottom: 25px;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 968px) {
+    .instructor-layout {
+      grid-template-columns: 1fr;
+    }
+
+    .instructor-sidebar {
+      position: static;
+    }
+
+    .resource-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .tab-buttons {
+      flex-direction: column;
+    }
+  }
+</style>

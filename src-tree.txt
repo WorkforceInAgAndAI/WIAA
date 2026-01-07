@@ -1,0 +1,71 @@
+Folder PATH listing for volume OS
+Volume serial number is 844D-41FE
+C:\USERS\EMTRANEL\DESKTOP\WIAA\WIAA-DRONE-EDU\SRC
+¦   env.d.ts
+¦   
++---components
+¦       Footer.astro
+¦       Header.astro
+¦       LessonNav.astro
+¦       ProgressTracker.astro
+¦       Quiz.astro
+¦       Sidebar.astro
+¦       
++---layouts
+¦       BaseLayout.astro
+¦       
++---pages
+¦   ¦   about.astro
+¦   ¦   contact.astro
+¦   ¦   feedback.astro
+¦   ¦   index.astro
+¦   ¦   outreach.astro
+¦   ¦   privacy.astro
+¦   ¦   rovers.astro
+¦   ¦   
+¦   +---drones
+¦       ¦   index.astro
+¦       ¦   instructor.astro
+¦       ¦   
+¦       +---01-learning-goals
+¦       ¦       lesson-1.astro
+¦       ¦       lesson-2.astro
+¦       ¦       
+¦       +---02-introduction
+¦       ¦       lesson-1.astro
+¦       ¦       lesson-2.astro
+¦       ¦       review.astro
+¦       ¦       
+¦       +---03-parts-types
+¦       ¦       lesson-1.astro
+¦       ¦       lesson-2.astro
+¦       ¦       review.astro
+¦       ¦       
+¦       +---04-sensors
+¦       ¦       lesson-1.astro
+¦       ¦       lesson-2.astro
+¦       ¦       lesson-3.astro
+¦       ¦       review.astro
+¦       ¦       
+¦       +---05-ai-agriculture
+¦       ¦       lesson-1.astro
+¦       ¦       lesson-2.astro
+¦       ¦       lesson-3.astro
+¦       ¦       review.astro
+¦       ¦       
+¦       +---06-faa-safety
+¦       ¦       lesson-1.astro
+¦       ¦       lesson-2.astro
+¦       ¦       review.astro
+¦       ¦       
+¦       +---07-careers
+¦       ¦       lesson-1.astro
+¦       ¦       lesson-2.astro
+¦       ¦       review.astro
+¦       ¦       
+¦       +---08-references
+¦               lesson-1.astro
+¦               
++---styles
+        global.css
+        

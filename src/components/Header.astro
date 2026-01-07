@@ -1,0 +1,142 @@
+---
+const currentPath = Astro.url.pathname;
+
+const navItems = [
+  { label: 'Home', href: '/' },
+  { label: 'Drone program', href: '/drones' },
+  { label: 'Rover program', href: '/rovers' },
+  { label: 'Outreach', href: '/outreach' }
+];
+
+function isActive(href: string) {
+  if (href === '/') return currentPath === '/';
+  return currentPath.startsWith(href);
+}
+---
+
+<header class="navbar">
+  <div class="nav-container">
+    <a href="/" class="logo-link">
+      <div class="logo-icon">WIAA</div>
+      <span class="logo-text">Workforce in Agriculture and AI</span>
+    </a>
+    <nav class="desktop-nav">
+      {navItems.map(item => (
+        <a 
+          href={item.href} 
+          class={isActive(item.href) ? 'active' : ''}
+        >
+          {item.label}
+        </a>
+      ))}
+    </nav>
+    <button class="mobile-menu-btn" aria-label="Toggle menu">
+      <i class="fas fa-bars"></i>
+    </button>
+  </div>
+</header>
+
+<style>
+  .navbar {
+    height: 70px;
+    width: 100%;
+    border-bottom: 3px solid var(--isu-gold);
+    background: white;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 8px rgba(196, 30, 58, 0.08);
+  }
+
+  .nav-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30px;
+  }
+
+  .logo-link {
+    display: flex;
+    align-items: center;
+    color: var(--isu-red);
+    font-weight: 700;
+    font-size: 1.3em;
+    text-decoration: none;
+  }
+
+  .logo-icon {
+    background: linear-gradient(135deg, var(--isu-red), var(--isu-dark-red));
+    color: white;
+    padding: 10px 14px;
+    border-radius: 6px;
+    margin-right: 12px;
+    font-weight: 700;
+  }
+
+  .logo-text {
+    display: none;
+  }
+
+  .desktop-nav {
+    display: flex;
+    gap: 8px;
+  }
+
+  .desktop-nav a {
+    padding: 10px 16px;
+    color: var(--text-medium);
+    font-weight: 500;
+    transition: 0.3s;
+    border-radius: 4px;
+    text-decoration: none;
+  }
+
+  .desktop-nav a:hover {
+    color: var(--isu-red);
+    background: rgba(196, 30, 58, 0.05);
+  }
+
+  .desktop-nav a.active {
+    color: var(--isu-red);
+    border-bottom: 3px solid var(--isu-gold);
+    font-weight: 600;
+  }
+
+  .mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.5em;
+    color: var(--isu-red);
+    cursor: pointer;
+  }
+
+  @media (min-width: 768px) {
+    .logo-text {
+      display: inline;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .desktop-nav {
+      display: none;
+    }
+    
+    .mobile-menu-btn {
+      display: block;
+    }
+  }
+</style>
+
+<script>
+  // Mobile menu toggle functionality
+  const menuBtn = document.querySelector('.mobile-menu-btn');
+  const nav = document.querySelector('.desktop-nav');
+  
+  menuBtn?.addEventListener('click', () => {
+    nav?.classList.toggle('mobile-open');
+  });
+</script>

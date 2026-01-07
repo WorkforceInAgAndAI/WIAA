@@ -1,0 +1,24 @@
+[
+  {
+    "q": "What does UAS stand for?",
+    "options": [
+      "Unfixed Air Support",
+      "Unmanned Aerial System",
+      "Unique Aerial Surveillance",
+      "Under Air Surveying"
+    ],
+    "correct": 1,
+    "explain": "UAS stands for Unmanned Aerial System and includes the drone, controller, sensors, pilot, and software."
+  },
+  {
+    "q": "Which task can a drone help with?",
+    "options": [
+      "Plant seeds in rows",
+      "Harvest crops",
+      "Detect water stress",
+      "Till the soil"
+    ],
+    "correct": 2,
+    "explain": "Drones with sensors are excellent at detection tasks like monitoring water stress from above."
+  }
+]

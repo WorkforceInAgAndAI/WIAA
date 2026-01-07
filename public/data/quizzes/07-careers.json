@@ -1,0 +1,24 @@
+[
+  {
+    "q": "Why are jobs in agriculture and AI growing?",
+    "options": [
+      "Fewer people want to farm",
+      "Population is increasing while farmland is decreasing, requiring new technology",
+      "Drones and AI are just temporary fads",
+      "Farming doesn't need technology"
+    ],
+    "correct": 1,
+    "explain": "Growing population + less farmland = demand for technology solutions to increase agricultural productivity."
+  },
+  {
+    "q": "What can you do RIGHT NOW to prepare for a career in agricultural technology?",
+    "options": [
+      "Wait until college",
+      "Take STEM classes, learn programming, and gain agriculture experience",
+      "Only study soybeans",
+      "Focus entirely on computer science"
+    ],
+    "correct": 1,
+    "explain": "You can start building valuable skills immediately through STEM classes, coding, and agriculture experience."
+  }
+]

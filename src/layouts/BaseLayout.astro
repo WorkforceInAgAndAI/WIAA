@@ -1,0 +1,136 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "Inspiring future leaders in science who are passionate about using AI and its applications in agricultural related problems." } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content={description}>
+  <title>{title} | WIAA</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+  <Header />
+  <main>
+    <slot />
+  </main>
+  <Footer />
+</body>
+</html>
+
+<style is:global>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  :root {
+    --isu-red: #C41E3A;
+    --isu-dark-red: #a01830;
+    --isu-gold: #FFB81C;
+    --isu-light-gold: #ffd93f;
+    --bg-light: #fcfbf9;
+    --bg-white: #ffffff;
+    --text-dark: #444;
+    --text-medium: #555;
+    --text-light: #666;
+    --border-light: #e0e0e0;
+    --border-gold: #FFB81C;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background: var(--bg-light);
+    color: var(--text-dark);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-weight: 400;
+    line-height: 1.5;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 500;
+    letter-spacing: -0.3px;
+    color: var(--isu-red);
+  }
+
+  h1 { font-size: 2.5em; }
+  h2 { font-size: 1.9em; }
+  h3 { font-size: 1.3em; }
+  h4 { font-size: 1.05em; }
+
+  p {
+    font-size: 1em;
+    line-height: 1.6;
+    margin-bottom: 12px;
+  }
+
+  a {
+    color: var(--isu-red);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  a:hover {
+    color: var(--isu-gold);
+  }
+
+  main {
+    flex: 1;
+  }
+
+  .container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .btn {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .btn-primary {
+    background: var(--isu-red);
+    color: white;
+  }
+
+  .btn-primary:hover {
+    background: var(--isu-dark-red);
+    color: white;
+  }
+
+  .btn-secondary {
+    background: var(--isu-gold);
+    color: var(--isu-red);
+  }
+
+  .btn-secondary:hover {
+    background: var(--isu-light-gold);
+    box-shadow: 0 4px 12px rgba(255, 184, 28, 0.3);
+  }
+
+  @media (max-width: 900px) {
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+  }
+</style>

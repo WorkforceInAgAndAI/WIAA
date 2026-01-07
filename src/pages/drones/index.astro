@@ -1,0 +1,212 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Drone Program">
+  <div class="container page-content">
+    <div class="objectives-standards">
+      <div class="objectives-row">
+        <div class="objectives-col">
+          <h3>Learning Objectives</h3>
+          <ol>
+            <li>Understand UAV and UAS components and their functions</li>
+            <li>Identify agricultural applications and limitations of drone technology</li>
+            <li>Analyze sensor types and data collection methods</li>
+            <li>Calculate and interpret vegetation health indices</li>
+            <li>Apply AI tools to agricultural problems</li>
+            <li>Understand FAA Part 107 regulations and flight safety</li>
+            <li>Explore career pathways in agricultural technology</li>
+          </ol>
+        </div>
+        
+        <div class="objectives-col">
+          <h3>Next Generation Science Standards</h3>
+          <ol>
+            <li>HS-PS3-1: Energy in a system</li>
+            <li>HS-PS4-2: Electromagnetic radiation</li>
+            <li>HS-ETS1-1: Engineering design process</li>
+            <li>HS-LS2-3: Ecosystem dynamics</li>
+            <li>HS-L4-1: Systems and system models</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <div class="tabs-container">
+      <div class="tab-buttons">
+        <a href="/drones/01-learning-goals/lesson-1" class="tab-btn active">Learning Module</a>
+        <a href="/drones/instructor" class="tab-btn">Instructor Resources</a>
+      </div>
+      
+      <div class="tab-content">
+        <h2>Start Your Drone Education Journey</h2>
+        <p>This comprehensive curriculum will guide you through drone technology, AI applications in agriculture, and career preparation. Click "Learning Module" to begin!</p>
+        
+        <div class="chapter-preview">
+          <h3>What You'll Learn:</h3>
+          <div class="preview-grid">
+            <div class="preview-card">
+              <h4>Chapters 1-2</h4>
+              <p>Introduction to drones and their agricultural applications</p>
+            </div>
+            <div class="preview-card">
+              <h4>Chapters 3-4</h4>
+              <p>Drone components, sensors, and data collection methods</p>
+            </div>
+            <div class="preview-card">
+              <h4>Chapters 5</h4>
+              <p>Artificial intelligence and machine learning in agriculture</p>
+            </div>
+            <div class="preview-card">
+              <h4>Chapters 6-7</h4>
+              <p>FAA regulations, safety, and career pathways</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="cta-section">
+          <a href="/drones/01-learning-goals/lesson-1" class="btn btn-primary btn-large">Start Learning</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .page-content {
+    padding: 40px 20px;
+    transition: margin-left 0.3s ease;
+  }
+
+  .objectives-standards {
+    background: white;
+    padding: 25px;
+    border-radius: 8px;
+    border: 2px solid var(--isu-gold);
+    margin-bottom: 25px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+
+  .objectives-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+  }
+
+  .objectives-col h3 {
+    color: var(--isu-red);
+    margin: 0 0 15px 0;
+    font-size: 1.2em;
+  }
+
+  .objectives-col ol {
+    margin-left: 20px;
+    line-height: 1.8;
+  }
+
+  .objectives-col li {
+    margin-bottom: 8px;
+  }
+
+  .tabs-container {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    overflow: hidden;
+  }
+
+  .tab-buttons {
+    display: flex;
+    border-bottom: 2px solid var(--isu-gold);
+  }
+
+  .tab-btn {
+    flex: 1;
+    padding: 15px;
+    background: #f5f5f5;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s;
+    text-align: center;
+    text-decoration: none;
+    color: var(--text-medium);
+  }
+
+  .tab-btn:hover {
+    background: #e8e8e8;
+  }
+
+  .tab-btn.active {
+    background: white;
+    color: var(--isu-red);
+  }
+
+  .tab-content {
+    padding: 40px;
+  }
+
+  .tab-content h2 {
+    margin-bottom: 15px;
+  }
+
+  .tab-content > p {
+    color: var(--text-medium);
+    margin-bottom: 30px;
+  }
+
+  .chapter-preview {
+    background: #f9f7f4;
+    padding: 25px;
+    border-radius: 8px;
+    margin: 30px 0;
+  }
+
+  .chapter-preview h3 {
+    margin-bottom: 20px;
+  }
+
+  .preview-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+  }
+
+  .preview-card {
+    background: white;
+    padding: 20px;
+    border-radius: 6px;
+    border-left: 3px solid var(--isu-gold);
+  }
+
+  .preview-card h4 {
+    color: var(--isu-red);
+    margin-bottom: 8px;
+  }
+
+  .preview-card p {
+    color: var(--text-medium);
+    font-size: 0.95em;
+    margin: 0;
+  }
+
+  .cta-section {
+    text-align: center;
+    margin-top: 40px;
+  }
+
+  .btn-large {
+    padding: 16px 40px;
+    font-size: 1.1em;
+  }
+
+  @media (max-width: 768px) {
+    .objectives-row {
+      grid-template-columns: 1fr;
+    }
+
+    .tab-content {
+      padding: 20px;
+    }
+  }
+</style>

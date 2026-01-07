@@ -1,0 +1,384 @@
+# WIAA Drone Education - Complete File Structure & Setup Guide
+
+## 📁 COMPLETE FILE STRUCTURE
+
+```
+wiaa-drone-edu/
+├── package.json
+├── astro.config.mjs
+├── tsconfig.json
+├── README.md
+├── .github/
+│   └── workflows/
+│       └── deploy.yml
+├── public/
+│   ├── images/
+│   │   ├── drone.jpg
+│   │   ├── ag_apps.jpg
+│   │   ├── uav_components.jpg
+│   │   ├── drone_types.jpg
+│   │   ├── drone_sensors.jpg
+│   │   ├── reflectances.jpg
+│   │   ├── ndvi.jpg
+│   │   ├── AI_in_ag.jpg
+│   │   ├── AI_models.jpg
+│   │   ├── AI_dev.jpg
+│   │   ├── safety.jpg
+│   │   ├── careers_why.jpg
+│   │   ├── skills.jpg
+│   │   ├── Home.jpg
+│   │   ├── RISE_WISE.jpg
+│   │   ├── 4h_agin.jpg
+│   │   └── favicon.svg
+│   └── downloads/
+│       ├── WIAA_UAV_Slides_IntroductionToDrones_DronePartsAndTypes.zip
+│       ├── WIAA_UAV_Slides_SensorsAndDataCollection.zip
+│       ├── WIAA_UAV_Slides_ArtificialInteligenceInAgriculture.zip
+│       ├── WIAA_UAV_Slides_FAAPart107AndDroneSafety.zip
+│       ├── WIAA_UAV_Slides_Careers.zip
+│       ├── WIAA_DroneActivities_Part107Quiz.zip
+│       ├── HonoraryRemotePilotCertificates.zip
+│       ├── WIAA_UAV_Stations_SolutionInnovator.zip
+│       ├── WIAA_UAV_FullDay_Stations.zip
+│       ├── SolitionInnovatorActivityWorksheet.zip
+│       ├── WIAA_UAV_Slides_ImageProcessingPipeline.zip
+│       ├── ImageProcessingPipelineActivityHandout.zip
+│       ├── DroneProcessingPipeline_NoOverlapHandout.zip
+│       ├── DroneProcessingPipeline_OverlapHandout.zip
+│       ├── WIAA_UAV_Slides_DroneScoutingMissinon.zip
+│       └── ScoutingMissionActivityWorksheet.zip
+├── src/
+│   ├── content/
+│   │   └── drones/
+│   │       ├── 01-learning-goals/
+│   │       │   ├── lesson-1.md
+│   │       │   └── lesson-2.md
+│   │       ├── 02-introduction/
+│   │       │   ├── lesson-1.md
+│   │       │   ├── lesson-2.md
+│   │       │   └── quiz.json
+│   │       ├── 03-parts-types/
+│   │       │   ├── lesson-1.md
+│   │       │   ├── lesson-2.md
+│   │       │   └── quiz.json
+│   │       ├── 04-sensors/
+│   │       │   ├── lesson-1.md
+│   │       │   ├── lesson-2.md
+│   │       │   ├── lesson-3.md
+│   │       │   └── quiz.json
+│   │       ├── 05-ai-agriculture/
+│   │       │   ├── lesson-1.md
+│   │       │   ├── lesson-2.md
+│   │       │   ├── lesson-3.md
+│   │       │   └── quiz.json
+│   │       ├── 06-faa-safety/
+│   │       │   ├── lesson-1.md
+│   │       │   ├── lesson-2.md
+│   │       │   └── quiz.json
+│   │       ├── 07-careers/
+│   │       │   ├── lesson-1.md
+│   │       │   ├── lesson-2.md
+│   │       │   └── quiz.json
+│   │       └── 08-references/
+│   │           └── lesson-1.md
+│   ├── components/
+│   │   ├── Header.astro
+│   │   ├── Footer.astro
+│   │   ├── Quiz.astro
+│   │   ├── LessonNav.astro
+│   │   ├── Sidebar.astro
+│   │   └── ProgressTracker.astro
+│   ├── layouts/
+│   │   └── BaseLayout.astro
+│   ├── pages/
+│   │   ├── index.astro
+│   │   ├── drones/
+│   │   │   ├── index.astro
+│   │   │   ├── instructor.astro
+│   │   │   ├── 01-learning-goals/
+│   │   │   │   ├── lesson-1.astro
+│   │   │   │   └── lesson-2.astro
+│   │   │   ├── 02-introduction/
+│   │   │   │   ├── lesson-1.astro
+│   │   │   │   ├── lesson-2.astro
+│   │   │   │   └── review.astro
+│   │   │   ├── 03-parts-types/
+│   │   │   │   ├── lesson-1.astro
+│   │   │   │   ├── lesson-2.astro
+│   │   │   │   └── review.astro
+│   │   │   ├── 04-sensors/
+│   │   │   │   ├── lesson-1.astro
+│   │   │   │   ├── lesson-2.astro
+│   │   │   │   ├── lesson-3.astro
+│   │   │   │   └── review.astro
+│   │   │   ├── 05-ai-agriculture/
+│   │   │   │   ├── lesson-1.astro
+│   │   │   │   ├── lesson-2.astro
+│   │   │   │   ├── lesson-3.astro
+│   │   │   │   └── review.astro
+│   │   │   ├── 06-faa-safety/
+│   │   │   │   ├── lesson-1.astro
+│   │   │   │   ├── lesson-2.astro
+│   │   │   │   └── review.astro
+│   │   │   ├── 07-careers/
+│   │   │   │   ├── lesson-1.astro
+│   │   │   │   ├── lesson-2.astro
+│   │   │   │   └── review.astro
+│   │   │   └── 08-references/
+│   │   │       └── lesson-1.astro
+│   │   ├── rovers.astro
+│   │   ├── outreach.astro
+│   │   ├── about.astro
+│   │   ├── contact.astro
+│   │   ├── feedback.astro
+│   │   └── privacy.astro
+│   └── styles/
+│       └── global.css
+└── README.md
+```
+
+## ✅ ALL FILES PROVIDED
+
+### Configuration Files (Root Level)
+- ✅ `package.json` - Project dependencies
+- ✅ `astro.config.mjs` - Astro configuration
+- ✅ `tsconfig.json` - TypeScript configuration
+- ✅ `.github/workflows/deploy.yml` - GitHub Actions deployment
+
+### Layouts
+- ✅ `src/layouts/BaseLayout.astro` - Main layout with ISU styling
+
+### Components
+- ✅ `src/components/Header.astro` - Navigation header
+- ✅ `src/components/Footer.astro` - Site footer
+- ✅ `src/components/Quiz.astro` - Interactive quiz component
+- ✅ `src/components/Sidebar.astro` - Chapter/lesson navigation
+- ✅ `src/components/LessonNav.astro` - Previous/next navigation
+- ✅ `src/components/ProgressTracker.astro` - Progress indicator
+
+### Styles
+- ✅ `src/styles/global.css` - Global CSS variables and styles
+
+### Static Pages
+- ✅ `src/pages/index.astro` - Homepage
+- ✅ `src/pages/rovers.astro` - Rover program (coming soon)
+- ✅ `src/pages/outreach.astro` - Outreach programs
+- ✅ `src/pages/about.astro` - About WIAA
+- ✅ `src/pages/contact.astro` - Contact information
+- ✅ `src/pages/feedback.astro` - Feedback form
+- ✅ `src/pages/privacy.astro` - Privacy policy & terms
+
+### Drone Program Pages
+- ✅ `src/pages/drones/index.astro` - Drone program overview
+- ✅ `src/pages/drones/instructor.astro` - **INSTRUCTOR RESOURCES PAGE**
+
+### Lesson Content (Markdown)
+**Chapter 1 - Learning Goals:**
+- ✅ `src/content/drones/01-learning-goals/lesson-1.md` - Learning objectives
+- ✅ `src/content/drones/01-learning-goals/lesson-2.md` - NGSS standards
+
+**Chapter 2 - Introduction to Drones:**
+- ✅ `src/content/drones/02-introduction/lesson-1.md` - What is a drone?
+- ✅ `src/content/drones/02-introduction/lesson-2.md` - Agricultural applications
+- ✅ `src/content/drones/02-introduction/quiz.json` - Quiz (2 questions)
+
+**Chapter 3 - Drone Parts & Types:**
+- ✅ `src/content/drones/03-parts-types/lesson-1.md` - Main components
+- ✅ `src/content/drones/03-parts-types/lesson-2.md` - Types of drones
+- ✅ `src/content/drones/03-parts-types/quiz.json` - Quiz (2 questions)
+
+**Chapter 4 - Sensors & Data Collection:**
+- ✅ `src/content/drones/04-sensors/lesson-1.md` - Sensor types
+- ✅ `src/content/drones/04-sensors/lesson-2.md` - Reflectance and plant health
+- ✅ `src/content/drones/04-sensors/lesson-3.md` - Vegetation indices
+- ✅ `src/content/drones/04-sensors/quiz.json` - Quiz (3 questions)
+
+**Chapter 5 - AI in Agriculture:**
+- ✅ `src/content/drones/05-ai-agriculture/lesson-1.md` - What is AI?
+- ✅ `src/content/drones/05-ai-agriculture/lesson-2.md` - AI tools
+- ✅ `src/content/drones/05-ai-agriculture/lesson-3.md` - AI development
+- ✅ `src/content/drones/05-ai-agriculture/quiz.json` - Quiz (3 questions)
+
+**Chapter 6 - FAA Part 107 & Safety:**
+- ✅ `src/content/drones/06-faa-safety/lesson-1.md` - FAA basics
+- ✅ `src/content/drones/06-faa-safety/lesson-2.md` - Flight rules
+- ✅ `src/content/drones/06-faa-safety/quiz.json` - Quiz (2 questions)
+
+**Chapter 7 - Careers:**
+- ✅ `src/content/drones/07-careers/lesson-1.md` - Why these skills matter
+- ✅ `src/content/drones/07-careers/lesson-2.md` - Skills you can build now
+- ✅ `src/content/drones/07-careers/quiz.json` - Quiz (2 questions)
+
+**Chapter 8 - References:**
+- ✅ `src/content/drones/08-references/lesson-1.md` - References
+
+### Lesson Pages (Astro)
+**ALL 25 lesson and review pages created:**
+- ✅ Chapter 1: 2 lesson pages
+- ✅ Chapter 2: 2 lessons + 1 review page
+- ✅ Chapter 3: 2 lessons + 1 review page
+- ✅ Chapter 4: 3 lessons + 1 review page
+- ✅ Chapter 5: 3 lessons + 1 review page
+- ✅ Chapter 6: 2 lessons + 1 review page
+- ✅ Chapter 7: 2 lessons + 1 review page
+- ✅ Chapter 8: 1 lesson page
+
+## 🎓 INSTRUCTOR RESOURCES PAGE FEATURES
+
+The `src/pages/drones/instructor.astro` page includes:
+
+1. **Quiz Answer Keys** - All quiz answers with explanations for chapters 2-7
+2. **Downloadable Resources** - Links to all PowerPoint slides, worksheets, and materials
+3. **Chapter Organization** - Resources organized by chapter
+4. **Additional Resources Section** - Extra activities and extended materials
+5. **Quick Navigation** - Jump to any chapter's resources
+6. **Professional Layout** - Clean, organized interface for educators
+
+### Instructor Page Navigation
+- Access via tabs on `/drones` page
+- Direct link: `/drones/instructor`
+- Shows all quiz answers automatically
+- Download links for all instructor materials
+
+## 📝 FILES YOU NEED TO UPDATE
+
+### When Adding Instructor Resources:
+
+1. **Update `src/pages/drones/instructor.astro`:**
+   - Add new resources to `instructorResources` array
+   - Add new items to `additionalResources` array
+
+2. **Add files to `public/downloads/`:**
+   - Place all ZIP files in this directory
+   - Use exact filenames as specified in instructor page
+
+3. **No changes needed to:**
+   - Sidebar.astro (automatically includes all chapters)
+   - Header.astro (navigation is static)
+   - Quiz.astro (works with any quiz.json)
+
+### When Adding New Lessons:
+
+1. **Create content file:** `src/content/drones/XX-chapter/lesson-N.md`
+2. **Create page file:** `src/pages/drones/XX-chapter/lesson-N.astro`
+3. **Update Sidebar.astro:** Add new lesson to chapter's lesson array
+4. **Update LessonNav:** Set correct prev/next links in new lesson page
+5. **If adding quiz:** Create `quiz.json` and import in instructor.astro
+
+## 🚀 QUICK START GUIDE
+
+### Step 1: Create Project
+```bash
+npm create astro@latest wiaa-drone-edu
+cd wiaa-drone-edu
+npm install @astrojs/mdx @astrojs/sitemap
+```
+
+### Step 2: Copy All Files
+Copy all the files I've provided into your project following the exact structure above.
+
+### Step 3: Add Your Assets
+1. Copy all images to `public/images/`
+2. Copy all downloads to `public/downloads/`
+3. Create a `favicon.svg` in `public/`
+
+### Step 4: Update Configuration
+Edit `astro.config.mjs`:
+```javascript
+site: 'https://YOUR-USERNAME.github.io',
+base: '/wiaa-drone-edu',  // Your repo name
+```
+
+### Step 5: Test Locally
+```bash
+npm run dev
+# Visit http://localhost:4321
+```
+
+### Step 6: Deploy to GitHub
+```bash
+git init
+git add .
+git commit -m "Initial commit - WIAA Drone Education Site"
+git remote add origin https://github.com/YOUR-USERNAME/wiaa-drone-edu.git
+git push -u origin main
+```
+
+### Step 7: Enable GitHub Pages
+1. Go to repository Settings → Pages
+2. Source: GitHub Actions
+3. Wait 2-3 minutes for deployment
+4. Visit: `https://YOUR-USERNAME.github.io/wiaa-drone-edu/`
+
+## 📦 WHAT'S INCLUDED
+
+### Student Features
+- 25 interactive lessons across 8 chapters
+- 6 chapter review quizzes (14 total questions)
+- Progress tracking
+- Responsive design (mobile, tablet, desktop)
+- Clean navigation
+- ISU branding throughout
+
+### Instructor Features
+- Complete quiz answer keys
+- Downloadable teaching materials
+- Chapter-organized resources
+- Additional activities and worksheets
+- Professional interface
+- Easy access from main drone page
+
+### Site Features
+- Fast static site (no server needed)
+- Free hosting on GitHub Pages
+- Automatic deployments
+- Professional ISU styling
+- Accessible design
+- SEO-friendly structure
+
+## 🎨 Customization
+
+### Colors (in `src/layouts/BaseLayout.astro` and `src/styles/global.css`)
+```css
+--isu-red: #C41E3A
+--isu-gold: #FFB81C
+```
+
+### Adding Content
+1. New lesson: Create `.md` file + `.astro` page
+2. New quiz: Add questions to `quiz.json`
+3. New resource: Add to instructor page downloads
+
+### Modifying Layout
+- Edit `src/layouts/BaseLayout.astro` for site-wide changes
+- Edit components in `src/components/` for specific features
+- Edit `src/styles/global.css` for global styling
+
+## 🔍 Troubleshooting
+
+**Build errors?**
+- Check all frontmatter is valid YAML
+- Ensure all imported files exist
+- Run `npm run build` to see specific errors
+
+**Images not loading?**
+- Ensure images are in `public/images/`
+- Use `/images/filename.jpg` in markdown
+
+**Quiz not working?**
+- Check JSON syntax in quiz.json files
+- Ensure correct index numbers (0-based)
+
+**Instructor page not showing resources?**
+- Verify file paths in downloads array
+- Check that files exist in `public/downloads/`
+
+## 📚 Resources
+
+- **Astro Docs:** https://docs.astro.build
+- **GitHub Pages:** https://pages.github.com
+- **Markdown Guide:** https://www.markdownguide.org
+
+---
+
+**You now have EVERYTHING needed to deploy your WIAA drone education website!**

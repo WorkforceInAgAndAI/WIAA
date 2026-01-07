@@ -1,0 +1,24 @@
+[
+  {
+    "q": "What part of the drone is important for moving the propellers?",
+    "options": [
+      "Frame",
+      "Gimbal",
+      "Motor",
+      "Battery"
+    ],
+    "correct": 2,
+    "explain": "The motors use an interaction between electric currents and magnetic fields to turn electric energy into mechanical energy."
+  },
+  {
+    "q": "Which drone type is best for mapping a small field efficiently?",
+    "options": [
+      "Quadcopter",
+      "Hexacopter",
+      "Fixed Wing",
+      "Single Rotor"
+    ],
+    "correct": 0,
+    "explain": "Quadcopter drones are most efficient for scouting fields because of their maneuverability, low altitude hovering, and ease of use."
+  }
+]

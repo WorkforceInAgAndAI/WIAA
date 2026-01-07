@@ -1,0 +1,524 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+// Events with photos
+const eventsWithPhotos = [
+  {
+    title: "Elementary School Outreach",
+    date: "May 2023",
+    description: "Engaging elementary students with hands-on agricultural technology activities.",
+    attendees: 200,
+    audience: "4th and 5th grade students",
+    photos: [
+      { src: "/images/outreach/elementary-2023-1.jpg", caption: "" },
+      { src: "/images/outreach/elementary-2023-2.jpg", caption: "" },
+      { src: "/images/outreach/elementary-2023-3.jpg", caption: "" }
+    ]
+  },
+  {
+    title: "4H Youth Leaders - Ag Innovation and Ag Innovators Experience",
+    date: "March 2023 & February 2024",
+    description: "Introduced Iowa 4H students to the applications of AI in agriculture with hands-on exploration of AI technology.",
+    attendees: 41,
+    audience: "High school students",
+    photos: [
+      { src: "/images/outreach/4h-2023-1.jpg", caption: "" },
+      { src: "/images/outreach/4h-2023-2.jpg", caption: "" },
+      { src: "/images/outreach/4h-2024-1.jpg", caption: "" },
+      { src: "/images/outreach/4h-2024-2.jpg", caption: "" }
+    ]
+  },
+  {
+    title: "WiSE-GO Further",
+    date: "April 2023",
+    description: "Led interactive sessions detailing AI and its application in agriculture to high school girls interested in careers in STEM.",
+    attendees: 8,
+    audience: "8th grade girls",
+    photos: [
+      { src: "/images/outreach/wise-gofurther-1.jpg", caption: "" }
+    ]
+  },
+  {
+    title: "Farm Progress Show",
+    date: "August 2022",
+    description: "Showcased agricultural technology innovations and educational programming at the state's premier farm event.",
+    attendees: "10,000",
+    audience: "Farmers, Ag Professionals & General Public",
+    photos: [
+      { src: "/images/outreach/farm-progress-2022-1.jpg", caption: "" },
+      { src: "/images/outreach/farm-progress-2022-2.jpg", caption: "" }
+    ]
+  },
+  {
+    title: "Nutrien Ag Careers Campus Immersion Experience",
+    date: "April 2025",
+    description: "Connected students with agricultural career pathways through immersive campus experiences.",
+    attendees: 25,
+    audience: "High School Students",
+    photos: [
+      { src: "/images/outreach/nutrien-2025-1.jpg", caption: "" }
+    ]
+  },
+  {
+    title: "WiSE Go Further",
+    date: "November 2025",
+    description: "Demonstrated the application of drones and AI to agriculture.",
+    attendees: 16,
+    audience: "High School Girls in STEM",
+    photos: [
+      { src: "/images/outreach/rise-wise-1.jpg", caption: "" }
+    ]
+  },
+  {
+    title: "Iowa State Science Fair",
+    date: "2024",
+    description: "Hosted hands-on rover coding and building, and drone building workshop.",
+    attendees: 17,
+    audience: "High School Students",
+    photos: [
+      { src: "/images/outreach/science-fair-2023-1.jpg", caption: "" }
+    ]
+  }
+];
+
+// Events without photos
+const eventsNoPhotos = [
+  {
+    title: "ISU Day at the Capitol",
+    date: "February 2022",
+    description: "",
+    attendees: 100,
+    audience: "Policy Makers"
+  },
+  {
+    title: "NAPB Field Tours",
+    date: "August 2022",
+    description: "",
+    attendees: 400,
+    audience: "NAPB Members"
+  },
+  {
+    title: "Iowa Soybean Association Field Day",
+    date: "September 2022",
+    description: "",
+    attendees: 50,
+    audience: "Farmers and Stakeholders"
+  },
+  {
+    title: "Agronomy Transfer Students",
+    date: "October 2022",
+    description: "",
+    attendees: 20,
+    audience: "Iowa State University Undergraduate Junior and Seniors"
+  },
+  {
+    title: "Agronomy 183 at Iowa State University",
+    date: "November 2022",
+    description: "",
+    attendees: 37,
+    audience: "Iowa State University Undergraduate Freshmen"
+  },
+  {
+    title: "Women in Agronomy",
+    date: "November 2022",
+    description: "",
+    attendees: 10,
+    audience: "Iowa State University Undergraduate Women"
+  },
+  {
+    title: "Agronomy 183 at Iowa State University",
+    date: "November 2022",
+    description: "",
+    attendees: 37,
+    audience: "Iowa State University Undergraduate Freshmen"
+  },
+  {
+    title: "Farm Progress Show",
+    date: "August 2024",
+    description: "",
+    attendees: "10,500",
+    audience: "Farmers, Ag Professionals & General Public"
+  },
+  {
+    title: "Global Youth Institute with World Food Prize",
+    date: "October 2024",
+    description: "",
+    attendees: 200,
+    audience: "High School Students"
+  },
+  {
+    title: "Iowa State Science and Technology Fair",
+    date: "March 2025",
+    description: "",
+    attendees: 40,
+    audience: "High School Students"
+  }
+];
+---
+
+<BaseLayout title="Outreach">
+  <div class="outreach-hero">
+    <div class="container">
+      <h1>WIAA Outreach Initiatives</h1>
+      <p>Connecting students with real-world agricultural and technology education</p>
+    </div>
+  </div>
+
+  <div class="container page-content">
+    
+    <!-- Events with Photos -->
+    <section class="events-section">
+      <h2>Recent Events & Workshops</h2>
+      
+      {eventsWithPhotos.map(event => (
+        <div class={`event-card with-photos ${event.photos.length === 1 ? 'side-layout' : ''}`}>
+          <div class="event-text">
+            <div class="event-header">
+              <h3>{event.title}</h3>
+              <span class="event-date">{event.date}</span>
+            </div>
+            <p class="event-description">{event.description}</p>
+            <div class="event-meta">
+              <div class="meta-item">
+                <i class="fas fa-users"></i>
+                <span><strong>{event.attendees}</strong> attendees</span>
+              </div>
+              <div class="meta-item">
+                <i class="fas fa-user-group"></i>
+                <span>{event.audience}</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class={`photo-gallery ${event.photos.length === 1 ? 'compact' : ''}`}>
+            {event.photos.map(photo => (
+              <div class="photo-item">
+                <img src={photo.src} alt={`${event.title} photo`} />
+                {photo.caption && (
+                  <p class="photo-caption">{photo.caption}</p>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </section>
+
+    <!-- Events without Photos -->
+    <section class="events-section">
+      <h2>Additional Outreach Activities</h2>
+      
+      <div class="simple-events-grid">
+        {eventsNoPhotos.map(event => (
+          <div class="event-card simple">
+            <div class="event-icon">
+              <i class="fas fa-calendar-check"></i>
+            </div>
+            <div class="event-info">
+              <h3>{event.title}</h3>
+              <span class="event-date">{event.date}</span>
+              <p class="event-description">{event.description}</p>
+              <div class="event-meta">
+                <div class="meta-item">
+                  <i class="fas fa-users"></i>
+                  <span><strong>{event.attendees}</strong> attendees</span>
+                </div>
+                <div class="meta-item">
+                  <i class="fas fa-user-group"></i>
+                  <span>{event.audience}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <div class="cta-box">
+      <h3>Get Involved</h3>
+      <p>Interested in bringing WIAA programming to your school or organization?</p>
+      <a href="/contact" class="btn btn-primary">Contact Us</a>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .outreach-hero {
+    background: linear-gradient(135deg, var(--isu-red), var(--isu-dark-red));
+    color: white;
+    padding: 80px 20px;
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .outreach-hero h1 {
+    font-size: 2.8em;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: white;
+  }
+
+  .outreach-hero p {
+    font-size: 1.1em;
+    opacity: 0.95;
+  }
+
+  .page-content {
+    padding: 0 20px 60px;
+  }
+
+  .events-section {
+    margin-bottom: 60px;
+  }
+
+  .events-section h2 {
+    color: var(--isu-red);
+    font-size: 2em;
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 3px solid var(--isu-gold);
+  }
+
+  /* Event Cards with Photos */
+  .event-card.with-photos {
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    border: 2px solid var(--border-light);
+    margin-bottom: 40px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+
+  /* Side layout for single photo only */
+  .event-card.side-layout {
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    gap: 30px;
+    align-items: start;
+  }
+
+  .event-text {
+    min-width: 0;
+  }
+
+  .event-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .event-card h3 {
+    color: var(--isu-red);
+    font-size: 1.5em;
+    margin: 0;
+  }
+
+  .event-date {
+    color: var(--text-light);
+    font-weight: 600;
+    font-size: 0.95em;
+  }
+
+  .event-description {
+    color: var(--text-medium);
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+
+  .event-card.side-layout .event-description {
+    margin-bottom: 20px;
+  }
+
+  /* Event Meta Info */
+  .event-meta {
+    display: flex;
+    gap: 25px;
+    flex-wrap: wrap;
+    padding-top: 15px;
+    border-top: 1px solid var(--border-light);
+  }
+
+  .meta-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-medium);
+    font-size: 0.95em;
+  }
+
+  .meta-item i {
+    color: var(--isu-red);
+    font-size: 1.1em;
+  }
+
+  .meta-item strong {
+    color: var(--isu-red);
+  }
+
+  /* Photo gallery - grid for 2+ photos */
+  .photo-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 15px;
+  }
+
+  /* Compact layout for single photo */
+  .photo-gallery.compact {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .photo-item {
+    border-radius: 8px;
+    overflow: hidden;
+    border: 2px solid var(--border-light);
+    transition: all 0.3s;
+  }
+
+  .photo-item:hover {
+    border-color: var(--isu-gold);
+    transform: translateY(-4px);
+    box-shadow: 0 6px 16px rgba(196, 30, 58, 0.15);
+  }
+
+  .photo-item img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    display: block;
+  }
+
+  .photo-caption {
+    padding: 10px;
+    background: #f9f7f4;
+    color: var(--text-medium);
+    font-size: 0.9em;
+    font-style: italic;
+    text-align: center;
+    margin: 0;
+  }
+
+  /* Simple Event Cards (No Photos) */
+  .simple-events-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+  }
+
+  .event-card.simple {
+    background: white;
+    padding: 25px;
+    border-radius: 8px;
+    border: 2px solid var(--border-light);
+    display: flex;
+    gap: 20px;
+    transition: all 0.3s;
+  }
+
+  .event-card.simple:hover {
+    border-color: var(--isu-gold);
+    box-shadow: 0 4px 12px rgba(196, 30, 58, 0.1);
+  }
+
+  .event-icon {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--isu-red), var(--isu-dark-red));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.5em;
+    flex-shrink: 0;
+  }
+
+  .event-info {
+    flex: 1;
+  }
+
+  .event-card.simple h3 {
+    color: var(--isu-red);
+    font-size: 1.2em;
+    margin: 0 0 8px 0;
+  }
+
+  .event-card.simple .event-date {
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  .event-card.simple .event-description {
+    margin: 0 0 15px 0;
+    font-size: 0.95em;
+  }
+
+  .event-card.simple .event-meta {
+    border-top: none;
+    padding-top: 0;
+    gap: 20px;
+  }
+
+  /* CTA Box */
+  .cta-box {
+    background: linear-gradient(135deg, #fff5f5, #ffe8e8);
+    padding: 40px;
+    border-radius: 8px;
+    border: 2px solid var(--isu-gold);
+    text-align: center;
+    margin-top: 60px;
+  }
+
+  .cta-box h3 {
+    color: var(--isu-red);
+    margin-bottom: 15px;
+    font-size: 1.8em;
+  }
+
+  .cta-box p {
+    margin-bottom: 25px;
+    color: var(--text-medium);
+    font-size: 1.1em;
+  }
+
+  @media (max-width: 768px) {
+    .outreach-hero h1 {
+      font-size: 2em;
+    }
+
+    .event-card.side-layout {
+      grid-template-columns: 1fr;
+    }
+
+    .photo-gallery {
+      grid-template-columns: 1fr;
+    }
+
+    .simple-events-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .event-header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .event-card.simple {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .event-icon {
+      margin: 0 auto;
+    }
+
+    .event-meta {
+      justify-content: center;
+    }
+  }
+</style>

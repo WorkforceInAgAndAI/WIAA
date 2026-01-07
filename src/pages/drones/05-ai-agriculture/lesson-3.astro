@@ -1,0 +1,39 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Sidebar from '../../../components/Sidebar.astro';
+import LessonNav from '../../../components/LessonNav.astro';
+
+const content = await import('../../../content/drones/05-ai-agriculture/lesson-3.md');
+const { Content } = content;
+const { title, chapter, lesson } = content.frontmatter;
+---
+
+<BaseLayout title={title}>
+  <div class="container" style="max-width: 1400px; margin: 30px auto; padding: 0 20px;">
+    <div style="display: grid; grid-template-columns: 250px 1fr; gap: 24px; align-items: start;">
+      <Sidebar currentChapter={chapter} currentLesson={lesson} />
+      <div class="content-area">
+        <div class="content-header">
+          <p class="chapter-label">Chapter {chapter}: AI in agriculture</p>
+          <h1>{title}</h1>
+        </div>
+        <article class="lesson-content">
+          <Content />
+        </article>
+        <LessonNav 
+          prev={{ href: '/drones/05-ai-agriculture/lesson-2', label: 'Previous' }}
+          next={{ href: '/drones/05-ai-agriculture/review', label: 'Next' }}
+          progress={`${chapter}.${lesson} / 7 Chapters`}
+        />
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+<style is:global>
+  .lesson-content img {
+    max-width: 800px !important;
+    height: auto !important;
+    display: block !important;
+    margin: 20px auto !important;
+  }
+</style>

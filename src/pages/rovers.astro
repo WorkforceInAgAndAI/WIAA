@@ -1,0 +1,72 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Rover Program">
+  <div class="container page-content">
+    <div class="content-box">
+      <h1>Rover Program - Coming Soon</h1>
+     
+      <div class="cta-section">
+        <a href="/contact" class="btn btn-primary">Contact Us for Updates</a>
+        <a href="/drones" class="btn btn-secondary" style="margin-left: 15px;">Explore Drone Program</a>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .page-content {
+    padding: 60px 20px;
+  }
+
+  .content-box {
+    background: white;
+    padding: 40px;
+    border-radius: 8px;
+    border: 1px solid var(--border-light);
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .content-box h1 {
+    margin-bottom: 30px;
+    border-bottom: 2px solid var(--isu-gold);
+    padding-bottom: 15px;
+  }
+
+  .coming-soon-banner {
+    background: linear-gradient(135deg, #f9f7f4, #f0f0f0);
+    padding: 40px;
+    border-radius: 8px;
+    text-align: center;
+    margin: 30px 0;
+    border-left: 4px solid var(--isu-gold);
+  }
+
+  .coming-soon-banner h2 {
+    color: var(--isu-red);
+    margin-bottom: 15px;
+  }
+
+  .content-box h3 {
+    color: var(--isu-red);
+    margin: 30px 0 15px;
+  }
+
+  .content-box ul {
+    margin: 15px 0 15px 20px;
+    line-height: 1.8;
+  }
+
+  .content-box li {
+    margin-bottom: 12px;
+  }
+
+  .cta-section {
+    text-align: center;
+    margin-top: 40px;
+    padding-top: 30px;
+    border-top: 2px solid var(--border-light);
+  }
+</style>

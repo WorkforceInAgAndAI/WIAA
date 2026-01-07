@@ -1,0 +1,32 @@
+{
+  "$ref": "#/definitions/drones",
+  "definitions": {
+    "drones": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "chapter": {
+          "type": "number"
+        },
+        "lesson": {
+          "type": "number"
+        },
+        "image": {
+          "type": "string"
+        },
+        "$schema": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "title",
+        "chapter",
+        "lesson"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

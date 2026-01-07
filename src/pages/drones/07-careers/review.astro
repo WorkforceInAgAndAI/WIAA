@@ -1,0 +1,41 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Sidebar from '../../../components/Sidebar.astro';
+import LessonNav from '../../../components/LessonNav.astro';
+import Quiz from '../../../components/Quiz.astro';
+
+import quizRaw from '../../../../public/data/quizzes/07-careers.json?raw';
+const quizData = JSON.parse(quizRaw);
+
+const chapter = 7;
+const lesson = 3;
+---
+
+<BaseLayout title="Concept Review">
+  <div class="container" style="max-width: 1400px; margin: 30px auto; padding: 0 20px;">
+    <div style="display: grid; grid-template-columns: 250px 1fr; gap: 24px; align-items: start;">
+      <Sidebar currentChapter={chapter} currentLesson={lesson} />
+      <div class="content-area">
+        <div class="content-header">
+          <p class="chapter-label">Chapter {chapter}: Careers in drones & AI</p>
+          <h1>Concept Review</h1>
+        </div>
+        <p>Test your understanding with the quiz below:</p>
+        <Quiz questions={quizData} />
+        <LessonNav 
+          prev={{ href: '/drones/07-careers/lesson-2', label: 'Previous' }}
+          next={{ href: '/drones/08-references/lesson-1', label: 'Next' }}
+          progress={`${chapter}.${lesson} / 7 Chapters`}
+        />
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+<style is:global>
+  .lesson-content img {
+    max-width: 800px !important;
+    height: auto !important;
+    display: block !important;
+    margin: 20px auto !important;
+  }
+</style>

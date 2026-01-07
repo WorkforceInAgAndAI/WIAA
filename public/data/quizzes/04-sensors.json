@@ -1,0 +1,35 @@
+[
+  {
+    "q": "A healthy plant would reflect relatively:",
+    "options": [
+      "Less NIR light and less red light",
+      "More NIR light and less red light",
+      "Less NIR light and more red light",
+      "More NIR light and more red light"
+    ],
+    "correct": 1,
+    "explain": "Plants that are healthier reflect more NIR and less red light than stressed plants."
+  },
+  {
+    "q": "Which sensor would you use to create a 3D map of field terrain?",
+    "options": [
+      "RGB Camera",
+      "Multispectral Camera",
+      "Thermal Camera",
+      "LiDAR Sensor"
+    ],
+    "correct": 3,
+    "explain": "LiDAR sensors use lasers to measure distance and can create detailed 3D maps."
+  },
+  {
+    "q": "If a plant has Red=18 and NIR=53, what is its NDVI?",
+    "options": [
+      "0.23",
+      "0.49",
+      "0.65",
+      "0.88"
+    ],
+    "correct": 1,
+    "explain": "NDVI = (53-18)/(53+18) = 35/71 = 0.49. This indicates a fairly healthy plant."
+  }
+]

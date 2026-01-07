@@ -1,0 +1,293 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Feedback">
+  <div class="container page-content">
+    <div class="content-box">
+      <h1>Share Your Feedback</h1>
+
+      <div class="feedback-categories">
+        <div class="category-card">
+          <i class="fas fa-graduation-cap"></i>
+          <h3>Students</h3>
+          <p>Tell us about your experience with our outreach programs</p>
+        </div>
+        <div class="category-card">
+          <i class="fas fa-chalkboard-teacher"></i>
+          <h3>Educators</h3>
+          <p>Share how our curriculum works in your classroom</p>
+        </div>
+        <div class="category-card">
+          <i class="fas fa-users"></i>
+          <h3>Community Partners</h3>
+          <p>Let us know about your outreach experience</p>
+        </div>
+      </div>
+
+      <div class="feedback-form">
+        <h2>Feedback Form</h2>
+        <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+          <div class="form-group">
+            <label for="name">Name (Optional)</label>
+            <input type="text" id="name" name="name">
+            <small>You may submit feedback anonymously</small>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email (Optional)</label>
+            <input type="email" id="email" name="email">
+            <small>Only if you'd like us to follow up with you</small>
+          </div>
+
+          <div class="form-group">
+            <label for="role">I am a... *</label>
+            <select id="role" name="role" required>
+              <option value="">Select your role...</option>
+              <option value="student">Student</option>
+              <option value="teacher">Teacher/Educator/Instructor</option>
+              <option value="parent">Parent</option>
+              <option value="administrator">School Administrator</option>
+              <option value="community">Student Leader</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="program">Which program is your feedback about?</label>
+            <select id="program" name="program">
+              <option value="">Select a program...</option>
+              <option value="drones">Drone Program</option>
+              <option value="rovers">Rover Program</option>
+              <option value="outreach">Outreach Event</option>
+              <option value="website">Website/Resources</option>
+              <option value="general">General Feedback</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="rating">Overall Experience *</label>
+            <div class="rating-options">
+              <label class="rating-option">
+                <input type="radio" name="rating" value="5" required>
+                <span>⭐⭐⭐⭐⭐ Excellent</span>
+              </label>
+              <label class="rating-option">
+                <input type="radio" name="rating" value="4" required>
+                <span>⭐⭐⭐⭐ Good</span>
+              </label>
+              <label class="rating-option">
+                <input type="radio" name="rating" value="3" required>
+                <span>⭐⭐⭐ Fair</span>
+              </label>
+              <label class="rating-option">
+                <input type="radio" name="rating" value="2" required>
+                <span>⭐⭐ Poor</span>
+              </label>
+              <label class="rating-option">
+                <input type="radio" name="rating" value="1" required>
+                <span>⭐ Very Poor</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="liked">What did you like most?</label>
+            <textarea id="liked" name="liked" rows="4"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="improve">What could we improve?</label>
+            <textarea id="improve" name="improve" rows="4"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="additional">Additional Comments</label>
+            <textarea id="additional" name="additional" rows="4"></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary">Submit Feedback</button>
+        </form>
+      </div>
+
+      <div class="info-box">
+        <p><strong>Thank you for helping us improve materials for future leaders.</strong></p>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .page-content {
+    padding: 60px 20px;
+  }
+
+  .content-box {
+    background: white;
+    padding: 40px;
+    border-radius: 8px;
+    border: 1px solid var(--border-light);
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .content-box h1 {
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--isu-gold);
+    padding-bottom: 15px;
+  }
+
+  .intro {
+    font-size: 1.1em;
+    color: var(--text-medium);
+    line-height: 1.8;
+    margin-bottom: 40px;
+  }
+
+  .feedback-categories {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 40px;
+  }
+
+  .category-card {
+    text-align: center;
+    padding: 25px;
+    background: rgba(196, 30, 58, 0.03);
+    border-radius: 8px;
+    border: 1px solid var(--border-light);
+  }
+
+  .category-card i {
+    font-size: 2.5em;
+    color: var(--isu-red);
+    margin-bottom: 15px;
+  }
+
+  .category-card h3 {
+    color: var(--isu-red);
+    margin-bottom: 10px;
+    font-size: 1.1em;
+  }
+
+  .category-card p {
+    font-size: 0.9em;
+    color: var(--text-medium);
+    margin: 0;
+  }
+
+  .feedback-form {
+    margin-bottom: 40px;
+  }
+
+  .feedback-form h2 {
+    color: var(--isu-red);
+    font-size: 1.4em;
+    margin-bottom: 25px;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  .form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--text-dark);
+  }
+
+  .form-group small {
+    display: block;
+    margin-top: 5px;
+    color: var(--text-light);
+    font-size: 0.9em;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--border-light);
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 1em;
+    transition: border-color 0.2s;
+  }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: var(--isu-red);
+  }
+
+  .form-group textarea {
+    resize: vertical;
+  }
+
+  .rating-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .rating-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    border: 1px solid var(--border-light);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .rating-option:hover {
+    background: rgba(196, 30, 58, 0.05);
+    border-color: var(--isu-red);
+  }
+
+  .rating-option input[type="radio"] {
+    width: auto;
+    margin: 0;
+  }
+
+  .rating-option span {
+    font-size: 1em;
+  }
+
+  .info-box {
+    background: linear-gradient(135deg, rgba(196, 30, 58, 0.05), rgba(255, 184, 28, 0.05));
+    padding: 25px;
+    border-radius: 8px;
+    border-left: 4px solid var(--isu-red);
+  }
+
+  .info-box h3 {
+    color: var(--isu-red);
+    margin: 0 0 15px 0;
+  }
+
+  .info-box p {
+    margin: 10px 0;
+    color: var(--text-medium);
+  }
+
+  .info-box ul {
+    margin: 15px 0 15px 20px;
+    color: var(--text-medium);
+  }
+
+  .info-box li {
+    margin-bottom: 8px;
+  }
+
+  @media (max-width: 768px) {
+    .feedback-categories {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

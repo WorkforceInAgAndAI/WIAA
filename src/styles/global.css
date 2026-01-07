@@ -1,0 +1,289 @@
+/* Global styles - imported in BaseLayout.astro */
+
+/* Reset and box-sizing */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Root variables */
+:root {
+  --isu-red: #C41E3A;
+  --isu-dark-red: #a01830;
+  --isu-gold: #FFB81C;
+  --isu-light-gold: #ffd93f;
+  --bg-light: #fcfbf9;
+  --bg-white: #ffffff;
+  --text-dark: #444;
+  --text-medium: #555;
+  --text-light: #666;
+  --border-light: #e0e0e0;
+  --border-gold: #FFB81C;
+}
+
+/* Body */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  background: var(--bg-light);
+  color: var(--text-dark);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 500;
+  letter-spacing: -0.3px;
+  color: var(--isu-red);
+}
+
+h1 { font-size: 2.5em; }
+h2 { font-size: 1.9em; }
+h3 { font-size: 1.3em; }
+h4 { font-size: 1.05em; }
+
+/* Paragraphs */
+p {
+  font-size: 1em;
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+
+/* Links */
+a {
+  color: var(--isu-red);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+a:hover {
+  color: var(--isu-gold);
+}
+
+/* Main content */
+main {
+  flex: 1;
+}
+
+/* Container */
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+  width: 100%;
+}
+
+/* Buttons */
+.btn {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn-primary {
+  background: var(--isu-red);
+  color: white;
+}
+.btn-primary:hover {
+  background: var(--isu-dark-red);
+  color: white;
+}
+
+.btn-secondary {
+  background: var(--isu-gold);
+  color: var(--isu-red);
+}
+.btn-secondary:hover {
+  background: var(--isu-light-gold);
+  box-shadow: 0 4px 12px rgba(255, 184, 28, 0.3);
+}
+
+/* Learning module specific styles */
+.learning-grid {
+  display: grid !important;
+  grid-template-columns: 250px 1fr !important;
+  gap: 24px !important;
+  align-items: start !important;
+  margin-top: 30px;
+}
+
+/* Add this new rule */
+.learning-grid > .sidebar {
+  grid-column: 1;  /* Force sidebar to first column */
+}
+
+.learning-grid > .content-area {
+  grid-column: 2;  /* Force content to second column */
+}
+
+.content-area {
+  background: white;
+  padding: 40px;
+  border-radius: 8px;
+  border: 1px solid var(--border-light);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  min-height: 650px;
+}
+
+/* Content header */
+.content-header {
+  border-bottom: 2px solid var(--isu-gold);
+  padding-bottom: 20px;
+  margin-bottom: 30px;
+}
+
+.chapter-label {
+  color: var(--text-light);
+  font-size: 0.9em;
+  margin-bottom: 8px;
+}
+
+.content-header h1 {
+  font-size: 2em;
+  color: var(--isu-red);
+  margin: 0;
+}
+
+/* Lesson content */
+.lesson-content {
+  line-height: 1.7;
+}
+
+.lesson-content h2 {
+  color: var(--text-dark);
+  font-size: 1.3em;
+  margin: 25px 0 15px;
+  border-left: 4px solid var(--isu-red);
+  padding-left: 15px;
+}
+
+.lesson-content h3,
+.lesson-content h4 {
+  color: var(--text-dark);
+  margin: 20px 0 12px;
+}
+
+.lesson-content ul,
+.lesson-content ol {
+  margin: 15px 0 15px 20px;
+  line-height: 1.8;
+}
+
+.lesson-content li {
+  margin-bottom: 8px;
+}
+
+.lesson-content strong {
+  color: var(--isu-red);
+}
+
+.lesson-content img {
+  max-width: 200px;  /* Try 400px, or even 300px if still too big */
+  width: 50%;
+  height: auto;
+  border-radius: 8px;
+  margin: 20px 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  display: block;
+}
+
+/* Responsive */
+@media (max-width: 968px) {
+  .learning-grid {
+    grid-template-columns: 1fr;
+  }
+
+/* Sidebar styling */
+.sidebar {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid var(--border-light);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.sidebar h3 {
+  margin-bottom: 15px;
+  color: var(--isu-red);
+  font-size: 1.1em;
+  border-bottom: 2px solid var(--isu-gold);
+  padding-bottom: 10px;
+}
+
+.chapter-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.chapter-btn {
+  display: block;
+  padding: 10px 12px;
+  background: var(--isu-red);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  text-align: left;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-decoration: none;
+  font-size: 0.95em;
+}
+
+.chapter-btn:hover {
+  background: var(--isu-dark-red);
+  transform: translateX(2px);
+}
+
+.chapter-btn.active {
+  background: var(--isu-dark-red);
+  box-shadow: 0 2px 8px rgba(196, 30, 58, 0.3);
+}
+
+.lesson-list {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: 8px;
+  padding-left: 4px;
+}
+
+.lesson-btn {
+  display: block;
+  padding: 8px 12px;
+  margin-left: 8px;
+  background: white;
+  color: var(--text-medium);
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-decoration: none;
+  font-size: 0.9em;
+}
+
+.lesson-btn:hover {
+  border-color: var(--isu-red);
+  color: var(--isu-red);
+  background: rgba(196, 30, 58, 0.05);
+  transform: translateX(2px);
+}
+
+.lesson-btn.active {
+  background: rgba(196, 30, 58, 0.1);
+  border-color: var(--isu-red);
+  color: var(--isu-red);
+  font-weight: 600;
+}
+
+}

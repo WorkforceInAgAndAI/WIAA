@@ -1,0 +1,98 @@
+---
+interface Props {
+  currentChapter: number;
+  currentLesson: number;
+  totalChapters?: number;
+  totalLessons?: number;
+}
+
+const { 
+  currentChapter, 
+  currentLesson, 
+  totalChapters = 7, 
+  totalLessons = 25 
+} = Astro.props;
+
+// Calculate overall progress
+const lessonsPerChapter = [2, 3, 3, 4, 4, 3, 3, 1]; // Chapter 8 (References) has 1 lesson
+const completedLessons = lessonsPerChapter.slice(0, currentChapter - 1).reduce((a, b) => a + b, 0) + currentLesson;
+const progressPercent = Math.round((completedLessons / totalLessons) * 100);
+---
+
+<div class="progress-tracker">
+  <div class="progress-stats">
+    <div class="stat">
+      <span class="stat-label">Chapter</span>
+      <span class="stat-value">{currentChapter} / {totalChapters}</span>
+    </div>
+    <div class="stat">
+      <span class="stat-label">Overall Progress</span>
+      <span class="stat-value">{progressPercent}%</span>
+    </div>
+  </div>
+  
+  <div class="progress-bar">
+    <div class="progress-fill" style={`width: ${progressPercent}%`}></div>
+  </div>
+  
+  <p class="progress-text">
+    Lesson {currentLesson} of Chapter {currentChapter}
+  </p>
+</div>
+
+<style>
+  .progress-tracker {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid var(--border-light);
+    margin-bottom: 20px;
+  }
+
+  .progress-stats {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+  }
+
+  .stat {
+    text-align: center;
+  }
+
+  .stat-label {
+    display: block;
+    color: var(--text-light);
+    font-size: 0.85em;
+    margin-bottom: 5px;
+  }
+
+  .stat-value {
+    display: block;
+    color: var(--isu-red);
+    font-size: 1.3em;
+    font-weight: 600;
+  }
+
+  .progress-bar {
+    width: 100%;
+    height: 12px;
+    background: #f0f0f0;
+    border-radius: 6px;
+    overflow: hidden;
+    margin-bottom: 10px;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--isu-red), var(--isu-gold));
+    transition: width 0.5s ease;
+    border-radius: 6px;
+  }
+
+  .progress-text {
+    text-align: center;
+    color: var(--text-medium);
+    font-size: 0.9em;
+    margin: 0;
+  }
+</style>
