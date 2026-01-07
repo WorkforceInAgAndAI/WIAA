@@ -1,22 +1,22 @@
 ---
-const base = import.meta.env.BASE_URL;
+const base = import.meta.env.BASE_URL.replace(/\/$/, ''); // Remove trailing slash if present
 const currentPath = Astro.url.pathname;
 
 const navItems = [
-  { label: 'Home', href: `${base}/` },
-  { label: 'Drone program', href: `${base}/drones` },
-  { label: 'Rover program', href: `${base}/rovers` },
-  { label: 'Outreach', href: `${base}/outreach` }
+  { label: 'Home', href: base + '/' },
+  { label: 'Drone program', href: base + '/drones' },
+  { label: 'Rover program', href: base + '/rovers' },
+  { label: 'Outreach', href: base + '/outreach' }
 ];
 
 function isActive(href: string) {
-  if (href === base) return currentPath === base || currentPath === `${base}/`;
+  if (href === base + '/') return currentPath === base + '/' || currentPath === base;
   return currentPath.startsWith(href);
 }
 ---
 <header class="navbar">
   <div class="nav-container">
-    <a href={base} class="logo-link">
+    <a href={base + '/'} class="logo-link">
       <div class="logo-icon">WIAA</div>
       <span class="logo-text">Workforce in Agriculture and AI</span>
     </a>

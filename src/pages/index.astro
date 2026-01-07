@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 
 <BaseLayout title="Home">
@@ -7,10 +8,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <div class="container">
       <h1>Workforce in Agriculture and AI</h1>
       <p>Inspiring future leaders in science who are passionate about using AI and its applications in agricultural related problems.</p>
-      <a href="/drones" class="btn btn-secondary">Start learning about drones</a>
+      <a href={base + '/drones'} class="btn btn-secondary">Start learning about drones</a>
     </div>
   </div>
-
+  
   <div class="container page-content">
     <h2 class="section-title">Featured programs</h2>
     
@@ -18,7 +19,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       <div class="program-card">
         <h3>Drone program</h3>
         <p>Understand drone mechanics, sensors, and AI applications in agriculture.</p>
-        <a href="/drones" class="btn btn-primary">Learn More</a>
+        <a href={base + '/drones'} class="btn btn-primary">Learn More</a>
       </div>
       
       <div class="program-card">
@@ -42,14 +43,14 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     background-size: cover;
     background-position: center;
   }
-
+  
   .hero-section h1 {
     font-size: 3em;
     font-weight: 700;
     margin-bottom: 15px;
     color: white;
   }
-
+  
   .hero-section p {
     font-size: 1.1em;
     max-width: 900px;
@@ -57,18 +58,18 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     opacity: 0.95;
     line-height: 1.6;
   }
-
+  
   .page-content {
     padding: 60px 20px;
   }
-
+  
   .section-title {
     text-align: center;
     margin-bottom: 40px;
     font-size: 1.9em;
     color: var(--isu-red);
   }
-
+  
   .program-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -76,7 +77,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     max-width: 900px;
     margin: 0 auto;
   }
-
+  
   .program-card {
     background: white;
     padding: 40px;
@@ -86,36 +87,34 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
     text-align: center;
   }
-
+  
   .program-card h3 {
     color: var(--isu-red);
     margin-bottom: 15px;
     font-weight: 500;
   }
-
+  
   .program-card p {
     margin-bottom: 20px;
     color: var(--text-medium);
   }
-
+  
   .coming-soon-text {
     color: var(--text-light);
   }
-
+  
   .btn-disabled {
     background: #ccc;
     cursor: not-allowed;
   }
-
+  
   @media (max-width: 768px) {
     .hero-section h1 {
       font-size: 2em;
     }
-
     .hero-section {
       padding: 60px 20px;
     }
-
     .program-grid {
       grid-template-columns: 1fr;
     }
