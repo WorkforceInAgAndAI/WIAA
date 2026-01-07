@@ -42,4 +42,4 @@ Multimodal models can also be combined with external data to create an **agentic
 
 - Use PestIDBot to identify weeds using AI
 
-![AI Models](/images/AI_models.jpg)
+![AI Models](/WIAA/images/AI_models.jpg)

@@ -34,4 +34,4 @@ Major companies hiring in agricultural technology:
 - Solve real-world problems
 - Make a meaningful impact on global food security
 
-![Career Opportunities](/images/careers_why.jpg)
+![Career Opportunities](/WIAA/images/careers_why.jpg)

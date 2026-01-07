@@ -37,4 +37,4 @@ Some of the most used sensors are RGB cameras, multispectral cameras, hyperspect
 - Creates 3D maps
 - **Use:** Terrain mapping, canopy height measurement
 
-![Drone Sensors](/images/drone_sensors.jpg)
+![Drone Sensors](/WIAA/images/drone_sensors.jpg)

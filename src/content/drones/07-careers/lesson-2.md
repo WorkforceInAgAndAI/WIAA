@@ -41,4 +41,4 @@ lesson: 2
 - Watch: Cyber-Agricultural Systems in Crop Production and Breeding
 - Video: https://youtu.be/dJrvekSAHC8
 
-![Building Skills](/images/skills.jpg)
+![Building Skills](/WIAA/images/skills.jpg)

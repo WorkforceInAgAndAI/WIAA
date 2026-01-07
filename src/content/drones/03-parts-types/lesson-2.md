@@ -40,4 +40,4 @@ Different drone types are suited for different agricultural applications.
 - Vertical takeoff and landing capability
 - Long-range coverage
 
-![Drone Types](/images/drone_types.jpg)
+![Drone Types](/WIAA/images/drone_types.jpg)

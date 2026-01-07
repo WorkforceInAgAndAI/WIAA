@@ -22,4 +22,4 @@ Drones can be useful for manual tasks such as spreading fertilizers or spraying 
 - Tasks of agriculture classification exercise
 - Identify which agricultural tasks are best suited for drone technology
 
-![Agricultural Applications](/images/ag_apps.jpg)
+![Agricultural Applications](/WIAA/images/ag_apps.jpg)

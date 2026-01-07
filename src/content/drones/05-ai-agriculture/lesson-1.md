@@ -32,4 +32,4 @@ AI can help farmers to identify the type of stress, determine the level of stres
 - Watch: Precision Weed Mapping with Drone Imagery and AI for Targeted Sprayer Applications
 - Video: https://youtu.be/fCdg2S33zLc
 
-![AI in Agriculture](/images/AI_in_ag.jpg)
+![AI in Agriculture](/WIAA/images/AI_in_ag.jpg)

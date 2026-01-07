@@ -21,4 +21,4 @@ Each component plays a critical role in the drone's ability to fly, capture data
 - Build a drone from kit
 - Identify drone components and their functions
 
-![UAV Components](/images/uav_components.jpg)
+![UAV Components](/WIAA/images/uav_components.jpg)

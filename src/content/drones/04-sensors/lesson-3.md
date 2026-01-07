@@ -31,4 +31,4 @@ NDVI values typically range from -1 to +1:
 - NDVI puzzle activity
 - Calculate NDVI from sample reflectance data
 
-![NDVI Visualization](/images/ndvi.jpg)
+![NDVI Visualization](/WIAA/images/ndvi.jpg)

@@ -19,4 +19,4 @@ From the ground, a field may look healthy. But from above, drones can reveal str
 
 Even fields that appear healthy at ground level may be losing significant amounts of money each year due to yield losses. Using specialized sensors to calculate vegetation indices provides a different perspective, enabling farmers to detect problems early, make informed decisions, and optimize crop performance.
 
-![Drone System](/images/drone.jpg)
+![Drone System](/WIAA/images/drone.jpg)

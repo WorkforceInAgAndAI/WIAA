@@ -22,4 +22,4 @@ Throughout this process, AI developers may learn new things about the data, meth
 
 The human element is especially important during the labeling phase. Domain experts can use their knowledge to label data accurately and precisely so the model is trained on quality data and is more likely to perform precisely and accurately in real-world conditions.
 
-![AI Development](/images/AI_dev.jpg)
+![AI Development](/WIAA/images/AI_dev.jpg)

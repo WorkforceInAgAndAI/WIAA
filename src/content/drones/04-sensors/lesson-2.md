@@ -16,4 +16,4 @@ Plants that are **healthier** reflect **more NIR light** while **stressed** plan
 
 The reflectance of light in these two regions of the electromagnetic spectrum can be used to determine the relative health of different plants in a field.
 
-![Reflectance Patterns](/images/reflectances.jpg)
+![Reflectance Patterns](/WIAA/images/reflectances.jpg)

@@ -59,4 +59,4 @@ The FAA has established different regulated airspace classes. You are allowed to
 - Identify the rule violators exercise
 - Part 107 Honorary Pilot's Exam
 
-![Safety Regulations](/images/safety.jpg)
+![Safety Regulations](/WIAA/images/safety.jpg)
