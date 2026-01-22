@@ -125,13 +125,13 @@ main {
 
 .content-area {
   background: white;
-  padding: 16px;        /* REDUCED on mobile */
+  padding: 16px;
   border-radius: 8px;
   border: 1px solid var(--border-light);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
   min-height: auto;
   max-width: 100%;
-  overflow-x: hidden;   /* PREVENT horizontal scroll */
+  overflow-x: hidden;
   word-wrap: break-word;
   overflow-wrap: break-word;
 }
@@ -188,39 +188,36 @@ main {
   color: var(--isu-red);
 }
 
-/* Images - STRICT CONSTRAINTS, NO OVERFLOW */
+/* Images - FIXED SIZES PER SCREEN, NO PERCENTAGES */
 .lesson-content img {
-  max-width: 100% !important;
-  width: 100% !important;
   height: auto !important;
   border-radius: 8px !important;
   margin: 15px auto !important;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
   display: block !important;
-  object-fit: contain !important;
 }
 
-/* Mobile - keeps images at reasonable size */
+/* Mobile - 280px fixed */
 @media (max-width: 767px) {
   .lesson-content img {
-    max-width: 100% !important;
-    max-height: 300px !important;     /* THIS CAPS THE HEIGHT */
+    width: 280px !important;
+    max-width: 280px !important;
   }
 }
 
-/* Tablet */
+/* Tablet - 400px fixed */
 @media (min-width: 768px) {
   .lesson-content img {
-    max-width: 100% !important;
-    max-height: 400px !important;
+    width: 400px !important;
+    max-width: 400px !important;
   }
 }
 
-/* Desktop */
+/* Desktop - 600px fixed */
 @media (min-width: 969px) {
   .lesson-content img {
-    max-width: 100% !important;
-    max-height: 500px !important;
+    width: 600px !important;
+    max-width: 600px !important;
   }
 }
 
@@ -320,7 +317,7 @@ main {
   h3 { font-size: 1.2em; }
 
   .content-area {
-    padding: 30px;
+    padding: 24px;
     min-height: 650px;
   }
 
@@ -338,6 +335,10 @@ main {
   h1 { font-size: 2.5em; }
   h2 { font-size: 1.9em; }
   h3 { font-size: 1.3em; }
+
+  .content-area {
+    padding: 40px;
+  }
 
   .learning-grid {
     grid-template-columns: 250px 1fr;
