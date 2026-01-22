@@ -184,21 +184,35 @@ main {
   color: var(--isu-red);
 }
 
-/* Images - fully responsive */
+/* Images - fully responsive with mobile constraints */
 .lesson-content img {
-  max-width: 100%;
+  max-width: 95%;
   width: 100%;
   height: auto;
   border-radius: 8px;
-  margin: 20px 0;
+  margin: 20px auto;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   display: block;
 }
 
-/* Limit image size on larger screens */
+/* Mobile image sizing - smaller on tiny screens */
+@media (max-width: 767px) {
+  .lesson-content img {
+    max-width: 90vw;
+  }
+}
+
+/* Tablet image sizing */
 @media (min-width: 768px) {
   .lesson-content img {
-    max-width: 600px;
+    max-width: 500px;
+  }
+}
+
+/* Desktop image sizing */
+@media (min-width: 969px) {
+  .lesson-content img {
+    max-width: 700px;
   }
 }
 

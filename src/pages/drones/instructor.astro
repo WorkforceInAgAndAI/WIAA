@@ -316,7 +316,7 @@ const additionalResources = [
     padding: 16px;
     border-radius: 8px;
     border: 1px solid var(--border-light);
-    order: 2;
+    order: -1;
   }
 
   .instructor-sidebar h3 {
@@ -353,7 +353,6 @@ const additionalResources = [
   /* Main Content */
   .instructor-content {
     min-width: 0;
-    order: 1;
   }
 
   .page-header {
@@ -633,16 +632,12 @@ const additionalResources = [
       position: sticky;
       top: 90px;
       height: fit-content;
-      order: unset;
+      order: 0;
       padding: 20px;
     }
 
     .instructor-sidebar h3 {
       font-size: 1.1em;
-    }
-
-    .instructor-content {
-      order: unset;
     }
 
     .page-header {
