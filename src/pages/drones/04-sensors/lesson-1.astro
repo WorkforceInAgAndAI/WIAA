@@ -2,7 +2,6 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Sidebar from '../../../components/Sidebar.astro';
 import LessonNav from '../../../components/LessonNav.astro';
-
 const content = await import('../../../content/drones/04-sensors/lesson-1.md');
 const { Content } = content;
 const { title, chapter, lesson } = content.frontmatter;
@@ -14,17 +13,37 @@ const { title, chapter, lesson } = content.frontmatter;
       <Sidebar currentChapter={chapter} currentLesson={lesson} />
       <div class="content-area">
         <div class="content-header">
-  <div class="page-header-bar">
-    <div class="tab-buttons">
-      <a href="/WIAA/drones" class="tab-btn active">Learning Module</a>
-      <a href="/WIAA/drones/instructor" class="tab-btn">Instructor Resources</a>
-    </div>
-  </div>
-  <p class="chapter-label">Chapter {chapter}: Sensors & data collection</p>
+          <div class="page-header-bar">
+            <div class="tab-buttons">
+              <a href="/WIAA/drones" class="tab-btn active">Learning Module</a>
+              <a href="/WIAA/drones/instructor" class="tab-btn">Instructor Resources</a>
+            </div>
+          </div>
+          <p class="chapter-label">Chapter {chapter}: Sensors & data collection</p>
           <h1>{title}</h1>
         </div>
         <article class="lesson-content">
-          <Content />
+          <p class="intro-text">Some of the most used sensors are RGB cameras, multispectral cameras, hyperspectral cameras, thermal cameras, and LiDAR sensors. But how are these sensors useful and what is the difference between each sensor?</p>
+          
+          <!-- Interactive Sensor Section -->
+          <div class="interactive-section">
+            <div class="sensor-viewer">
+              <img src="/WIAA/images/drone_sensors.jpg" alt="Drone Sensors" />
+              <div class="sensor-buttons">
+                <button class="sensor-btn" data-sensor="rgb">RGB Camera</button>
+                <button class="sensor-btn" data-sensor="multispectral">Multispectral Camera</button>
+                <button class="sensor-btn" data-sensor="hyperspectral">Hyperspectral Camera</button>
+                <button class="sensor-btn" data-sensor="thermal">Thermal Camera</button>
+                <button class="sensor-btn" data-sensor="lidar">LiDAR Sensor</button>
+              </div>
+            </div>
+            
+            <div class="sensor-panel">
+              <div class="sensor-description" id="sensorDescription">
+                <p class="hint-text">Click on a sensor above to learn more</p>
+              </div>
+            </div>
+          </div>
         </article>
         <LessonNav 
           prev={{ href: '/drones/03-parts-types/review', label: 'Previous' }}
@@ -35,24 +54,189 @@ const { title, chapter, lesson } = content.frontmatter;
     </div>
   </div>
 </BaseLayout>
+
 <style is:global>
-  .lesson-content img {
-    max-width: 800px !important;
-    height: auto !important;
-    display: block !important;
-    margin: 20px auto !important;
+  :root {
+    --isu-red: #c41e3a;
+    --isu-gold: #f8c600;
+    --text-primary: #1a1a1a;
+    --text-secondary: #666666;
+    --border-color: #e5e7eb;
   }
 
-  @media (max-width: 767px) {
-    .lesson-content img {
-      max-width: 280px !important;
-    }
+  .lesson-content .intro-text {
+    font-size: 1.1em;
+    line-height: 1.8;
+    color: var(--text-secondary);
+    background: linear-gradient(135deg, rgba(196, 30, 58, 0.04), rgba(248, 198, 0, 0.04));
+    padding: 24px;
+    border-left: 4px solid var(--isu-red);
+    border-radius: 8px;
+    margin: 28px 0 50px 0;
   }
-.page-header-bar {
+
+  /* Interactive Section */
+  .interactive-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    margin: 50px 0;
+    align-items: start;
+  }
+
+  .sensor-viewer {
+    position: relative;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  }
+
+  .sensor-viewer img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .sensor-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 20px;
+    background: #f9f9f9;
+    border-top: 1px solid var(--border-color);
+    justify-content: center;
+  }
+
+  .sensor-btn {
+    padding: 10px 16px;
+    background: white;
+    border: 2px solid var(--border-color);
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.9em;
+    color: var(--text-primary);
+    transition: all 0.3s ease;
+  }
+
+  .sensor-btn:hover {
+    border-color: var(--isu-red);
+    color: var(--isu-red);
+    background: rgba(196, 30, 58, 0.05);
+    transform: translateY(-2px);
+  }
+
+  .sensor-btn.active {
+    background: var(--isu-red);
+    color: white;
+    border-color: var(--isu-red);
+  }
+
+  /* Sensor Panel */
+  .sensor-panel {
+    background: linear-gradient(135deg, #ffffff 0%, #f9f9f9 100%);
+    border: 1.5px solid var(--border-color);
+    border-radius: 12px;
+    padding: 32px;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: sticky;
+    top: 100px;
+  }
+
+  .sensor-description {
+    width: 100%;
+  }
+
+  .sensor-description h3 {
+    font-size: 1.5em;
+    color: var(--isu-red);
+    margin-bottom: 16px;
+    font-weight: 700;
+  }
+
+  .sensor-description ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .sensor-description li {
+    font-size: 1.05em;
+    line-height: 1.8;
+    color: var(--text-secondary);
+    margin: 12px 0;
+    padding-left: 24px;
+    position: relative;
+  }
+
+  .sensor-description li::before {
+    content: '•';
+    position: absolute;
+    left: 8px;
+    color: var(--isu-red);
+    font-weight: bold;
+  }
+
+  .sensor-description strong {
+    color: var(--text-primary);
+    font-weight: 700;
+  }
+
+  .hint-text {
+    text-align: center;
+    color: #999;
+    font-style: italic;
+  }
+
+  /* Tab Buttons */
+  .tab-buttons {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .tab-btn {
+    padding: 12px 20px;
+    background: #f5f5f5;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s;
+    text-decoration: none;
+    color: var(--text-primary);
+    font-size: 0.95em;
+  }
+
+  .tab-btn:hover {
+    background: #e8e8e8;
+  }
+
+  .tab-btn.active {
+    background: var(--isu-red);
+    color: white;
+  }
+
+  .page-header-bar {
     display: none;
   }
 
-  @media (max-width: 767px) {
+  @media (max-width: 1024px) {
+    .interactive-section {
+      grid-template-columns: 1fr;
+    }
+
+    .sensor-panel {
+      position: static;
+      min-height: auto;
+    }
+  }
+
+  @media (max-width: 768px) {
     .page-header-bar {
       display: block;
       margin-bottom: 20px;
@@ -61,37 +245,25 @@ const { title, chapter, lesson } = content.frontmatter;
     }
 
     .tab-buttons {
-      display: flex;
       flex-direction: column;
-      gap: 10px;
     }
 
-    .tab-btn {
-      padding: 12px 20px;
-      background: #f5f5f5;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      font-weight: 600;
-      transition: all 0.2s;
-      text-align: center;
-      text-decoration: none;
-      color: var(--text-medium);
-      font-size: 0.95em;
+    .sensor-buttons {
+      padding: 15px;
+      gap: 8px;
     }
 
-    .tab-btn:hover {
-      background: #e8e8e8;
+    .sensor-btn {
+      padding: 8px 12px;
+      font-size: 0.85em;
+      flex: 1 1 calc(50% - 4px);
     }
 
-    .tab-btn.active {
-      background: var(--isu-red);
-      color: white;
+    .sensor-panel {
+      padding: 24px;
+      min-height: 300px;
     }
-  }
-</style>
-<style>
-  @media (max-width: 768px) {
+
     div[style*="grid-template-columns"] {
       display: flex !important;
       flex-direction: column-reverse !important;
@@ -99,3 +271,71 @@ const { title, chapter, lesson } = content.frontmatter;
     }
   }
 </style>
+
+<script>
+  const sensors = {
+    rgb: {
+      title: 'RGB Camera',
+      details: [
+        'Captures red, green, blue light reflectance',
+        'Produces images similar to what your eyes see',
+        '<strong>Use:</strong> General field scouting, visual assessment',
+        'This is a type of passive sensor because it detects light that it did not produce'
+      ]
+    },
+    multispectral: {
+      title: 'Multispectral Camera',
+      details: [
+        'Detects of 6 to 10 sensors that detect light reflected from specific broad areas of the electromagnetic spectrum',
+        'Often is used to see red, green, blue, red edge, and near-infrared (NIR) reflectance',
+        '<strong>Use:</strong> Calculating plant health indices'
+      ]
+    },
+    hyperspectral: {
+      title: 'Hyperspectral Camera',
+      details: [
+        'Detects light reflected from hundreds of narrow areas of the electromagnetic spectrum',
+        'Often is used to see red, green, blue, red edge, and near-infrared (NIR) reflectance',
+        '<strong>Use:</strong> Calculating plant health indices',
+        'If an RGB camera is like listening to a song with 3 instruments, a hyperspectral camera is like listening to a song played by a giant orchestra'
+      ]
+    },
+    thermal: {
+      title: 'Thermal Camera',
+      details: [
+        'Does not measure the amount of light reflected from an object, but rather it measures heat reflected or released from an object',
+        '<strong>Use:</strong> Water stress detection'
+      ]
+    },
+    lidar: {
+      title: 'LiDAR Sensor',
+      details: [
+        'Uses lasers to measure the distance between the object and the sensor',
+        'Creates 3D maps',
+        '<strong>Use:</strong> Terrain mapping, canopy height measurement'
+      ]
+    }
+  };
+
+  function displaySensor(sensorKey) {
+    const sensor = sensors[sensorKey];
+    const descPanel = document.getElementById('sensorDescription');
+    
+    document.querySelectorAll('.sensor-btn').forEach(btn => {
+      btn.classList.remove('active');
+    });
+    document.querySelector(`[data-sensor="${sensorKey}"]`).classList.add('active');
+    
+    const listItems = sensor.details.map(detail => `<li>${detail}</li>`).join('');
+    descPanel.innerHTML = `
+      <h3>${sensor.title}</h3>
+      <ul>${listItems}</ul>
+    `;
+  }
+
+  document.querySelectorAll('.sensor-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      displaySensor(btn.dataset.sensor);
+    });
+  });
+</script>

@@ -55,6 +55,22 @@ const { title, chapter, lesson } = content.frontmatter;
     margin: 28px 0 50px 0;
   }
 
+  /* Grid container for drone type cards */
+  .lesson-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+    align-items: start;
+  }
+
+  .lesson-content > p:first-of-type {
+    grid-column: 1 / -1;
+  }
+
+  .lesson-content img {
+    grid-column: 1 / -1;
+  }
+
   .lesson-content h2 {
     font-size: 1.4em;
     font-weight: 700;
@@ -92,7 +108,7 @@ const { title, chapter, lesson } = content.frontmatter;
     border: 1.5px solid var(--border-color);
     border-radius: 0 0 8px 8px;
     padding: 24px;
-    margin: 0 0 32px 0;
+    margin: -16px 0 0 0;
     list-style: none;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     transition: all 0.3s ease;
@@ -178,6 +194,10 @@ const { title, chapter, lesson } = content.frontmatter;
   }
 
   @media (max-width: 768px) {
+    .lesson-content {
+      grid-template-columns: 1fr;
+    }
+
     .lesson-content h2 {
       font-size: 1.2em;
       padding: 14px 16px;
@@ -185,7 +205,6 @@ const { title, chapter, lesson } = content.frontmatter;
 
     .lesson-content h2 + ul {
       padding: 20px;
-      margin-bottom: 24px;
     }
 
     .lesson-content img {
