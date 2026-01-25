@@ -91,132 +91,65 @@ const { title, chapter, lesson } = content.frontmatter;
   }
 /* Add this CSS to your lesson 2.2 page <style is:global> block */
 
-/* Style Markdown tables to look like cards */
-.lesson-content table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 24px 0;
+/* 6 Application Cards Grid */
+.applications-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  margin-bottom: 35px;
+}
+
+.app-card {
   background: white;
+  border: 1px solid var(--border-light);
   border-radius: 8px;
-  overflow: hidden;
+  padding: 24px;
+  text-align: center;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-}
-
-.lesson-content table thead {
-  background: var(--isu-red);
-  color: white;
-}
-
-.lesson-content table thead th {
-  padding: 16px;
-  text-align: left;
-  font-weight: 600;
-  border: none;
-}
-
-.lesson-content table tbody tr {
-  border-bottom: 1px solid var(--border-light);
   transition: all 0.3s ease;
 }
 
-.lesson-content table tbody tr:hover {
-  background: linear-gradient(90deg, rgba(196, 30, 58, 0.05) 0%, rgba(255, 184, 28, 0.05) 100%);
+.app-card:hover {
+  box-shadow: 0 4px 16px rgba(196, 30, 58, 0.12);
+  border-color: var(--isu-red);
+  transform: translateY(-4px);
 }
 
-.lesson-content table tbody tr:last-child {
-  border-bottom: none;
+.app-card h4 {
+  color: var(--isu-red);
+  margin-top: 0;
+  margin-bottom: 12px;
+  font-size: 1.1em;
 }
 
-.lesson-content table td {
-  padding: 16px;
+.app-card p {
   color: var(--text-medium);
   line-height: 1.6;
+  margin: 0;
+  font-size: 0.95em;
 }
 
-.lesson-content table strong {
-  color: var(--isu-red);
-  font-weight: 600;
-}
-
-/* Style lists as professional sections */
-.lesson-content h3 + ul,
-.lesson-content h3 + ol {
-  background: white;
-  border-radius: 8px;
-  padding: 24px 24px 24px 48px;
-  margin: 24px 0;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-  border-left: 5px solid var(--isu-red);
-}
-
-.lesson-content h3 + ul li,
-.lesson-content h3 + ol li {
-  margin-bottom: 12px;
-  color: var(--text-dark);
-  line-height: 1.6;
-}
-
-.lesson-content h3 + ul li:last-child,
-.lesson-content h3 + ol li:last-child {
-  margin-bottom: 0;
-}
-
-/* Activity boxes */
-.lesson-content h3 {
-  color: var(--isu-red);
-  margin-top: 30px;
-  margin-bottom: 16px;
-  font-size: 1.1em;
-  border-bottom: 2px solid var(--isu-gold);
-  padding-bottom: 10px;
-}
-
-/* Strong text in activities */
-.lesson-content h3 + p strong {
-  color: var(--isu-red);
-  display: block;
-  margin-bottom: 8px;
-}
-
-.lesson-content h3 + p {
-  background: linear-gradient(135deg, rgba(196, 30, 58, 0.08) 0%, rgba(255, 184, 28, 0.08) 100%);
-  border-left: 5px solid var(--isu-red);
-  border-radius: 6px;
-  padding: 16px 20px;
-  margin-bottom: 20px;
-  color: var(--text-dark);
-  line-height: 1.7;
-}
-
-/* Responsive adjustments */
-@media (max-width: 767px) {
-  .lesson-content table {
-    font-size: 0.9em;
-  }
-
-  .lesson-content table td,
-  .lesson-content table th {
-    padding: 12px;
-  }
-
-  .lesson-content h3 + ul,
-  .lesson-content h3 + ol {
-    padding: 16px 16px 16px 40px;
-  }
-}
-
+/* Responsive - Tablet */
 @media (min-width: 768px) {
-  .lesson-content table {
-    margin: 32px 0;
+  .applications-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
   }
 
-  .lesson-content table td {
-    padding: 20px;
+  .app-card {
+    padding: 28px;
+  }
+}
+
+/* Responsive - Desktop */
+@media (min-width: 969px) {
+  .applications-grid {
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 28px;
   }
 
-  .lesson-content h3 + ul,
-  .lesson-content h3 + ol {
-    padding: 28px 28px 28px 52px;
+  .app-card {
+    padding: 32px;
   }
 }
 </style>
