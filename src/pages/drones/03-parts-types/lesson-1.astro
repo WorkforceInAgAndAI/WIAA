@@ -24,6 +24,28 @@ const { title, chapter, lesson } = content.frontmatter;
         </div>
         <article class="lesson-content">
           <Content />
+          
+          <!-- Interactive Component Section -->
+          <div class="interactive-section">
+            <div class="drone-viewer">
+              <img src="/WIAA/images/uav_components.jpg" alt="UAV Components" class="drone-image" id="droneImage" />
+              <div class="component-buttons">
+                <button class="component-btn" data-component="frame" title="Click to learn about Frame">Frame</button>
+                <button class="component-btn" data-component="motors" title="Click to learn about Motors">Motors</button>
+                <button class="component-btn" data-component="propellers" title="Click to learn about Propellers">Propellers</button>
+                <button class="component-btn" data-component="battery" title="Click to learn about Battery">Battery</button>
+                <button class="component-btn" data-component="gimbal" title="Click to learn about Gimbal">Gimbal</button>
+                <button class="component-btn" data-component="sensor" title="Click to learn about Sensor/Camera">Sensor</button>
+                <button class="component-btn" data-component="controller" title="Click to learn about Remote Controller">Remote Controller</button>
+              </div>
+            </div>
+            
+            <div class="component-panel">
+              <div class="component-description" id="componentDescription">
+                <p class="hint-text">Click on a component in the image or button above to learn more</p>
+              </div>
+            </div>
+          </div>
         </article>
         <LessonNav 
           prev={{ href: '/drones/02-introduction/review', label: 'Previous' }}
@@ -39,12 +61,9 @@ const { title, chapter, lesson } = content.frontmatter;
   :root {
     --isu-red: #c41e3a;
     --isu-gold: #f8c600;
-    --dark-bg: #0f172a;
-    --card-bg: #ffffff;
     --text-primary: #1a1a1a;
     --text-secondary: #666666;
     --border-color: #e5e7eb;
-    --accent: #c41e3a;
   }
 
   .lesson-content h2 {
@@ -54,82 +73,13 @@ const { title, chapter, lesson } = content.frontmatter;
     margin-top: 45px;
     margin-bottom: 28px;
     letter-spacing: -0.5px;
-    position: relative;
-    padding-bottom: 14px;
   }
 
   .lesson-content h2:first-of-type {
     margin-top: 0;
   }
 
-  .lesson-content h2::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 60px;
-    height: 3px;
-    background: linear-gradient(90deg, var(--isu-red), var(--isu-gold));
-    border-radius: 2px;
-  }
-
-  /* Key Parts Section */
-  .lesson-content h2:first-of-type + p + ul {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 18px;
-    list-style: none;
-    padding: 0;
-    margin: 24px 0 40px 0;
-  }
-
-  .lesson-content h2:first-of-type + p + ul li {
-    background: linear-gradient(135deg, #ffffff 0%, #f9f9f9 100%);
-    border: 1.5px solid var(--border-color);
-    border-radius: 12px;
-    padding: 24px;
-    transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
-    position: relative;
-    overflow: hidden;
-  }
-
-  .lesson-content h2:first-of-type + p + ul li::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, var(--isu-red), var(--isu-gold));
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.35s ease;
-  }
-
-  .lesson-content h2:first-of-type + p + ul li:hover {
-    transform: translateY(-6px);
-    border-color: var(--isu-red);
-    box-shadow: 0 12px 32px rgba(196, 30, 58, 0.15);
-  }
-
-  .lesson-content h2:first-of-type + p + ul li:hover::before {
-    transform: scaleX(1);
-  }
-
-  .lesson-content h2:first-of-type + p + ul li strong {
-    display: block;
-    color: var(--isu-red);
-    font-weight: 700;
-    font-size: 1.05em;
-    margin-bottom: 8px;
-  }
-
-  .lesson-content h2:first-of-type + p + ul li::marker {
-    display: none;
-  }
-
-  /* Closing paragraph after components */
-  .lesson-content h2:first-of-type + p + ul + p {
+  .lesson-content h2 + p {
     font-size: 1.1em;
     line-height: 1.8;
     color: var(--text-secondary);
@@ -137,12 +87,112 @@ const { title, chapter, lesson } = content.frontmatter;
     padding: 24px;
     border-left: 4px solid var(--isu-red);
     border-radius: 8px;
-    margin: 40px 0;
+    margin: 28px 0 40px 0;
   }
 
-  /* Learning Activities Section */
+  .lesson-content img {
+    display: none;
+  }
+
+  /* Interactive Section */
+  .interactive-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    margin: 50px 0;
+    align-items: start;
+  }
+
+  .drone-viewer {
+    position: relative;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  }
+
+  .drone-image {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .component-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 20px;
+    background: #f9f9f9;
+    border-top: 1px solid var(--border-color);
+    justify-content: center;
+  }
+
+  .component-btn {
+    padding: 10px 16px;
+    background: white;
+    border: 2px solid var(--border-color);
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.9em;
+    color: var(--text-primary);
+    transition: all 0.3s ease;
+  }
+
+  .component-btn:hover {
+    border-color: var(--isu-red);
+    color: var(--isu-red);
+    background: rgba(196, 30, 58, 0.05);
+    transform: translateY(-2px);
+  }
+
+  .component-btn.active {
+    background: var(--isu-red);
+    color: white;
+    border-color: var(--isu-red);
+  }
+
+  /* Component Panel */
+  .component-panel {
+    background: linear-gradient(135deg, #ffffff 0%, #f9f9f9 100%);
+    border: 1.5px solid var(--border-color);
+    border-radius: 12px;
+    padding: 32px;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: sticky;
+    top: 100px;
+  }
+
+  .component-description {
+    width: 100%;
+  }
+
+  .component-description h3 {
+    font-size: 1.5em;
+    color: var(--isu-red);
+    margin-bottom: 16px;
+    font-weight: 700;
+  }
+
+  .component-description p {
+    font-size: 1.1em;
+    line-height: 1.8;
+    color: var(--text-secondary);
+    margin: 0;
+  }
+
+  .hint-text {
+    text-align: center;
+    color: #999;
+    font-style: italic;
+  }
+
+  /* Learning Activities */
   .lesson-content h2:last-of-type {
-    margin-top: 50px;
+    margin-top: 60px;
   }
 
   .lesson-content h2:last-of-type + ul {
@@ -188,17 +238,6 @@ const { title, chapter, lesson } = content.frontmatter;
     transform: translateX(4px);
   }
 
-  /* Image */
-  .lesson-content img {
-    max-width: 800px !important;
-    height: auto !important;
-    display: block !important;
-    margin: 50px auto 40px auto !important;
-    border-radius: 12px;
-    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.12);
-    border: 1px solid var(--border-color);
-  }
-
   /* Tab Buttons */
   .tab-buttons {
     display: flex;
@@ -215,7 +254,7 @@ const { title, chapter, lesson } = content.frontmatter;
     font-weight: 600;
     transition: all 0.2s;
     text-decoration: none;
-    color: var(--text-medium);
+    color: var(--text-primary);
     font-size: 0.95em;
   }
 
@@ -232,15 +271,22 @@ const { title, chapter, lesson } = content.frontmatter;
     display: none;
   }
 
+  @media (max-width: 1024px) {
+    .interactive-section {
+      grid-template-columns: 1fr;
+    }
+
+    .component-panel {
+      position: static;
+      min-height: auto;
+    }
+  }
+
   @media (max-width: 768px) {
     .lesson-content h2 {
       font-size: 1.5em;
       margin-top: 35px;
       margin-bottom: 22px;
-    }
-
-    .lesson-content img {
-      max-width: 280px !important;
     }
 
     .page-header-bar {
@@ -254,8 +300,19 @@ const { title, chapter, lesson } = content.frontmatter;
       flex-direction: column;
     }
 
-    .lesson-content h2:first-of-type + p + ul {
-      grid-template-columns: 1fr;
+    .component-buttons {
+      padding: 15px;
+      gap: 8px;
+    }
+
+    .component-btn {
+      padding: 8px 12px;
+      font-size: 0.85em;
+    }
+
+    .component-panel {
+      padding: 24px;
+      min-height: 300px;
     }
 
     div[style*="grid-template-columns"] {
@@ -265,3 +322,60 @@ const { title, chapter, lesson } = content.frontmatter;
     }
   }
 </style>
+
+<script>
+  const components = {
+    frame: {
+      title: 'Frame',
+      description: 'The structural skeleton of the drone. It holds all components together, provides rigidity, and must be lightweight yet strong enough to support the entire system.'
+    },
+    motors: {
+      title: 'Motors',
+      description: 'Electric motors that spin the propellers. They convert electrical energy from the battery into rotational motion, allowing the drone to generate thrust and achieve flight.'
+    },
+    propellers: {
+      title: 'Propellers',
+      description: 'The rotating blades that create lift by pushing air downward. Different propeller designs affect speed, efficiency, and flight characteristics of the drone.'
+    },
+    battery: {
+      title: 'Battery',
+      description: 'Powers the entire drone system including motors and all attachments. Battery capacity determines flight time and payload capacity. Typically lithium-polymer (LiPo) batteries are used for their high energy density.'
+    },
+    gimbal: {
+      title: 'Gimbal',
+      description: 'A mechanical stabilization system that keeps the camera or sensor level and smooth, even when the drone moves or rotates. This ensures high-quality, shake-free data collection and imagery.'
+    },
+    sensor: {
+      title: 'Sensor/Camera',
+      description: 'Collects visual or spectral data about crops, field conditions, and vegetation. Modern agricultural drones use multispectral or thermal cameras to monitor plant health and identify problem areas.'
+    },
+    controller: {
+      title: 'Remote Controller',
+      description: 'The pilot\'s control device that communicates wirelessly with the drone. It allows manual flight control, mission programming, and real-time monitoring of the drone\'s status and camera feed.'
+    }
+  };
+
+  function displayComponent(componentKey) {
+    const component = components[componentKey];
+    const descPanel = document.getElementById('componentDescription');
+    
+    // Update active button
+    document.querySelectorAll('.component-btn').forEach(btn => {
+      btn.classList.remove('active');
+    });
+    document.querySelector(`[data-component="${componentKey}"]`).classList.add('active');
+    
+    // Update description
+    descPanel.innerHTML = `
+      <h3>${component.title}</h3>
+      <p>${component.description}</p>
+    `;
+  }
+
+  // Add click handlers to buttons
+  document.querySelectorAll('.component-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      displayComponent(btn.dataset.component);
+    });
+  });
+</script>
