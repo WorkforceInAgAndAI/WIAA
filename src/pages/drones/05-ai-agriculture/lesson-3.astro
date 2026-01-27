@@ -2,7 +2,6 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Sidebar from '../../../components/Sidebar.astro';
 import LessonNav from '../../../components/LessonNav.astro';
-
 const content = await import('../../../content/drones/05-ai-agriculture/lesson-3.md');
 const { Content } = content;
 const { title, chapter, lesson } = content.frontmatter;
@@ -14,17 +13,67 @@ const { title, chapter, lesson } = content.frontmatter;
       <Sidebar currentChapter={chapter} currentLesson={lesson} />
       <div class="content-area">
         <div class="content-header">
-  <div class="page-header-bar">
-    <div class="tab-buttons">
-      <a href="/WIAA/drones" class="tab-btn active">Learning Module</a>
-      <a href="/WIAA/drones/instructor" class="tab-btn">Instructor Resources</a>
-    </div>
-  </div>
-  <p class="chapter-label">Chapter {chapter}: AI in agriculture</p>
+          <div class="page-header-bar">
+            <div class="tab-buttons">
+              <a href="/WIAA/drones" class="tab-btn active">Learning Module</a>
+              <a href="/WIAA/drones/instructor" class="tab-btn">Instructor Resources</a>
+            </div>
+          </div>
+          <p class="chapter-label">Chapter {chapter}: AI in agriculture</p>
           <h1>{title}</h1>
         </div>
         <article class="lesson-content">
-          <Content />
+          <p class="intro-text">AI requires a process of training the computer to understand what we know, so it can analyze data quickly and be used to help users in real-world applications.</p>
+
+          <h2>The AI Development Process</h2>
+          <div class="process-steps">
+            <div class="process-step">
+              <div class="step-number">1</div>
+              <div class="step-content">
+                <h3>Data is collected</h3>
+                <p>Gather images, measurements, and observations</p>
+              </div>
+            </div>
+
+            <div class="process-step">
+              <div class="step-number">2</div>
+              <div class="step-content">
+                <h3>Data is labeled by humans</h3>
+                <p>Ensure the data is accurate through human expertise</p>
+              </div>
+            </div>
+
+            <div class="process-step">
+              <div class="step-number">3</div>
+              <div class="step-content">
+                <h3>The model is trained</h3>
+                <p>Use the labels to learn the meaning of the data</p>
+              </div>
+            </div>
+
+            <div class="process-step">
+              <div class="step-number">4</div>
+              <div class="step-content">
+                <h3>The model is tested</h3>
+                <p>Ensure the model is performing accurately</p>
+              </div>
+            </div>
+
+            <div class="process-step">
+              <div class="step-number">5</div>
+              <div class="step-content">
+                <h3>The model is deployed</h3>
+                <p>Use in the field for real-world applications</p>
+              </div>
+            </div>
+          </div>
+
+          <p class="cycle-note">Throughout this process, AI developers may learn new things about the data, methods used in training, or new technology, so the process forms a development cycle for continual improvements.</p>
+
+          <h2>Human-in-the-Loop</h2>
+          <p class="human-loop-content">The human element is especially important during the labeling phase. Domain experts can use their knowledge to label data accurately and precisely so the model is trained on quality data and is more likely to perform precisely and accurately in real-world conditions.</p>
+
+          <img src="/WIAA/images/AI_dev.jpg" alt="AI Development" />
         </article>
         <LessonNav 
           prev={{ href: '/drones/05-ai-agriculture/lesson-2', label: 'Previous' }}
@@ -35,24 +84,202 @@ const { title, chapter, lesson } = content.frontmatter;
     </div>
   </div>
 </BaseLayout>
+
 <style is:global>
-  .lesson-content img {
-    max-width: 800px !important;
-    height: auto !important;
-    display: block !important;
-    margin: 20px auto !important;
+  :root {
+    --isu-red: #c41e3a;
+    --isu-gold: #f8c600;
+    --text-primary: #1a1a1a;
+    --text-secondary: #666666;
+    --border-color: #e5e7eb;
   }
 
-  @media (max-width: 767px) {
-    .lesson-content img {
-      max-width: 280px !important;
-    }
+  .lesson-content .intro-text {
+    font-size: 1.1em;
+    line-height: 1.8;
+    color: var(--text-secondary);
+    background: linear-gradient(135deg, rgba(196, 30, 58, 0.04), rgba(248, 198, 0, 0.04));
+    padding: 24px;
+    border-left: 4px solid var(--isu-red);
+    border-radius: 8px;
+    margin: 28px 0 45px 0;
   }
-.page-header-bar {
+
+  .lesson-content h2 {
+    font-size: 1.8em;
+    font-weight: 700;
+    color: var(--isu-red);
+    margin: 45px 0 28px 0;
+    letter-spacing: -0.5px;
+  }
+
+  .lesson-content > p {
+    font-size: 1.05em;
+    line-height: 1.8;
+    color: var(--text-primary);
+    margin: 20px 0;
+  }
+
+  /* Process Steps */
+  .process-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin: 32px 0 40px 0;
+  }
+
+  .process-step {
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    gap: 20px;
+    align-items: start;
+    background: white;
+    border: 1.5px solid var(--border-color);
+    border-radius: 12px;
+    padding: 24px;
+    transition: all 0.3s ease;
+  }
+
+  .process-step:hover {
+    box-shadow: 0 8px 20px rgba(196, 30, 58, 0.1);
+    border-color: var(--isu-red);
+    transform: translateY(-2px);
+  }
+
+  .step-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #c41e3a, #a01729);
+    color: white;
+    font-size: 1.8em;
+    font-weight: 700;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .step-content h3 {
+    font-size: 1.2em;
+    font-weight: 700;
+    color: var(--isu-red);
+    margin: 0 0 8px 0;
+    letter-spacing: -0.3px;
+  }
+
+  .step-content p {
+    margin: 0;
+    font-size: 1.05em;
+    line-height: 1.6;
+    color: var(--text-secondary);
+  }
+
+  /* Cycle Note */
+  .cycle-note {
+    background: linear-gradient(135deg, rgba(196, 30, 58, 0.04), rgba(248, 198, 0, 0.04));
+    padding: 24px;
+    border-left: 4px solid var(--isu-red);
+    border-radius: 8px;
+    margin: 32px 0 50px 0 !important;
+  }
+
+  /* Human-in-the-Loop */
+  .human-loop-content {
+    background: white;
+    border: 2px solid var(--isu-red);
+    padding: 28px;
+    border-radius: 10px;
+    margin: 28px 0 40px 0 !important;
+    font-size: 1.08em;
+    line-height: 1.8;
+  }
+
+  /* Image */
+  .lesson-content img {
+    max-width: 900px !important;
+    height: auto !important;
+    display: block !important;
+    margin: 50px auto 40px auto !important;
+    border-radius: 12px;
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.12);
+    border: 1px solid var(--border-color);
+  }
+
+  /* Tab Buttons */
+  .tab-buttons {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .tab-btn {
+    padding: 12px 20px;
+    background: #f5f5f5;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s;
+    text-decoration: none;
+    color: var(--text-primary);
+    font-size: 0.95em;
+  }
+
+  .tab-btn:hover {
+    background: #e8e8e8;
+  }
+
+  .tab-btn.active {
+    background: var(--isu-red);
+    color: white;
+  }
+
+  .page-header-bar {
     display: none;
   }
 
-  @media (max-width: 767px) {
+  @media (max-width: 768px) {
+    .lesson-content h2 {
+      font-size: 1.5em;
+      margin: 35px 0 24px 0;
+    }
+
+    .process-steps {
+      gap: 12px;
+      margin: 24px 0 32px 0;
+    }
+
+    .process-step {
+      grid-template-columns: 50px 1fr;
+      gap: 16px;
+      padding: 18px;
+    }
+
+    .step-number {
+      width: 50px;
+      height: 50px;
+      font-size: 1.5em;
+    }
+
+    .step-content h3 {
+      font-size: 1.1em;
+    }
+
+    .step-content p {
+      font-size: 0.95em;
+    }
+
+    .human-loop-content {
+      padding: 20px;
+      font-size: 1em;
+    }
+
+    .lesson-content img {
+      max-width: 100% !important;
+      margin: 40px auto 30px auto !important;
+    }
+
     .page-header-bar {
       display: block;
       margin-bottom: 20px;
@@ -61,37 +288,9 @@ const { title, chapter, lesson } = content.frontmatter;
     }
 
     .tab-buttons {
-      display: flex;
       flex-direction: column;
-      gap: 10px;
     }
 
-    .tab-btn {
-      padding: 12px 20px;
-      background: #f5f5f5;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      font-weight: 600;
-      transition: all 0.2s;
-      text-align: center;
-      text-decoration: none;
-      color: var(--text-medium);
-      font-size: 0.95em;
-    }
-
-    .tab-btn:hover {
-      background: #e8e8e8;
-    }
-
-    .tab-btn.active {
-      background: var(--isu-red);
-      color: white;
-    }
-  }
-</style>
-<style>
-  @media (max-width: 768px) {
     div[style*="grid-template-columns"] {
       display: flex !important;
       flex-direction: column-reverse !important;
