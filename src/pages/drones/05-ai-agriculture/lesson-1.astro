@@ -2,7 +2,6 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Sidebar from '../../../components/Sidebar.astro';
 import LessonNav from '../../../components/LessonNav.astro';
-
 const content = await import('../../../content/drones/05-ai-agriculture/lesson-1.md');
 const { Content } = content;
 const { title, chapter, lesson } = content.frontmatter;
@@ -14,17 +13,85 @@ const { title, chapter, lesson } = content.frontmatter;
       <Sidebar currentChapter={chapter} currentLesson={lesson} />
       <div class="content-area">
         <div class="content-header">
-  <div class="page-header-bar">
-    <div class="tab-buttons">
-      <a href="/WIAA/drones" class="tab-btn active">Learning Module</a>
-      <a href="/WIAA/drones/instructor" class="tab-btn">Instructor Resources</a>
-    </div>
-  </div>
-  <p class="chapter-label">Chapter {chapter}: AI in agriculture</p>
+          <div class="page-header-bar">
+            <div class="tab-buttons">
+              <a href="/WIAA/drones" class="tab-btn active">Learning Module</a>
+              <a href="/WIAA/drones/instructor" class="tab-btn">Instructor Resources</a>
+            </div>
+          </div>
+          <p class="chapter-label">Chapter {chapter}: AI in agriculture</p>
           <h1>{title}</h1>
         </div>
         <article class="lesson-content">
-          <Content />
+          <p class="intro-text">Have You Used AI Before? How Can AI Be Helpful?</p>
+
+          <h2>AI (Artificial Intelligence) is technology that can:</h2>
+          <ul class="capabilities-list">
+            <li>Recognize patterns in data</li>
+            <li>Learn from examples</li>
+            <li>Make decisions</li>
+            <li>Process large amounts of information quickly</li>
+          </ul>
+
+          <h2>Why AI Matters for Farmers</h2>
+          <div class="comparison-grid">
+            <div class="comparison-card without-ai">
+              <div class="comparison-header">
+                <h3>Without AI</h3>
+              </div>
+              <div class="comparison-content">
+                <p><strong>Farmer walks 500 acres = 10-20 hours of work</strong></p>
+              </div>
+            </div>
+            
+            <div class="comparison-card with-ai">
+              <div class="comparison-header">
+                <h3>With AI</h3>
+              </div>
+              <div class="comparison-content">
+                <p><strong>Drone captures 1,200 images, AI analyzes in seconds</strong></p>
+              </div>
+            </div>
+          </div>
+
+          <p class="impact-text">AI can help farmers to identify the type of stress, determine the level of stress, the severity of the stress, and predict how the stress will act in the future.</p>
+
+          <h2>Types of AI</h2>
+          <div class="ai-types-grid">
+            <div class="ai-card">
+              <div class="ai-card-header">
+                <h3>Machine Learning</h3>
+              </div>
+              <div class="ai-card-content">
+                <p>AI that learns patterns from data</p>
+              </div>
+            </div>
+
+            <div class="ai-card">
+              <div class="ai-card-header">
+                <h3>Deep Learning</h3>
+              </div>
+              <div class="ai-card-content">
+                <p>AI that uses neural networks similar to human brains</p>
+              </div>
+            </div>
+
+            <div class="ai-card">
+              <div class="ai-card-header">
+                <h3>Generative AI</h3>
+              </div>
+              <div class="ai-card-content">
+                <p>A type of deep learning that can understand and create plain language (large language models), and interpret images with plain language generation (vision language models)</p>
+              </div>
+            </div>
+          </div>
+
+          <h2>Learning Activities</h2>
+          <ul class="activities-list">
+            <li><strong>Watch:</strong> Precision Weed Mapping with Drone Imagery and AI for Targeted Sprayer Applications. Access at: <a href="https://youtu.be/fCdg2S33zLc" target="_blank" rel="noopener noreferrer">https://youtu.be/fCdg2S33zLc</a></li>
+          </ul>
+
+          <img src="/WIAA/images/AI_in_ag.jpg" alt="AI in Agriculture" />
         </article>
         <LessonNav 
           prev={{ href: '/drones/04-sensors/review', label: 'Previous' }}
@@ -35,24 +102,348 @@ const { title, chapter, lesson } = content.frontmatter;
     </div>
   </div>
 </BaseLayout>
+
 <style is:global>
-  .lesson-content img {
-    max-width: 800px !important;
-    height: auto !important;
-    display: block !important;
-    margin: 20px auto !important;
+  :root {
+    --isu-red: #c41e3a;
+    --isu-gold: #f8c600;
+    --text-primary: #1a1a1a;
+    --text-secondary: #666666;
+    --border-color: #e5e7eb;
   }
 
-  @media (max-width: 767px) {
-    .lesson-content img {
-      max-width: 280px !important;
-    }
+  .lesson-content .intro-text {
+    font-size: 1.15em;
+    line-height: 1.8;
+    color: var(--text-secondary);
+    background: linear-gradient(135deg, rgba(196, 30, 58, 0.04), rgba(248, 198, 0, 0.04));
+    padding: 24px;
+    border-left: 4px solid var(--isu-red);
+    border-radius: 8px;
+    margin: 28px 0 45px 0;
+    font-style: italic;
   }
-.page-header-bar {
+
+  .lesson-content h2 {
+    font-size: 1.8em;
+    font-weight: 700;
+    color: var(--isu-red);
+    margin: 45px 0 28px 0;
+    letter-spacing: -0.5px;
+  }
+
+  .lesson-content > p {
+    font-size: 1.05em;
+    line-height: 1.8;
+    color: var(--text-primary);
+    margin: 20px 0;
+  }
+
+  /* Capabilities List */
+  .capabilities-list {
+    list-style: none;
+    padding: 0;
+    margin: 24px 0 45px 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+  }
+
+  .capabilities-list li {
+    background: white;
+    border: 1.5px solid var(--border-color);
+    border-radius: 8px;
+    padding: 18px 20px;
+    font-size: 1.05em;
+    color: var(--text-primary);
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  }
+
+  .capabilities-list li:hover {
+    border-color: var(--isu-red);
+    box-shadow: 0 8px 20px rgba(196, 30, 58, 0.1);
+    transform: translateY(-4px);
+  }
+
+  .capabilities-list li::before {
+    content: '✓';
+    margin-right: 12px;
+    color: var(--isu-red);
+    font-weight: bold;
+    font-size: 1.2em;
+  }
+
+  /* Comparison Grid */
+  .comparison-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+    margin: 40px 0;
+  }
+
+  .comparison-card {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+
+  .comparison-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.15);
+  }
+
+  .comparison-header {
+    padding: 24px;
+    color: white;
+  }
+
+  .comparison-header h3 {
+    font-size: 1.4em;
+    font-weight: 700;
+    margin: 0;
+    letter-spacing: -0.3px;
+  }
+
+  .comparison-card.without-ai .comparison-header {
+    background: linear-gradient(135deg, #dc2626, #991b1b);
+  }
+
+  .comparison-card.with-ai .comparison-header {
+    background: linear-gradient(135deg, #059669, #047857);
+  }
+
+  .comparison-content {
+    padding: 28px 24px;
+    background: white;
+    min-height: 100px;
+    display: flex;
+    align-items: center;
+  }
+
+  .comparison-content p {
+    margin: 0;
+    font-size: 1.1em;
+    line-height: 1.7;
+    color: var(--text-primary);
+  }
+
+  .impact-text {
+    font-size: 1.05em;
+    line-height: 1.8;
+    color: var(--text-secondary);
+    background: linear-gradient(135deg, rgba(196, 30, 58, 0.04), rgba(248, 198, 0, 0.04));
+    padding: 24px;
+    border-left: 4px solid var(--isu-red);
+    border-radius: 8px;
+    margin: 40px 0;
+  }
+
+  /* AI Types Grid */
+  .ai-types-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+    margin: 32px 0 50px 0;
+  }
+
+  .ai-card {
+    background: white;
+    border: 1.5px solid var(--border-color);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+  }
+
+  .ai-card:hover {
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+    transform: translateY(-4px);
+  }
+
+  .ai-card-header {
+    padding: 20px 24px;
+    background: linear-gradient(135deg, #7c3aed, #6d28d9);
+    color: white;
+  }
+
+  .ai-card-header h3 {
+    font-size: 1.3em;
+    font-weight: 700;
+    margin: 0;
+    letter-spacing: -0.3px;
+  }
+
+  .ai-card:nth-child(1) .ai-card-header {
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  }
+
+  .ai-card:nth-child(2) .ai-card-header {
+    background: linear-gradient(135deg, #7c3aed, #6d28d9);
+  }
+
+  .ai-card:nth-child(3) .ai-card-header {
+    background: linear-gradient(135deg, #d97706, #b45309);
+  }
+
+  .ai-card-content {
+    padding: 24px;
+  }
+
+  .ai-card-content p {
+    margin: 0;
+    font-size: 1.05em;
+    line-height: 1.7;
+    color: var(--text-primary);
+  }
+
+  /* Learning Activities */
+  .activities-list {
+    list-style: none;
+    padding: 0;
+    margin: 24px 0;
+  }
+
+  .activities-list li {
+    font-size: 1.05em;
+    line-height: 1.8;
+    color: var(--text-primary);
+    margin: 14px 0;
+    padding-left: 24px;
+    position: relative;
+  }
+
+  .activities-list li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--isu-red);
+    font-weight: bold;
+    font-size: 1.2em;
+  }
+
+  .activities-list a {
+    color: var(--isu-red);
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.2s ease;
+  }
+
+  .activities-list a:hover {
+    text-decoration: underline;
+    color: #a01729;
+  }
+
+  /* Image */
+  .lesson-content img {
+    max-width: 900px !important;
+    height: auto !important;
+    display: block !important;
+    margin: 50px auto 40px auto !important;
+    border-radius: 12px;
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.12);
+    border: 1px solid var(--border-color);
+  }
+
+  /* Tab Buttons */
+  .tab-buttons {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .tab-btn {
+    padding: 12px 20px;
+    background: #f5f5f5;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s;
+    text-decoration: none;
+    color: var(--text-primary);
+    font-size: 0.95em;
+  }
+
+  .tab-btn:hover {
+    background: #e8e8e8;
+  }
+
+  .tab-btn.active {
+    background: var(--isu-red);
+    color: white;
+  }
+
+  .page-header-bar {
     display: none;
   }
 
-  @media (max-width: 767px) {
+  @media (max-width: 1024px) {
+    .comparison-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .ai-types-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .lesson-content h2 {
+      font-size: 1.5em;
+      margin: 35px 0 24px 0;
+    }
+
+    .capabilities-list {
+      grid-template-columns: 1fr;
+      margin: 20px 0 35px 0;
+    }
+
+    .capabilities-list li {
+      padding: 16px 18px;
+      font-size: 1em;
+    }
+
+    .comparison-grid {
+      gap: 20px;
+      margin: 30px 0;
+    }
+
+    .comparison-header {
+      padding: 18px;
+    }
+
+    .comparison-header h3 {
+      font-size: 1.2em;
+    }
+
+    .comparison-content {
+      padding: 20px 18px;
+      min-height: auto;
+    }
+
+    .ai-card-header {
+      padding: 16px 18px;
+    }
+
+    .ai-card-header h3 {
+      font-size: 1.15em;
+    }
+
+    .ai-card-content {
+      padding: 18px;
+    }
+
+    .ai-card-content p {
+      font-size: 0.95em;
+    }
+
+    .lesson-content img {
+      max-width: 100% !important;
+      margin: 40px auto 30px auto !important;
+    }
+
     .page-header-bar {
       display: block;
       margin-bottom: 20px;
@@ -61,37 +452,9 @@ const { title, chapter, lesson } = content.frontmatter;
     }
 
     .tab-buttons {
-      display: flex;
       flex-direction: column;
-      gap: 10px;
     }
 
-    .tab-btn {
-      padding: 12px 20px;
-      background: #f5f5f5;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      font-weight: 600;
-      transition: all 0.2s;
-      text-align: center;
-      text-decoration: none;
-      color: var(--text-medium);
-      font-size: 0.95em;
-    }
-
-    .tab-btn:hover {
-      background: #e8e8e8;
-    }
-
-    .tab-btn.active {
-      background: var(--isu-red);
-      color: white;
-    }
-  }
-</style>
-<style>
-  @media (max-width: 768px) {
     div[style*="grid-template-columns"] {
       display: flex !important;
       flex-direction: column-reverse !important;
