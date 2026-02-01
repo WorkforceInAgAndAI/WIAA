@@ -17,6 +17,7 @@ const currentPath = Astro.url.pathname;
       <a href="/WIAA" class={currentPath === '/' ? 'active' : ''}>Home</a>
       <a href="/WIAA/drones" class={currentPath.startsWith('/drones') ? 'active' : ''}>Drone program</a>
       <a href="/WIAA/rovers" class={currentPath.startsWith('/rovers') ? 'active' : ''}>Rover program</a>
+      <a href="/WIAA/satellites" class={currentPath.startsWith('/satellites') ? 'active' : ''}>Satellite program</a>
       <a href="/WIAA/outreach" class={currentPath === '/outreach' ? 'active' : ''}>Outreach</a>
     </nav>
   </div>

@@ -23,7 +23,7 @@ const { title, chapter, lesson } = content.frontmatter;
           <h1>{title}</h1>
         </div>
         <article class="lesson-content">
-          <p class="scenario-text">Imagine If Everyone Could Fly a Drone Anywhere, Anytime, Without Any Rules. What Could Go Wrong?</p>
+          <p class="scenario-text">Imagine if everyone could fly a drone anywhere, anytime, without any rules. What could go wrong?</p>
           
           <div class="faa-info">
             <p>The FAA exists to keep aircraft in the United States safe by enforcing rules for pilots and aircraft. The <strong>Part 107 license</strong> is a certification program under the FAA that specializes in the operation of <strong>small unmanned aerial systems</strong> that are <strong>less than 55 pounds</strong> in weight and used for <strong>commercial purposes</strong>.</p>
@@ -70,6 +70,33 @@ const { title, chapter, lesson } = content.frontmatter;
                   <li>Display registration number on drone</li>
                 </ul>
               </div>
+            </div>
+          </div>
+
+          <h2>Best Practices for Flights</h2>
+          
+          <p class="intro-text">When flying a drone, it is important to ensure that you, the drone, and the environment are all conducive to the flight. Complete a pre-flight inspection assessing the following items:</p>
+          
+          <div class="best-practices-container">
+            <div class="checklist-box">
+              <svg viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg" class="clipboard-icon">
+                <!-- Clipboard body -->
+                <rect x="30" y="20" width="140" height="260" rx="10" fill="none" stroke="black" stroke-width="3"/>
+                <!-- Clipboard clip -->
+                <rect x="75" y="10" width="50" height="20" rx="3" fill="none" stroke="black" stroke-width="2.5"/>
+                <circle cx="100" cy="20" r="6" fill="black"/>
+              </svg>
+              <ul class="checklist">
+                <li>Drone and controller battery.</li>
+                <li>Propellers, landing gear, and camera.</li>
+                <li>Radio signal between drone and controller.</li>
+                <li>Current weather conditions.</li>
+                <li>Mental and physical conditions of the operator.</li>
+              </ul>
+            </div>
+            
+            <div class="warning-box">
+              <p><strong>Important:</strong> If an accident that causes severe injury or causes damages of $500 or more, then you must report the accident to the FAA within 10 days of the incident.</p>
             </div>
           </div>
         </article>
@@ -222,6 +249,91 @@ const { title, chapter, lesson } = content.frontmatter;
     font-size: 1.2em;
   }
 
+  /* Best Practices Section */
+  .intro-text {
+    font-size: 1.05em;
+    line-height: 1.8;
+    color: var(--text-secondary);
+    margin: 0 0 28px 0;
+  }
+
+  .best-practices-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin: 32px 0;
+    align-items: start;
+  }
+
+  .checklist-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    background: white;
+    padding: 32px 24px;
+    border-radius: 12px;
+    border: 1.5px solid var(--border-color);
+  }
+
+  .clipboard-icon {
+    width: 120px;
+    height: auto;
+    flex-shrink: 0;
+  }
+
+  .checklist {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+  }
+
+  .checklist li {
+    font-size: 0.95em;
+    line-height: 1.6;
+    color: var(--text-primary);
+    margin: 10px 0;
+    padding-left: 20px;
+    position: relative;
+  }
+
+  .checklist li:first-child {
+    margin-top: 0;
+  }
+
+  .checklist li:last-child {
+    margin-bottom: 0;
+  }
+
+  .checklist li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--text-primary);
+    font-weight: bold;
+  }
+
+  .warning-box {
+    background: #fff5f5;
+    border-left: 5px solid var(--isu-red);
+    padding: 24px;
+    border-radius: 8px;
+    height: fit-content;
+  }
+
+  .warning-box p {
+    font-size: 1.05em;
+    line-height: 1.8;
+    color: var(--text-primary);
+    margin: 0;
+  }
+
+  .warning-box strong {
+    color: var(--isu-red);
+    font-weight: 700;
+  }
+
   /* Tab Buttons */
   .tab-buttons {
     display: flex;
@@ -300,6 +412,27 @@ const { title, chapter, lesson } = content.frontmatter;
 
     .faa-info p {
       font-size: 1em;
+    }
+
+    .best-practices-container {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    .checklist-box {
+      padding: 24px 20px;
+    }
+
+    .warning-box {
+      padding: 20px;
+    }
+
+    .warning-box p {
+      font-size: 0.95em;
+    }
+
+    .intro-text {
+      font-size: 0.95em;
     }
 
     .page-header-bar {

@@ -14,43 +14,45 @@ lesson: 1
   <div class="definition-card">
     <h3>UAV</h3>
     <p class="card-label">Unmanned Aerial Vehicle</p>
-    <p class="card-description">The drone itself—the physical aircraft equipped with sensors and cameras</p>
+    <p class="card-description">The drone itself with or without sensors attached.</p>
   </div>
   
   <div class="definition-card">
     <h3>UAS</h3>
     <p class="card-label">Unmanned Aerial System</p>
-    <p class="card-description">The complete system including the drone, controller, sensors, pilot, and software working together</p>
+    <p class="card-description">The drone, controller, sensors, pilot, and software all working together</p>
   </div>
 </div>
 
 ## Agricultural Applications
 
-<p class="section-intro">While fields may appear healthy from ground level, drones provide a critical aerial perspective that reveals problems invisible to the naked eye.</p>
+<p class="section-intro">From the ground, a field may look healthy. But from above, drones can reveal:</p>
+
+![Stress Revealed](/WIAA/images/stress_revealed.jpg)
 
 <div class="benefits-grid">
   <div class="benefit-card">
     <div class="benefit-number">1</div>
-    <h4>Locate Stressed Areas</h4>
-    <p>Identify regions in the field experiencing stress that aren't visible from the ground</p>
+    <h4>Stressed areas in the field</h4>
+    <p>Regions in the field may express stress in patterns that are not visible from a ground perspective.</p>
   </div>
   
   <div class="benefit-card">
     <div class="benefit-number">2</div>
-    <h4>Diagnose the Cause</h4>
-    <p>Determine what is causing the stress—disease, pest damage, irrigation issues, or nutrient deficiency</p>
+    <h4>Cause of the stress</h4>
+    <p>Diseases, pest damages, irrigation issues, or nutrient deficiencies often appear in patterns that give clues to the cause of the stress.</p>
   </div>
   
   <div class="benefit-card">
     <div class="benefit-number">3</div>
-    <h4>Quantify the Impact</h4>
-    <p>Measure the extent of the problem to inform treatment decisions and predict yield loss</p>
+    <h4>Impact of the stress</h4>
+    <p>The extent of the problem can be used to inform treatment decisions and predict yield losses.</p>
   </div>
 </div>
 
 <div class="impact-callout">
   <h4>Why This Matters</h4>
-  <p>Even fields that appear healthy at ground level may be losing significant amounts of money each year due to undetected yield losses. Using specialized sensors to calculate vegetation indices provides a different perspective, enabling farmers to detect problems early, make informed decisions, and optimize crop performance.</p>
+  <p>From a different view, we can gain insights into plant health and field patterns that can help us to understand our crop and how to best manage it. Looking at the field from a different perspective and using specialized sensors to calculate vegetation indices can help us to: </p>
 </div>
 
 ![Drone System](/WIAA/images/drone.jpg)
