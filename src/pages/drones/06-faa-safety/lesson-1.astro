@@ -77,28 +77,24 @@ const { title, chapter, lesson } = content.frontmatter;
           
           <p class="intro-text">When flying a drone, it is important to ensure that you, the drone, and the environment are all conducive to the flight. Complete a pre-flight inspection assessing the following items:</p>
           
-          <div class="best-practices-container">
-            <div class="checklist-box">
-              <svg viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg" class="clipboard-icon">
-                <!-- Clipboard body -->
-                <rect x="30" y="20" width="140" height="260" rx="10" fill="none" stroke="black" stroke-width="3"/>
-                <!-- Clipboard clip -->
-                <rect x="75" y="10" width="50" height="20" rx="3" fill="none" stroke="black" stroke-width="2.5"/>
-                <circle cx="100" cy="20" r="6" fill="black"/>
-              </svg>
-              <ul class="checklist">
-                <li>Drone and controller battery.</li>
-                <li>Propellers, landing gear, and camera.</li>
-                <li>Radio signal between drone and controller.</li>
-                <li>Current weather conditions.</li>
-                <li>Mental and physical conditions of the operator.</li>
-              </ul>
-            </div>
-            
-            <div class="warning-box">
-              <p><strong>Important:</strong> If an accident that causes severe injury or causes damages of $500 or more, then you must report the accident to the FAA within 10 days of the incident.</p>
-            </div>
-          </div>
+<div class="best-practices-container">
+  <div class="checklist-card">
+    <h3>Pre-Flight Inspection Checklist</h3>
+    <ul class="checklist-items">
+      <li><input type="checkbox" disabled> Drone and controller battery.</li>
+      <li><input type="checkbox" disabled> Propellers, landing gear, and camera.</li>
+      <li><input type="checkbox" disabled> Radio signal between drone and controller.</li>
+      <li><input type="checkbox" disabled> Current weather conditions.</li>
+      <li><input type="checkbox" disabled> Mental and physical conditions of the operator.</li>
+    </ul>
+  </div>
+  
+  <div class="warning-box">
+    <p><strong>Important:</strong> If an accident that causes severe injury or causes damages of $500 or more, then you must report the accident to the FAA within 10 days of the incident.</p>
+  </div>
+</div>
+
+
         </article>
         <LessonNav 
           prev={{ href: '/drones/05-ai-agriculture/review', label: 'Previous' }}
@@ -264,55 +260,52 @@ const { title, chapter, lesson } = content.frontmatter;
     margin: 32px 0;
     align-items: start;
   }
+.checklist-card {
+  background: white;
+  border: 1.5px solid var(--border-color);
+  border-radius: 12px;
+  padding: 32px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
 
-  .checklist-box {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-    background: white;
-    padding: 32px 24px;
-    border-radius: 12px;
-    border: 1.5px solid var(--border-color);
-  }
+.checklist-card h3 {
+  font-size: 1.3em;
+  color: var(--isu-red);
+  margin: 0 0 24px 0;
+  font-weight: 700;
+}
 
-  .clipboard-icon {
-    width: 120px;
-    height: auto;
-    flex-shrink: 0;
-  }
+.checklist-items {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
 
-  .checklist {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    width: 100%;
-  }
+.checklist-items li {
+  font-size: 1.05em;
+  line-height: 1.8;
+  color: var(--text-primary);
+  margin: 16px 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
 
-  .checklist li {
-    font-size: 0.95em;
-    line-height: 1.6;
-    color: var(--text-primary);
-    margin: 10px 0;
-    padding-left: 20px;
-    position: relative;
-  }
+.checklist-items input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  accent-color: var(--isu-red);
+  flex-shrink: 0;
+}
 
-  .checklist li:first-child {
-    margin-top: 0;
-  }
+.checklist-items li:first-child {
+  margin-top: 0;
+}
 
-  .checklist li:last-child {
-    margin-bottom: 0;
-  }
-
-  .checklist li::before {
-    content: '•';
-    position: absolute;
-    left: 0;
-    color: var(--text-primary);
-    font-weight: bold;
-  }
+.checklist-items li:last-child {
+  margin-bottom: 0;
+}
 
   .warning-box {
     background: #fff5f5;
@@ -419,7 +412,7 @@ const { title, chapter, lesson } = content.frontmatter;
       gap: 20px;
     }
 
-    .checklist-box {
+    .checklist-card {
       padding: 24px 20px;
     }
 
