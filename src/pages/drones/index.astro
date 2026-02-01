@@ -4,7 +4,11 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 
 <BaseLayout title="Drone Program">
-  <div class="container page-content">
+<div class="container page-content">
+    <div class="content-box">
+      <h1>Drone Program</h1>
+    </div>
+
     <div class="objectives-standards">
       <div class="objectives-row">
         <div class="objectives-col">
@@ -74,6 +78,30 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 </BaseLayout>
 
 <style>
+
+.content-box {
+    background: white;
+    padding: 60px 40px;
+    border-radius: 8px;
+    border: 2px solid var(--isu-gold);
+    margin-bottom: 25px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    text-align: center;
+  }
+
+  .content-box h1 {
+    color: var(--isu-red);
+    font-size: 2.5em;
+    margin: 0 0 15px 0;
+  }
+
+  .content-box p {
+    color: var(--text-medium);
+    font-size: 1.1em;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
   .page-content {
     padding: 40px 20px;
     transition: margin-left 0.3s ease;
