@@ -203,6 +203,38 @@ const { title, chapter, lesson } = content.frontmatter;
     border: 1px solid var(--border-color);
   }
 
+/* Learning Activities */
+.activities-list {
+  list-style: none;
+  padding: 0;
+  margin: 24px 0;
+}
+
+.activities-list li {
+  font-size: 1.05em;
+  line-height: 1.8;
+  color: var(--text-primary);
+  margin: 14px 0;
+  padding-left: 24px;
+  position: relative;
+}
+
+.activities-list li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--isu-red);
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+.activities-list a {
+  color: var(--isu-red);
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
   /* Tab Buttons */
   .tab-buttons {
     display: flex;
