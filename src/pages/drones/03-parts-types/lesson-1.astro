@@ -194,20 +194,23 @@ const { title, chapter, lesson } = content.frontmatter;
     font-style: italic;
   }
 
- /* Learning Activities */
+/* Learning Activities */
 .activities-list {
   list-style: none;
   padding: 0;
-  margin: 24px 0;
+  margin: 40px 0;
 }
 
 .activities-list li {
   font-size: 1.05em;
   line-height: 1.8;
   color: var(--text-primary);
-  margin: 14px 0;
+  margin: 16px 0;
   padding-left: 24px;
   position: relative;
+  background: none;
+  border: none;
+  box-shadow: none;
 }
 
 .activities-list li::before {
@@ -219,11 +222,13 @@ const { title, chapter, lesson } = content.frontmatter;
   font-size: 1.2em;
 }
 
-.activities-list a {
-  color: var(--isu-red);
-  text-decoration: none;
-  font-weight: 600;
-  transition: all 0.2s ease;
+.activities-list::after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: var(--isu-gold);
+  margin-top: 40px;
 }
 
   }
