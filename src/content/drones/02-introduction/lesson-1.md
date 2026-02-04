@@ -30,6 +30,11 @@ lesson: 1
 
 ![Stress Revealed](/WIAA/images/stress_revealed.jpg)
 
+<div class="impact-callout">
+  <h4>Why This Matters</h4>
+  <p>From a different view, we can gain insights into plant health and field patterns that can help us to understand our crop and how to best manage it. Looking at the field from a different perspective and using specialized sensors to calculate vegetation indices can help us to see and understand the: </p>
+</div>
+
 <div class="benefits-grid">
   <div class="benefit-card">
     <div class="benefit-number">1</div>
@@ -48,11 +53,6 @@ lesson: 1
     <h4>Impact of the stress</h4>
     <p>The extent of the problem can be used to inform treatment decisions and predict yield losses.</p>
   </div>
-</div>
-
-<div class="impact-callout">
-  <h4>Why This Matters</h4>
-  <p>From a different view, we can gain insights into plant health and field patterns that can help us to understand our crop and how to best manage it. Looking at the field from a different perspective and using specialized sensors to calculate vegetation indices can help us to: </p>
 </div>
 
 ![Drone System](/WIAA/images/drone.jpg)
