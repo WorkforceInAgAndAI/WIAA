@@ -44,5 +44,7 @@ Understanding which tasks drones can perform helps farmers make informed technol
 
 ## Learning Activities
 
-- Categorize farming tasks based on whether they require manual labor, traditional equipment, drones, or a combination of technologies.
-- Identify which agricultural tasks in your region would benefit most from drone technology and explain the advantages for each task.
+<ul class="activities-list">
+  <li>Categorize farming tasks based on whether they require manual labor, traditional equipment, drones, or a combination of technologies.</li>
+  <li>Identify which agricultural tasks in your region would benefit most from drone technology and explain the advantages for each task.</li>
+</ul>
