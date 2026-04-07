@@ -1,19 +1,15 @@
 ---
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-
 interface NavLink {
   href?: string;
   label: string;
 }
-
 interface Props {
   prev?: NavLink;
   next?: NavLink;
   progress: string;
 }
-
 const { prev, next, progress } = Astro.props;
-
 // Add base to href if it exists and doesn't already include it
 const addBase = (href?: string) => {
   if (!href) return undefined;
@@ -21,7 +17,6 @@ const addBase = (href?: string) => {
   return base + href;
 };
 ---
-
 <nav class="lesson-nav">
   <div class="nav-btn-container">
     {prev && prev.href ? (
@@ -51,7 +46,7 @@ const addBase = (href?: string) => {
     align-items: center;
     margin-top: 40px;
     padding-top: 20px;
-    border-top: 2px solid var(--isu-gold);
+    border-top: 1px solid var(--border-light);
   }
   
   .nav-btn-container {
@@ -64,20 +59,23 @@ const addBase = (href?: string) => {
   }
   
   .nav-btn {
-    padding: 12px 24px;
-    border-radius: 6px;
+    padding: 12px 28px;
     font-weight: 600;
-    transition: all 0.2s;
+    transition: background 0.2s;
     display: inline-block;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-family: Georgia, Garamond, 'Times New Roman', serif;
   }
   
   .nav-btn.prev {
-    background: #999;
+    background: var(--text-light);
     color: white;
   }
   
   .nav-btn.prev:hover {
-    background: #777;
+    background: var(--text-medium);
   }
   
   .nav-btn.next {
@@ -93,10 +91,14 @@ const addBase = (href?: string) => {
     flex: 1;
     text-align: center;
     color: var(--text-light);
-    font-weight: 500;
+    font-weight: 400;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-family: Georgia, Garamond, 'Times New Roman', serif;
   }
   
-  @media (max-width: 768px) {
+  @media (max-width: 767px) {
     .lesson-nav {
       flex-direction: column;
       gap: 15px;

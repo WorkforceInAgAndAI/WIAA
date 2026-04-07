@@ -83,43 +83,49 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 <style>
   .page-content {
-    padding: 60px 20px;
+    padding: 80px 40px;
   }
 
   .content-box {
     background: white;
-    padding: 40px;
-    border-radius: 8px;
-    border: 1px solid var(--border-light);
+    padding: 60px;
     max-width: 1100px;
     margin: 0 auto;
+    border-bottom: 1px solid var(--border-light);
   }
 
   .content-box h1 {
-    margin-bottom: 20px;
-    border-bottom: 2px solid var(--isu-gold);
-    padding-bottom: 15px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid var(--border-light);
+    padding-bottom: 20px;
+    font-size: 54px;
+    font-weight: 400;
+    line-height: 1.2;
+    color: var(--text-dark);
   }
 
   .intro {
-    font-size: 1.1em;
+    font-size: 16px;
     color: var(--text-medium);
-    line-height: 1.8;
+    line-height: 1.7;
     margin-bottom: 40px;
+    font-weight: 400;
   }
 
   .contact-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 40px;
+    gap: 60px;
     margin-bottom: 40px;
   }
 
   .contact-info h2,
   .contact-form h2 {
-    color: var(--isu-red);
-    font-size: 1.4em;
-    margin-bottom: 25px;
+    color: var(--text-dark);
+    font-size: 42px;
+    margin-bottom: 30px;
+    font-weight: 400;
+    line-height: 1.2;
   }
 
   .contact-item {
@@ -130,26 +136,33 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   }
 
   .contact-item i {
-    font-size: 1.5em;
+    font-size: 20px;
     color: var(--isu-red);
     margin-top: 5px;
+    flex-shrink: 0;
   }
 
   .contact-item h3 {
-    font-size: 1em;
-    color: var(--isu-red);
-    margin: 0 0 5px 0;
+    font-size: 16px;
+    color: var(--text-dark);
+    margin: 0 0 8px 0;
+    font-weight: 600;
   }
 
   .contact-item p,
   .contact-item a {
     margin: 0;
     color: var(--text-medium);
-    line-height: 1.6;
+    line-height: 1.7;
+    font-size: 16px;
+  }
+
+  .contact-item a {
+    color: var(--isu-red);
   }
 
   .contact-item a:hover {
-    color: var(--isu-red);
+    color: var(--isu-dark-red);
   }
 
   .form-group {
@@ -161,6 +174,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     margin-bottom: 8px;
     font-weight: 600;
     color: var(--text-dark);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
   }
 
   .form-group input,
@@ -169,10 +185,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     width: 100%;
     padding: 10px 12px;
     border: 1px solid var(--border-light);
-    border-radius: 4px;
-    font-family: inherit;
-    font-size: 1em;
+    font-family: Georgia, Garamond, 'Times New Roman', serif;
+    font-size: 16px;
     transition: border-color 0.2s;
+    color: var(--text-dark);
   }
 
   .form-group input:focus,
@@ -187,25 +203,49 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   }
 
   .info-box {
-    background: rgba(196, 30, 58, 0.05);
+    background: white;
     padding: 20px;
-    border-radius: 8px;
-    border-left: 4px solid var(--isu-red);
+    border-bottom: 1px solid var(--border-light);
   }
 
   .info-box h3 {
-    color: var(--isu-red);
+    color: var(--text-dark);
     margin: 0 0 10px 0;
+    font-weight: 600;
+    font-size: 16px;
   }
 
   .info-box p {
     margin: 5px 0;
     color: var(--text-medium);
+    font-size: 16px;
   }
 
-  @media (max-width: 768px) {
+  /* Mobile responsiveness */
+  @media (max-width: 767px) {
+    .page-content {
+      padding: 60px 25px;
+    }
+
+    .content-box {
+      padding: 40px 25px;
+    }
+
+    .content-box h1 {
+      font-size: 36px;
+      margin-bottom: 20px;
+      padding-bottom: 15px;
+    }
+
+    .contact-info h2,
+    .contact-form h2 {
+      font-size: 32px;
+      margin-bottom: 25px;
+    }
+
     .contact-grid {
       grid-template-columns: 1fr;
+      gap: 40px;
     }
   }
 </style>

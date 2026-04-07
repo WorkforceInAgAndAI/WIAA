@@ -117,62 +117,69 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 <style>
   .page-content {
-    padding: 60px 20px;
+    padding: 80px 40px;
   }
 
   .content-box {
     background: white;
-    padding: 40px;
-    border-radius: 8px;
-    border: 1px solid var(--border-light);
+    padding: 60px;
     max-width: 900px;
     margin: 0 auto;
+    border-bottom: 1px solid var(--border-light);
   }
 
   .content-box h1 {
-    margin-bottom: 20px;
-    border-bottom: 2px solid var(--isu-gold);
-    padding-bottom: 15px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid var(--border-light);
+    padding-bottom: 20px;
+    font-size: 54px;
+    font-weight: 400;
+    line-height: 1.2;
+    color: var(--text-dark);
   }
 
   .intro {
-    font-size: 1.1em;
+    font-size: 16px;
     color: var(--text-medium);
-    line-height: 1.8;
+    line-height: 1.7;
     margin-bottom: 40px;
+    font-weight: 400;
   }
 
   .feedback-categories {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
+    gap: 30px;
     margin-bottom: 40px;
   }
 
   .category-card {
     text-align: center;
-    padding: 25px;
-    background: rgba(196, 30, 58, 0.03);
-    border-radius: 8px;
+    padding: 30px;
+    background: white;
     border: 1px solid var(--border-light);
   }
 
   .category-card i {
-    font-size: 2.5em;
+    font-size: 32px;
     color: var(--isu-red);
     margin-bottom: 15px;
+    display: block;
   }
 
   .category-card h3 {
-    color: var(--isu-red);
+    color: var(--text-dark);
     margin-bottom: 10px;
-    font-size: 1.1em;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 1.3;
   }
 
   .category-card p {
-    font-size: 0.9em;
+    font-size: 16px;
     color: var(--text-medium);
     margin: 0;
+    line-height: 1.7;
   }
 
   .feedback-form {
@@ -180,9 +187,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   }
 
   .feedback-form h2 {
-    color: var(--isu-red);
-    font-size: 1.4em;
-    margin-bottom: 25px;
+    color: var(--text-dark);
+    font-size: 42px;
+    margin-bottom: 30px;
+    font-weight: 400;
+    line-height: 1.2;
   }
 
   .form-group {
@@ -194,13 +203,14 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     margin-bottom: 8px;
     font-weight: 600;
     color: var(--text-dark);
+    font-size: 16px;
   }
 
   .form-group small {
     display: block;
     margin-top: 5px;
     color: var(--text-light);
-    font-size: 0.9em;
+    font-size: 12px;
   }
 
   .form-group input,
@@ -209,10 +219,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     width: 100%;
     padding: 10px 12px;
     border: 1px solid var(--border-light);
-    border-radius: 4px;
-    font-family: inherit;
-    font-size: 1em;
+    font-family: Georgia, Garamond, 'Times New Roman', serif;
+    font-size: 16px;
     transition: border-color 0.2s;
+    color: var(--text-dark);
   }
 
   .form-group input:focus,
@@ -236,15 +246,15 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     display: flex;
     align-items: center;
     gap: 10px;
-    padding: 10px;
+    padding: 10px 12px;
     border: 1px solid var(--border-light);
-    border-radius: 4px;
     cursor: pointer;
-    transition: all 0.2s;
+    transition: border-color 0.2s;
+    background: white;
   }
 
   .rating-option:hover {
-    background: rgba(196, 30, 58, 0.05);
+    background: white;
     border-color: var(--isu-red);
   }
 
@@ -254,24 +264,29 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   }
 
   .rating-option span {
-    font-size: 1em;
+    font-size: 16px;
+    color: var(--text-dark);
   }
 
   .info-box {
-    background: linear-gradient(135deg, rgba(196, 30, 58, 0.05), rgba(255, 184, 28, 0.05));
-    padding: 25px;
-    border-radius: 8px;
-    border-left: 4px solid var(--isu-red);
+    background: white;
+    padding: 30px;
+    border: 1px solid var(--border-light);
   }
 
   .info-box h3 {
-    color: var(--isu-red);
+    color: var(--text-dark);
     margin: 0 0 15px 0;
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 1.3;
   }
 
   .info-box p {
     margin: 10px 0;
     color: var(--text-medium);
+    font-size: 16px;
+    line-height: 1.7;
   }
 
   .info-box ul {
@@ -280,12 +295,35 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   }
 
   .info-box li {
-    margin-bottom: 8px;
+    margin-bottom: 15px;
+    font-size: 16px;
+    line-height: 1.7;
   }
 
-  @media (max-width: 768px) {
+  /* Mobile responsiveness */
+  @media (max-width: 767px) {
+    .page-content {
+      padding: 60px 25px;
+    }
+
+    .content-box {
+      padding: 40px 25px;
+    }
+
+    .content-box h1 {
+      font-size: 36px;
+      margin-bottom: 20px;
+      padding-bottom: 15px;
+    }
+
+    .feedback-form h2 {
+      font-size: 32px;
+      margin-bottom: 25px;
+    }
+
     .feedback-categories {
       grid-template-columns: 1fr;
+      gap: 20px;
     }
   }
 </style>

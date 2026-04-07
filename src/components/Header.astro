@@ -1,12 +1,10 @@
 ---
 const currentPath = Astro.url.pathname;
 ---
-
 <header class="navbar">
   <div class="nav-container">
     <a href="/WIAA/" class="logo-link">
-      <div class="logo-icon">WIAA</div>
-      <span class="logo-text">Workforce in Agriculture and AI</span>
+      <div class="logo-text">WIAA</div>
     </a>
     
     <button class="mobile-menu-btn" aria-label="Toggle menu" id="mobile-menu-btn">
@@ -15,9 +13,9 @@ const currentPath = Astro.url.pathname;
     
     <nav class="desktop-nav" id="nav-menu">
       <a href="/WIAA" class={currentPath === '/' ? 'active' : ''}>Home</a>
-      <a href="/WIAA/drones" class={currentPath.startsWith('/drones') ? 'active' : ''}>Drone program</a>
-      <a href="/WIAA/rovers" class={currentPath.startsWith('/rovers') ? 'active' : ''}>Rover program</a>
-      <a href="/WIAA/satellites" class={currentPath.startsWith('/satellites') ? 'active' : ''}>Satellite program</a>
+      <a href="/WIAA/drones" class={currentPath.startsWith('/drones') ? 'active' : ''}>Drone Program</a>
+      <a href="/WIAA/rovers" class={currentPath.startsWith('/rovers') ? 'active' : ''}>Rover Program</a>
+      <a href="/WIAA/satellites" class={currentPath.startsWith('/satellites') ? 'active' : ''}>Satellite Program</a>
       <a href="/WIAA/outreach" class={currentPath === '/outreach' ? 'active' : ''}>Outreach</a>
     </nav>
   </div>
@@ -25,32 +23,29 @@ const currentPath = Astro.url.pathname;
 
 <style>
   .navbar {
-    height: 70px;
+    height: 60px;
     width: 100%;
-    border-bottom: 3px solid var(--isu-gold);
+    border-bottom: 1px solid var(--border-light);
     background: white;
     position: sticky;
     top: 0;
     z-index: 1000;
-    box-shadow: 0 2px 8px rgba(196, 30, 58, 0.08);
   }
 
   .nav-container {
-    max-width: 1400px;
+    max-width: 1200px;
     margin: 0 auto;
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 30px;
+    padding: 0 40px;
   }
 
   .logo-link {
     display: flex;
     align-items: center;
     color: var(--isu-red);
-    font-weight: 700;
-    font-size: 1.3em;
     text-decoration: none;
     transition: color 0.2s;
   }
@@ -59,20 +54,19 @@ const currentPath = Astro.url.pathname;
     color: var(--isu-dark-red);
   }
 
-  .logo-icon {
-    background: linear-gradient(135deg, var(--isu-red), var(--isu-dark-red));
-    color: white;
-    padding: 10px 14px;
-    border-radius: 6px;
-    margin-right: 12px;
+  .logo-text {
+    color: var(--isu-red);
+    font-size: 24px;
     font-weight: 700;
+    font-family: Georgia, Garamond, 'Times New Roman', serif;
+    letter-spacing: 0;
   }
 
   .mobile-menu-btn {
     display: none;
     background: none;
     border: none;
-    font-size: 1.5em;
+    font-size: 20px;
     color: var(--isu-red);
     cursor: pointer;
     padding: 10px;
@@ -80,33 +74,35 @@ const currentPath = Astro.url.pathname;
 
   .desktop-nav {
     display: flex;
-    gap: 8px;
+    gap: 30px;
   }
 
   .desktop-nav a {
-    padding: 10px 16px;
-    color: var(--text-medium);
-    font-weight: 500;
+    padding: 10px 0;
+    color: var(--text-dark);
+    font-weight: 400;
     text-decoration: none;
-    transition: all 0.3s;
-    border-radius: 4px;
+    transition: color 0.2s;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-family: Georgia, Garamond, 'Times New Roman', serif;
   }
 
   .desktop-nav a:hover {
     color: var(--isu-red);
-    background: rgba(196, 30, 58, 0.05);
   }
 
   .desktop-nav a.active {
     color: var(--isu-red);
-    border-bottom: 3px solid var(--isu-gold);
-    font-weight: 600;
+    border-bottom: 1px solid var(--border-light);
+    font-weight: 400;
   }
 
   /* Mobile styles */
-  @media (max-width: 768px) {
-    .logo-text {
-      display: none;
+  @media (max-width: 767px) {
+    .nav-container {
+      padding: 0 25px;
     }
 
     .mobile-menu-btn {
@@ -115,13 +111,13 @@ const currentPath = Astro.url.pathname;
 
     .desktop-nav {
       position: absolute;
-      top: 70px;
+      top: 60px;
       left: 0;
       right: 0;
       background: white;
       flex-direction: column;
       gap: 0;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-bottom: 1px solid var(--border-light);
       display: none;
     }
 
@@ -130,14 +126,17 @@ const currentPath = Astro.url.pathname;
     }
 
     .desktop-nav a {
-      padding: 15px 30px;
-      border-radius: 0;
+      padding: 15px 25px;
       border-bottom: 1px solid var(--border-light);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
 
     .desktop-nav a.active {
-      border-bottom: 1px solid var(--isu-gold);
-      background: rgba(196, 30, 58, 0.05);
+      background: white;
+      border-bottom: 1px solid var(--border-light);
+      color: var(--isu-red);
     }
   }
 </style>
@@ -145,12 +144,10 @@ const currentPath = Astro.url.pathname;
 <script>
   const mobileMenuBtn = document.getElementById('mobile-menu-btn');
   const navMenu = document.getElementById('nav-menu');
-
   if (mobileMenuBtn && navMenu) {
     mobileMenuBtn.addEventListener('click', () => {
       navMenu.classList.toggle('open');
     });
-
     // Close menu when clicking a link
     const navLinks = navMenu.querySelectorAll('a');
     navLinks.forEach(link => {
@@ -158,7 +155,6 @@ const currentPath = Astro.url.pathname;
         navMenu.classList.remove('open');
       });
     });
-
     // Close menu when clicking outside
     document.addEventListener('click', (e) => {
       if (!mobileMenuBtn.contains(e.target) && !navMenu.contains(e.target)) {
