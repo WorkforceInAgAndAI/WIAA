@@ -1,15 +1,15 @@
 [
-{
-  "q": "What does temporal resolution refer to?",
-  "options": [
-    "The number of bands a sensor detects",
-    "The precision of a sensor's measurements",
-    "The area represented by each pixel",
-    "The frequency that a satellite passes over the same location"
-  ],
-  "correct": 3,
-  "explain": "Temporal resolution refers to the frequency that a satellite passes over the same location."
-}
+  {
+    "q": "What does temporal resolution refer to?",
+    "options": [
+      "The number of bands a sensor detects",
+      "The precision of a sensor's measurements",
+      "The area represented by each pixel",
+      "The frequency that a satellite passes over the same location"
+    ],
+    "correct": 3,
+    "explain": "Temporal resolution refers to the frequency that a satellite passes over the same location."
+  },
   {
     "q": "Why does the SkySat constellation have a higher combined revisit rate than an individual SkySat?",
     "options": [
