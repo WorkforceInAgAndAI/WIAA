@@ -2,32 +2,58 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
 // Import quiz data
-import quiz02Raw from '../../../public/data/quizzes/02-introduction.json?raw';
-import quiz03Raw from '../../../public/data/quizzes/03-parts-types.json?raw';
-import quiz04Raw from '../../../public/data/quizzes/04-sensors.json?raw';
-import quiz05Raw from '../../../public/data/quizzes/05-ai-agriculture.json?raw';
-import quiz06Raw from '../../../public/data/quizzes/06-faa-safety.json?raw';
-import quiz07Raw from '../../../public/data/quizzes/07-careers.json?raw';
+import quiz01Raw from '../../../public/data/quizzes/01-introduction.json?raw';
+import quiz02Raw from '../../../public/data/quizzes/02-parts-types.json?raw';
+import quiz03Raw from '../../../public/data/quizzes/03-agricultural-applications.json?raw';
+import quiz04Raw from '../../../public/data/quizzes/04-faa-safety.json?raw';
+import quiz05Raw from '../../../public/data/quizzes/05-planning-positioning.json?raw';
+import quiz06Raw from '../../../public/data/quizzes/06-sensors.json?raw';
+import quiz07Raw from '../../../public/data/quizzes/07-vegetation-indices.json?raw';
+import quiz08Raw from '../../../public/data/quizzes/08-ai-agriculture.json?raw';
+import quiz09Raw from '../../../public/data/quizzes/09-imagery-pipeline.json?raw';
+import quiz10Raw from '../../../public/data/quizzes/10-solution-innovator.json?raw';
+import quiz11Raw from '../../../public/data/quizzes/11-drone-mission.json?raw';
+import quiz12Raw from '../../../public/data/quizzes/12-careers.json?raw';
 
+const quiz01 = JSON.parse(quiz01Raw);
 const quiz02 = JSON.parse(quiz02Raw);
 const quiz03 = JSON.parse(quiz03Raw);
 const quiz04 = JSON.parse(quiz04Raw);
 const quiz05 = JSON.parse(quiz05Raw);
 const quiz06 = JSON.parse(quiz06Raw);
 const quiz07 = JSON.parse(quiz07Raw);
+const quiz08 = JSON.parse(quiz08Raw);
+const quiz09 = JSON.parse(quiz09Raw);
+const quiz10 = JSON.parse(quiz10Raw);
+const quiz11 = JSON.parse(quiz11Raw);
+const quiz12 = JSON.parse(quiz12Raw);
 
 const chapters = [
-  { num: 1, title: "Learning goals", hasQuiz: false, hasResources: false },
-  { num: 2, title: "Introduction to drones", hasQuiz: true, hasResources: true, quiz: quiz02 },
-  { num: 3, title: "Drone parts & types", hasQuiz: true, hasResources: true, quiz: quiz03 },
-  { num: 4, title: "Sensors & data collection", hasQuiz: true, hasResources: true, quiz: quiz04 },
-  { num: 5, title: "AI in agriculture", hasQuiz: true, hasResources: true, quiz: quiz05 },
-  { num: 6, title: "FAA Part 107 & safety", hasQuiz: true, hasResources: true, quiz: quiz06 },
-  { num: 7, title: "Careers in drones & AI", hasQuiz: true, hasResources: true, quiz: quiz07 },
-  { num: 8, title: "References", hasQuiz: false, hasResources: false }
+  { num: 1, title: "Introduction to drones", hasQuiz: true, hasResources: true, quiz: quiz01 },
+  { num: 2, title: "Drone parts & types", hasQuiz: true, hasResources: true, quiz: quiz02 },
+  { num: 3, title: "Agricultural applications", hasQuiz: true, hasResources: false, quiz: quiz03 },
+  { num: 4, title: "FAA Part 107 & drone safety", hasQuiz: true, hasResources: true, quiz: quiz04 },
+  { num: 5, title: "Planning and positioning", hasQuiz: true, hasResources: false, quiz: quiz05 },
+  { num: 6, title: "Sensors and their applications", hasQuiz: true, hasResources: true, quiz: quiz06 },
+  { num: 7, title: "Vegetation indices", hasQuiz: true, hasResources: false, quiz: quiz07 },
+  { num: 8, title: "AI in agriculture", hasQuiz: true, hasResources: true, quiz: quiz08 },
+  { num: 9, title: "Drone imagery processing pipeline", hasQuiz: true, hasResources: false, quiz: quiz09 },
+  { num: 10, title: "Solution innovator", hasQuiz: true, hasResources: false, quiz: quiz10 },
+  { num: 11, title: "Drone mission", hasQuiz: true, hasResources: false, quiz: quiz11 },
+  { num: 12, title: "Careers", hasQuiz: true, hasResources: true, quiz: quiz12 }
 ];
 
 const instructorResources = [
+  {
+    chapter: 1,
+    resources: [
+      {
+        title: "Slides: Introduction to Drones & Drone Parts and Types",
+        description: "PowerPoint presentation",
+        file: "/WIAA/downloads/WIAA_UAV_Slides_IntroductionToDrones_DronePartsAndTypes.zip"
+      }
+    ]
+  },
   {
     chapter: 2,
     resources: [
@@ -35,39 +61,29 @@ const instructorResources = [
         title: "Slides: Introduction to Drones & Drone Parts and Types",
         description: "PowerPoint presentation",
         file: "/WIAA/downloads/WIAA_UAV_Slides_IntroductionToDrones_DronePartsAndTypes.zip"
-      }
-    ]
-  },
-  {
-    chapter: 3,
-    resources: [
-      {
-        title: "Slides: Introduction to Drones & Drone Parts and Types",
-        description: "PowerPoint presentation",
-        file: "/WIAA/downloads/WIAA_UAV_Slides_IntroductionToDrones_DronePartsAndTypes.zip"
       },
       {
-        title: "Slides: Introduction to Drones & Drone Parts and Types - Drone Kit Part 1",
+        title: "Slides: Drone Kit Part 1",
         description: "PowerPoint presentation",
         file: "/WIAA/downloads/WIAA_UAV_Slides_IntroductionToDrones_DronePartsAndTypes_DroneKit_PT1.zip"
       },
       {
-        title: "Slides: Introduction to Drones & Drone Parts and Types - Drone Kit Part 2",
+        title: "Slides: Drone Kit Part 2",
         description: "PowerPoint presentation",
         file: "/WIAA/downloads/WIAA_UAV_Slides_IntroductionToDrones_DronePartsAndTypes_DroneKit_PT2.zip"
       },
       {
-        title: "Slides: Introduction to Drones & Drone Parts and Types - Drone Kit Part 3",
+        title: "Slides: Drone Kit Part 3",
         description: "PowerPoint presentation",
         file: "/WIAA/downloads/WIAA_UAV_Slides_IntroductionToDrones_DronePartsAndTypes_DroneKit_PT3.zip"
       },
       {
-        title: "Slides: Introduction to Drones & Drone Parts and Types - Drone Kit Part 4",
+        title: "Slides: Drone Kit Part 4",
         description: "PowerPoint presentation",
         file: "/WIAA/downloads/WIAA_UAV_Slides_IntroductionToDrones_DronePartsAndTypes_DroneKit_PT4.zip"
       },
       {
-        title: "Slides: Introduction to Drones & Drone Parts and Types - Drone Kit Part 5",
+        title: "Slides: Drone Kit Part 5",
         description: "PowerPoint presentation",
         file: "/WIAA/downloads/WIAA_UAV_Slides_IntroductionToDrones_DronePartsAndTypes_DroneKit_PT5.zip"
       }
@@ -75,26 +91,6 @@ const instructorResources = [
   },
   {
     chapter: 4,
-    resources: [
-      {
-        title: "Slides: Sensors and Data Collection",
-        description: "PowerPoint presentation",
-        file: "/WIAA/downloads/WIAA_UAV_Slides_SensorsAndDataCollection.zip"
-      }
-    ]
-  },
-  {
-    chapter: 5,
-    resources: [
-      {
-        title: "Slides: Artificial Intelligence in Agriculture",
-        description: "PowerPoint presentation",
-        file: "/WIAA/downloads/WIAA_UAV_Slides_ArtificialInteligenceInAgriculture.zip"
-      }
-    ]
-  },
-  {
-    chapter: 6,
     resources: [
       {
         title: "Slides: FAA Part 107 and Drone Safety",
@@ -114,7 +110,27 @@ const instructorResources = [
     ]
   },
   {
-    chapter: 7,
+    chapter: 6,
+    resources: [
+      {
+        title: "Slides: Sensors and Data Collection",
+        description: "PowerPoint presentation",
+        file: "/WIAA/downloads/WIAA_UAV_Slides_SensorsAndDataCollection.zip"
+      }
+    ]
+  },
+  {
+    chapter: 8,
+    resources: [
+      {
+        title: "Slides: Artificial Intelligence in Agriculture",
+        description: "PowerPoint presentation",
+        file: "/WIAA/downloads/WIAA_UAV_Slides_ArtificialInteligenceInAgriculture.zip"
+      }
+    ]
+  },
+  {
+    chapter: 12,
     resources: [
       {
         title: "Slides: Careers in Agriculture and AI",
@@ -272,7 +288,7 @@ const additionalResources = [
         <div class="additional-section" id="additional-resources">
           <h2><i class="fas fa-plus-circle"></i> Additional Resources</h2>
           <p class="section-description">
-            Supplemental activities, extended lessons, and hands-on project materials.
+            Supplemental activities, extended lessons, and hands-on project materials for the Solution Innovator, Drone Imagery Processing Pipeline, and Drone Mission chapters.
           </p>
           <div class="resource-grid">
             {additionalResources.map(resource => (
@@ -310,7 +326,6 @@ const additionalResources = [
     align-items: start;
   }
 
-  /* Sidebar Navigation */
   .instructor-sidebar {
     background: white;
     padding: 16px;
@@ -350,7 +365,6 @@ const additionalResources = [
     border-left-color: var(--isu-gold);
   }
 
-  /* Main Content */
   .instructor-content {
     min-width: 0;
   }
@@ -580,7 +594,6 @@ const additionalResources = [
     font-size: 0.95em;
   }
 
-  /* Tablet screens */
   @media (min-width: 768px) {
     .container {
       padding: 0 20px;
@@ -621,7 +634,6 @@ const additionalResources = [
     }
   }
 
-  /* Desktop screens */
   @media (min-width: 969px) {
     .instructor-layout {
       grid-template-columns: 250px 1fr;
