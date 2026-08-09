@@ -1,0 +1,141 @@
+[
+  {
+    "q": "In addition to red, green, and blue, what wavelengths do multispectral cameras also detect?",
+    "options": [
+      "Only the visible light spectrum, with no additional wavelengths beyond red, green, and blue",
+      "Red edge and near-infrared (NIR)",
+      "X-ray and gamma ray wavelengths, used to detect internal plant structure",
+      "Only thermal infrared, used to measure canopy temperature"
+    ],
+    "correct": 1,
+    "explain": "Multispectral cameras also detect the wavelengths reflected by the plant in the red edge and near-infrared (NIR) portions of the electromagnetic spectrum, which interact with chlorophyll."
+  },
+  {
+    "q": "How does NIR reflectance differ between healthy and stressed plants?",
+    "options": [
+      "Healthier plants reflect more NIR light; stressed plants reflect less",
+      "Healthier plants reflect less NIR light, while stressed plants reflect noticeably more NIR light",
+      "NIR reflectance has no measurable relationship to a plant's overall health status",
+      "Both healthy and stressed plants reflect identical amounts of NIR light in all conditions"
+    ],
+    "correct": 0,
+    "explain": "Plants that are healthier reflect more NIR light while stressed plants reflect less NIR light."
+  },
+  {
+    "q": "Why do plants appear green to the human eye?",
+    "options": [
+      "Chlorophyll absorbs light in the blue and red portions of the spectrum, so more green light is reflected",
+      "Green is the only wavelength of visible light that plant tissue is physically capable of reflecting",
+      "Chlorophyll absorbs all visible wavelengths equally, leaving green as a residual color",
+      "Plants emit their own green light as a byproduct of photosynthesis and internal temperature"
+    ],
+    "correct": 0,
+    "explain": "Chlorophyll absorbs light in the blue and red portions of the spectrum, so plants reflect more green light than blue or red light, appearing green."
+  },
+  {
+    "q": "What does the steepness of the reflectance curve between the red and red-edge portions of the spectrum indicate?",
+    "options": [
+      "The satellite's temporal resolution, or how frequently it revisits the same location",
+      "The amount of chlorophyll present in plant tissues, which relates to plant health",
+      "The physical size of the plant's individual leaves within the canopy",
+      "The moisture content currently present in the surrounding soil"
+    ],
+    "correct": 1,
+    "explain": "The steepness of the curve between the red and red-edge areas is a key indicator of the amount of chlorophyll present in plant tissues, used to determine relative plant health."
+  },
+  {
+    "q": "What formula is used to calculate NDVI?",
+    "options": [
+      "(NIR + Red) / (NIR - Red)",
+      "2.5 x (NIR - Red) / (NIR + 6xRed - 7.5xBlue + 1)",
+      "(NIR - Green) / (NIR + Green)",
+      "(NIR - Red) / (NIR + Red)"
+    ],
+    "correct": 3,
+    "explain": "NDVI = (NIR - Red) / (NIR + Red). A high NDVI signals healthy plants, while a low NDVI signals stressed plants."
+  },
+  {
+    "q": "What does EVI's inclusion of a blue wavelength help correct for?",
+    "options": [
+      "Rayleigh scattering caused by very small particles in the upper atmosphere",
+      "Aerosol scattering",
+      "Excess soil brightness showing through sparse vegetation",
+      "Water-related metrics such as canopy moisture content"
+    ],
+    "correct": 1,
+    "explain": "Enhanced Vegetation Index (EVI) includes a blue wavelength which can be used to correct aerosol scattering."
+  },
+  {
+    "q": "What is the purpose of the soil brightness factor (L) in SAVI?",
+    "options": [
+      "It corrects for aerosol scattering that occurs high in the atmosphere",
+      "It limits the impact of soil in vegetation analysis",
+      "It detects water-related metrics within the plant canopy",
+      "It corrects for Rayleigh scattering caused by small atmospheric particles"
+    ],
+    "correct": 1,
+    "explain": "Soil Adjusted Vegetation Index (SAVI) uses the soil brightness factor L to limit the impact of soil in vegetation analysis."
+  },
+  {
+    "q": "Which vegetation index includes green wavelengths and is used to correct Rayleigh scattering?",
+    "options": ["NDVI", "EVI", "NDRE", "GNDVI"],
+    "correct": 3,
+    "explain": "Green Normalized Difference Vegetation Index (GNDVI) includes green wavelengths in the calculation and is used to correct Rayleigh scattering."
+  },
+  {
+    "q": "What can NDRE be used to detect that other indices are less suited for?",
+    "options": [
+      "Aerosol scattering high in the atmosphere above the field",
+      "Water-related metrics",
+      "Soil brightness showing through sparse vegetation",
+      "Panchromatic resolution limits of the sensor"
+    ],
+    "correct": 1,
+    "explain": "Normalized Difference Red-Edge Index (NDRE) includes red edge which can be used to detect water related metrics."
+  },
+
+  {
+    "q": "Why is a panchromatic band described as having low spectral resolution?",
+    "options": [
+      "It fails to capture any usable data under most lighting conditions",
+      "It spans a wide area of the electromagnetic spectrum in a single band",
+      "It can only be captured effectively during nighttime satellite passes",
+      "Access to panchromatic band data requires a paid commercial subscription"
+    ],
+    "correct": 1,
+    "explain": "The panchromatic band spans a wide area of the electromagnetic spectrum, resulting in low spectral resolution but high spatial resolution."
+  },
+  {
+    "q": "How can multiple pixels within a single plot be used in data interpretation?",
+    "options": [
+      "Each pixel must be analyzed individually and can never be combined with others",
+      "They can be averaged together to create a single value for each plot",
+      "Only the single brightest pixel within the plot boundary is used for analysis",
+      "All pixels within a plot boundary are discarded before analysis begins"
+    ],
+    "correct": 1,
+    "explain": "In a plot, multiple pixels capture the plot and therefore can be averaged together to create a single value for each plot."
+  },
+  {
+    "q": "What causes hazy, gray-to-white tinted satellite images due to particles like dust or pollen?",
+    "options": [
+      "Rayleigh scattering, caused by very small particles high in the atmosphere",
+      "Mie scattering",
+      "Non-selective scattering caused by water vapor and larger water droplets",
+      "Chlorophyll absorption occurring within the plant canopy itself"
+    ],
+    "correct": 1,
+    "explain": "Mie scattering causes hazy images due to particles such as dust or pollen, resulting in gray to white tinted images."
+  },
+  {
+    "q": "What causes a nearly fully obstructed view in satellite imagery?",
+    "options": [
+      "Rayleigh scattering caused by very small particles high in the atmosphere",
+      "Mie scattering caused by larger particles such as dust or pollen",
+      "Non-selective scattering from water vapor and water droplets",
+      "Chlorophyll reflectance occurring within the plant canopy below"
+    ],
+    "correct": 2,
+    "explain": "Non-selective scattering, caused by water vapor and water droplets, can cause a nearly fully obstructed view."
+  }
+]

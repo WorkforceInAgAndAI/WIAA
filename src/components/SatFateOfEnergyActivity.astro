@@ -1,0 +1,83 @@
+---
+const objects = [
+  "White wall",
+  "Red oak tree leaf",
+  "Green soybean leaves",
+  "Electric stovetop",
+  "Blue tinted plastic lid",
+  "Aluminum foil"
+];
+---
+<div class="fate-energy">
+  <h4>Activity 9: Fate of Energy</h4>
+  <p class="fate-energy__prompt">For each scenario, use the terms "absorbed," "reflected," "transmitted," and "emitted" to describe how the incident energy from the visible portion of the spectrum will interact with each object. Include blue, green, and red visible light, and infrared radiation (heat).</p>
+  <p class="fate-energy__example"><strong>Example</strong> &mdash; Red stop sign: absorbs blue, green, and infrared radiation, and reflects infrared radiation converted to thermal radiation, and red light.</p>
+
+  <div class="fate-energy__grid">
+    {objects.map(o => (
+      <div class="fate-energy__item">
+        <label>{o}</label>
+        <textarea rows="3" placeholder="Type your answer here..."></textarea>
+      </div>
+    ))}
+  </div>
+</div>
+
+<style>
+  .fate-energy {
+    background: white;
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    padding: 24px;
+    margin: 30px 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  }
+  .fate-energy h4 {
+    color: var(--isu-red);
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    font-family: Georgia, Garamond, 'Times New Roman', serif;
+  }
+  .fate-energy__prompt {
+    color: var(--text-dark);
+    line-height: 1.6;
+    margin-bottom: 12px;
+  }
+  .fate-energy__example {
+    color: var(--text-medium);
+    font-size: 0.9em;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    padding: 12px;
+    background: #f9f7f4;
+    border-radius: 6px;
+  }
+  .fate-energy__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .fate-energy__item label {
+    display: block;
+    font-weight: 600;
+    color: var(--isu-red);
+    margin-bottom: 6px;
+    font-size: 14px;
+  }
+  .fate-energy__item textarea {
+    width: 100%;
+    border: 1px solid var(--border-light);
+    border-radius: 4px;
+    padding: 10px;
+    font-family: Georgia, Garamond, 'Times New Roman', serif;
+    font-size: 14px;
+    color: var(--text-dark);
+    resize: vertical;
+    box-sizing: border-box;
+  }
+  @media (min-width: 768px) {
+    .fate-energy__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+</style>

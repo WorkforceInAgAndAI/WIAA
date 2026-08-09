@@ -1,0 +1,102 @@
+[
+  {
+    "q": "What does \"Small UAS\" stand for, and what is the weight limit?",
+    "options": [
+      "Small Unmanned Air Service; 25 pounds",
+      "Small Unmanned Aircraft System; 55 pounds",
+      "Small Utility Air System; 75 pounds"
+    ],
+    "correct": 1,
+    "explain": "Small UAS stands for Small Unmanned Aircraft System, and Part 107 covers UAS weighing less than 55 pounds."
+  },
+  {
+    "q": "How old must you be to get a Remote Pilot Certificate?",
+    "options": [
+      "14 years old",
+      "16 years old",
+      "18 years old"
+    ],
+    "correct": 1,
+    "explain": "You must be at least 16 years old to be eligible for a Remote Pilot Certificate under Part 107."
+  },
+  {
+    "q": "What is the maximum altitude you can fly a drone?",
+    "options": [
+      "120 feet",
+      "300 feet",
+      "400 feet"
+    ],
+    "correct": 2,
+    "explain": "Part 107 sets a maximum altitude of 400 feet above the ground."
+  },
+  {
+    "q": "What does VLOS stand for?",
+    "options": [
+      "Vertical Line of Sight",
+      "Visual Line of Sight",
+      "Very Low Observation System"
+    ],
+    "correct": 1,
+    "explain": "VLOS stands for Visual Line of Sight, meaning the pilot must be able to see the drone with unaided vision."
+  },
+  {
+    "q": "What is the maximum distance from the drone that you are allowed to operate to meet visibility requirements?",
+    "options": [
+      "Within unaided visual line of sight",
+      "Visible by binoculars",
+      "5 miles"
+    ],
+    "correct": 0,
+    "explain": "The drone must stay within the pilot's unaided visual line of sight at all times, not relying on binoculars or a fixed distance limit."
+  },
+  {
+    "q": "What is the maximum speed for a small UAS?",
+    "options": [
+      "50 mph",
+      "100 mph",
+      "150 mph"
+    ],
+    "correct": 1,
+    "explain": "Part 107 sets a maximum speed limit of 100 miles per hour."
+  },
+  {
+    "q": "When can you NOT legally fly a drone?",
+    "options": [
+      "During daylight with clear visibility",
+      "At midnight without special lighting",
+      "During civil twilight with approved anti-collision lights"
+    ],
+    "correct": 1,
+    "explain": "Night flight without FAA-approved anti-collision lighting is not permitted; daylight flights and properly lit civil twilight/night flights are allowed."
+  },
+  {
+    "q": "Which scenario is legal under Part 107 rules?",
+    "options": [
+      "Flying over a crowded beach to film a video",
+      "Flying a drone from a moving aircraft",
+      "Operating a drone from a moving car in a sparsely populated area"
+    ],
+    "correct": 2,
+    "explain": "Flying from a moving vehicle is only allowed in a sparsely populated area; flying over crowds or from a moving aircraft is not permitted."
+  },
+  {
+    "q": "What must you do before every drone flight?",
+    "options": [
+      "File a flight plan with the FAA",
+      "Perform a pre-flight inspection checking battery, physical condition, and radio link",
+      "Notify neighbors that you'll be flying"
+    ],
+    "correct": 1,
+    "explain": "Pilots must inspect the drone before every flight, checking things like battery, physical condition, and the radio link to the controller."
+  },
+  {
+    "q": "If a drone causes $600 worth of damage to someone's property, what must the pilot do?",
+    "options": [
+      "Pay the owner and keep it quiet",
+      "Report the accident to the FAA within 10 days",
+      "Register the drone again with the FAA"
+    ],
+    "correct": 1,
+    "explain": "Any accident causing $500 or more in damage must be reported to the FAA within 10 days."
+  }
+]

@@ -1,0 +1,179 @@
+---
+// Click-to-sort game: "Can a drone help with this task yet?"
+// Pulls a mixed sample straight from the lesson's own task lists.
+
+const tasks = [
+  { label: "Spraying pesticides", droneCapable: true },
+  { label: "Tilling soil", droneCapable: false },
+  { label: "Detecting a pest outbreak", droneCapable: true },
+  { label: "Crossing mungbeans", droneCapable: false },
+  { label: "Estimating crop yield", droneCapable: true },
+  { label: "Harvesting crops", droneCapable: false },
+  { label: "Mapping soil moisture", droneCapable: true },
+  { label: "Collecting soil samples", droneCapable: false },
+];
+---
+<section class="sort-activity" aria-label="Drone task sorting activity">
+  <h3 class="sort-activity__title">Try it: Can a drone help with this task?</h3>
+  <p class="sort-activity__prompt">Click "Yes" or "Not yet" for each task below.</p>
+
+  <div class="sort-activity__status" data-status role="status" aria-live="polite">
+    0 / {tasks.length} answered
+  </div>
+
+  <div class="sort-list">
+    {tasks.map((t) => (
+      <div class="sort-item" data-capable={t.droneCapable ? "true" : "false"}>
+        <span class="sort-item__label">{t.label}</span>
+        <span class="sort-item__buttons">
+          <button type="button" class="sort-btn" data-choice="true">Yes</button>
+          <button type="button" class="sort-btn" data-choice="false">Not yet</button>
+        </span>
+      </div>
+    ))}
+  </div>
+
+  <button class="sort-activity__reset" type="button" data-reset>Reset activity</button>
+</section>
+
+<style>
+  .sort-activity {
+    margin: 40px 0;
+    padding: 28px;
+    background: #fafafa;
+    border: 1px solid var(--border-light, #ddd);
+    border-radius: 10px;
+  }
+  .sort-activity__title {
+    margin: 0 0 6px 0;
+    color: var(--isu-red, #c41e3a);
+    font-size: 1.15em;
+  }
+  .sort-activity__prompt {
+    margin: 0 0 14px 0;
+    color: var(--text-medium, #666);
+    font-size: 0.95em;
+  }
+  .sort-activity__status {
+    display: inline-block;
+    margin-bottom: 18px;
+    padding: 6px 14px;
+    background: white;
+    border: 1px solid var(--border-light, #ddd);
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 0.9em;
+    color: var(--text-dark, #1a1a1a);
+  }
+  .sort-list {
+    display: grid;
+    gap: 10px;
+  }
+  .sort-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+    background: white;
+    border: 2px solid var(--border-light, #ddd);
+    border-radius: 8px;
+    padding: 12px 16px;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .sort-item__label {
+    font-weight: 600;
+    color: var(--text-dark, #1a1a1a);
+  }
+  .sort-item__buttons {
+    display: flex;
+    gap: 8px;
+  }
+  .sort-btn {
+    all: unset;
+    cursor: pointer;
+    padding: 6px 14px;
+    border: 1px solid var(--border-light, #ddd);
+    border-radius: 6px;
+    font-size: 0.85em;
+    font-weight: 600;
+    color: var(--text-dark, #1a1a1a);
+  }
+  .sort-btn:hover {
+    border-color: var(--isu-red, #c41e3a);
+  }
+  .sort-item.is-correct {
+    border-color: #2e7d32;
+    background: #e8f5e9;
+  }
+  .sort-item.is-correct .sort-btn {
+    pointer-events: none;
+  }
+  .sort-item.is-wrong {
+    animation: shake 0.3s;
+  }
+  @keyframes shake {
+    25% { transform: translateX(-4px); }
+    75% { transform: translateX(4px); }
+  }
+  .sort-activity__reset {
+    all: unset;
+    cursor: pointer;
+    margin-top: 20px;
+    display: inline-block;
+    padding: 8px 18px;
+    border: 1px solid var(--isu-red, #c41e3a);
+    color: var(--isu-red, #c41e3a);
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.9em;
+  }
+  .sort-activity__reset:hover {
+    background: var(--isu-red, #c41e3a);
+    color: white;
+  }
+</style>
+
+<script>
+  function initSortActivity(root) {
+    const items = root.querySelectorAll('.sort-item');
+    const statusEl = root.querySelector('[data-status]');
+    let answered = 0;
+
+    function updateStatus() {
+      statusEl.textContent = `${answered} / ${items.length} answered`;
+      if (answered === items.length) {
+        statusEl.textContent = `All done! Nice work.`;
+      }
+    }
+
+    items.forEach((item) => {
+      const correct = item.dataset.capable === 'true';
+      item.querySelectorAll('.sort-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          if (item.classList.contains('is-correct')) return;
+          const guess = btn.dataset.choice === 'true';
+          if (guess === correct) {
+            item.classList.add('is-correct');
+            answered += 1;
+            updateStatus();
+          } else {
+            item.classList.add('is-wrong');
+            setTimeout(() => item.classList.remove('is-wrong'), 300);
+          }
+        });
+      });
+    });
+
+    const resetBtn = root.querySelector('[data-reset]');
+    resetBtn.addEventListener('click', () => {
+      answered = 0;
+      items.forEach((item) => item.classList.remove('is-correct', 'is-wrong'));
+      updateStatus();
+    });
+
+    updateStatus();
+  }
+
+  document.querySelectorAll('.sort-activity').forEach(initSortActivity);
+</script>

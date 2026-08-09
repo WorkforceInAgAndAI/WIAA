@@ -1,0 +1,133 @@
+---
+---
+<div class="threshold-demo">
+  <h4>Activity 20: Thresholding Practice</h4>
+  <p class="threshold-demo__prompt">Drag the slider to adjust the threshold value. Pixels above the threshold turn black, pixels below turn white. Try to reveal the shape hidden in the grid.</p>
+  <div class="threshold-demo__grid" id="threshold-grid"></div>
+  <div class="threshold-demo__slider">
+    <label>Threshold value: <span id="threshold-val">128</span></label>
+    <input type="range" id="threshold-slider" min="0" max="255" step="1" value="128" />
+  </div>
+  <div class="threshold-demo__answer">
+    <label>Object identified:</label>
+    <input type="text" class="threshold-demo__input" placeholder="What shape do you see?" />
+  </div>
+</div>
+
+<style is:global>
+  .threshold-demo {
+    background: white;
+    border: 1px solid var(--border-light, #ddd);
+    border-radius: 8px;
+    padding: 24px;
+    margin: 30px 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  }
+  .threshold-demo h4 {
+    color: var(--isu-red);
+    font-size: 1.2em;
+    margin-bottom: 8px;
+    font-family: Georgia, Garamond, 'Times New Roman', serif;
+  }
+  .threshold-demo__prompt {
+    color: var(--text-medium, #666);
+    margin-bottom: 16px;
+    line-height: 1.6;
+  }
+  .threshold-demo__grid {
+    display: grid;
+    grid-template-columns: repeat(20, 1fr);
+    gap: 1px;
+    width: 100%;
+    max-width: 400px;
+    aspect-ratio: 1;
+    margin: 0 auto 20px;
+    background: #ccc;
+    border: 1px solid #ccc;
+  }
+  .threshold-cell {
+    aspect-ratio: 1;
+  }
+  .threshold-demo__slider {
+    margin-bottom: 16px;
+  }
+  .threshold-demo__slider label {
+    display: block;
+    font-weight: 600;
+    color: var(--text-dark, #1a1a1a);
+    margin-bottom: 8px;
+    font-size: 14px;
+  }
+  .threshold-demo__slider input[type="range"] {
+    width: 100%;
+    accent-color: var(--isu-red);
+  }
+  .threshold-demo__answer label {
+    display: block;
+    font-weight: 600;
+    color: var(--isu-red);
+    margin-bottom: 8px;
+    font-size: 14px;
+  }
+  .threshold-demo__input {
+    width: 100%;
+    border: 1px solid var(--border-light, #ddd);
+    border-radius: 4px;
+    padding: 10px;
+    font-family: Georgia, Garamond, 'Times New Roman', serif;
+    font-size: 14px;
+    box-sizing: border-box;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const size = 20;
+    // Generate a grid where a plus/cross shape has high values (~200-255)
+    // and the background has low-to-mid values (~20-140), with noise.
+    const grid: number[][] = [];
+    for (let r = 0; r < size; r++) {
+      const row: number[] = [];
+      for (let c = 0; c < size; c++) {
+        const isShape =
+          (c >= 8 && c <= 11) || // vertical bar
+          (r >= 8 && r <= 11);   // horizontal bar
+        const base = isShape ? 220 : 60;
+        const noise = Math.floor(Math.random() * 40) - 20;
+        row.push(Math.max(0, Math.min(255, base + noise)));
+      }
+      grid.push(row);
+    }
+
+    const gridEl = document.getElementById('threshold-grid');
+    const cells: HTMLElement[] = [];
+    if (gridEl) {
+      for (let r = 0; r < size; r++) {
+        for (let c = 0; c < size; c++) {
+          const cell = document.createElement('div');
+          cell.className = 'threshold-cell';
+          gridEl.appendChild(cell);
+          cells.push(cell);
+        }
+      }
+    }
+
+    const slider = document.getElementById('threshold-slider') as HTMLInputElement;
+    const valLabel = document.getElementById('threshold-val');
+
+    function render() {
+      const threshold = parseInt(slider.value, 10);
+      if (valLabel) valLabel.textContent = String(threshold);
+      let i = 0;
+      for (let r = 0; r < size; r++) {
+        for (let c = 0; c < size; c++) {
+          cells[i].style.background = grid[r][c] >= threshold ? '#000' : '#fff';
+          i++;
+        }
+      }
+    }
+
+    slider?.addEventListener('input', render);
+    render();
+  });
+</script>

@@ -1,0 +1,157 @@
+[
+{
+  "q": "What does temporal resolution refer to?",
+  "options": [
+    "The number of bands a sensor detects",
+    "The precision of a sensor's measurements",
+    "The area represented by each pixel",
+    "The frequency that a satellite passes over the same location"
+  ],
+  "correct": 3,
+  "explain": "Temporal resolution refers to the frequency that a satellite passes over the same location."
+}
+  {
+    "q": "Why does the SkySat constellation have a higher combined revisit rate than an individual SkySat?",
+    "options": [
+      "Individual satellites orbit faster than the constellation",
+      "Multiple satellites (6-7 of the 21) pass over the same spot, while a single satellite alone averages 4-5 days",
+      "SkySats use a different orbit type than other satellites",
+      "The constellation only operates at night"
+    ],
+    "correct": 1,
+    "explain": "Of the 21 SkySats in orbit, 6-7 pass over the same spot per day as a constellation, while individual satellites average 4-5 days between passes."
+  },
+  {
+    "q": "What three factors does a satellite's temporal resolution depend on?",
+    "options": [
+      "Spectral bands, radiometric bit depth, and sensor type",
+      "The speed of the satellite, altitude above Earth, and number of satellites in orbit",
+      "Cloud cover, aerosols, and dust",
+      "Ground sampling distance, pixel size, and image format"
+    ],
+    "correct": 1,
+    "explain": "The temporal resolution of a satellite depends on the speed of the satellite, altitude above Earth, and number of satellites in orbit."
+  },
+  {
+    "q": "Which orbit type provides continuous coverage of one fixed area on Earth?",
+    "options": ["Polar orbiting", "Geostationary", "Sun-synchronous", "Molniya"],
+    "correct": 1,
+    "explain": "Geostationary satellites orbit the Earth at the same rotation speed as the Earth so the satellite remains fixed over the same spot, providing continuous coverage of one area."
+  },
+  {
+    "q": "What is ground sampling distance (GSD)?",
+    "options": [
+      "The number of bands a sensor can detect",
+      "The amount of area on Earth's surface represented by each pixel",
+      "The bit depth of an image",
+      "The time between satellite passes"
+    ],
+    "correct": 1,
+    "explain": "The amount of area that a pixel represents is referred to as the ground sampling distance (GSD)."
+  },
+  {
+    "q": "A satellite with a smaller GSD value has:",
+    "options": [
+      "Lower spatial resolution",
+      "Higher spatial resolution",
+      "Higher temporal resolution",
+      "Lower radiometric resolution"
+    ],
+    "correct": 1,
+    "explain": "Smaller GSD values indicate higher spatial resolution because a smaller ground area is represented by each pixel."
+  },
+  {
+    "q": "What is the difference between a wavelength and a band?",
+    "options": [
+      "A wavelength is a specific measurement, while a band is a region of the spectrum where signal strength peaks at a specific wavelength",
+      "A wavelength only applies to visible light, while a band applies to all energy",
+      "A band is always wider than a wavelength range",
+      "There is no difference; the terms are interchangeable"
+    ],
+    "correct": 0,
+    "explain": "Wavelengths are specific measurements, such as 450 nm, while bands are regions of the electromagnetic spectrum where the signal strength peaks at a specific wavelength."
+  },
+  {
+    "q": "Which wavelengths make up visible light?",
+    "options": [
+      "Radio and microwaves",
+      "Red, green, and blue wavelengths and their combinations",
+      "Gamma rays and X-rays",
+      "Infrared and ultraviolet"
+    ],
+    "correct": 1,
+    "explain": "Visible light consists of red, green, and blue wavelengths and their combinations, and is the small section of the electromagnetic spectrum detectable by humans."
+  },
+  {
+    "q": "Why does snow appear white?",
+    "options": [
+      "It absorbs all visible wavelengths equally",
+      "It reflects all visible wavelengths equally",
+      "It transmits all visible wavelengths",
+      "It emits visible light due to its temperature"
+    ],
+    "correct": 1,
+    "explain": "Snow reflects visible light, which causes it to appear white because all wavelengths are reflected equally."
+  },
+  {
+    "q": "What happens during refraction?",
+    "options": [
+      "Light is absorbed and converted to heat",
+      "Light is reflected back toward its source",
+      "Light passing through a material is bent, such as in a prism",
+      "Light is emitted due to an object's temperature"
+    ],
+    "correct": 2,
+    "explain": "Sometimes when light is transmitted through an object, the material bends the light as it passes through, such as in a prism; this is referred to as refraction."
+  },
+  {
+    "q": "What determines spectral resolution?",
+    "options": [
+      "The number of bands a sensor detects",
+      "The bit depth of the sensor",
+      "The frequency of satellite passes",
+      "The ground sampling distance"
+    ],
+    "correct": 0,
+    "explain": "The more bands a sensor detects, the higher the spectral resolution. Some sensors detect just three bands, while others detect hundreds to thousands of bands."
+  },
+  {
+    "q": "What does radiometric resolution determine?",
+    "options": [
+      "The area covered by a single pixel",
+      "The precision of the measurement, or how many distinct values can be captured",
+      "The number of bands detected",
+      "How often a satellite revisits a location"
+    ],
+    "correct": 1,
+    "explain": "The radiometric resolution of a sensor determines the precision of the measurement."
+  },
+  {
+    "q": "How many values does an 8-bit image contain?",
+    "options": ["8", "16", "256", "1,024"],
+    "correct": 2,
+    "explain": "The bit number acts as an exponent to the number two. An 8-bit image would contain 256 values (2^8 = 256)."
+  },
+  {
+    "q": "Why can you still get sunburned on a cloudy day?",
+    "options": [
+      "Clouds increase ultraviolet radiation",
+      "Ultraviolet light that causes sunburns can pass through clouds",
+      "Visible light passes through clouds unchanged",
+      "Sunburn is unrelated to light wavelength"
+    ],
+    "correct": 1,
+    "explain": "Some slightly shorter wavelengths such as near infrared or ultraviolet light can pass through less dense clouds, which is why you can still get sunburn on cloudy days."
+  },
+  {
+    "q": "Besides clouds, what other atmospheric factors can obstruct satellite imagery?",
+    "options": [
+      "Water vapor, dust, and aerosols",
+      "Only wind speed",
+      "Only temperature",
+      "Satellite orbit type"
+    ],
+    "correct": 0,
+    "explain": "Water vapor, dust, and aerosols can exist in the atmosphere and block or scatter light, in addition to cloud obstruction."
+  }
+]

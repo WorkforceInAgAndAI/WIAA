@@ -1,0 +1,101 @@
+---
+// A simple 10x10 grid of pixel values (0-255) forming a rough "plus" shape
+// against a noisy background, so students can see a real shape emerge as
+// they drag the threshold, just like separating canopy from soil.
+const grid = [
+  [30, 40, 35, 45, 190, 200, 40, 35, 30, 45],
+  [40, 35, 45, 200, 210, 195, 205, 40, 35, 30],
+  [35, 45, 30, 195, 220, 215, 200, 45, 40, 35],
+  [200, 210, 195, 205, 230, 225, 210, 200, 195, 210],
+  [215, 220, 210, 225, 240, 235, 220, 215, 210, 205],
+  [200, 195, 205, 210, 230, 225, 215, 200, 205, 195],
+  [35, 45, 30, 200, 215, 220, 195, 40, 35, 30],
+  [40, 35, 45, 195, 205, 210, 200, 45, 40, 35],
+  [30, 40, 35, 45, 40, 35, 45, 30, 40, 35],
+  [45, 30, 40, 35, 45, 40, 35, 45, 30, 40],
+];
+const flatGrid = grid.flat();
+---
+<section class="threshold-demo" aria-label="Thresholding activity">
+  <h3 class="threshold-demo__title">Try it: Find the Threshold</h3>
+  <p class="threshold-demo__prompt">Each square is a pixel valued 0-255. Drag the slider to set a threshold — pixels above it turn white, pixels below turn black. Find the threshold that reveals a clear shape.</p>
+
+  <div class="threshold-demo__control">
+    <label for="threshold-slider">Threshold: <span data-threshold-value>127</span></label>
+    <input type="range" id="threshold-slider" min="0" max="255" value="127" />
+  </div>
+
+  <div class="threshold-demo__grid" data-grid style={`--cols: ${grid[0].length}`}>
+    {flatGrid.map((val) => <div class="threshold-pixel" data-value={val}></div>)}
+  </div>
+
+  <div class="threshold-demo__answer">
+    <label for="threshold-shape-input">What shape do you see?</label>
+    <input type="text" id="threshold-shape-input" placeholder="Type your answer here..." />
+  </div>
+</section>
+
+<style>
+  .threshold-demo {
+    margin: 40px 0;
+    padding: 28px;
+    background: #fafafa;
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 10px;
+  }
+  .threshold-demo__title { margin: 0 0 6px 0; color: var(--isu-red, #c41e3a); font-size: 1.15em; }
+  .threshold-demo__prompt { margin: 0 0 20px 0; color: var(--text-secondary, #666); font-size: 0.95em; }
+  .threshold-demo__control { margin-bottom: 20px; }
+  .threshold-demo__control label { display: block; font-weight: 600; margin-bottom: 8px; color: var(--text-primary, #1a1a1a); }
+  .threshold-demo__control input[type="range"] { width: 100%; max-width: 400px; }
+  .threshold-demo__grid {
+    display: grid;
+    grid-template-columns: repeat(var(--cols), 1fr);
+    gap: 2px;
+    max-width: 320px;
+    margin: 0 auto 24px;
+    background: #ccc;
+    padding: 2px;
+    border-radius: 6px;
+  }
+  .threshold-pixel {
+    aspect-ratio: 1;
+    background: black;
+  }
+  .threshold-demo__answer {
+    background: white;
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 8px;
+    padding: 16px;
+  }
+  .threshold-demo__answer label { display: block; font-weight: 600; margin-bottom: 8px; color: var(--text-primary, #1a1a1a); }
+  .threshold-demo__answer input {
+    width: 100%;
+    max-width: 300px;
+    box-sizing: border-box;
+    padding: 8px 12px;
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 6px;
+  }
+</style>
+
+<script>
+  function init(root) {
+    const slider = root.querySelector('#threshold-slider');
+    const valueLabel = root.querySelector('[data-threshold-value]');
+    const pixels = root.querySelectorAll('.threshold-pixel');
+
+    function apply() {
+      const t = parseInt(slider.value, 10);
+      valueLabel.textContent = t;
+      pixels.forEach((px) => {
+        const val = parseInt(px.dataset.value, 10);
+        px.style.background = val > t ? 'white' : 'black';
+      });
+    }
+
+    slider.addEventListener('input', apply);
+    apply();
+  }
+  document.querySelectorAll('.threshold-demo').forEach(init);
+</script>

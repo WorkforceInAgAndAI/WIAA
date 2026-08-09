@@ -1,0 +1,103 @@
+---
+---
+<div class="angle-explorer">
+  <h4>Explore: Look Angle</h4>
+  <p class="angle-explorer__prompt">
+    Drag the slider to change the sensor's tilt away from nadir and see how the look angle changes.
+    Remember: at 0&deg; the sensor is pointed straight down at nadir; as the angle increases, the sensor
+    looks further to the side, covering a larger area with reduced clarity. (The incidence angle at the
+    ground is slightly larger than the look angle due to Earth's curvature, but isn't shown numerically here.)
+  </p>
+  <div class="angle-explorer__diagram">
+    <svg viewBox="0 0 400 260" width="100%" id="angle-svg">
+      <line x1="80" y1="30" x2="80" y2="230" stroke="#999" stroke-width="1.5" stroke-dasharray="4 4" />
+      <text x="86" y="40" font-size="12" fill="#666">nadir</text>
+      <circle cx="80" cy="30" r="6" fill="#c41e3a" />
+      <line x1="80" y1="30" id="look-line" x2="80" y2="230" stroke="#c41e3a" stroke-width="2.5" />
+      <line x1="20" y1="230" x2="380" y2="230" stroke="#666" stroke-width="1.5" />
+      <text x="330" y="248" font-size="12" fill="#666">Earth's surface</text>
+      <path id="angle-arc" d="" stroke="#f8c600" stroke-width="2" fill="none" />
+      <text id="angle-label" x="90" y="60" font-size="14" fill="#c41e3a" font-weight="600"></text>
+    </svg>
+  </div>
+  <div class="angle-explorer__controls">
+    <label for="angle-slider">Off-nadir / look angle: <span id="angle-value">0</span>&deg;</label>
+    <input type="range" id="angle-slider" min="0" max="60" value="0" step="1" />
+  </div>
+</div>
+
+<style>
+  .angle-explorer {
+    background: white;
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    padding: 24px;
+    margin: 30px 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  }
+  .angle-explorer h4 {
+    color: var(--isu-red);
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    font-family: Georgia, Garamond, 'Times New Roman', serif;
+  }
+  .angle-explorer__prompt {
+    color: var(--text-dark);
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+  .angle-explorer__diagram {
+    background: #f9f7f4;
+    border-radius: 6px;
+    padding: 10px;
+    margin-bottom: 20px;
+  }
+  .angle-explorer__controls {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .angle-explorer__controls label {
+    font-weight: 600;
+    color: var(--text-dark);
+    font-family: Georgia, Garamond, 'Times New Roman', serif;
+  }
+  .angle-explorer__controls input[type="range"] {
+    width: 100%;
+    accent-color: var(--isu-red);
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const slider = document.getElementById('angle-slider') as HTMLInputElement;
+    const valueLabel = document.getElementById('angle-value');
+    const lookLine = document.getElementById('look-line');
+    const angleLabel = document.getElementById('angle-label');
+    if (!slider || !lookLine) return;
+
+    const pivotX = 80;
+    const pivotY = 30;
+    const length = 200;
+
+    function update() {
+      const deg = parseInt(slider.value, 10);
+      if (valueLabel) valueLabel.textContent = String(deg);
+
+      const rad = (deg * Math.PI) / 180;
+      const endX = pivotX + length * Math.sin(rad);
+      const endY = pivotY + length * Math.cos(rad);
+      lookLine?.setAttribute('x2', String(endX));
+      lookLine?.setAttribute('y2', String(endY));
+
+      if (angleLabel) {
+        angleLabel.setAttribute('x', String(pivotX + 10));
+        angleLabel.setAttribute('y', String(pivotY + 30));
+        angleLabel.textContent = deg + '\u00B0';
+      }
+    }
+
+    slider.addEventListener('input', update);
+    update();
+  });
+</script>

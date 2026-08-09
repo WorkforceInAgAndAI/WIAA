@@ -1,0 +1,133 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import SatSidebar from '../../../components/SatSidebar.astro';
+import SatLessonNav from '../../../components/SatLessonNav.astro';
+
+const content = await import('../../../content/satellites/04-data-resolution/lesson-3.md');
+const { Content } = content;
+const { title, chapter, lesson } = content.frontmatter;
+---
+
+<BaseLayout title={title}>
+  <div class="container" style="max-width: 1400px; margin: 30px auto; padding: 0 20px;">
+    <div style="display: grid; grid-template-columns: 250px 1fr; gap: 24px; align-items: start;">
+      <SatSidebar currentChapter={chapter} currentLesson={lesson} />
+      <div class="content-area">
+        <div class="content-header">
+          <p class="chapter-label">Chapter {chapter}: Data Resolution</p>
+          <h1>{title}</h1>
+        </div>
+        <article class="lesson-content">
+          <Content />
+        </article>
+<SatLessonNav
+          prev={{ href: '/satellites/04-data-resolution/lesson-2', label: 'Previous' }}
+          next={{ href: '/satellites/04-data-resolution/lesson-4', label: 'Next' }}
+          progress={`${chapter}.${lesson} / 11 Chapters`}
+        />
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+<style is:global>
+  :root {
+    --isu-red: #c41e3a;
+    --isu-gold: #f8c600;
+    --border-light: #ddd;
+    --text-dark: #1a1a1a;
+    --text-medium: #666;
+    --isu-dark-red: #a01729;
+  }
+  .lesson-content img {
+    max-width: 800px !important;
+    height: auto !important;
+    display: block !important;
+    margin: 20px auto !important;
+  }
+  @media (max-width: 767px) {
+    .lesson-content img {
+      max-width: 280px !important;
+    }
+  }
+  .lesson-content p {
+    line-height: 1.8;
+    color: var(--text-dark);
+    margin-bottom: 18px;
+  }
+  .section-intro {
+    font-size: 1.05em;
+    color: var(--text-medium);
+    font-style: italic;
+    margin-bottom: 24px;
+  }
+  .image-caption {
+    text-align: center;
+    color: var(--text-medium);
+    font-size: 0.9em;
+    font-style: italic;
+    margin-top: -10px;
+    margin-bottom: 20px;
+  }
+  .definitions-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    margin-bottom: 35px;
+  }
+  .definition-card {
+    background: white;
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    padding: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  }
+  .definition-card h3 {
+    color: var(--isu-red);
+    font-size: 1.3em;
+    margin-bottom: 6px;
+  }
+  .platform-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  }
+  .platform-table th {
+    background: var(--isu-red);
+    color: white;
+    padding: 14px;
+    text-align: left;
+    font-size: 1.1em;
+  }
+  .platform-table td {
+    background: white;
+    border: 1px solid var(--border-light);
+    padding: 16px;
+    vertical-align: top;
+    font-size: 14px;
+  }
+  .resolution-table td {
+    line-height: 1.6;
+  }
+  @media (min-width: 768px) {
+    .definitions-grid {
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 24px;
+    }
+  }
+  @media (max-width: 767px) {
+    .platform-table {
+      display: block;
+      overflow-x: auto;
+    }
+  }
+</style>
+<style>
+  @media (max-width: 768px) {
+    div[style*="grid-template-columns"] {
+      display: flex !important;
+      flex-direction: column-reverse !important;
+      gap: 16px !important;
+    }
+  }
+</style>

@@ -1,0 +1,89 @@
+---
+const eras = [
+  { id: "era-1957", label: "1957" },
+  { id: "era-1958", label: "1958" },
+  { id: "era-1960s", label: "1960s" },
+  { id: "era-1970s-1980s", label: "1970s-80s" },
+  { id: "era-1990s-2000s", label: "1990s-2000s" },
+  { id: "era-2010s-present", label: "2010s-Present" }
+];
+---
+<div class="era-timeline">
+  <p class="era-timeline__label">Jump to an era:</p>
+  <div class="era-timeline__track">
+    {eras.map(e => (
+      <button class="era-timeline__btn" data-target={e.id}>{e.label}</button>
+    ))}
+  </div>
+</div>
+
+<style>
+  .era-timeline {
+    background: #f9f7f4;
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin-bottom: 30px;
+  }
+  .era-timeline__label {
+    margin: 0 0 10px 0;
+    font-weight: 600;
+    color: var(--text-dark);
+    font-family: Georgia, Garamond, 'Times New Roman', serif;
+  }
+  .era-timeline__track {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .era-timeline__btn {
+    padding: 8px 14px;
+    border: 1px solid var(--isu-gold);
+    background: white;
+    color: var(--isu-red);
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 13px;
+    font-family: Georgia, Garamond, 'Times New Roman', serif;
+    transition: background 0.2s;
+  }
+  .era-timeline__btn:hover {
+    background: var(--isu-gold);
+    color: white;
+  }
+</style>
+
+<style is:global>
+  .era-block {
+    scroll-margin-top: 90px;
+    transition: background 0.6s ease;
+    border-radius: 6px;
+    padding: 4px 8px;
+    margin-left: -8px;
+    margin-right: -8px;
+  }
+  .era-block.highlight {
+    background: rgba(248, 198, 0, 0.18);
+  }
+  .era-block h3 {
+    color: var(--isu-red);
+    font-size: 1.15em;
+    margin-bottom: 6px;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const buttons = document.querySelectorAll('.era-timeline__btn');
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const targetId = (btn as HTMLElement).dataset.target;
+        if (!targetId) return;
+        const target = document.getElementById(targetId);
+        if (!target) return;
+        target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        target.classList.add('highlight');
+        setTimeout(() => target.classList.remove('highlight'), 1500);
+      });
+    });
+  });
+</script>

@@ -1,0 +1,157 @@
+---
+const plots = [
+  { id: "p1", label: "Plot 1", ndvi: 0.72 },
+  { id: "p2", label: "Plot 2", ndvi: 0.31 },
+  { id: "p3", label: "Plot 3", ndvi: 0.58 },
+  { id: "p4", label: "Plot 4", ndvi: 0.19 },
+  { id: "p5", label: "Plot 5", ndvi: 0.65 },
+  { id: "p6", label: "Plot 6", ndvi: 0.44 },
+];
+
+function ndviColor(v) {
+  if (v >= 0.6) return "#2e7d32";
+  if (v >= 0.3) return "#f9a825";
+  return "#c41e3a";
+}
+---
+<section class="plot-compare" aria-label="Plot comparison activity">
+  <h3 class="plot-compare__title">Try it: Which Plot Performs Best?</h3>
+  <p class="plot-compare__prompt">Each plot below shows its average NDVI value. Click the plot you think is healthiest, then click the one you think is most stressed.</p>
+
+  <div class="plot-compare__grid">
+    {plots.map((p) => (
+      <button type="button" class="plot-tile" data-id={p.id} data-ndvi={p.ndvi} style={`--ndvi-color: ${ndviColor(p.ndvi)}`}>
+        <span class="plot-tile__label">{p.label}</span>
+        <span class="plot-tile__ndvi">NDVI: {p.ndvi}</span>
+      </button>
+    ))}
+  </div>
+
+  <div class="plot-compare__controls">
+    <button type="button" class="plot-compare__mode-btn is-active" data-mode="healthy">Mark Healthiest</button>
+    <button type="button" class="plot-compare__mode-btn" data-mode="stressed">Mark Most Stressed</button>
+  </div>
+
+  <div class="plot-compare__result" data-result>Select a mode above, then click a plot.</div>
+</section>
+
+<style>
+  .plot-compare {
+    margin: 40px 0;
+    padding: 28px;
+    background: #fafafa;
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 10px;
+  }
+  .plot-compare__title { margin: 0 0 6px 0; color: var(--isu-red, #c41e3a); font-size: 1.15em; }
+  .plot-compare__prompt { margin: 0 0 20px 0; color: var(--text-secondary, #666); font-size: 0.95em; }
+  .plot-compare__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  .plot-tile {
+    all: unset;
+    cursor: pointer;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    padding: 20px 10px;
+    background: white;
+    border: 3px solid var(--border-color, #e5e7eb);
+    border-radius: 10px;
+    transition: transform 0.15s;
+  }
+  .plot-tile:hover { transform: translateY(-3px); }
+  .plot-tile__label { font-weight: 700; color: var(--text-primary, #1a1a1a); }
+  .plot-tile__ndvi {
+    font-size: 0.85em;
+    font-weight: 600;
+    color: white;
+    background: var(--ndvi-color);
+    padding: 4px 10px;
+    border-radius: 999px;
+  }
+  .plot-tile.is-marked-healthy { border-color: #2e7d32; background: #e8f5e9; }
+  .plot-tile.is-marked-stressed { border-color: #c41e3a; background: #fdecea; }
+  .plot-compare__controls { display: flex; gap: 10px; margin-bottom: 16px; }
+  .plot-compare__mode-btn {
+    all: unset;
+    cursor: pointer;
+    padding: 8px 16px;
+    background: white;
+    border: 2px solid var(--border-color, #e5e7eb);
+    border-radius: 8px;
+    font-weight: 600;
+    color: var(--text-primary, #1a1a1a);
+  }
+  .plot-compare__mode-btn.is-active { background: var(--isu-red, #c41e3a); color: white; border-color: var(--isu-red, #c41e3a); }
+  .plot-compare__result {
+    background: white;
+    border: 2px solid var(--isu-gold, #f8c600);
+    border-radius: 8px;
+    padding: 16px 20px;
+    font-weight: 600;
+    color: var(--text-primary, #1a1a1a);
+    line-height: 1.6;
+  }
+</style>
+
+<script>
+  function init(root) {
+    const tiles = root.querySelectorAll('.plot-tile');
+    const modeBtns = root.querySelectorAll('.plot-compare__mode-btn');
+    const result = root.querySelector('[data-result]');
+    let mode = 'healthy';
+    let healthyPick = null;
+    let stressedPick = null;
+
+    modeBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        modeBtns.forEach((b) => b.classList.remove('is-active'));
+        btn.classList.add('is-active');
+        mode = btn.dataset.mode;
+      });
+    });
+
+    const maxNdvi = Math.max(...[...tiles].map((t) => parseFloat(t.dataset.ndvi)));
+    const minNdvi = Math.min(...[...tiles].map((t) => parseFloat(t.dataset.ndvi)));
+
+    tiles.forEach((tile) => {
+      tile.addEventListener('click', () => {
+        const ndvi = parseFloat(tile.dataset.ndvi);
+        if (mode === 'healthy') {
+          tiles.forEach((t) => t.classList.remove('is-marked-healthy'));
+          tile.classList.add('is-marked-healthy');
+          healthyPick = tile;
+        } else {
+          tiles.forEach((t) => t.classList.remove('is-marked-stressed'));
+          tile.classList.add('is-marked-stressed');
+          stressedPick = tile;
+        }
+        updateResult();
+      });
+    });
+
+    function updateResult() {
+      if (!healthyPick && !stressedPick) {
+        result.textContent = 'Select a mode above, then click a plot.';
+        return;
+      }
+      let msg = '';
+      if (healthyPick) {
+        const isCorrect = parseFloat(healthyPick.dataset.ndvi) === maxNdvi;
+        msg += `Healthiest pick: ${healthyPick.querySelector('.plot-tile__label').textContent} (NDVI ${healthyPick.dataset.ndvi}) ${isCorrect ? '✓ correct, this has the highest NDVI.' : '— check again, a higher NDVI plot exists.'} `;
+      }
+      if (stressedPick) {
+        const isCorrect = parseFloat(stressedPick.dataset.ndvi) === minNdvi;
+        msg += `Most stressed pick: ${stressedPick.querySelector('.plot-tile__label').textContent} (NDVI ${stressedPick.dataset.ndvi}) ${isCorrect ? '✓ correct, this has the lowest NDVI.' : '— check again, a lower NDVI plot exists.'}`;
+      }
+      result.textContent = msg;
+    }
+  }
+  document.querySelectorAll('.plot-compare').forEach(init);
+</script>

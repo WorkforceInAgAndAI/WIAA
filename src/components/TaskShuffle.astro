@@ -1,0 +1,124 @@
+---
+const tasks = [
+  { task: "Determine soil texture", category: "Soil & Field Data" },
+  { task: "Detect pest outbreaks", category: "Scouting & Monitoring" },
+  { task: "Collect soil samples", category: "Soil & Field Data" },
+  { task: "Make breeding crosses", category: "Breeding & Genetics" },
+  { task: "Assess storm damage", category: "Soil & Field Data" },
+  { task: "Measure soil moisture", category: "Soil & Field Data" },
+  { task: "Scout for weeds", category: "Scouting & Monitoring" },
+  { task: "Plant seeds in rows", category: "Field Operations & Harvest" },
+  { task: "Harvest crops", category: "Field Operations & Harvest" },
+  { task: "Detect and monitor water stress", category: "Scouting & Monitoring" },
+  { task: "Collect water samples", category: "Soil & Field Data" },
+  { task: "Detassel corn", category: "Breeding & Genetics" },
+  { task: "Detect disease outbreaks", category: "Scouting & Monitoring" },
+  { task: "Remove off-types", category: "Breeding & Genetics" },
+  { task: "Map field terrain", category: "Soil & Field Data" },
+  { task: "Estimate crop yield", category: "Measurement & Yield" },
+  { task: "Spray pesticides", category: "Crop Inputs & Care" },
+  { task: "Spread fertilizer", category: "Crop Inputs & Care" },
+  { task: "Detect and manage nutrient deficiencies", category: "Crop Inputs & Care" },
+  { task: "Measure plant height", category: "Measurement & Yield" },
+  { task: "Monitor crop health", category: "Scouting & Monitoring" },
+  { task: "Spread cover crop seed", category: "Crop Inputs & Care" },
+  { task: "Map and monitor soil erosion", category: "Soil & Field Data" },
+  { task: "Move hay bales", category: "Field Operations & Harvest" },
+  { task: "Check crop uniformity", category: "Scouting & Monitoring" },
+];
+---
+<section class="task-shuffle" aria-label="Agronomist task shuffle" data-tasks={JSON.stringify(tasks)}>
+  <h3 class="task-shuffle__title">What's on today's list?</h3>
+  <p class="task-shuffle__prompt">Click the button to pull a random task from an agronomist's real to-do list.</p>
+
+  <div class="task-shuffle__card">
+    <span class="task-shuffle__category" data-category>Scouting & Monitoring</span>
+    <span class="task-shuffle__task" data-task>Detect pest outbreaks</span>
+  </div>
+
+  <button type="button" class="task-shuffle__btn" data-shuffle>Show me another task</button>
+</section>
+
+<style>
+  .task-shuffle {
+    margin: 40px 0;
+    padding: 28px;
+    background: #fafafa;
+    border: 1px solid var(--border-light, #ddd);
+    border-radius: 10px;
+    text-align: center;
+  }
+  .task-shuffle__title {
+    margin: 0 0 6px 0;
+    color: var(--isu-red, #c41e3a);
+    font-size: 1.15em;
+  }
+  .task-shuffle__prompt {
+    margin: 0 0 20px 0;
+    color: var(--text-medium, #666);
+    font-size: 0.95em;
+  }
+  .task-shuffle__card {
+    max-width: 420px;
+    margin: 0 auto 20px;
+    padding: 26px;
+    background: white;
+    border: 2px solid var(--isu-gold, #f8c600);
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  }
+  .task-shuffle__category {
+    display: block;
+    color: var(--isu-red, #c41e3a);
+    font-weight: 700;
+    font-size: 0.8em;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+  }
+  .task-shuffle__task {
+    display: block;
+    font-size: 1.2em;
+    color: var(--text-dark, #1a1a1a);
+    font-weight: 600;
+  }
+  .task-shuffle__btn {
+    all: unset;
+    cursor: pointer;
+    padding: 10px 22px;
+    background: var(--isu-red, #c41e3a);
+    color: white;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.95em;
+  }
+  .task-shuffle__btn:hover {
+    background: var(--isu-dark-red, #a01729);
+  }
+</style>
+
+<script>
+  function initTaskShuffle(root) {
+    const tasks = JSON.parse(root.dataset.tasks || '[]');
+    const catEl = root.querySelector('[data-category]');
+    const taskEl = root.querySelector('[data-task]');
+    const shuffleBtn = root.querySelector('[data-shuffle]');
+    let lastIndex = -1;
+
+    if (!tasks.length || !catEl || !taskEl || !shuffleBtn) return;
+
+    function pickTask() {
+      let index;
+      do {
+        index = Math.floor(Math.random() * tasks.length);
+      } while (index === lastIndex && tasks.length > 1);
+      lastIndex = index;
+      catEl.textContent = tasks[index].category;
+      taskEl.textContent = tasks[index].task;
+    }
+
+    shuffleBtn.addEventListener('click', pickTask);
+  }
+
+  document.querySelectorAll('.task-shuffle').forEach(initTaskShuffle);
+</script>

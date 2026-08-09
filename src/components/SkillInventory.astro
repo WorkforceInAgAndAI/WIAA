@@ -1,0 +1,125 @@
+---
+const skills = [
+  "Coding",
+  "Robotics",
+  "Agriculture",
+  "Data analysis",
+  "GIS",
+  "Drone flying",
+];
+---
+<section class="skill-inventory" aria-label="Skill inventory activity">
+  <h3 class="skill-inventory__title">Try it: Skill Inventory</h3>
+  <p class="skill-inventory__prompt">Check off the skills you already have.</p>
+
+  <div class="skill-inventory__grid">
+    {skills.map((skill, i) => (
+      <label class="skill-inventory__item">
+        <input type="checkbox" data-skill-checkbox />
+        <span>{skill}</span>
+      </label>
+    ))}
+  </div>
+
+  <p class="skill-inventory__status" data-status>0 / {skills.length} skills checked</p>
+
+  <div class="skill-inventory__reflection">
+    <label for="skill-improve-input">How can you improve one skill this year?</label>
+    <textarea id="skill-improve-input" rows="3" placeholder="Type your thoughts here..."></textarea>
+    <p class="skill-inventory__note">This isn't saved anywhere &mdash; it's just a space to think it through before you write it down elsewhere.</p>
+  </div>
+</section>
+
+<style>
+  .skill-inventory {
+    margin: 40px 0;
+    padding: 28px;
+    background: #fafafa;
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 10px;
+  }
+  .skill-inventory__title {
+    margin: 0 0 6px 0;
+    color: var(--isu-red, #c41e3a);
+    font-size: 1.15em;
+  }
+  .skill-inventory__prompt {
+    margin: 0 0 18px 0;
+    color: var(--text-secondary, #666);
+    font-size: 0.95em;
+  }
+  .skill-inventory__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .skill-inventory__item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: white;
+    border: 2px solid var(--border-color, #e5e7eb);
+    border-radius: 8px;
+    padding: 14px 16px;
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--text-primary, #1a1a1a);
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .skill-inventory__item:has(input:checked) {
+    border-color: #2e7d32;
+    background: #e8f5e9;
+    color: #2e7d32;
+  }
+  .skill-inventory__item input {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--isu-red, #c41e3a);
+  }
+  .skill-inventory__status {
+    font-weight: 600;
+    color: var(--isu-red, #c41e3a);
+    margin: 0 0 24px 0;
+  }
+  .skill-inventory__reflection {
+    background: white;
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 8px;
+    padding: 20px;
+  }
+  .skill-inventory__reflection label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: var(--text-primary, #1a1a1a);
+  }
+  .skill-inventory__reflection textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px;
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 0.95em;
+    resize: vertical;
+  }
+  .skill-inventory__note {
+    margin: 8px 0 0 0;
+    font-size: 0.8em;
+    color: #999;
+    font-style: italic;
+  }
+</style>
+
+<script>
+  document.querySelectorAll('.skill-inventory').forEach((root) => {
+    const boxes = root.querySelectorAll('[data-skill-checkbox]');
+    const status = root.querySelector('[data-status]');
+    function update() {
+      const checked = Array.from(boxes).filter((b) => b.checked).length;
+      status.textContent = `${checked} / ${boxes.length} skills checked`;
+    }
+    boxes.forEach((b) => b.addEventListener('change', update));
+  });
+</script>

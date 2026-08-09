@@ -1,0 +1,90 @@
+---
+const challenges = ["Water stress", "Nutrient deficiency", "Pest outbreak"];
+---
+<div class="sat-reflection">
+  <h4>Activity 7: Think Like a Farmer</h4>
+  <p class="sat-reflection__prompt">Choose one agriculture challenge:</p>
+  <div class="challenge-picker">
+    {challenges.map(c => (
+      <button class="challenge-picker__btn" data-challenge={c}>{c}</button>
+    ))}
+  </div>
+  <p class="sat-reflection__prompt"><strong>What information can be collected using a satellite to detect this agriculture problem?</strong></p>
+  <textarea class="sat-reflection__input" rows="3" placeholder="Type your answer here..."></textarea>
+  <p class="sat-reflection__prompt"><strong>With the information collected using the satellite, what decision might the farmer be able to make?</strong></p>
+  <textarea class="sat-reflection__input" rows="3" placeholder="Type your answer here..."></textarea>
+  <p class="sat-reflection__note">This isn't saved anywhere &mdash; it's just a space to think it through before you write it down elsewhere.</p>
+</div>
+
+<style>
+  .sat-reflection {
+    background: white;
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    padding: 24px;
+    margin: 30px 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  }
+  .sat-reflection h4 {
+    color: var(--isu-red);
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    font-family: Georgia, Garamond, 'Times New Roman', serif;
+  }
+  .sat-reflection__prompt {
+    color: var(--text-dark);
+    line-height: 1.6;
+    margin-bottom: 12px;
+  }
+  .sat-reflection__input {
+    width: 100%;
+    border: 1px solid var(--border-light);
+    border-radius: 4px;
+    padding: 12px;
+    font-family: Georgia, Garamond, 'Times New Roman', serif;
+    font-size: 15px;
+    color: var(--text-dark);
+    resize: vertical;
+    box-sizing: border-box;
+    margin-bottom: 16px;
+  }
+  .sat-reflection__note {
+    color: var(--text-light);
+    font-size: 0.85em;
+    font-style: italic;
+    margin-top: -6px;
+    margin-bottom: 0;
+  }
+  .challenge-picker {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+  .challenge-picker__btn {
+    padding: 10px 16px;
+    border: 1px solid var(--isu-gold);
+    background: white;
+    color: var(--isu-red);
+    border-radius: 20px;
+    cursor: pointer;
+    font-family: Georgia, Garamond, 'Times New Roman', serif;
+    font-size: 14px;
+  }
+  .challenge-picker__btn.selected {
+    background: var(--isu-red);
+    color: white;
+    border-color: var(--isu-red);
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.challenge-picker__btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.challenge-picker__btn').forEach(b => b.classList.remove('selected'));
+        btn.classList.add('selected');
+      });
+    });
+  });
+</script>

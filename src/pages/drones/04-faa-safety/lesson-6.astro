@@ -1,0 +1,150 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Sidebar from '../../../components/Sidebar.astro';
+import LessonNav from '../../../components/LessonNav.astro';
+import PreflightChecklist from '../../../components/PreflightChecklist.astro';
+
+const content = await import('../../../content/drones/04-faa-safety/lesson-6.md');
+const { Content } = content;
+const { title, chapter, lesson } = content.frontmatter;
+---
+
+<BaseLayout title={title}>
+  <div class="container" style="max-width: 1400px; margin: 30px auto; padding: 0 20px;">
+    <div style="display: grid; grid-template-columns: 250px 1fr; gap: 24px; align-items: start;">
+      <Sidebar currentChapter={chapter} currentLesson={lesson} />
+      <div class="content-area">
+        <div class="content-header">
+          <p class="chapter-label">Chapter {chapter}: FAA Part 107 & Drone Safety</p>
+          <h1>{title}</h1>
+        </div>
+        <article class="lesson-content">
+          <Content />
+        </article>
+        <PreflightChecklist />
+        <LessonNav 
+          prev={{ href: '/drones/04-faa-safety/lesson-5', label: 'Previous' }}
+          next={{ href: '/drones/04-faa-safety/review', label: 'Next' }}
+          progress={`${chapter}.${lesson} / 12 Chapters`}
+        />
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+<style is:global>
+  :root {
+    --isu-red: #c41e3a;
+    --isu-gold: #f8c600;
+    --isu-dark-red: #a01729;
+    --text-primary: #1a1a1a;
+    --text-secondary: #666666;
+    --border-color: #e5e7eb;
+  }
+
+  .lesson-content img {
+    max-width: 800px !important;
+    height: auto !important;
+    display: block !important;
+    margin: 30px auto !important;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--border-color);
+  }
+  @media (max-width: 767px) {
+    .lesson-content img {
+      max-width: 100% !important;
+    }
+  }
+
+  .section-intro {
+    font-size: 1.1em;
+    line-height: 1.8;
+    color: var(--text-secondary);
+    background: linear-gradient(135deg, rgba(196, 30, 58, 0.04), rgba(248, 198, 0, 0.04));
+    padding: 24px;
+    border-left: 4px solid var(--isu-red);
+    border-radius: 8px;
+    margin: 0 0 32px 0;
+  }
+
+  .lesson-content h2 {
+    font-size: 1.8em;
+    font-weight: 700;
+    color: var(--isu-red);
+    margin: 45px 0 28px 0;
+    letter-spacing: -0.5px;
+  }
+
+  /* Best practices / checklist */
+  .best-practices-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin: 32px 0;
+    align-items: start;
+  }
+  @media (max-width: 1024px) {
+    .best-practices-container { grid-template-columns: 1fr; }
+  }
+  .checklist-card {
+    background: white;
+    border: 1.5px solid var(--border-color);
+    border-radius: 12px;
+    padding: 32px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  }
+  .checklist-card h3 { font-size: 1.3em; color: var(--isu-red); margin: 0 0 24px 0; }
+  .checklist-items { list-style: none; padding: 0; margin: 0; }
+  .checklist-items li {
+    font-size: 1.05em;
+    line-height: 1.8;
+    color: var(--text-primary);
+    margin: 16px 0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .checklist-items input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    accent-color: var(--isu-red);
+    flex-shrink: 0;
+  }
+  .warning-box {
+    background: #fff5f5;
+    border-left: 5px solid var(--isu-red);
+    padding: 24px;
+    border-radius: 8px;
+    height: fit-content;
+  }
+  .warning-box p { font-size: 1.05em; line-height: 1.8; color: var(--text-primary); margin: 0; }
+  .warning-box strong { color: var(--isu-red); font-weight: 700; }
+
+  /* Activities list */
+  .activities-list { list-style: none; padding: 0; margin: 24px 0; }
+  .activities-list li {
+    font-size: 1.05em;
+    line-height: 1.8;
+    color: var(--text-primary);
+    margin: 14px 0;
+    padding-left: 24px;
+    position: relative;
+  }
+  .activities-list li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--isu-red);
+    font-weight: bold;
+    font-size: 1.2em;
+  }
+</style>
+<style>
+  @media (max-width: 768px) {
+    div[style*="grid-template-columns"] {
+      display: flex !important;
+      flex-direction: column-reverse !important;
+      gap: 16px !important;
+    }
+  }
+</style>

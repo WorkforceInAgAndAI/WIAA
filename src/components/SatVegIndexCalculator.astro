@@ -1,0 +1,167 @@
+---
+const indices = [
+  { id: "ndvi", name: "NDVI", equation: "(NIR &minus; Red) / (NIR + Red)", inputs: ["nir", "red"] },
+  { id: "evi", name: "EVI", equation: "2.5 &times; (NIR &minus; Red) / (NIR + 6&times;Red &minus; 7.5&times;Blue + 1)", inputs: ["nir", "red", "blue"] },
+  { id: "savi", name: "SAVI", equation: "[(NIR &minus; Red) / (NIR + Red + L)] &times; (1 + L)", inputs: ["nir", "red", "l"] },
+  { id: "gndvi", name: "GNDVI", equation: "(NIR &minus; Green) / (NIR + Green)", inputs: ["nir", "green"] },
+  { id: "ndre", name: "NDRE", equation: "(NIR &minus; RedEdge) / (NIR + RedEdge)", inputs: ["nir", "rededge"] }
+];
+const labels: Record<string, string> = {
+  nir: "NIR reflectance",
+  red: "Red reflectance",
+  blue: "Blue reflectance",
+  green: "Green reflectance",
+  rededge: "Red Edge reflectance",
+  l: "Soil brightness factor (L)"
+};
+---
+<div class="veg-calc" id="veg-calc">
+  <h4>Explore: Vegetation Index Calculator</h4>
+  <p class="veg-calc__prompt">Choose an index, adjust the reflectance values (0&ndash;1), and see the calculated result.</p>
+  <div class="veg-calc__tabs">
+    {indices.map((idx, i) => (
+      <button class={`veg-calc__tab ${i === 0 ? 'active' : ''}`} data-index={idx.id}>{idx.name}</button>
+    ))}
+  </div>
+  <div class="veg-calc__equation" id="veg-calc-equation"></div>
+  <div class="veg-calc__inputs" id="veg-calc-inputs"></div>
+  <div class="veg-calc__result" id="veg-calc-result">Result: &mdash;</div>
+</div>
+
+<style is:global>
+  .veg-calc {
+    background: white;
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    padding: 24px;
+    margin: 30px 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  }
+  .veg-calc h4 {
+    color: var(--isu-red);
+    font-size: 1.2em;
+    margin-bottom: 8px;
+    font-family: Georgia, Garamond, 'Times New Roman', serif;
+  }
+  .veg-calc__prompt {
+    color: var(--text-medium);
+    margin-bottom: 16px;
+  }
+  .veg-calc__tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 16px;
+  }
+  .veg-calc__tab {
+    padding: 8px 16px;
+    border: 1px solid var(--isu-red);
+    background: white;
+    color: var(--isu-red);
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: Georgia, Garamond, 'Times New Roman', serif;
+  }
+  .veg-calc__tab.active {
+    background: var(--isu-red);
+    color: white;
+  }
+  .veg-calc__equation {
+    background: #f9f7f4;
+    border-radius: 6px;
+    padding: 14px 18px;
+    margin-bottom: 20px;
+    font-size: 1.05em;
+    font-weight: 600;
+    color: var(--isu-dark-red);
+    text-align: center;
+  }
+  .veg-calc__inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 20px;
+  }
+  .veg-calc__input-row label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 6px;
+  }
+  .veg-calc__input-row input[type="range"] {
+    width: 100%;
+    accent-color: var(--isu-red);
+  }
+  .veg-calc__result {
+    background: var(--isu-red);
+    color: white;
+    text-align: center;
+    padding: 14px;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 1.15em;
+  }
+</style>
+
+<script define:vars={{ indices, labels }}>
+  document.addEventListener('DOMContentLoaded', () => {
+    const tabs = document.querySelectorAll('.veg-calc__tab');
+    const equationEl = document.getElementById('veg-calc-equation');
+    const inputsEl = document.getElementById('veg-calc-inputs');
+    const resultEl = document.getElementById('veg-calc-result');
+    let current = indices[0];
+    const values = { nir: 0.6, red: 0.2, blue: 0.1, green: 0.3, rededge: 0.35, l: 0.5 };
+
+    function compute() {
+      const { nir, red, blue, green, rededge, l } = values;
+      let result;
+      if (current.id === 'ndvi') result = (nir - red) / (nir + red);
+      else if (current.id === 'evi') result = 2.5 * (nir - red) / (nir + 6 * red - 7.5 * blue + 1);
+      else if (current.id === 'savi') result = ((nir - red) / (nir + red + l)) * (1 + l);
+      else if (current.id === 'gndvi') result = (nir - green) / (nir + green);
+      else if (current.id === 'ndre') result = (nir - rededge) / (nir + rededge);
+      if (resultEl) resultEl.textContent = `Result: ${isFinite(result) ? result.toFixed(3) : 'undefined'}`;
+    }
+
+    function render() {
+      if (equationEl) equationEl.innerHTML = `${current.name} = ${current.equation}`;
+      if (inputsEl) {
+        inputsEl.innerHTML = '';
+        current.inputs.forEach(key => {
+          const row = document.createElement('div');
+          row.className = 'veg-calc__input-row';
+          const max = key === 'l' ? 1 : 1;
+          row.innerHTML = `
+            <label>${labels[key]} <span id="veg-val-${key}">${values[key]}</span></label>
+            <input type="range" min="0" max="${max}" step="0.01" value="${values[key]}" data-key="${key}" />
+          `;
+          inputsEl.appendChild(row);
+        });
+        inputsEl.querySelectorAll('input[type="range"]').forEach(input => {
+          input.addEventListener('input', (e) => {
+            const key = e.target.dataset.key;
+            values[key] = parseFloat(e.target.value);
+            document.getElementById('veg-val-' + key).textContent = values[key].toFixed(2);
+            compute();
+          });
+        });
+      }
+      compute();
+    }
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        current = indices.find(i => i.id === tab.dataset.index);
+        render();
+      });
+    });
+
+    render();
+  });
+</script>

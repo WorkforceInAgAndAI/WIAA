@@ -1,0 +1,147 @@
+---
+const items = [
+  { effect: "Mie scattering", desc: "Hazy images due to particles such as dust or pollen. Causes gray to white tinted images." },
+  { effect: "Rayleigh scattering", desc: "Small particles in the atmosphere that result in blue-tinted images." },
+  { effect: "Non-selective scattering", desc: "Water vapor and water droplets can cause nearly a fully obstructed view." }
+];
+---
+<div class="scatter-match" id="scatter-match">
+  <h4>Activity 15: Atmospheric Effects</h4>
+  <p class="scatter-match__prompt">Match each atmospheric effect with the problem it causes.</p>
+  <div class="scatter-match__columns">
+    <div class="scatter-match__col">
+      {items.map(i => (
+        <button class="scatter-match__effect" data-effect={i.effect}>{i.effect}</button>
+      ))}
+    </div>
+    <div class="scatter-match__col">
+      {[...items].sort(() => Math.random() - 0.5).map(i => (
+        <button class="scatter-match__desc" data-effect={i.effect}>{i.desc}</button>
+      ))}
+    </div>
+  </div>
+  <p class="scatter-match__status" id="scatter-match-status"></p>
+</div>
+
+<style is:global>
+  .scatter-match {
+    background: white;
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    padding: 24px;
+    margin: 30px 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  }
+  .scatter-match h4 {
+    color: var(--isu-red);
+    font-size: 1.2em;
+    margin-bottom: 8px;
+    font-family: Georgia, Garamond, 'Times New Roman', serif;
+  }
+  .scatter-match__prompt {
+    color: var(--text-dark);
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+  .scatter-match__columns {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .scatter-match__col {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .scatter-match__effect,
+  .scatter-match__desc {
+    padding: 10px 14px;
+    border: 1px solid var(--border-light);
+    background: white;
+    color: var(--text-dark);
+    text-align: left;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 13px;
+    line-height: 1.5;
+    font-family: Georgia, Garamond, 'Times New Roman', serif;
+  }
+  .scatter-match__effect.selected,
+  .scatter-match__desc.selected {
+    border-color: var(--isu-red);
+    background: rgba(196, 30, 58, 0.06);
+  }
+  .scatter-match__effect.matched,
+  .scatter-match__desc.matched {
+    border-color: #2e7d32;
+    background: rgba(46, 125, 50, 0.08);
+    color: #2e7d32;
+    cursor: default;
+  }
+  .scatter-match__status {
+    margin-top: 16px;
+    font-weight: 600;
+    color: var(--isu-red);
+    min-height: 1.2em;
+  }
+  @media (min-width: 768px) {
+    .scatter-match__columns {
+      flex-direction: row;
+    }
+    .scatter-match__col {
+      flex: 1;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    let selectedEffect: HTMLElement | null = null;
+    let selectedDesc: HTMLElement | null = null;
+    let matchedCount = 0;
+    const total = 3;
+    const status = document.getElementById('scatter-match-status');
+
+    document.querySelectorAll('.scatter-match__effect').forEach(btn => {
+      btn.addEventListener('click', () => {
+        if (btn.classList.contains('matched')) return;
+        if (selectedEffect) selectedEffect.classList.remove('selected');
+        selectedEffect = btn as HTMLElement;
+        selectedEffect.classList.add('selected');
+        tryMatch();
+      });
+    });
+    document.querySelectorAll('.scatter-match__desc').forEach(btn => {
+      btn.addEventListener('click', () => {
+        if (btn.classList.contains('matched')) return;
+        if (selectedDesc) selectedDesc.classList.remove('selected');
+        selectedDesc = btn as HTMLElement;
+        selectedDesc.classList.add('selected');
+        tryMatch();
+      });
+    });
+
+    function tryMatch() {
+      if (!selectedEffect || !selectedDesc) return;
+      const isMatch = selectedEffect.dataset.effect === selectedDesc.dataset.effect;
+      if (isMatch) {
+        selectedEffect.classList.remove('selected');
+        selectedDesc.classList.remove('selected');
+        selectedEffect.classList.add('matched');
+        selectedDesc.classList.add('matched');
+        matchedCount++;
+        if (status) status.textContent = matchedCount === total ? 'All matched! Nice work.' : `${matchedCount} of ${total} matched.`;
+        selectedEffect = null;
+        selectedDesc = null;
+      } else {
+        if (status) status.textContent = 'Not quite, try again.';
+        setTimeout(() => {
+          selectedEffect?.classList.remove('selected');
+          selectedDesc?.classList.remove('selected');
+          selectedEffect = null;
+          selectedDesc = null;
+        }, 700);
+      }
+    }
+  });
+</script>

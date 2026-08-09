@@ -1,0 +1,68 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import SatSidebar from '../../../components/SatSidebar.astro';
+import SatLessonNav from '../../../components/SatLessonNav.astro';
+
+const content = await import('../../../content/satellites/12-references/lesson-1.md');
+const { Content } = content;
+const { title, chapter, lesson } = content.frontmatter;
+---
+
+<BaseLayout title={title}>
+  <div class="container" style="max-width: 1400px; margin: 30px auto; padding: 0 20px;">
+    <div style="display: grid; grid-template-columns: 250px 1fr; gap: 24px; align-items: start;">
+      <SatSidebar currentChapter={chapter} currentLesson={lesson} />
+      <div class="content-area">
+        <div class="content-header">
+          <h1>{title}</h1>
+        </div>
+        <article class="lesson-content">
+          <Content />
+        </article>
+        <SatLessonNav
+          prev={{ href: '/satellites/11-careers/review', label: 'Previous' }}
+          progress={`${chapter}.${lesson} / 11 Chapters`}
+        />
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+<style is:global>
+  :root {
+    --isu-red: #c41e3a;
+    --isu-gold: #f8c600;
+    --border-light: #ddd;
+    --text-dark: #1a1a1a;
+    --text-medium: #666;
+    --isu-dark-red: #a01729;
+  }
+  .references-list {
+    padding-left: 26px;
+    color: var(--text-dark);
+    line-height: 1.9;
+  }
+  .references-list li {
+    margin-bottom: 14px;
+    font-size: 14px;
+  }
+  .references-list a {
+    color: var(--isu-red);
+    word-break: break-word;
+  }
+  .references-list a:hover {
+    color: var(--isu-dark-red);
+  }
+  .references-list em {
+    font-style: italic;
+    color: var(--text-medium);
+  }
+</style>
+<style>
+  @media (max-width: 768px) {
+    div[style*="grid-template-columns"] {
+      display: flex !important;
+      flex-direction: column-reverse !important;
+      gap: 16px !important;
+    }
+  }
+</style>

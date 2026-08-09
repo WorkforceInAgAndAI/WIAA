@@ -1,0 +1,113 @@
+[
+  {
+    "q": "What is artificial intelligence, in the simplest terms used in this chapter?",
+    "options": [
+      "Smart computers that think and reason like humans",
+      "Specialized satellite sensors used for high-resolution imaging",
+      "A statistical method for measuring soil moisture levels",
+      "A pricing model that determines data access costs"
+    ],
+    "correct": 0,
+    "explain": "Artificial intelligence is described as smart computers that think like humans, helping them recognize patterns, learn from examples, provide suggestions, and make decisions."
+  },
+  {
+    "q": "What distinguishes machine learning from being told every explicit rule?",
+    "options": [
+      "A system requiring no data at all to function",
+      "Learning from many labeled examples with human supervision",
+      "A system that can only process images, not text",
+      "Simply another name for agentic AI systems"
+    ],
+    "correct": 1,
+    "explain": "Machine learning is AI that learns from many examples (data) with human supervision instead of being told every rule."
+  },
+  {
+    "q": "What is the key difference between deep learning and machine learning described in this chapter?",
+    "options": [
+      "An approach that cannot use labeled data at all",
+      "A field entirely unrelated to machine learning",
+      "Using layers to find patterns in raw data without given features",
+      "A method that only works with numerical data"
+    ],
+    "correct": 2,
+    "explain": "Deep learning is a type of machine learning that uses layers to process and recognize patterns from unstructured data without human supervision; labels are provided in both, but in deep learning features are not provided to computers."
+  },
+  {
+    "q": "What can generative AI models create?",
+    "options": [
+      "Only numerical predictions from structured datasets",
+      "Only satellite imagery captured by orbiting sensors",
+      "Only spreadsheets containing organized tabular data",
+      "Multimedia content, including text, images, sound, and video"
+    ],
+    "correct": 3,
+    "explain": "Generative AI refers to deep learning models that can create multimedia content, including text, images, sounds, and videos."
+  },
+  {
+    "q": "What are foundation models, and what are some examples?",
+    "options": [
+      "Large AI models trained on vast data, able to perform many tasks",
+      "Small models trained narrowly for one specific task",
+      "Physical hardware components mounted on a satellite",
+      "A specific type of vegetation index formula"
+    ],
+    "correct": 0,
+    "explain": "Foundation models are very large generative AI models trained on vast amounts of data, able to perform a variety of tasks. ChatGPT, Gemini, or Claude are examples of foundation models."
+  },
+  {
+    "q": "What does agentic AI use as its basis to act as a helper for a specific area?",
+    "options": [
+      "Raw, unprocessed satellite imagery with no further processing",
+      "Foundation models that provide broad, general-purpose knowledge",
+      "Radar sensors mounted on ground-based farm equipment",
+      "Vegetation index values calculated in prior seasons"
+    ],
+    "correct": 1,
+    "explain": "Agentic AI systems use foundation models to target a specific area as helpers, learning new information, creating plans, and even assisting with tasks."
+  },
+
+  {
+    "q": "What can AI help agronomists do regarding plant stress?",
+    "options": [
+      "Detects stress only after it causes crop failure",
+      "Physically removes stressed plants from the field",
+      "Replaces the need for physical sensors entirely",
+      "Identifies the type, level, and severity of stress, and forecasts its progression"
+    ],
+    "correct": 3,
+    "explain": "AI can help agronomists identify the type, level, and severity of stress, and forecast how it will act in the future."
+  },
+  {
+    "q": "What is a multimodal model?",
+    "options": [
+      "Works with multiple data types at once, such as text and images",
+      "Processes only plain text input, nothing else",
+      "A satellite platform equipped with multiple sensors",
+      "A vegetation index combining several spectral bands"
+    ],
+    "correct": 0,
+    "explain": "Multimodal models are AI models that can work with multiple data types simultaneously, such as text, images, audio, and video."
+  },
+    {
+    "q": "What happens after a model is trained on annotated data?",
+    "options": [
+      "Tested and validated to confirm it performs accurately",
+      "Immediately deployed with no further review",
+      "The training data is permanently deleted",
+      "Development ends permanently at that point"
+    ],
+    "correct": 0,
+    "explain": "After training, the model is tested and validated to ensure the model is performing accurately, before being deployed to be used in the field."
+  },
+  {
+    "q": "Why is AI model development described as a cyclical process?",
+    "options": [
+      "Trained models are never actually deployed",
+      "Developers keep learning new things throughout the process, forming a cycle",
+      "It repeats identical steps with no new learning",
+      "It only applies specifically to satellite-derived data"
+    ],
+    "correct": 1,
+    "explain": "Throughout this process AI developers may learn new things about the data, methods used in training, or new technology, so the process forms a development cycle for continual improvements."
+  }
+]

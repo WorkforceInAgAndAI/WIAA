@@ -1,0 +1,91 @@
+[
+  {
+    "q": "Besides sensors and resolution, what other factor determines which satellite scientists choose to use?",
+    "options": [
+      "The cost and availability of the satellite data",
+      "The color scheme painted on the satellite's exterior panels",
+      "The number of ground stations the launching country operates",
+      "The specific country that funded and launched the satellite"
+    ],
+    "correct": 0,
+    "explain": "The cost and availability of the satellite data is also a determining factor when scientists choose which satellite to use."
+  },
+  {
+    "q": "Why can Landsat and Sentinel data be accessed free of charge?",
+    "options": [
+      "They use outdated sensor technology that private companies no longer license",
+      "They are publicly funded",
+      "Their spatial resolution is too low to be sold commercially",
+      "Access is restricted to university researchers only, at no cost"
+    ],
+    "correct": 1,
+    "explain": "Data from satellites such as Landsat or Sentinel can be accessed free of charge because they are publicly funded."
+  },
+  {
+    "q": "A scientist who needs daily images with high spatial resolution would most likely need to:",
+    "options": [
+      "Rely only on freely accessible public satellite archives",
+      "Launch and operate their own dedicated satellite mission",
+      "Restrict their research to historical Landsat archives only",
+      "Pay to access data that meets that research objective"
+    ],
+    "correct": 3,
+    "explain": "A scientist interested in daily images with high spatial resolution may be required to pay to access data that will meet the research objective, unlike a scientist studying long-term landscape change who may achieve their goals with free data."
+  },
+  {
+    "q": "What is a key labor-related trade-off between drone data and satellite data?",
+    "options": [
+      "Drones require no labor at all, while satellites require a large trained ground crew",
+      "Satellites do not require much labor to request data, while drone-based data requires time and labor to go to the field",
+      "Both approaches require an identical amount of labor to collect equivalent data",
+      "Satellite data can never be requested or accessed remotely by researchers"
+    ],
+    "correct": 1,
+    "explain": "Labor requirement is a factor to consider, as satellites do not require much labor to request data, whereas drone-based data requires time and labor to go to the field to collect the data."
+  },
+
+  {
+    "q": "How can unequal access to satellite data occur even at a local scale?",
+    "options": [
+      "It cannot occur locally, since this type of inequality only happens between entire countries",
+      "A large corporation may view privately owned land using imagery inaccessible to local landowners due to cost or availability",
+      "Local governments are guaranteed free access to all satellite imagery by international law",
+      "Only private individuals, never companies, are able to purchase local satellite imagery"
+    ],
+    "correct": 1,
+    "explain": "Unequal access to data can be narrowed to a local scale, where a large corporation may view privately owned land using imagery inaccessible to local landowners due to cost or availability."
+  },
+  {
+    "q": "What is a key difference between free and private-company satellite data in terms of use?",
+    "options": [
+      "Free and private data carry identical usage restrictions in nearly every case",
+      "Private company data is always guaranteed to be more accurate than free public data",
+      "Free data can be used and shared without restrictions, while private data often has restrictions on use and sharing",
+      "Free data cannot legally be used for any academic or scientific research purposes"
+    ],
+    "correct": 2,
+    "explain": "Free access to data can be used and shared without restrictions, however data from private companies often has restrictions over what the data can be used for, how it can be used, and where or how findings can be shared."
+  },
+  {
+    "q": "What is data sovereignty?",
+    "options": [
+      "The idea that outer space belongs to whichever country has launched the most satellites",
+      "A pricing model used by private companies to license satellite imagery",
+      "A classification describing a satellite's specific orbital altitude and inclination",
+      "The idea that a country, group, or person has rights over data concerning their own land"
+    ],
+    "correct": 3,
+    "explain": "Data sovereignty is the idea that a country, group, or person has rights over data concerning their own land."
+  },
+  {
+    "q": "Why does outer space being a 'global common' create tension with data sovereignty?",
+    "options": [
+      "No countries have ownership of outer space or the data collected from there, meaning data can be collected over any area without restriction",
+      "It does not create any real tension, since the two concepts apply to entirely separate legal domains",
+      "Global common status requires every country to pay an identical fee for satellite data access",
+      "It legally prevents satellites from ever orbiting over certain restricted countries"
+    ],
+    "correct": 0,
+    "explain": "Outer space is a global common with no country ownership, meaning data can be collected over any area of the world without restrictions, which prompts ethical discussion when combined with the concept of data sovereignty."
+  }
+]

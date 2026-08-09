@@ -1,0 +1,112 @@
+[
+  {
+    "q": "What do multispectral cameras detect that a standard RGB camera does not?",
+    "options": [
+      "Only visible red light",
+      "Sound waves",
+      "GPS coordinates",
+      "Red edge and near-infrared (NIR) wavelengths"
+    ],
+    "correct": 3,
+    "explain": "Multispectral cameras capture red, green, and blue like RGB cameras, but also detect red edge and near-infrared (NIR) wavelengths, which interact with chlorophyll."
+  },
+  {
+    "q": "How does a healthy plant typically reflect NIR and red light compared to a stressed plant?",
+    "options": [
+      "Healthy plants reflect less NIR light and more red light",
+      "Healthy and stressed plants reflect light identically",
+      "Healthy plants reflect more NIR light and less red light",
+      "Healthy plants reflect no light at all"
+    ],
+    "correct": 2,
+    "explain": "Healthier plants reflect more near-infrared light and less red light. Stressed plants show the opposite pattern."
+  },
+  {
+    "q": "What does NDVI stand for?",
+    "options": [
+      "National Drone Vegetation Index",
+      "Normalized Difference Vegetation Index",
+      "Near-infrared Digital Value Indicator",
+      "Nutrient Density Vegetation Indicator"
+    ],
+    "correct": 1,
+    "explain": "NDVI stands for Normalized Difference Vegetation Index, one of many vegetation index formulas built on reflectance values."
+  },
+  {
+    "q": "What is the correct NDVI formula?",
+    "options": [
+      "NDVI = (Red - NIR) / (Red + NIR)",
+      "NDVI = NIR / Red",
+      "NDVI = (NIR - Red) / (NIR + Red)",
+      "NDVI = Red / NIR"
+    ],
+    "correct": 2,
+    "explain": "NDVI is calculated as (NIR minus Red) divided by (NIR plus Red), using reflectance values for those two wavelengths."
+  },
+  {
+    "q": "Using the formula NDVI = (NIR - Red) / (NIR + Red), what is the NDVI for a plot with Red = 18 and NIR = 53?",
+    "options": [
+      "0.30",
+      "0.49",
+      "0.65",
+      "0.71"
+    ],
+    "correct": 1,
+    "explain": "(53 - 18) / (53 + 18) = 35 / 71, which is approximately 0.49."
+  },
+  {
+    "q": "Of these four plots, which has the highest (healthiest) NDVI: Plot A (Red 20, NIR 49), Plot B (Red 10, NIR 65), Plot C (Red 15, NIR 58), or Plot D (Red 18, NIR 53)?",
+    "options": [
+      "Plot A",
+      "Plot B",
+      "Plot C",
+      "Plot D"
+    ],
+    "correct": 1,
+    "explain": "Plot B calculates to (65 - 10) / (65 + 10) = 55 / 75, approximately 0.73, the highest NDVI of the four and therefore the healthiest."
+  },
+  {
+    "q": "What does a very low NDVI value typically indicate?",
+    "options": [
+      "Extremely healthy, dense vegetation",
+      "A malfunctioning sensor",
+      "The presence of water only",
+      "Bare soil or an area with no plants present"
+    ],
+    "correct": 3,
+    "explain": "A very low NDVI value indicates that little to no live vegetation is present, most often a sign of bare soil."
+  },
+  {
+    "q": "A plot's NDVI rises from 0.25 to 0.60 between two drone flights. What does this most likely signify?",
+    "options": [
+      "The plants in that plot are becoming less healthy",
+      "The sensor recorded an error",
+      "The field was replanted with a different crop",
+      "The plants in that plot are becoming healthier or more established"
+    ],
+    "correct": 3,
+    "explain": "A rising NDVI signals improving plant health or growth \u2014 more NIR reflectance and less red reflectance over time."
+  },
+  {
+    "q": "A plot shows a very low NDVI value at two separate time points. What does this most likely suggest?",
+    "options": [
+      "The plot likely has little to no vegetation, such as bare soil or a stand gap",
+      "The plot is recovering from stress",
+      "The plot is the healthiest in the field",
+      "The sensor needs recalibration"
+    ],
+    "correct": 0,
+    "explain": "A consistently low NDVI across multiple time points points to a persistent lack of live vegetation, rather than a temporary stress event."
+  },
+  {
+    "q": "Why are red and NIR reflectance specifically used to calculate NDVI, rather than other wavelengths?",
+    "options": [
+      "They are the only wavelengths a drone camera can detect",
+      "They interact strongly with chlorophyll, making them reliable indicators of plant health",
+      "They are the cheapest wavelengths to measure",
+      "They only matter for measuring soil, not plants"
+    ],
+    "correct": 1,
+    "explain": "Red and NIR wavelengths interact with chlorophyll in a way that shifts predictably between healthy and stressed plants, making them useful indicators of plant health."
+  }
+]

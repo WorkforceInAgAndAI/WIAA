@@ -1,0 +1,98 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import SatSidebar from '../../../components/SatSidebar.astro';
+import SatLessonNav from '../../../components/SatLessonNav.astro';
+import SatCaseStudyTabs from '../../../components/SatCaseStudyTabs.astro';
+
+const content = await import('../../../content/satellites/03-agricultural-applications/lesson-2.md');
+const { Content } = content;
+const { title, chapter, lesson } = content.frontmatter;
+---
+
+<BaseLayout title={title}>
+  <div class="container" style="max-width: 1400px; margin: 30px auto; padding: 0 20px;">
+    <div style="display: grid; grid-template-columns: 250px 1fr; gap: 24px; align-items: start;">
+      <SatSidebar currentChapter={chapter} currentLesson={lesson} />
+      <div class="content-area">
+        <div class="content-header">
+          <p class="chapter-label">Chapter {chapter}: Agricultural Applications</p>
+          <h1>{title}</h1>
+        </div>
+        <article class="lesson-content">
+          <Content />
+        </article>
+
+        <SatCaseStudyTabs>
+          <Fragment slot="firms">
+            <h4>Fire Information for Resource Management System (FIRMS)</h4>
+            <p>Near real-time map of active fires across the United States and Canada and on a global scale. Fire data in this public resource use satellite imagery data from MODIS and VIIRS. Efforts are part of a collaboration between NASA's LANCE program and the United Nations Food and Agriculture Organization. In fire prone areas, this can be especially useful to farmers to track nearby fires and determine when to take proactive measures to prevent the spread of fires to their fields.<sup>11</sup></p>
+            <img src="/WIAA/images/fire_information.jpg" alt="FIRMS interface" style="max-width: 800px; width: 100%; height: auto; display: block; margin: 20px auto;" />
+            <p class="image-caption">FIRMS interface.<sup>12</sup></p>
+          </Fragment>
+          <Fragment slot="drought">
+            <h4>U.S. Drought Monitor</h4>
+            <p>A variety of satellites with varying sensors are used in combination to monitor drought conditions. Precipitation, soil moisture, ground water, land surface temperature, vegetative indices, and evapotranspiration are all parameters that are measured by different types of sensors across different satellite platforms. This work is a collaboration between the National Drought Mitigation Center at the University of Nebraska Lincoln, the USDA, NOAA, NASA, and US Department of Commerce. This application of satellites can help farmers to determine if they need to irrigate their crops.<sup>13</sup></p>
+            <img src="/WIAA/images/us_drought_monitor.jpg" alt="US Drought Monitor interface" style="max-width: 800px; width: 100%; height: auto; display: block; margin: 20px auto;" />
+            <p class="image-caption">The US Drought Monitor interface.<sup>14</sup></p>
+          </Fragment>
+          <Fragment slot="gee">
+            <h4>Google Earth Engine</h4>
+            <p>A publicly accessible data program consisting of satellite imagery from Landsat, Sentinel-2, MODIS, as well as NAIP, precipitation, sea surface temperature, CHIRPS climate, and elevation data. Up to 40 years of historical data is accessible in the dataset. Users can use data in a variety of ways such as tracking crop health over time, mapping disease risk areas, water tables, or urban developments. Google Earth Engine is a tool farmers can use to answer a variety of questions about their fields such as flood zones, historically poor health areas of their fields, and depletion of field nutrients over time based on vegetative indices.<sup>15</sup></p>
+            <img src="/WIAA/images/google_earth_engine.jpg" alt="Google Earth Engine interface" style="max-width: 800px; width: 100%; height: auto; display: block; margin: 20px auto;" />
+            <p class="image-caption">Google Earth Engine interface.<sup>16</sup></p>
+          </Fragment>
+          <Fragment slot="geoglam">
+            <h4>Group on Earth Observations Global Agricultural Monitoring (GEOGLAM)</h4>
+            <p>An international collaboration pulling data from Landsat, Sentinel, and MODIS satellites to monitor crop health and predict yields on a global scale. The data used for this group predicts yields before harvest to help governments and food security organizations to prepare for potential food shortages. GEOGLAM releases a monthly assessment for 97% of agriculture globally. This work is a collaboration between 70 groups across vast disciplines including the main efforts by the University of Maryland and NASA Harvest. Farmers can use this tool globally to estimate crop yields before harvest. This can be useful in deciding when to harvest the crop, if the crop should be grown to maturity, or if a secondary cash crop should be grown.<sup>17</sup></p>
+            <img src="/WIAA/images/GEOGLAM.jpg" alt="GEOGLAM interface" style="max-width: 800px; width: 100%; height: auto; display: block; margin: 20px auto;" />
+            <p class="image-caption">GEOGLAM interface.<sup>18</sup></p>
+          </Fragment>
+        </SatCaseStudyTabs>
+
+        <SatLessonNav
+          prev={{ href: '/satellites/03-agricultural-applications/lesson-1', label: 'Previous' }}
+          next={{ href: '/satellites/03-agricultural-applications/lesson-3', label: 'Next' }}
+          progress={`${chapter}.${lesson} / 11 Chapters`}
+        />
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+<style is:global>
+  :root {
+    --isu-red: #c41e3a;
+    --isu-gold: #f8c600;
+    --border-light: #ddd;
+    --text-dark: #1a1a1a;
+    --text-medium: #666;
+    --isu-dark-red: #a01729;
+  }
+  .lesson-content p {
+    line-height: 1.8;
+    color: var(--text-dark);
+    margin-bottom: 18px;
+  }
+  .section-intro {
+    font-size: 1.05em;
+    color: var(--text-medium);
+    font-style: italic;
+    margin-bottom: 24px;
+  }
+  .image-caption {
+    text-align: center;
+    color: var(--text-medium);
+    font-size: 0.9em;
+    font-style: italic;
+    margin-top: -10px;
+    margin-bottom: 20px;
+  }
+</style>
+<style>
+  @media (max-width: 768px) {
+    div[style*="grid-template-columns"] {
+      display: flex !important;
+      flex-direction: column-reverse !important;
+      gap: 16px !important;
+    }
+  }
+</style>

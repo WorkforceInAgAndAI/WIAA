@@ -1,0 +1,96 @@
+---
+const tabs = [
+  { id: "firms", label: "FIRMS" },
+  { id: "drought", label: "U.S. Drought Monitor" },
+  { id: "gee", label: "Google Earth Engine" },
+  { id: "geoglam", label: "GEOGLAM" }
+];
+---
+<div class="case-tabs" id="case-tabs">
+  <div class="case-tabs__nav">
+    {tabs.map((t, i) => (
+      <button class={`case-tabs__btn ${i === 0 ? 'active' : ''}`} data-tab={t.id}>{t.label}</button>
+    ))}
+  </div>
+  <div class="case-tabs__panels">
+    <div class="case-tabs__panel active" data-panel="firms">
+      <slot name="firms" />
+    </div>
+    <div class="case-tabs__panel" data-panel="drought">
+      <slot name="drought" />
+    </div>
+    <div class="case-tabs__panel" data-panel="gee">
+      <slot name="gee" />
+    </div>
+    <div class="case-tabs__panel" data-panel="geoglam">
+      <slot name="geoglam" />
+    </div>
+  </div>
+</div>
+
+<style is:global>
+  .case-tabs {
+    margin: 20px 0 30px;
+  }
+  .case-tabs__nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--border-light);
+    padding-bottom: 12px;
+  }
+  .case-tabs__btn {
+    padding: 10px 18px;
+    border: 1px solid var(--border-light);
+    background: white;
+    color: var(--text-dark);
+    border-radius: 6px 6px 0 0;
+    cursor: pointer;
+    font-family: Georgia, Garamond, 'Times New Roman', serif;
+    font-size: 14px;
+    transition: background 0.2s, color 0.2s;
+  }
+  .case-tabs__btn:hover {
+    border-color: var(--isu-red);
+  }
+  .case-tabs__btn.active {
+    background: var(--isu-red);
+    color: white;
+    border-color: var(--isu-red);
+  }
+  .case-tabs__panel {
+    display: none;
+  }
+  .case-tabs__panel.active {
+    display: block;
+  }
+  .case-tabs__panel h4 {
+    color: var(--isu-red);
+    font-size: 1.2em;
+    margin-bottom: 10px;
+  }
+  .case-tabs__panel p {
+    line-height: 1.8;
+    color: var(--text-dark);
+    margin-bottom: 16px;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const container = document.getElementById('case-tabs');
+    if (!container) return;
+    const buttons = container.querySelectorAll('.case-tabs__btn');
+    const panels = container.querySelectorAll('.case-tabs__panel');
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const target = (btn as HTMLElement).dataset.tab;
+        buttons.forEach(b => b.classList.remove('active'));
+        panels.forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+        container.querySelector(`[data-panel="${target}"]`)?.classList.add('active');
+      });
+    });
+  });
+</script>

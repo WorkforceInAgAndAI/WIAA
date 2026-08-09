@@ -1,0 +1,107 @@
+---
+const prompts = [
+  { id: "temp", label: "Temperature measurement", answer: "Thermal sensor" },
+  { id: "canopy", label: "3D canopy map", answer: "LiDAR" },
+  { id: "ndvi", label: "Calculate NDVI", answer: "Multispectral camera" },
+  { id: "phone", label: "Phone-like images", answer: "RGB camera" }
+];
+const options = ["Thermal sensor", "LiDAR", "Multispectral camera", "RGB camera"];
+---
+<div class="sensor-match" id="sensor-match">
+  <h4>Activity 11: Sensor Measurements</h4>
+  <p class="sensor-match__prompt">Choose the sensor that can be used to collect each measurement.</p>
+  {prompts.map(p => (
+    <div class="sensor-match__row" data-answer={p.answer}>
+      <span class="sensor-match__label">{p.label}</span>
+      <div class="sensor-match__options">
+        {options.map(o => (
+          <button class="sensor-match__opt" data-value={o}>{o}</button>
+        ))}
+      </div>
+      <p class="sensor-match__result"></p>
+    </div>
+  ))}
+</div>
+
+<style is:global>
+  .sensor-match {
+    background: white;
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    padding: 24px;
+    margin: 30px 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  }
+  .sensor-match h4 {
+    color: var(--isu-red);
+    font-size: 1.2em;
+    margin-bottom: 8px;
+    font-family: Georgia, Garamond, 'Times New Roman', serif;
+  }
+  .sensor-match__prompt {
+    color: var(--text-dark);
+    margin-bottom: 20px;
+  }
+  .sensor-match__row {
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border-light);
+  }
+  .sensor-match__row:last-child {
+    border-bottom: none;
+  }
+  .sensor-match__label {
+    display: block;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 10px;
+  }
+  .sensor-match__options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .sensor-match__opt {
+    padding: 8px 14px;
+    border: 1px solid var(--border-light);
+    background: white;
+    color: var(--text-dark);
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 13px;
+    font-family: Georgia, Garamond, 'Times New Roman', serif;
+  }
+  .sensor-match__opt.correct {
+    border-color: #2e7d32;
+    background: rgba(46, 125, 50, 0.1);
+    color: #2e7d32;
+  }
+  .sensor-match__opt.incorrect {
+    border-color: var(--isu-red);
+    background: rgba(196, 30, 58, 0.08);
+  }
+  .sensor-match__result {
+    margin-top: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--isu-red);
+    min-height: 1em;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.sensor-match__row').forEach(row => {
+      const answer = (row as HTMLElement).dataset.answer;
+      const result = row.querySelector('.sensor-match__result');
+      row.querySelectorAll('.sensor-match__opt').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const isCorrect = (btn as HTMLElement).dataset.value === answer;
+          row.querySelectorAll('.sensor-match__opt').forEach(b => b.classList.remove('correct', 'incorrect'));
+          btn.classList.add(isCorrect ? 'correct' : 'incorrect');
+          if (result) result.textContent = isCorrect ? 'Correct!' : 'Not quite, try again.';
+        });
+      });
+    });
+  });
+</script>

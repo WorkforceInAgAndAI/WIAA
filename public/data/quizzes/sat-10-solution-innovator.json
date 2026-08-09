@@ -1,0 +1,101 @@
+[
+  {
+    "q": "Besides collecting images, what other kinds of data can satellites collect?",
+    "options": [
+      "Only images captured in the visible-light spectrum",
+      "Only audio recordings picked up from ground-based microphones",
+      "Non-image data such as temperature, wind speed, or gravitational pull",
+      "No additional data at all, since satellites operate exclusively during daylight"
+    ],
+    "correct": 2,
+    "explain": "Satellites also carry other sensors that are used to collect non-image data such as temperature, wind speed, or gravitational pull."
+  },
+  {
+    "q": "How is satellite data typically accessed?",
+    "options": [
+      "Through organizations who manage the satellite in space",
+      "It generally cannot be accessed by the public or by outside researchers",
+      "Only by physically retrieving and returning the satellite to Earth",
+      "Through direct two-way radio contact established with the orbiting satellite"
+    ],
+    "correct": 0,
+    "explain": "Satellite data can be accessed through organizations who manage the satellite in space."
+  },
+  {
+    "q": "What are drones especially useful tools for?",
+    "options": [
+      "Collecting only low spatial resolution data across wide areas",
+      "Collecting non-image sensor data exclusively, with no cameras",
+      "Storing and transporting pesticide containers between fields",
+      "High spatial resolution data"
+    ],
+    "correct": 3,
+    "explain": "Drones are useful tools for high spatial resolution data, and some carry tanks for applying pesticides or fertilizers."
+  },
+  {
+    "q": "Who is required to manage and deploy agricultural drones to fields?",
+    "options": [
+      "Any farmer, regardless of training or certification",
+      "A licensed drone pilot",
+      "No license or certification of any kind is required",
+      "Only certified satellite operators working for a government agency"
+    ],
+    "correct": 1,
+    "explain": "Drones can be deployed to fields and managed by a licensed drone pilot."
+  },
+  {
+    "q": "What allows a rover to follow the same path at the same time each day?",
+    "options": [
+      "Its canopy-level cameras positioned close to the plants",
+      "Programmable driving alone, without any scheduling capability",
+      "Programmable scouting",
+      "Signals received exclusively from GPS satellites overhead"
+    ],
+    "correct": 2,
+    "explain": "Programmable scouting allows the rover to follow the same path at the same time each day."
+  },
+  {
+    "q": "What agricultural tasks are rovers well-suited for, given their canopy-level cameras and programmable movement?",
+    "options": [
+      "Measuring plant height, monitoring individual plants, scouting for insects/weeds/diseases in precise locations, and yield estimation",
+      "Only aerial mapping of very large regional areas",
+      "Only forecasting upcoming regional weather patterns",
+      "Only broadcasting long-range communication signals across the farm"
+    ],
+    "correct": 0,
+    "explain": "Rovers can be used in agriculture for tasks such as measuring plant height and structure, monitoring individual plants or leaves, scouting for insects, weeds, and diseases in precise locations, counting plants, measuring plant density, and yield estimations."
+  },
+  {
+    "q": "How does an AI model learn to identify objects like grasshoppers it has never seen before?",
+    "options": [
+      "It is manually programmed with a complete list of every possible grasshopper image",
+      "It makes a random guess based only on the dominant color in the image",
+      "A human must manually identify every single image the model encounters",
+      "It is trained on many labeled example images and learns the shared pattern of that category"
+    ],
+    "correct": 3,
+    "explain": "By training an AI model with thousands of labeled images, the model learns that new objects with the same pattern as the training examples belong to the same category, allowing it to identify objects it has never seen before."
+  },
+  {
+    "q": "What factors should guide the choice of a pest management solution?",
+    "options": [
+      "Only the upfront monetary cost of the chosen technique",
+      "Field conditions, available resources, primary crop, legal regulations, timeliness, accuracy needed, cost, and the specific pest",
+      "Only the personal preference of the individual farmer",
+      "Only the total acreage size of the affected field"
+    ],
+    "correct": 1,
+    "explain": "The appropriate management solution must be decided based on current field conditions, available resources, primary crop, legal regulations, timeliness of application, accuracy needed, cost of technique, and the pest needing management."
+  },
+  {
+    "q": "What is a limitation of precision application tools compared to tractor-mounted tools?",
+    "options": [
+      "They are fundamentally unable to target specific pests with any precision",
+      "They are always significantly more expensive with no offsetting benefit",
+      "They can be limited in their deployment across large fields",
+      "They cannot be used in any agricultural setting whatsoever"
+    ],
+    "correct": 2,
+    "explain": "Precision application tools address precise applications; however, they can be limited in their deployment across large fields."
+  }
+]

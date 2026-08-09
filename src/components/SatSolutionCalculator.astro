@@ -1,0 +1,251 @@
+---
+const platforms = [
+  { id: "satellite", name: "Satellite Imagery ($1,200, 2 days, 70% acc.)", cost: 1200, time: 48, accuracy: 70 },
+  { id: "drone-sensor", name: "Sensor Drone ($4,500, 8 hrs, 88% acc.)", cost: 4500, time: 8, accuracy: 88 },
+  { id: "rover", name: "Ground Rover ($6,000, 20 hrs, 92% acc.)", cost: 6000, time: 20, accuracy: 92 },
+  { id: "scout", name: "Human Crop Scout ($800, 16 hrs, 80% acc.)", cost: 800, time: 16, accuracy: 80 }
+];
+const management = [
+  { id: "tillage", name: "Tillage ($2,000, 10 hrs) \u2014 weeds", cost: 2000, time: 10, pest: "weed" },
+  { id: "herbicide", name: "Herbicide Application ($3,500, 6 hrs) \u2014 weeds", cost: 3500, time: 6, pest: "weed" },
+  { id: "biocontrol", name: "Biological Insects ($5,000, 4 hrs) \u2014 insects", cost: 5000, time: 4, pest: "insect" },
+  { id: "insecticide", name: "Insecticide Application ($3,000, 5 hrs) \u2014 insects", cost: 3000, time: 5, pest: "insect" }
+];
+const BUDGET = 75000;
+const HOURS = 432;
+const ACCURACY_THRESHOLD = 75;
+const DAILY_LOSS = 1000;
+---
+<div class="sat-solution-calc" id="sat-solution-calc">
+  <h4>Activity 25: Final Solution</h4>
+  <p class="sat-solution-calc__constraints">
+    You have <strong>432 hours</strong> before you leave on vacation, and a <strong>$75,000 budget</strong>.
+    Every day you spend managing these pests costs an additional <strong>$1,000 in yield losses</strong>.
+    Your solution needs at least <strong>75% accuracy</strong> to be considered reliable.
+    You have both Japanese beetles (insects) and waterhemp (weeds) to address.
+  </p>
+
+  <h5>Choose a platform for identification:</h5>
+  <div class="sat-solution-calc__options" id="platform-options">
+    {platforms.map(p => (
+      <button class="sat-solution-calc__opt" data-group="platform" data-id={p.id} data-cost={p.cost} data-time={p.time} data-accuracy={p.accuracy}>{p.name}</button>
+    ))}
+  </div>
+
+  <h5>Choose management tool(s) &mdash; select at least one for weeds and one for insects:</h5>
+  <div class="sat-solution-calc__options" id="management-options">
+    {management.map(m => (
+      <button class="sat-solution-calc__opt sat-solution-calc__opt--multi" data-group="management" data-id={m.id} data-cost={m.cost} data-time={m.time} data-pest={m.pest}>{m.name}</button>
+    ))}
+  </div>
+
+  <div class="sat-solution-calc__totals">
+    <div class="sat-solution-calc__stat">
+      <span>Cost</span>
+      <strong id="calc-cost">$0</strong> / $75,000
+    </div>
+    <div class="sat-solution-calc__stat">
+      <span>Time</span>
+      <strong id="calc-time">0</strong> / 432 hrs
+    </div>
+    <div class="sat-solution-calc__stat">
+      <span>Accuracy</span>
+      <strong id="calc-accuracy">&mdash;</strong> (need 75%+)
+    </div>
+    <div class="sat-solution-calc__stat">
+      <span>Est. yield loss</span>
+      <strong id="calc-loss">$0</strong>
+    </div>
+  </div>
+
+  <div class="sat-solution-calc__verdict" id="calc-verdict">Choose a platform and at least one management tool for each pest.</div>
+
+  <textarea class="sat-solution-calc__reasoning" rows="3" placeholder="Explain why you chose this workflow..."></textarea>
+</div>
+
+<style is:global>
+  .sat-solution-calc {
+    background: white;
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    padding: 24px;
+    margin: 30px 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  }
+  .sat-solution-calc h4 {
+    color: var(--isu-red);
+    font-size: 1.2em;
+    margin-bottom: 12px;
+    font-family: Georgia, Garamond, 'Times New Roman', serif;
+  }
+  .sat-solution-calc h5 {
+    color: var(--isu-dark-red);
+    font-size: 1em;
+    margin: 20px 0 10px;
+  }
+  .sat-solution-calc__constraints {
+    background: #f9f7f4;
+    border-radius: 6px;
+    padding: 14px;
+    color: var(--text-dark);
+    line-height: 1.7;
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+  .sat-solution-calc__options {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+  .sat-solution-calc__opt {
+    padding: 10px 14px;
+    border: 1px solid var(--isu-gold);
+    background: white;
+    color: var(--isu-red);
+    border-radius: 6px;
+    cursor: pointer;
+    text-align: left;
+    font-size: 13px;
+    font-family: Georgia, Garamond, 'Times New Roman', serif;
+  }
+  .sat-solution-calc__opt.selected {
+    background: var(--isu-red);
+    color: white;
+  }
+  .sat-solution-calc__totals {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 20px 0;
+  }
+  .sat-solution-calc__stat {
+    background: #f9f7f4;
+    border-radius: 6px;
+    padding: 12px;
+    text-align: center;
+  }
+  .sat-solution-calc__stat span {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--text-medium);
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+  }
+  .sat-solution-calc__stat strong {
+    color: var(--isu-red);
+    font-size: 1.2em;
+  }
+  .sat-solution-calc__verdict {
+    background: #f9f7f4;
+    border-left: 4px solid var(--isu-gold);
+    border-radius: 4px;
+    padding: 14px;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 16px;
+  }
+  .sat-solution-calc__verdict.success {
+    border-color: #2e7d32;
+    color: #2e7d32;
+  }
+  .sat-solution-calc__verdict.fail {
+    border-color: var(--isu-red);
+    color: var(--isu-red);
+  }
+  .sat-solution-calc__reasoning {
+    width: 100%;
+    border: 1px solid var(--border-light);
+    border-radius: 4px;
+    padding: 12px;
+    font-family: Georgia, Garamond, 'Times New Roman', serif;
+    font-size: 14px;
+    color: var(--text-dark);
+    resize: vertical;
+    box-sizing: border-box;
+  }
+  @media (min-width: 768px) {
+    .sat-solution-calc__totals {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+</style>
+
+<script define:vars={{ BUDGET, HOURS, ACCURACY_THRESHOLD, DAILY_LOSS }}>
+  document.addEventListener('DOMContentLoaded', () => {
+    let chosenPlatform = null;
+    const chosenManagement = new Set();
+
+    document.querySelectorAll('[data-group="platform"]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('[data-group="platform"]').forEach(b => b.classList.remove('selected'));
+        btn.classList.add('selected');
+        chosenPlatform = btn;
+        update();
+      });
+    });
+
+    document.querySelectorAll('[data-group="management"]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const id = btn.dataset.id;
+        if (chosenManagement.has(id)) {
+          chosenManagement.delete(id);
+          btn.classList.remove('selected');
+        } else {
+          chosenManagement.add(id);
+          btn.classList.add('selected');
+        }
+        update();
+      });
+    });
+
+    function update() {
+      let cost = 0, time = 0, accuracy = null;
+      let hasWeed = false, hasInsect = false;
+
+      if (chosenPlatform) {
+        cost += parseFloat(chosenPlatform.dataset.cost);
+        time += parseFloat(chosenPlatform.dataset.time);
+        accuracy = parseFloat(chosenPlatform.dataset.accuracy);
+      }
+
+      document.querySelectorAll('[data-group="management"].selected').forEach(btn => {
+        cost += parseFloat(btn.dataset.cost);
+        time += parseFloat(btn.dataset.time);
+        if (btn.dataset.pest === 'weed') hasWeed = true;
+        if (btn.dataset.pest === 'insect') hasInsect = true;
+      });
+
+      const days = time / 24;
+      const loss = Math.ceil(days) * DAILY_LOSS;
+
+      document.getElementById('calc-cost').textContent = '$' + cost.toLocaleString();
+      document.getElementById('calc-time').textContent = time.toFixed(1);
+      document.getElementById('calc-accuracy').textContent = accuracy !== null ? accuracy + '%' : '\u2014';
+      document.getElementById('calc-loss').textContent = '$' + loss.toLocaleString();
+
+      const verdict = document.getElementById('calc-verdict');
+      if (!chosenPlatform || (!hasWeed && !hasInsect)) {
+        verdict.textContent = 'Choose a platform and at least one management tool for each pest.';
+        verdict.className = 'sat-solution-calc__verdict';
+        return;
+      }
+
+      const issues = [];
+      if (cost > BUDGET) issues.push('over budget');
+      if (time > HOURS) issues.push('over your time limit');
+      if (accuracy !== null && accuracy < ACCURACY_THRESHOLD) issues.push('below the 75% accuracy threshold');
+      if (!hasWeed) issues.push('missing weed management');
+      if (!hasInsect) issues.push('missing insect management');
+
+      if (issues.length === 0) {
+        verdict.textContent = `This workflow works! Total cost with yield loss: $${(cost + loss).toLocaleString()}.`;
+        verdict.className = 'sat-solution-calc__verdict success';
+      } else {
+        verdict.textContent = 'This workflow is ' + issues.join(', ') + '.';
+        verdict.className = 'sat-solution-calc__verdict fail';
+      }
+    }
+  });
+</script>

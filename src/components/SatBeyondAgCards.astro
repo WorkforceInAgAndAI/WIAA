@@ -1,0 +1,94 @@
+---
+const cards = [
+  {
+    title: "Forest Health & Deforestation",
+    text: "The same satellite imagery that is used to predict crop health, can also be used to monitor forest health or deforestation as its occurring."
+  },
+  {
+    title: "Urban Development & Infrastructure",
+    text: "Urban planners can use satellite imagery to track current trends in urban development and infrastructure development."
+  },
+  {
+    title: "Landscape Suitability for Building",
+    text: "Satellite data can also be helpful in mapping suitable landscapes for building development."
+  },
+  {
+    title: "Water Resources",
+    text: "Water resources are important to consider in urban and ecosystem management settings. Tracking flooding after extreme weather events, or monitoring water quality is essential to ensuring public health."
+  }
+];
+---
+<div class="beyond-ag-cards">
+  {cards.map(c => (
+    <button class="beyond-ag-card" data-expanded="false">
+      <span class="beyond-ag-card__title">{c.title}</span>
+      <span class="beyond-ag-card__icon">+</span>
+      <p class="beyond-ag-card__text">{c.text}</p>
+    </button>
+  ))}
+</div>
+
+<style is:global>
+  .beyond-ag-cards {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin: 20px 0 30px;
+  }
+  .beyond-ag-card {
+    background: white;
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    padding: 18px 20px;
+    text-align: left;
+    cursor: pointer;
+    position: relative;
+    font-family: Georgia, Garamond, 'Times New Roman', serif;
+  }
+  .beyond-ag-card__title {
+    color: var(--isu-red);
+    font-weight: 600;
+    font-size: 1.05em;
+    display: block;
+    padding-right: 30px;
+  }
+  .beyond-ag-card__icon {
+    position: absolute;
+    right: 20px;
+    top: 16px;
+    color: var(--isu-gold);
+    font-size: 1.3em;
+    font-weight: 700;
+  }
+  .beyond-ag-card__text {
+    max-height: 0;
+    overflow: hidden;
+    color: var(--text-medium);
+    line-height: 1.7;
+    margin: 0;
+    transition: max-height 0.3s ease, margin-top 0.3s ease;
+  }
+  .beyond-ag-card[data-expanded="true"] .beyond-ag-card__text {
+    max-height: 200px;
+    margin-top: 12px;
+  }
+  .beyond-ag-card[data-expanded="true"] .beyond-ag-card__icon {
+    transform: rotate(45deg);
+  }
+  @media (min-width: 768px) {
+    .beyond-ag-cards {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.beyond-ag-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const expanded = card.getAttribute('data-expanded') === 'true';
+        card.setAttribute('data-expanded', expanded ? 'false' : 'true');
+      });
+    });
+  });
+</script>

@@ -1,0 +1,74 @@
+---
+const systems = [
+  { name: "Landsat", value: 30, display: "30 m" },
+  { name: "Sentinel-2", value: 10, display: "10 m" },
+  { name: "SkySat", value: 0.785, display: "0.57-1.0 m" },
+  { name: "Pleiades Neo", value: 0.75, display: "0.3-1.2 m" }
+];
+const max = Math.max(...systems.map(s => s.value));
+---
+<div class="res-compare">
+  <h4>Compare: Spatial Resolution</h4>
+  <p class="res-compare__note">Bar length shows meters-per-pixel &mdash; a smaller number means finer detail.</p>
+  <div class="res-compare__chart">
+    {systems.map(s => (
+      <div class="res-compare__row">
+        <span class="res-compare__name">{s.name}</span>
+        <div class="res-compare__bar-track">
+          <div class="res-compare__bar" style={`width: ${(s.value / max) * 100}%`}></div>
+        </div>
+        <span class="res-compare__value">{s.display}</span>
+      </div>
+    ))}
+  </div>
+</div>
+
+<style>
+  .res-compare {
+    background: white;
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    padding: 24px;
+    margin: 30px 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  }
+  .res-compare h4 {
+    color: var(--isu-red);
+    font-size: 1.2em;
+    margin-bottom: 6px;
+    font-family: Georgia, Garamond, 'Times New Roman', serif;
+  }
+  .res-compare__note {
+    color: var(--text-medium);
+    font-size: 0.9em;
+    margin-bottom: 20px;
+  }
+  .res-compare__row {
+    display: grid;
+    grid-template-columns: 110px 1fr 90px;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+  .res-compare__name {
+    font-weight: 600;
+    color: var(--text-dark);
+    font-size: 14px;
+  }
+  .res-compare__bar-track {
+    background: #f0f0f0;
+    border-radius: 4px;
+    height: 18px;
+    overflow: hidden;
+  }
+  .res-compare__bar {
+    background: linear-gradient(90deg, var(--isu-red), var(--isu-gold));
+    height: 100%;
+    border-radius: 4px;
+  }
+  .res-compare__value {
+    text-align: right;
+    color: var(--text-medium);
+    font-size: 13px;
+  }
+</style>

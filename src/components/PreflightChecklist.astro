@@ -1,0 +1,35 @@
+<div class="preflight-check" data-preflight>
+  <h3 class="preflight-check__title">Try it: Build Your Own Pre-Flight List</h3>
+  <p class="preflight-check__prompt">Check off each item as you'd confirm it before a real flight.</p>
+  <ul class="preflight-check__list">
+    <li><label><input type="checkbox" /> Drone and controller battery charged</label></li>
+    <li><label><input type="checkbox" /> Propellers, landing gear, and camera inspected</label></li>
+    <li><label><input type="checkbox" /> Radio signal confirmed between drone and controller</label></li>
+    <li><label><input type="checkbox" /> Weather conditions checked (METAR reviewed)</label></li>
+    <li><label><input type="checkbox" /> Operator mentally and physically ready to fly</label></li>
+  </ul>
+  <p class="preflight-check__status" data-status>0 / 5 checked</p>
+</div>
+
+<style>
+  .preflight-check { margin: 40px 0; padding: 28px; background: #fafafa; border: 1px solid var(--border-color, #e5e7eb); border-radius: 10px; }
+  .preflight-check__title { margin: 0 0 6px 0; color: var(--isu-red, #c41e3a); font-size: 1.15em; }
+  .preflight-check__prompt { margin: 0 0 16px 0; color: var(--text-secondary, #666); font-size: 0.95em; }
+  .preflight-check__list { list-style: none; padding: 0; margin: 0; }
+  .preflight-check__list li { margin: 10px 0; }
+  .preflight-check__list label { display: flex; align-items: center; gap: 10px; font-size: 1.05em; color: var(--text-primary, #1a1a1a); cursor: pointer; }
+  .preflight-check__list input { width: 18px; height: 18px; accent-color: var(--isu-red, #c41e3a); }
+  .preflight-check__status { margin-top: 16px; font-weight: 600; color: var(--isu-red, #c41e3a); }
+</style>
+
+<script>
+  document.querySelectorAll('[data-preflight]').forEach((root) => {
+    const boxes = root.querySelectorAll('input[type="checkbox"]');
+    const status = root.querySelector('[data-status]');
+    function update() {
+      const checked = Array.from(boxes).filter((b) => b.checked).length;
+      status.textContent = checked === boxes.length ? 'Ready for flight!' : `${checked} / ${boxes.length} checked`;
+    }
+    boxes.forEach((b) => b.addEventListener('change', update));
+  });
+</script>

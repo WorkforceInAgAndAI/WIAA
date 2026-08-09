@@ -1,0 +1,90 @@
+[
+  {
+    "q": "What must be defined both spatially and temporally when requesting satellite data?",
+    "options": [
+      "The satellite's specific orbit type and inclination angle",
+      "The sensor's bit depth and radiometric precision",
+      "The area of interest (AOI)",
+      "The exact vegetation index formula to be applied"
+    ],
+    "correct": 2,
+    "explain": "When requesting satellite data, the area of interest (AOI) must be defined spatially and temporally, using AOI corner coordinates and a start/end date range."
+  },
+  {
+    "q": "What trade-off exists between satellites with high spatial resolution and those with high temporal resolution?",
+    "options": [
+      "Coarser spatial resolution satellites often revisit more often",
+      "All satellites offer both high resolutions simultaneously",
+      "Higher spatial resolution always means a lower access cost",
+      "Temporal resolution has no bearing on satellite selection"
+    ],
+    "correct": 0,
+    "explain": "Some satellites provide high spatial resolution for detailed field analysis, while others have more coarse spatial resolution but a higher temporal resolution that provides data more often."
+  },
+  {
+    "q": "What causes the need for atmospheric corrections in satellite imagery?",
+    "options": [
+      "Ground control points placed in inconsistent locations",
+      "Suspended atmospheric particles that degrade image quality",
+      "Gradual sensor calibration drift over the satellite's lifespan",
+      "A sensor's bit depth being set too low during capture"
+    ],
+    "correct": 1,
+    "explain": "Many atmospheric obstructions or particles suspended throughout the atmosphere fall between satellites and the Earth's surface, decreasing image quality and requiring corrective techniques."
+  },
+  {
+    "q": "What is the purpose of georectification?",
+    "options": [
+      "Removing visible cloud cover from a captured image",
+      "Calculating vegetation index values across a processed image",
+      "Converting a full-color image into black-and-white",
+      "Aligning images with the true ground location they represent"
+    ],
+    "correct": 3,
+    "explain": "Images must be accurately aligned with the ground location they represent; georectification uses positioning sensor data to shift pixels to their true ground position."
+  },
+  {
+    "q": "What information do a satellite's positioning sensors provide that supports georectification?",
+    "options": [
+      "The satellite's orientation and position relative to Earth",
+      "Vegetation index values for the imaged area",
+      "The commercial cost of accessing that dataset",
+      "The total number of spectral bands detected"
+    ],
+    "correct": 0,
+    "explain": "Sensors attached to the satellite can provide information about the satellite's orientation and positioning relative to Earth, which corrective techniques use to shift pixels to their true ground position."
+  },
+  {
+    "q": "How do vegetation indices like NDVI calculate plant health?",
+    "options": [
+      "By counting the total number of pixels in an image",
+      "By comparing raw images from two different satellites",
+      "By directly measuring the satellite's orbital altitude",
+      "Using reflectance ratios from different spectrum regions"
+    ],
+    "correct": 3,
+    "explain": "Common vegetation indices such as NDVI use the ratio of reflectance values from different portions of the electromagnetic spectrum to measure plant health."
+  },
+  {
+    "q": "What is the purpose of plot extraction?",
+    "options": [
+      "Removing atmospheric obstructions from raw imagery",
+      "Creating plot borders so genotypes can be analyzed separately",
+      "Calculating a satellite's temporal resolution from its orbit",
+      "Aligning captured images to their true ground position"
+    ],
+    "correct": 1,
+    "explain": "After processing the field, we can create borders around objects of interest, in this case field plots, to separate plots containing different genotypes or treatments to analyze each plot."
+  },
+  {
+    "q": "How is the vegetation index value calculated for an entire plot?",
+    "options": [
+      "Using only the single pixel at the plot's exact center",
+      "Using the single highest pixel value found in the plot",
+      "It cannot be meaningfully calculated from pixel data",
+      "By averaging the index of every pixel in the plot boundary"
+    ],
+    "correct": 3,
+    "explain": "Within a plot, the vegetation index calculated for each pixel will be averaged with all pixels contained in a plot boundary, and the average becomes the vegetation index for that plot."
+  }
+]

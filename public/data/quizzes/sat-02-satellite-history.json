@@ -1,0 +1,98 @@
+[
+  {
+    "q": "What was the first satellite launched into space?",
+    "options": ["Explorer 1", "Sputnik 1", "Telstar", "Landsat 1"],
+    "correct": 1,
+    "explain": "Sputnik 1 was launched by the Soviet Union on October 4th, 1957, becoming the first satellite launched into space."
+  },
+  {
+    "q": "What was notable about Sputnik 2?",
+    "options": [
+      "It carried the first human into space",
+      "It contained a dog named Laika",
+      "It was the first weather satellite",
+      "It was launched by the United States"
+    ],
+    "correct": 1,
+    "explain": "Sputnik 2 was launched almost a month after Sputnik 1 and contained a dog named Laika."
+  },
+  {
+    "q": "What satellite did the United States launch in response to Sputnik, and when?",
+    "options": ["Explorer 1, January 31st, 1958", "Telstar, 1962", "Landsat 1, 1972", "Early Bird, 1965"],
+    "correct": 0,
+    "explain": "In response to the Soviet launches, the United States launched Explorer 1 on January 31st, 1958."
+  },
+  {
+    "q": "What was Trios, launched in 1960?",
+    "options": [
+      "The first geostationary communication satellite",
+      "The first weather monitoring satellite",
+      "The first GPS satellite",
+      "The first satellite imaging system"
+    ],
+    "correct": 1,
+    "explain": "Trios was launched in 1960 and was the first weather monitoring satellite."
+  },
+  {
+    "q": "What made Telstar, launched in 1962, significant?",
+    "options": [
+      "It was the first active communications satellite, allowing live television across the Atlantic",
+      "It was the first satellite to orbit the moon",
+      "It was the first geostationary satellite",
+      "It carried the first GPS receiver"
+    ],
+    "correct": 0,
+    "explain": "Telstar was launched in 1962 and was the first active communications satellite, allowing live television to be transmitted across the Atlantic Ocean."
+  },
+  {
+    "q": "What was Early Bird, launched in 1965?",
+    "options": [
+      "The first weather satellite",
+      "The first satellite to reach medium Earth orbit",
+      "The first geostationary satellite for communication purposes",
+      "The first Earth observation satellite"
+    ],
+    "correct": 2,
+    "explain": "Early Bird was launched in 1965 and served as the first geostationary satellite for communication purposes, allowing international phone calls and television broadcasts."
+  },
+  {
+    "q": "When were Landsat imaging satellites first launched, and what makes the program notable?",
+    "options": [
+      "1972; it is the longest running continuous satellite-based Earth observation program",
+      "1978; it was the first GPS program",
+      "1990; it captures imagery of the universe",
+      "1965; it was the first communication satellite program"
+    ],
+    "correct": 0,
+    "explain": "Landsat imaging satellites were first launched in 1972 and is now the longest running continuous satellite-based Earth observation program."
+  },
+  {
+    "q": "When was the first global positioning satellite launched?",
+    "options": ["1972", "1978", "1990", "2015"],
+    "correct": 1,
+    "explain": "Global positioning satellites were initiated and the first was launched in 1978."
+  },
+  {
+    "q": "What was the purpose of the Hubble Space Telescope, launched in 1990?",
+    "options": [
+      "To monitor weather on Earth",
+      "To capture imagery of the universe",
+      "To provide GPS navigation",
+      "To broadcast satellite television"
+    ],
+    "correct": 1,
+    "explain": "The Hubble Space Telescope was launched in 1990 to capture imagery of the universe."
+  },
+  {
+    "q": "What development made satellite imagery available to the public on a large scale in the 1990s-2000s?",
+    "options": ["SpaceX launches", "Google Earth", "The founding of NASA", "The launch of Sputnik 1"],
+    "correct": 1,
+    "explain": "Google Earth made satellite imagery available on a public scale during this era, alongside GPS becoming available to consumers."
+  },
+  {
+    "q": "Which two satellite systems require a paid subscription for near real-time monitoring at sub-meter resolution?",
+    "options": ["Landsat and Sentinel", "SkySat and Pleiades Neo", "Landsat and SkySat", "Sentinel and Pleiades Neo"],
+    "correct": 1,
+    "explain": "SkySat (0.57-to-1.0-meter resolution) and Pleiades Neo (0.3-to-1.2-meter resolution) both offer near real-time monitoring at the cost of a paid subscription."
+  }
+]

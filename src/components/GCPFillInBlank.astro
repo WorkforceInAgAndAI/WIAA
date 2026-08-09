@@ -1,0 +1,119 @@
+---
+const wordBank = ["corners", "GPS position", "color correction", "lighting"];
+
+const sentences = [
+  {
+    parts: ["When a GCP is placed in the field, you must also collect its ", "GPS position", " to be used later to align positions during stitching."],
+  },
+  {
+    parts: ["", "color correction", " is especially useful during long flights where solar ", "lighting", " conditions may vary throughout the mission."],
+  },
+  {
+    parts: ["GCPs should be placed in the ", "corners", " of the area of interest and potentially in additional areas throughout the field."],
+  },
+];
+---
+<section class="fill-blank" aria-label="GCPs and calibration fill in the blank activity">
+  <h3 class="fill-blank__title">Try it: Fill in the Blank</h3>
+  <p class="fill-blank__prompt">Click a word from the bank below, then click the blank where it belongs.</p>
+
+  <div class="fill-blank__status" data-status role="status" aria-live="polite">
+    0 / 4 filled
+  </div>
+
+  <div class="fill-blank__bank">
+    {wordBank.map((word) => (
+      <button type="button" class="fill-blank__word" data-word={word}>{word}</button>
+    ))}
+  </div>
+
+  <div class="fill-blank__sentences">
+    {sentences.map((s) => (
+      <p class="fill-blank__sentence">
+        {s.parts.map((part, i) => (
+          i % 2 === 0
+            ? part
+            : <button type="button" class="fill-blank__slot" data-answer={part}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
+        ))}
+      </p>
+    ))}
+  </div>
+
+  <button class="fill-blank__reset" type="button" data-reset>Reset activity</button>
+</section>
+
+<style>
+  .fill-blank { margin: 40px 0; padding: 28px; background: #fafafa; border: 1px solid var(--border-color, #e5e7eb); border-radius: 10px; }
+  .fill-blank__title { margin: 0 0 6px 0; color: var(--isu-red, #c41e3a); font-size: 1.15em; }
+  .fill-blank__prompt { margin: 0 0 16px 0; color: var(--text-secondary, #666); font-size: 0.95em; }
+  .fill-blank__status { display: inline-block; margin-bottom: 18px; padding: 6px 14px; background: white; border: 1px solid var(--border-color, #e5e7eb); border-radius: 999px; font-weight: 600; font-size: 0.9em; color: var(--text-primary, #1a1a1a); }
+  .fill-blank__bank { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 28px; }
+  .fill-blank__word { all: unset; cursor: pointer; padding: 8px 16px; background: white; border: 2px solid var(--isu-gold, #f8c600); border-radius: 999px; font-weight: 600; font-size: 0.9em; color: var(--text-primary, #1a1a1a); transition: all 0.2s; }
+  .fill-blank__word:hover { background: #fff8e1; }
+  .fill-blank__word.is-selected { background: var(--isu-gold, #f8c600); }
+  .fill-blank__word.is-used { opacity: 0.35; pointer-events: none; }
+  .fill-blank__sentences { display: grid; gap: 18px; }
+  .fill-blank__sentence { margin: 0; font-size: 1.05em; line-height: 1.9; color: var(--text-primary, #1a1a1a); }
+  .fill-blank__slot { all: unset; cursor: pointer; display: inline-block; min-width: 130px; text-align: center; border-bottom: 2px solid var(--isu-red, #c41e3a); padding: 2px 6px; margin: 0 2px; font-weight: 700; color: var(--isu-red, #c41e3a); }
+  .fill-blank__slot.is-correct { color: #2e7d32; border-bottom-color: #2e7d32; pointer-events: none; }
+  .fill-blank__slot.is-wrong { animation: shake 0.3s; }
+  @keyframes shake { 25% { transform: translateX(-4px); } 75% { transform: translateX(4px); } }
+  .fill-blank__reset { all: unset; cursor: pointer; margin-top: 20px; display: inline-block; padding: 8px 18px; border: 1px solid var(--isu-red, #c41e3a); color: var(--isu-red, #c41e3a); border-radius: 6px; font-weight: 600; font-size: 0.9em; }
+  .fill-blank__reset:hover { background: var(--isu-red, #c41e3a); color: white; }
+</style>
+
+<script>
+  function init(root) {
+    const words = root.querySelectorAll('.fill-blank__word');
+    const slots = root.querySelectorAll('.fill-blank__slot');
+    const statusEl = root.querySelector('[data-status]');
+    let selectedWord = null;
+    let filled = 0;
+
+    function updateStatus() {
+      statusEl.textContent = filled === slots.length ? 'All filled in! Nice work.' : `${filled} / ${slots.length} filled`;
+    }
+
+    words.forEach((word) => {
+      word.addEventListener('click', () => {
+        if (word.classList.contains('is-used')) return;
+        words.forEach((w) => w.classList.remove('is-selected'));
+        word.classList.add('is-selected');
+        selectedWord = word;
+      });
+    });
+
+    slots.forEach((slot) => {
+      slot.addEventListener('click', () => {
+        if (!selectedWord || slot.classList.contains('is-correct')) return;
+        if (selectedWord.dataset.word === slot.dataset.answer) {
+          slot.textContent = selectedWord.dataset.word;
+          slot.classList.add('is-correct');
+          selectedWord.classList.add('is-used');
+          selectedWord.classList.remove('is-selected');
+          selectedWord = null;
+          filled += 1;
+          updateStatus();
+        } else {
+          slot.classList.add('is-wrong');
+          setTimeout(() => slot.classList.remove('is-wrong'), 300);
+        }
+      });
+    });
+
+    updateStatus();
+
+    const resetBtn = root.querySelector('[data-reset]');
+    resetBtn.addEventListener('click', () => {
+      filled = 0;
+      selectedWord = null;
+      words.forEach((w) => w.classList.remove('is-used', 'is-selected'));
+      slots.forEach((s) => {
+        s.classList.remove('is-correct', 'is-wrong');
+        s.textContent = '\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0';
+      });
+      updateStatus();
+    });
+  }
+  document.querySelectorAll('.fill-blank').forEach(init);
+</script>

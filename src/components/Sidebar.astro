@@ -10,74 +10,142 @@ const { currentChapter, currentLesson } = Astro.props;
 
 const chapters = [
   {
-    num: 1,
+    num: 0,
     title: "Learning goals",
     lessons: [
-      { num: 1, title: "Learning objectives", href: base + "/drones/01-learning-goals/lesson-1" },
-      { num: 2, title: "Next generation science standards", href: base + "/drones/01-learning-goals/lesson-2" }
+      { num: 1, title: "Learning objectives", href: base + "/drones/00-learning-goals/lesson-1" },
+      { num: 2, title: "Next generation science standards", href: base + "/drones/00-learning-goals/lesson-2" }
+    ]
+  },
+  {
+    num: 1,
+    title: "Introduction to Drones",
+    lessons: [
+      { num: 1, title: "Aerial Imagery", href: base + "/drones/01-introduction/lesson-1" },
+      { num: 2, title: "What is a Drone?", href: base + "/drones/01-introduction/lesson-2" },
+	{ num: 3, title: "Use of Drones in Agriculture", href: base + "/drones/01-introduction/lesson-3" },
+	{ num: 4, title: "Principles of Flight", href: base + "/drones/01-introduction/lesson-4" },
+      { num: 5, title: "Concept review", href: base + "/drones/01-introduction/review" }
     ]
   },
   {
     num: 2,
-    title: "Introduction to drones",
+    title: "Drone Parts & Types",
     lessons: [
-      { num: 1, title: "What is a Drone?", href: base + "/drones/02-introduction/lesson-1" },
-      { num: 2, title: "Agricultural Applications", href: base + "/drones/02-introduction/lesson-2" },
-      { num: 3, title: "Concept review", href: base + "/drones/02-introduction/review" }
+      { num: 1, title: "Main Components", href: base + "/drones/02-parts-types/lesson-1" },
+      { num: 2, title: "Types of Agricultural Drones", href: base + "/drones/02-parts-types/lesson-2" },
+      { num: 3, title: "Concept review", href: base + "/drones/02-parts-types/review" }
     ]
   },
   {
     num: 3,
-    title: "Drone parts & types",
+    title: "Agriculture Applications",
     lessons: [
-      { num: 1, title: "Main Components", href: base + "/drones/03-parts-types/lesson-1" },
-      { num: 2, title: "Types of Agricultural Drones", href: base + "/drones/03-parts-types/lesson-2" },
-      { num: 3, title: "Concept review", href: base + "/drones/03-parts-types/review" }
+      { num: 1, title: "Agronomists Are Busy", href: base + "/drones/03-agricultural-applications/lesson-1"},
+      { num: 2, title: "Where Drones Can Help", href: base + "/drones/03-agricultural-applications/lesson-2" },
+      { num: 3, title: "Concept review", href: base + "/drones/03-agricultural-applications/review" }
     ]
   },
   {
     num: 4,
-    title: "Sensors & data collection",
+    title: "FAA Part 107 & safety",
     lessons: [
-      { num: 1, title: "Types of agricultural sensors", href: base + "/drones/04-sensors/lesson-1" },
-      { num: 2, title: "Reflectance and plant health", href: base + "/drones/04-sensors/lesson-2" },
-      { num: 3, title: "Vegetation indices", href: base + "/drones/04-sensors/lesson-3" },
-      { num: 4, title: "Concept review", href: base + "/drones/04-sensors/review" }
+      { num: 1, title: "Federal Aviation Administration and Part 107", href: base + "/drones/04-faa-safety/lesson-1" },
+      { num: 2, title: "Eligibility", href: base + "/drones/04-faa-safety/lesson-2" },
+	{ num: 3, title: "Drone Registration and Remote ID", href: base + "/drones/04-faa-safety/lesson-3" },
+	{ num: 4, title: "Core Flight Rules and Regulations", href: base + "/drones/04-faa-safety/lesson-4" },
+	{ num: 5, title: "Airspaces and Aeronautical Charts", href: base + "/drones/04-faa-safety/lesson-5" },
+	{ num: 6, title: "Best Operating Practices", href: base + "/drones/04-faa-safety/lesson-6" },
+      { num: 7, title: "Concept review", href: base + "/drones/04-faa-safety/review" }
     ]
   },
   {
     num: 5,
-    title: "AI in agriculture",
+    title: "Planning and Positioning",
     lessons: [
-      { num: 1, title: "What is AI?", href: base + "/drones/05-ai-agriculture/lesson-1" },
-      { num: 2, title: "AI tools in agriculture", href: base + "/drones/05-ai-agriculture/lesson-2" },
-      { num: 3, title: "How AI models are developed", href: base + "/drones/05-ai-agriculture/lesson-3" },
-      { num: 4, title: "Concept review", href: base + "/drones/05-ai-agriculture/review" }
+      { num: 1, title: "Flight Parameters", href: base + "/drones/05-planning-positioning/lesson-1" },
+      { num: 2, title: "In-Field Preparation", href: base + "/drones/05-planning-positioning/lesson-2" },
+      { num: 3, title: "Coordinate Systems", href: base + "/drones/05-planning-positioning/lesson-3" },
+      { num: 4, title: "Concept review", href: base + "/drones/05-planning-positioning/review" }
     ]
   },
   {
     num: 6,
-    title: "FAA Part 107 & safety",
+    title: "Sensors and Their Applications",
     lessons: [
-      { num: 1, title: "FAA Basics & Requirements", href: base + "/drones/06-faa-safety/lesson-1" },
-      { num: 2, title: "Core flight rules & regulations", href: base + "/drones/06-faa-safety/lesson-2" },
-      { num: 3, title: "Concept review", href: base + "/drones/06-faa-safety/review" }
+      { num: 1, title: "Types of Agricultural Sensors", href: base + "/drones/06-sensors/lesson-1" },
+      { num: 2, title: "Camera Parameters", href: base + "/drones/06-sensors/lesson-2" },
+      { num: 3, title: "Concept review", href: base + "/drones/06-sensors/review" }
     ]
   },
-  {
+{
     num: 7,
-    title: "Careers in drones & AI",
+    title: "Vegetation Indices",
     lessons: [
-      { num: 1, title: "Why these skills matter", href: base + "/drones/07-careers/lesson-1" },
-      { num: 2, title: "Skills you can build now", href: base + "/drones/07-careers/lesson-2" },
-      { num: 3, title: "Concept review", href: base + "/drones/07-careers/review" }
+      { num: 1, title: "Reflectance and Plant Health", href: base + "/drones/07-vegetation-indices/lesson-1" },
+      { num: 2, title: "NDVI Formula", href: base + "/drones/07-vegetation-indices/lesson-2" },
+      { num: 3, title: "Concept review", href: base + "/drones/07-vegetation-indices/review" }
     ]
   },
   {
     num: 8,
+    title: "AI in Agriculture",
+    lessons: [
+      { num: 1, title: "What is Artificial Intelligence?", href: base + "/drones/08-ai-agriculture/lesson-1" },
+      { num: 2, title: "AI Tasks in Agriculture", href: base + "/drones/08-ai-agriculture/lesson-2" },
+      { num: 3, title: "AI Toolbox", href: base + "/drones/08-ai-agriculture/lesson-3" },
+      { num: 4, title: "How are AI Models are Built", href: base + "/drones/08-ai-agriculture/lesson-4" },
+      { num: 5, title: "Concept review", href: base + "/drones/08-ai-agriculture/review" }
+    ]
+  },
+{
+    num: 9,
+    title: "Drone Imagery Processing Pipeline",
+    lessons: [
+      { num: 1, title: "Overview and Flight Planning", href: base + "/drones/09-imagery-pipeline/lesson-1" },
+      { num: 2, title: "Ground Control Points and Calibration", href: base + "/drones/09-imagery-pipeline/lesson-2" },
+      { num: 3, title: "Processing Outputs and Field Analysis", href: base + "/drones/09-imagery-pipeline/lesson-3" },
+      { num: 4, title: "Plot Extraction", href: base + "/drones/09-imagery-pipeline/lesson-4" },
+      { num: 5, title: "Concept review", href: base + "/drones/09-imagery-pipeline/review" }
+    ]
+  },
+
+  {
+    num: 10,
+    title: "Solution Innovator",
+    lessons: [
+      { num: 1, title: "Overview", href: base + "/drones/10-solution-innovator/lesson-1" },
+      { num: 2, title: "Drone Station", href: base + "/drones/10-solution-innovator/lesson-2" },
+	{ num: 3, title: "Rover Station", href: base + "/drones/10-solution-innovator/lesson-3" },
+	{ num: 4, title: "AI Station", href: base + "/drones/10-solution-innovator/lesson-4" },
+	{ num: 5, title: "Sensor Station", href: base + "/drones/10-solution-innovator/lesson-5" },
+      { num: 6, title: "The Solution Innovator Challenge", href: base + "/drones/10-solution-innovator/lesson-6" },
+      { num: 7, title: "Concept review", href: base + "/drones/10-solution-innovator/review" }
+    ]
+  },
+{
+    num: 11,
+    title: "Drone Mission",
+    lessons: [
+      { num: 1, title: "Overview", href: base + "/drones/11-drone-mission/lesson-1" },
+      { num: 2, title: "Drones for Scouting Fields", href: base + "/drones/11-drone-mission/lesson-2" },
+      { num: 3, title: "Concept review", href: base + "/drones/11-drone-mission/review" }
+    ]
+  },
+  {
+    num: 12,
+    title: "Careers in drones & AI",
+    lessons: [
+      { num: 1, title: "Why these skills matter", href: base + "/drones/12-careers/lesson-1" },
+      { num: 2, title: "Skills you can build now", href: base + "/drones/12-careers/lesson-2" },
+      { num: 3, title: "Concept review", href: base + "/drones/12-careers/review" }
+    ]
+  },
+  {
+    num: 13,
     title: "References",
     lessons: [
-      { num: 1, title: "References", href: base + "/drones/08-references/lesson-1" }
+      { num: 1, title: "References", href: base + "/drones/14-references/lesson-1" }
     ]
   }
 ];

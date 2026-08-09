@@ -1,0 +1,107 @@
+---
+const sensors = [
+  { name: "RGB Camera", front: "Broad red, green, blue bands", back: "Used for crop monitoring &mdash; captures images similar to what the human eye sees." },
+  { name: "Multispectral Camera", front: "6-10 spectral bands", back: "Often includes red, green, blue, red edge, and near infrared &mdash; used for crop health monitoring." },
+  { name: "Hyperspectral Sensor", front: "Hundreds to thousands of bands", back: "Captures very fine spectral detail for in-depth crop health monitoring." },
+  { name: "Thermal Sensor", front: "Thermal infrared radiation", back: "Detects heat, useful for crop stress and temperature sensing." },
+  { name: "LiDAR", front: "Laser pulse timing", back: "Measures distance to build 3D structure &mdash; crop canopy and above-ground external structure." }
+];
+---
+<div class="flip-cards">
+  {sensors.map(s => (
+    <button class="flip-card" data-flipped="false">
+      <div class="flip-card__inner">
+        <div class="flip-card__face flip-card__front">
+          <span>{s.name}</span>
+          <small>{s.front}</small>
+        </div>
+        <div class="flip-card__face flip-card__back">
+          <p>{s.back}</p>
+        </div>
+      </div>
+    </button>
+  ))}
+</div>
+
+<style is:global>
+  .flip-cards {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin: 20px 0 30px;
+  }
+  .flip-card {
+    perspective: 1000px;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    height: 140px;
+  }
+  .flip-card__inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.5s;
+    transform-style: preserve-3d;
+  }
+  .flip-card[data-flipped="true"] .flip-card__inner {
+    transform: rotateY(180deg);
+  }
+  .flip-card__face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    box-sizing: border-box;
+    text-align: center;
+  }
+  .flip-card__front {
+    background: white;
+    border: 1px solid var(--border-light);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  }
+  .flip-card__front span {
+    color: var(--isu-red);
+    font-weight: 700;
+    font-size: 1.1em;
+    margin-bottom: 6px;
+    font-family: Georgia, Garamond, 'Times New Roman', serif;
+  }
+  .flip-card__front small {
+    color: var(--text-medium);
+    font-size: 0.85em;
+  }
+  .flip-card__back {
+    background: linear-gradient(135deg, var(--isu-red), var(--isu-dark-red));
+    color: white;
+    transform: rotateY(180deg);
+  }
+  .flip-card__back p {
+    font-size: 0.85em;
+    line-height: 1.5;
+    margin: 0;
+  }
+  @media (min-width: 768px) {
+    .flip-cards {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.flip-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const flipped = card.getAttribute('data-flipped') === 'true';
+        card.setAttribute('data-flipped', flipped ? 'false' : 'true');
+      });
+    });
+  });
+</script>

@@ -1,0 +1,79 @@
+[
+  {
+    "q": "Which of these tasks can a drone equipped with a sensor currently help with?",
+    "options": [
+      "Harvesting crops",
+      "Detecting pest outbreaks",
+      "Manually removing weeds",
+      "Detasseling corn"
+    ],
+    "correct": 1,
+    "explain": "A drone equipped with a sensor can quickly cover a field to detect pest outbreaks, while harvesting, hand-weeding, and detasseling still require manual labor or specialized equipment."
+  },
+  {
+    "q": "In a SWOT analysis of drones in agriculture, limited battery life restricting mission length is an example of a:",
+    "options": [
+      "Strength",
+      "Weakness",
+      "Opportunity",
+      "Threat"
+    ],
+    "correct": 1,
+    "explain": "Battery life is an internal limitation of the technology itself, which makes it a weakness rather than an external opportunity or threat."
+  },
+  {
+    "q": "Why does using drones for scouting help decrease inter-rater variability?",
+    "options": [
+      "Drones are cheaper than hiring scouts",
+      "Sensor data is collected consistently, rather than depending on individual human judgment",
+      "Drones can fly at night",
+      "Drones do not require any training to operate"
+    ],
+    "correct": 1,
+    "explain": "When different people scout a field by eye, their assessments can vary. A sensor collects data the same way every time, reducing that variability between different raters."
+  },
+  {
+    "q": "AI-assisted image analysis automating pest and stress detection is best described as which part of a SWOT analysis?",
+    "options": [
+      "Strength",
+      "Weakness",
+      "Opportunity",
+      "Threat"
+    ],
+    "correct": 2,
+    "explain": "This is a developing capability that could expand what drones are able to do in the future, which makes it an opportunity rather than a current strength."
+  },
+  {
+    "q": "After a hailstorm damages a field, what is one way a drone could help an agronomist make a harvest decision?",
+    "options": [
+      "By physically repairing damaged plants",
+      "By replacing the need for crop insurance",
+      "By replanting the damaged areas",
+      "By mapping the extent and severity of leaf damage across the field"
+    ],
+    "correct": 3,
+    "explain": "A drone can quickly map defoliation patterns and damage severity across an entire field, giving the agronomist the information needed to decide whether to replant, treat, or proceed to harvest."
+  },
+  {
+    "q": "Why are drones useful for measuring large plant breeding panels like the IMDP?",
+    "options": [
+      "They can capture consistent data across every plot quickly, instead of walking each plot by hand",
+      "They eliminate the need for any data analysis",
+      "They can physically cross plants together",
+      "They replace the need for a breeding program entirely"
+    ],
+    "correct": 0,
+    "explain": "Walking every plot by hand is slow and can introduce inconsistency between measurements. A drone can fly the same panel in minutes, capturing consistent data across all plots in a single pass."
+  },
+  {
+    "q": "Which of these remains a task that drones cannot yet help with?",
+    "options": [
+      "Estimating nutrient deficiencies",
+      "Applying herbicides to weedy fields",
+      "Harvesting soybeans",
+      "Looking for insect-damaged plants"
+    ],
+    "correct": 2,
+    "explain": "Harvesting crops still requires specialized heavy equipment that drones are not currently capable of replacing."
+  }
+]

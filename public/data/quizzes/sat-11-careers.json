@@ -1,0 +1,79 @@
+[
+  {
+    "q": "What underlying challenge does the chapter frame around population and land use?",
+    "options": [
+      "Both population and available arable land are increasing at roughly the same rate",
+      "Population is increasing while arable land is decreasing",
+      "Arable land has essentially no meaningful relationship to global food production",
+      "Population is decreasing while the amount of available arable land is increasing"
+    ],
+    "correct": 1,
+    "explain": "Population is increasing and arable land is decreasing, raising the question of how to feed a growing population with less land available for food production."
+  },
+  {
+    "q": "What kinds of careers are described as being in high demand to address this challenge?",
+    "options": [
+      "Careers concentrated primarily in the retail and hospitality sectors",
+      "Careers in agriculture, AI, and technology",
+      "Careers focused mainly on finance and investment banking",
+      "Careers that are entirely unrelated to any STEM field"
+    ],
+    "correct": 1,
+    "explain": "Careers in agriculture, AI, and technology are in high demand and need knowledgeable people who are motivated to solve this problem."
+  },
+  {
+    "q": "According to the chapter, how can a student build soft skills now?",
+    "options": [
+      "Soft skills can only be meaningfully developed after entering a career",
+      "By deliberately avoiding group projects and collaborative class activities",
+      "By taking leadership roles in class projects or clubs",
+      "Only by first completing a full four-year college degree"
+    ],
+    "correct": 2,
+    "explain": "You can boost your soft skills by taking leadership roles in class projects or clubs."
+  },
+  {
+    "q": "What are some accessible ways mentioned to learn about agriculture before starting a career?",
+    "options": [
+      "Taking agriculture classes, going on farm tours, or getting a summer job at an agriculture company",
+      "There is no realistic way to learn about agriculture before starting a career",
+      "Only by personally owning and operating a working farm",
+      "Only through completing a graduate-level agricultural degree"
+    ],
+    "correct": 0,
+    "explain": "You can learn about agriculture by taking agriculture classes, going on farm tours, or getting a job at an agriculture company over the summer."
+  },
+  {
+    "q": "Why are data analysis skills described as valuable?",
+    "options": [
+      "They have little practical relevance to agriculture or AI-related careers",
+      "They are needed to understand large amounts of data",
+      "They are only useful for careers that fall entirely outside of STEM",
+      "They fully replace the need for developing any other professional skill"
+    ],
+    "correct": 1,
+    "explain": "Data analysis skills are also very valuable and needed to understand large amounts of data."
+  },
+  {
+    "q": "How might genetics knowledge be useful in a data science career, as described in the chapter?",
+    "options": [
+      "Genetics knowledge has essentially no application within data science work",
+      "It is described as being useful strictly for careers in medicine",
+      "It is useful to know as a data scientist working with genetic data",
+      "It is said to fully replace the need for programming skills"
+    ],
+    "correct": 2,
+    "explain": "Skills and knowledge in genetics are useful to know as a data scientist working with genetic data."
+  },
+  {
+    "q": "How might mechanical engineering knowledge be useful to an agronomist, as described in the chapter?",
+    "options": [
+      "It is described as not being relevant to the field of agronomy",
+      "It is only described as being useful for designing and building bridges",
+      "It is useful when designing studies implementing new technology",
+      "It is said to fully replace the need for agricultural knowledge"
+    ],
+    "correct": 2,
+    "explain": "Mechanical engineering knowledge is useful when designing studies implementing new technology."
+  }
+]

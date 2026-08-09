@@ -1,0 +1,111 @@
+---
+const plots = [
+  { id: "A", ndvi: 0.82 },
+  { id: "B", ndvi: 0.45 },
+  { id: "C", ndvi: 0.68 },
+  { id: "D", ndvi: 0.31 },
+  { id: "E", ndvi: 0.74 },
+  { id: "F", ndvi: 0.55 }
+];
+---
+<div class="plot-comparison">
+  <h4>Activity 21: Best Performing Plot</h4>
+  <p class="plot-comparison__prompt">Each plot below shows its average vegetation index value. Use these to answer the questions.</p>
+  <div class="plot-comparison__grid">
+    {plots.map(p => (
+      <div class="plot-comparison__tile" style={`--ndvi-color: hsl(${p.ndvi * 120}, 65%, 45%)`}>
+        <span class="plot-comparison__label">Plot {p.id}</span>
+        <span class="plot-comparison__value">VI: {p.ndvi.toFixed(2)}</span>
+      </div>
+    ))}
+  </div>
+  <div class="plot-comparison__questions">
+    <div class="plot-comparison__item">
+      <label>Which plot is healthiest?</label>
+      <input type="text" class="plot-comparison__input" />
+    </div>
+    <div class="plot-comparison__item">
+      <label>Which plot is the most stressed?</label>
+      <input type="text" class="plot-comparison__input" />
+    </div>
+    <div class="plot-comparison__item">
+      <label>Why does this matter?</label>
+      <textarea rows="3" placeholder="Type your answer here..."></textarea>
+    </div>
+  </div>
+</div>
+
+<style is:global>
+  .plot-comparison {
+    background: white;
+    border: 1px solid var(--border-light, #ddd);
+    border-radius: 8px;
+    padding: 24px;
+    margin: 30px 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  }
+  .plot-comparison h4 {
+    color: var(--isu-red);
+    font-size: 1.2em;
+    margin-bottom: 8px;
+    font-family: Georgia, Garamond, 'Times New Roman', serif;
+  }
+  .plot-comparison__prompt {
+    color: var(--text-medium, #666);
+    margin-bottom: 20px;
+    line-height: 1.6;
+  }
+  .plot-comparison__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+  .plot-comparison__tile {
+    background: var(--ndvi-color);
+    border-radius: 6px;
+    padding: 18px 10px;
+    text-align: center;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .plot-comparison__label {
+    font-weight: 700;
+    font-size: 1.05em;
+  }
+  .plot-comparison__value {
+    font-size: 0.85em;
+    opacity: 0.95;
+  }
+  .plot-comparison__questions {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .plot-comparison__item label {
+    display: block;
+    font-weight: 600;
+    color: var(--isu-red);
+    margin-bottom: 6px;
+    font-size: 14px;
+  }
+  .plot-comparison__input,
+  .plot-comparison__item textarea {
+    width: 100%;
+    border: 1px solid var(--border-light, #ddd);
+    border-radius: 4px;
+    padding: 10px;
+    font-family: Georgia, Garamond, 'Times New Roman', serif;
+    font-size: 14px;
+    color: var(--text-dark, #1a1a1a);
+    box-sizing: border-box;
+    resize: vertical;
+  }
+  @media (min-width: 768px) {
+    .plot-comparison__grid {
+      grid-template-columns: repeat(6, 1fr);
+    }
+  }
+</style>

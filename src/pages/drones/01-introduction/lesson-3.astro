@@ -1,0 +1,287 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Sidebar from '../../../components/Sidebar.astro';
+import LessonNav from '../../../components/LessonNav.astro';
+import TaskSortGame from '../../../components/TaskSortGame.astro';
+
+const content = await import('../../../content/drones/01-introduction/lesson-3.md');
+const { Content } = content;
+const { title, chapter, lesson } = content.frontmatter;
+---
+
+<BaseLayout title={title}>
+  <div class="container" style="max-width: 1400px; margin: 30px auto; padding: 0 20px;">
+    <div style="display: grid; grid-template-columns: 250px 1fr; gap: 24px; align-items: start;">
+      <Sidebar currentChapter={chapter} currentLesson={lesson} />
+      <div class="content-area">
+        <div class="content-header">
+          <p class="chapter-label">Chapter {chapter}: Introduction to Drones</p>
+          <h1>{title}</h1>
+        </div>
+        <article class="lesson-content">
+          <Content />
+        </article>
+        <TaskSortGame />
+        <LessonNav 
+          prev={{ href: '/drones/01-introduction/lesson-2', label: 'Previous' }}
+          next={{ href: '/drones/01-introduction/lesson-4', label: 'Next' }}
+          progress={`${chapter}.${lesson} / 7 Chapters`}
+        />
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+<style is:global>
+  :root {
+    --isu-red: #c41e3a;
+    --isu-gold: #f8c600;
+    --border-light: #ddd;
+    --text-dark: #1a1a1a;
+    --text-medium: #333;
+    --text-primary: #1a1a1a;
+    --isu-dark-red: #a01729;
+  }
+
+  .lesson-content img {
+    max-width: 800px !important;
+    height: auto !important;
+    display: block !important;
+    margin: 20px auto !important;
+  }
+
+  .section-intro {
+    font-size: 1.05em;
+    color: var(--text-medium);
+    font-style: italic;
+    margin-bottom: 24px;
+    padding: 0 12px;
+  }
+
+  .impact-callout {
+    background: linear-gradient(135deg, rgba(196, 30, 58, 0.08) 0%, rgba(255, 184, 28, 0.08) 100%);
+    border-left: 5px solid var(--isu-red);
+    border-radius: 6px;
+    padding: 24px;
+    margin-bottom: 30px;
+  }
+  .impact-callout h4 {
+    color: var(--isu-red);
+    margin-top: 0;
+    margin-bottom: 12px;
+    font-size: 1.15em;
+  }
+  .impact-callout p {
+    color: var(--text-dark);
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    margin-bottom: 35px;
+  }
+  .benefit-card {
+    background: white;
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    padding: 24px;
+    padding-left: 80px;
+    position: relative;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    transition: all 0.3s ease;
+  }
+  .benefit-card:hover {
+    box-shadow: 0 4px 16px rgba(196, 30, 58, 0.12);
+    border-color: var(--isu-red);
+  }
+  .benefit-number {
+    position: absolute;
+    left: 24px;
+    top: 24px;
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, var(--isu-red), var(--isu-dark-red));
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.3em;
+  }
+  .benefit-card h4 {
+    color: var(--isu-red);
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 1.1em;
+  }
+  .benefit-card p {
+    color: var(--text-medium);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .lesson-content ul:not(.activities-list) {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) !important;
+    gap: 20px !important;
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 24px 0 !important;
+  }
+  .lesson-content ul:not(.activities-list) li {
+    background: white !important;
+    border: 1px solid var(--border-light) !important;
+    border-radius: 8px !important;
+    padding: 20px !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06) !important;
+    transition: all 0.3s ease !important;
+  }
+  .lesson-content ul:not(.activities-list) li:hover {
+    box-shadow: 0 4px 16px rgba(196, 30, 58, 0.12) !important;
+    border-color: var(--isu-red) !important;
+    transform: translateY(-4px) !important;
+  }
+
+  .activities-list {
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 40px 0 !important;
+    display: block !important;
+  }
+  .activities-list li {
+    background: none !important;
+    border: none !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+    padding-left: 24px !important;
+    box-shadow: none !important;
+    font-size: 1.05em !important;
+    line-height: 1.8 !important;
+    color: var(--text-primary) !important;
+    margin: 16px 0 !important;
+    position: relative !important;
+  }
+  .activities-list li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--isu-red);
+    font-weight: bold;
+    font-size: 1.2em;
+  }
+  .activities-list a {
+    color: var(--isu-red);
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.2s ease;
+  }
+  .activities-list a:hover {
+    text-decoration: underline;
+    color: #a01729;
+  }
+
+  @media (min-width: 768px) {
+    .benefits-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    .benefit-card {
+      padding: 28px;
+      padding-left: 90px;
+    }
+  }
+  @media (min-width: 969px) {
+    .benefits-grid {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+    .benefit-card {
+      padding: 32px;
+      padding-left: 100px;
+    }
+  }
+  @media (max-width: 768px) {
+    .lesson-content ul:not(.activities-list) {
+      grid-template-columns: 1fr !important;
+    }
+    .lesson-content img {
+      max-width: 280px !important;
+    }
+    div[style*="grid-template-columns"] {
+      display: flex !important;
+      flex-direction: column-reverse !important;
+      gap: 16px !important;
+    }
+
+  }
+.task-comparison {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  margin: 24px 0 35px;
+}
+@media (min-width: 768px) {
+  .task-comparison {
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+}
+.task-panel {
+  background: white;
+  border: 1px solid var(--border-light);
+  border-radius: 10px;
+  padding: 22px;
+}
+.task-panel h4 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 16px;
+  font-size: 1.05em;
+}
+.task-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  font-size: 0.8em;
+  font-weight: 700;
+  color: white;
+}
+.task-panel--manual {
+  border-top: 4px solid #9e9e9e;
+}
+.task-panel--manual .task-icon {
+  background: #9e9e9e;
+}
+.task-panel--drone {
+  border-top: 4px solid var(--isu-red);
+}
+.task-panel--drone .task-icon {
+  background: var(--isu-red);
+}
+.task-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.task-tag {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 0.85em;
+  font-weight: 500;
+}
+.task-panel--manual .task-tag {
+  background: #f0f0f0;
+  color: #555;
+}
+.task-panel--drone .task-tag {
+  background: rgba(196, 30, 58, 0.08);
+  color: var(--isu-dark-red);
+}
+</style>

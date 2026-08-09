@@ -1,0 +1,94 @@
+---
+---
+<div class="conflicting-uses">
+  <h4>Activity 14: Conflicting Uses</h4>
+  <p class="conflicting-uses__prompt">Give two examples of how satellite imagery can be used by two groups with different purposes.</p>
+
+  <div class="conflicting-uses__scenario">
+    <label>Scenario 1:</label>
+    <input type="text" class="conflicting-uses__input" placeholder="Describe the scenario" />
+    <div class="conflicting-uses__groups">
+      <div>
+        <label>Group 1 purpose:</label>
+        <input type="text" class="conflicting-uses__input" />
+      </div>
+      <div>
+        <label>Group 2 purpose:</label>
+        <input type="text" class="conflicting-uses__input" />
+      </div>
+    </div>
+  </div>
+
+  <div class="conflicting-uses__scenario">
+    <label>Scenario 2:</label>
+    <input type="text" class="conflicting-uses__input" placeholder="Describe the scenario" />
+    <div class="conflicting-uses__groups">
+      <div>
+        <label>Group 1 purpose:</label>
+        <input type="text" class="conflicting-uses__input" />
+      </div>
+      <div>
+        <label>Group 2 purpose:</label>
+        <input type="text" class="conflicting-uses__input" />
+      </div>
+    </div>
+  </div>
+</div>
+
+<style is:global>
+  .conflicting-uses {
+    background: white;
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    padding: 24px;
+    margin: 30px 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  }
+  .conflicting-uses h4 {
+    color: var(--isu-red);
+    font-size: 1.2em;
+    margin-bottom: 8px;
+    font-family: Georgia, Garamond, 'Times New Roman', serif;
+  }
+  .conflicting-uses__prompt {
+    color: var(--text-dark);
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+  .conflicting-uses__scenario {
+    margin-bottom: 24px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border-light);
+  }
+  .conflicting-uses__scenario:last-child {
+    border-bottom: none;
+  }
+  .conflicting-uses__scenario label {
+    display: block;
+    font-weight: 600;
+    color: var(--isu-red);
+    margin-bottom: 6px;
+    font-size: 14px;
+  }
+  .conflicting-uses__input {
+    width: 100%;
+    border: 1px solid var(--border-light);
+    border-radius: 4px;
+    padding: 10px;
+    font-family: Georgia, Garamond, 'Times New Roman', serif;
+    font-size: 14px;
+    color: var(--text-dark);
+    box-sizing: border-box;
+    margin-bottom: 12px;
+  }
+  .conflicting-uses__groups {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  @media (min-width: 768px) {
+    .conflicting-uses__groups {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+</style>

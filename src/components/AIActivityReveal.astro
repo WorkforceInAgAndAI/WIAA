@@ -1,0 +1,78 @@
+<section class="ai-reveal">
+  <h3 class="ai-reveal__title">Try it: Think It Through</h3>
+  <p class="ai-reveal__prompt">Work through each question, then reveal a sample answer.</p>
+
+  <details class="lesson-reveal">
+    <summary>Which AI tool can be used to identify weeds in a field image?</summary>
+    <p>A <strong>vision model</strong> — it functions as the "eyes," locating and identifying objects like weeds within an image before any counting or classifying happens.</p>
+  </details>
+
+  <details class="lesson-reveal">
+    <summary>Which AI tool can be used to count weeds once they're identified?</summary>
+    <p>A <strong>quantification model</strong> — once weeds are located, a quantification model provides the specific numeric output, such as "47 weeds detected."</p>
+  </details>
+
+  <details class="lesson-reveal">
+    <summary>A drone collects 1,200 images at 20 million pixels each, and NDVI must be calculated for every pixel. How can AI help?</summary>
+    <p>That's 24 billion individual NDVI calculations — far beyond what's practical by hand. AI (and the software built on it) can run that same formula automatically across every pixel in every image in a fraction of the time, then compile the results into a usable field health map.</p>
+  </details>
+
+  <details class="lesson-reveal">
+    <summary>What happens if some of the data used to train an AI model is labeled wrong?</summary>
+    <p>The model learns the wrong pattern. Since training depends on labeled data being accurate, mislabeled examples teach the model incorrect associations — leading to unreliable predictions, misidentifications, or reduced accuracy once it's deployed in real-world conditions. This is exactly why human expertise during labeling matters so much.</p>
+  </details>
+</section>
+
+<style>
+  .ai-reveal {
+    margin: 40px 0;
+    padding: 28px;
+    background: #fafafa;
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 10px;
+  }
+  .ai-reveal__title {
+    margin: 0 0 6px 0;
+    color: var(--isu-red, #c41e3a);
+    font-size: 1.15em;
+  }
+  .ai-reveal__prompt {
+    margin: 0 0 18px 0;
+    color: var(--text-secondary, #666);
+    font-size: 0.95em;
+  }
+  .lesson-reveal {
+    margin: 12px 0;
+    padding: 4px 20px;
+    background: #fff8e1;
+    border: 1px solid var(--isu-gold, #f8c600);
+    border-radius: 8px;
+  }
+  .lesson-reveal summary {
+    cursor: pointer;
+    padding: 14px 0;
+    font-weight: 600;
+    color: var(--isu-dark-red, #a01729);
+    list-style: none;
+  }
+  .lesson-reveal summary::-webkit-details-marker {
+    display: none;
+  }
+  .lesson-reveal summary::before {
+    content: '+ ';
+    color: var(--isu-red, #c41e3a);
+    font-weight: 800;
+  }
+  .lesson-reveal[open] summary::before {
+    content: '\2013 ';
+  }
+  .lesson-reveal p {
+    padding-bottom: 16px;
+    margin: 0;
+    color: var(--text-primary, #1a1a1a);
+    line-height: 1.6;
+  }
+  .lesson-reveal strong {
+    color: var(--isu-red, #c41e3a);
+  }
+</style>

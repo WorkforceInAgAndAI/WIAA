@@ -1,0 +1,127 @@
+---
+---
+<div class="scan-demo">
+  <h4>Explore: Whisk Broom vs. Push Broom</h4>
+  <div class="scan-demo__toggle">
+    <button class="scan-demo__btn active" data-mode="whisk">Whisk Broom</button>
+    <button class="scan-demo__btn" data-mode="push">Push Broom</button>
+    <button class="scan-demo__play" id="scan-play">Play</button>
+  </div>
+  <div class="scan-demo__grid" id="scan-grid"></div>
+</div>
+
+<style is:global>
+  .scan-demo {
+    background: white;
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    padding: 24px;
+    margin: 30px 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  }
+  .scan-demo h4 {
+    color: var(--isu-red);
+    font-size: 1.2em;
+    margin-bottom: 14px;
+    font-family: Georgia, Garamond, 'Times New Roman', serif;
+  }
+  .scan-demo__toggle {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  .scan-demo__btn, .scan-demo__play {
+    padding: 8px 16px;
+    border: 1px solid var(--isu-red);
+    background: white;
+    color: var(--isu-red);
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+    font-family: Georgia, Garamond, 'Times New Roman', serif;
+  }
+  .scan-demo__btn.active {
+    background: var(--isu-red);
+    color: white;
+  }
+  .scan-demo__play {
+    background: var(--isu-gold);
+    border-color: var(--isu-gold);
+    color: white;
+    margin-left: auto;
+  }
+  .scan-demo__grid {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    gap: 2px;
+    background: #f9f7f4;
+    padding: 10px;
+    border-radius: 6px;
+  }
+  .scan-cell {
+    aspect-ratio: 1;
+    background: #ddd;
+    border-radius: 2px;
+    transition: background 0.05s;
+  }
+  .scan-cell.filled {
+    background: var(--isu-red);
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const rows = 6, cols = 10;
+    const grid = document.getElementById('scan-grid');
+    const cells: HTMLElement[][] = [];
+    let mode: 'whisk' | 'push' = 'whisk';
+
+    function buildGrid() {
+      if (!grid) return;
+      grid.innerHTML = '';
+      cells.length = 0;
+      for (let r = 0; r < rows; r++) {
+        const rowArr: HTMLElement[] = [];
+        for (let c = 0; c < cols; c++) {
+          const cell = document.createElement('div');
+          cell.className = 'scan-cell';
+          grid.appendChild(cell);
+          rowArr.push(cell);
+        }
+        cells.push(rowArr);
+      }
+    }
+    buildGrid();
+
+    document.querySelectorAll('.scan-demo__btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.scan-demo__btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        mode = (btn as HTMLElement).dataset.mode as 'whisk' | 'push';
+        buildGrid();
+      });
+    });
+
+    document.getElementById('scan-play')?.addEventListener('click', () => {
+      buildGrid();
+      let delay = 0;
+      const step = 30;
+      if (mode === 'whisk') {
+        for (let r = 0; r < rows; r++) {
+          const colsOrder = r % 2 === 0 ? [...Array(cols).keys()] : [...Array(cols).keys()].reverse();
+          colsOrder.forEach(c => {
+            setTimeout(() => cells[r][c].classList.add('filled'), delay);
+            delay += step;
+          });
+        }
+      } else {
+        for (let r = 0; r < rows; r++) {
+          setTimeout(() => {
+            for (let c = 0; c < cols; c++) cells[r][c].classList.add('filled');
+          }, delay);
+          delay += step * 4;
+        }
+      }
+    });
+  });
+</script>

@@ -1,0 +1,95 @@
+<section class="gsd-calc" aria-label="GSD calculator activity">
+  <h3 class="gsd-calc__title">Try it: Calculate GSD</h3>
+  <p class="gsd-calc__prompt">These are the workbook's example values — change any of them to see how GSD responds.</p>
+
+  <div class="gsd-calc__grid">
+    <label class="gsd-calc__field">
+      <span>Camera height (m)</span>
+      <input type="number" data-height value="20" step="0.1" />
+    </label>
+    <label class="gsd-calc__field">
+      <span>Sensor width (mm)</span>
+      <input type="number" data-sensor-width value="6.96" step="0.01" />
+    </label>
+    <label class="gsd-calc__field">
+      <span>Focal length (mm)</span>
+      <input type="number" data-focal value="8.0" step="0.1" />
+    </label>
+    <label class="gsd-calc__field">
+      <span>Image width (pixels)</span>
+      <input type="number" data-image-width value="2048" step="1" />
+    </label>
+  </div>
+
+  <div class="gsd-calc__result">
+    <span class="gsd-calc__result-label">Calculated GSD</span>
+    <span class="gsd-calc__result-value" data-result>0.00 cm/pixel</span>
+  </div>
+
+  <details class="lesson-reveal">
+    <summary>How could you increase the GSD of the imagery?</summary>
+    <p>Increase the flight altitude, use a larger sensor, use a shorter focal length, or reduce the image width (fewer pixels) — any of these makes each pixel cover more ground, which increases (worsens) the GSD and lowers spatial resolution.</p>
+  </details>
+</section>
+
+<script>
+  function init(root) {
+    const height = root.querySelector('[data-height]');
+    const sensorWidth = root.querySelector('[data-sensor-width]');
+    const focal = root.querySelector('[data-focal]');
+    const imageWidth = root.querySelector('[data-image-width]');
+    const result = root.querySelector('[data-result]');
+
+    function calculate() {
+      const h = parseFloat(height.value) * 1000; // m to mm
+      const sw = parseFloat(sensorWidth.value);
+      const f = parseFloat(focal.value);
+      const iw = parseFloat(imageWidth.value);
+      if (!h || !sw || !f || !iw) {
+        result.textContent = '—';
+        return;
+      }
+      const gsdMm = (sw * h) / (f * iw);
+      const gsdCm = gsdMm / 10;
+      result.textContent = `${gsdCm.toFixed(3)} cm/pixel`;
+    }
+
+    [height, sensorWidth, focal, imageWidth].forEach((el) => el.addEventListener('input', calculate));
+    calculate();
+  }
+  document.querySelectorAll('.gsd-calc').forEach(init);
+</script>
+
+<style>
+  .gsd-calc { margin: 40px 0; padding: 28px; background: #fafafa; border: 1px solid var(--border-color, #e5e7eb); border-radius: 10px; }
+  .gsd-calc__title { margin: 0 0 6px 0; color: var(--isu-red, #c41e3a); font-size: 1.15em; }
+  .gsd-calc__prompt { margin: 0 0 20px 0; color: var(--text-secondary, #666); font-size: 0.95em; }
+  .gsd-calc__grid { display: grid; grid-template-columns: 1fr; gap: 16px; margin-bottom: 20px; }
+  @media (min-width: 700px) { .gsd-calc__grid { grid-template-columns: 1fr 1fr; } }
+  .gsd-calc__field { display: flex; flex-direction: column; gap: 6px; font-weight: 600; font-size: 0.9em; color: var(--text-primary, #1a1a1a); }
+  .gsd-calc__field input {
+    padding: 10px 12px;
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 6px;
+    font-size: 1em;
+  }
+  .gsd-calc__field input:focus { outline: 2px solid var(--isu-red, #c41e3a); border-color: var(--isu-red, #c41e3a); }
+  .gsd-calc__result {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: white;
+    border: 2px solid var(--isu-red, #c41e3a);
+    border-radius: 8px;
+    padding: 18px 22px;
+    margin-bottom: 20px;
+  }
+  .gsd-calc__result-label { font-weight: 600; color: var(--text-primary, #1a1a1a); }
+  .gsd-calc__result-value { font-size: 1.4em; font-weight: 700; color: var(--isu-red, #c41e3a); }
+  .lesson-reveal { padding: 4px 20px; background: #fff8e1; border: 1px solid var(--isu-gold, #f8c600); border-radius: 8px; }
+  .lesson-reveal summary { cursor: pointer; padding: 14px 0; font-weight: 600; color: var(--isu-dark-red, #a01729); list-style: none; }
+  .lesson-reveal summary::-webkit-details-marker { display: none; }
+  .lesson-reveal summary::before { content: '+ '; color: var(--isu-red, #c41e3a); font-weight: 800; }
+  .lesson-reveal[open] summary::before { content: '\2013 '; }
+  .lesson-reveal p { padding-bottom: 16px; margin: 0; color: var(--text-primary, #1a1a1a); line-height: 1.6; }
+</style>

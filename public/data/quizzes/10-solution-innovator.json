@@ -1,0 +1,68 @@
+[
+  {
+    "q": "Why might one drone carry cameras and sensors while another carries a spray tank?",
+    "options": [
+      "All drones are built identically",
+      "Different parts let drones specialize in different tasks, like data collection versus applying inputs",
+      "Spray tanks are only decorative",
+      "Cameras and spray tanks always come on the same drone"
+    ],
+    "correct": 1,
+    "explain": "Drones are built with different parts depending on their purpose \u2014 sensing drones carry cameras and sensors, while application drones carry tanks for pesticides or fertilizers."
+  },
+  {
+    "q": "What is a key advantage rovers have over drones for scouting?",
+    "options": [
+      "Rovers can fly higher than drones",
+      "Rover cameras sit at plant canopy level, giving a different vantage point than aerial imagery",
+      "Rovers never need batteries",
+      "Rovers are always faster than drones"
+    ],
+    "correct": 1,
+    "explain": "Rover cameras are positioned at plant canopy level, letting them capture detail that's hard to get from above, such as individual plant or leaf health."
+  },
+  {
+    "q": "How does an AI model identify a pest it has never specifically seen in training?",
+    "options": [
+      "It cannot identify anything new",
+      "It randomly guesses",
+      "It compares the new image's characteristics against patterns learned from thousands of labeled examples",
+      "It requires a human to manually identify every single image"
+    ],
+    "correct": 2,
+    "explain": "AI models learn overlapping patterns from many labeled examples, then apply that learned pattern recognition to classify new, previously unseen images."
+  },
+  {
+    "q": "Why are sensors especially valuable for agricultural data collection?",
+    "options": [
+      "They can collect data around the clock, including in conditions or times humans cannot easily monitor",
+      "They can only work during the day",
+      "They replace the need for any human decision-making",
+      "They are always cheaper than any other tool"
+    ],
+    "correct": 0,
+    "explain": "Sensors can be deployed continuously, allowing data collection 24/7 in places and times that would be difficult or impossible for a human to monitor directly."
+  },
+  {
+    "q": "In the Solution Innovator Challenge, why does combined accuracy multiply across tools instead of averaging?",
+    "options": [
+      "Multiplying makes the math simpler",
+      "Averaging isn't a real math operation",
+      "Because each tool in the workflow introduces its own chance of error, and those probabilities compound together",
+      "The workbook specifies accuracy must always equal 100%"
+    ],
+    "correct": 2,
+    "explain": "Each step in a workflow \u2014 sensing, identification, management \u2014 carries its own accuracy. Multiplying those probabilities together reflects how errors can compound across multiple steps, rather than canceling out through averaging."
+  },
+  {
+    "q": "Why must a workflow address both insect and weed management separately, even if using a tool that supports both?",
+    "options": [
+      "Insects and weeds are the same type of pest",
+      "Because different tools have different scopes \u2014 some only manage weeds, some only manage insects, and some can handle both",
+      "Only insects ever need management",
+      "Weeds never require any active management"
+    ],
+    "correct": 1,
+    "explain": "Tools like One Pass Cultivation only address weeds, while Biological Control only addresses insects. Tools like the Tractor Sprayer and Sprayer Drone can handle both, but a workflow still needs to confirm coverage of each pest type."
+  }
+]

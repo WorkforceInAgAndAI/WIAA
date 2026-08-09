@@ -1,0 +1,61 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import SatSidebar from '../../../components/SatSidebar.astro';
+import SatLessonNav from '../../../components/SatLessonNav.astro';
+
+const content = await import('../../../content/satellites/10-solution-innovator/lesson-3.md');
+const { Content } = content;
+const { title, chapter, lesson } = content.frontmatter;
+---
+
+<BaseLayout title={title}>
+  <div class="container" style="max-width: 1400px; margin: 30px auto; padding: 0 20px;">
+    <div style="display: grid; grid-template-columns: 250px 1fr; gap: 24px; align-items: start;">
+      <SatSidebar currentChapter={chapter} currentLesson={lesson} />
+      <div class="content-area">
+        <div class="content-header">
+          <p class="chapter-label">Chapter {chapter}: Solution Innovator</p>
+          <h1>{title}</h1>
+        </div>
+        <article class="lesson-content">
+          <Content />
+        </article>
+<SatLessonNav
+          prev={{ href: '/satellites/10-solution-innovator/lesson-2', label: 'Previous' }}
+          next={{ href: '/satellites/10-solution-innovator/lesson-4', label: 'Next' }}
+          progress={`${chapter}.${lesson} / 11 Chapters`}
+        />
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+<style is:global>
+  :root {
+    --isu-red: #c41e3a;
+    --isu-gold: #f8c600;
+    --border-light: #ddd;
+    --text-dark: #1a1a1a;
+    --text-medium: #666;
+    --isu-dark-red: #a01729;
+  }
+  .lesson-content p {
+    line-height: 1.8;
+    color: var(--text-dark);
+    margin-bottom: 18px;
+  }
+  .section-intro {
+    font-size: 1.05em;
+    color: var(--text-medium);
+    font-style: italic;
+    margin-bottom: 24px;
+  }
+</style>
+<style>
+  @media (max-width: 768px) {
+    div[style*="grid-template-columns"] {
+      display: flex !important;
+      flex-direction: column-reverse !important;
+      gap: 16px !important;
+    }
+  }
+</style>

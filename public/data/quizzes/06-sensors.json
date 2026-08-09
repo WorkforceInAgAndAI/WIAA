@@ -1,0 +1,112 @@
+[
+  {
+    "q": "What is the electromagnetic spectrum?",
+    "options": [
+      "The range of colors visible to the human eye only",
+      "The entire range of electromagnetic radiation, at all wavelengths",
+      "A type of sensor used exclusively on drones",
+      "The area a single pixel covers on the ground"
+    ],
+    "correct": 1,
+    "explain": "The electromagnetic spectrum is the entire range of electromagnetic radiation, of which visible light is only a small portion."
+  },
+  {
+    "q": "What is a 'band' in the context of plant science sensing?",
+    "options": [
+      "A physical strap that holds the sensor to the drone",
+      "A type of drone propeller",
+      "A specific range of wavelengths within the electromagnetic spectrum",
+      "The frame rate of a video sensor"
+    ],
+    "correct": 2,
+    "explain": "A band is a portion of the electromagnetic spectrum \u2014 a specific range of wavelengths \u2014 used to determine plant health or detect early stress symptoms."
+  },
+  {
+    "q": "Which of these is an example of an active sensor?",
+    "options": [
+      "RGB camera",
+      "Thermal camera",
+      "LiDAR sensor",
+      "Multispectral camera"
+    ],
+    "correct": 2,
+    "explain": "LiDAR is an active sensor \u2014 it emits its own laser wavelength and then detects that same wavelength reflecting back."
+  },
+  {
+    "q": "Why are RGB, multispectral, hyperspectral, and thermal cameras considered passive sensors?",
+    "options": [
+      "They require no battery power",
+      "They can only be used at night",
+      "They don't collect any data",
+      "They detect wavelengths from a source other than themselves, like sunlight"
+    ],
+    "correct": 3,
+    "explain": "Passive sensors detect wavelengths originating from an external source (like the sun) rather than emitting their own."
+  },
+  {
+    "q": "What's the main difference between a multispectral and a hyperspectral camera?",
+    "options": [
+      "Hyperspectral cameras detect hundreds of narrow bands, while multispectral cameras detect a handful of broader bands",
+      "Multispectral cameras only work at night",
+      "Multispectral cameras are active sensors and hyperspectral cameras are passive",
+      "There is no meaningful difference"
+    ],
+    "correct": 0,
+    "explain": "Multispectral cameras typically use 6\u201310 sensors covering broad spectral areas, while hyperspectral cameras capture hundreds of narrow bands, offering much finer spectral detail."
+  },
+  {
+    "q": "What does a thermal camera measure?",
+    "options": [
+      "The amount of visible light reflected from an object",
+      "The distance between the sensor and an object",
+      "The color of a plant's leaves",
+      "Heat reflected or emitted from an object"
+    ],
+    "correct": 3,
+    "explain": "Unlike RGB, multispectral, or hyperspectral cameras, a thermal camera measures heat rather than reflected light."
+  },
+  {
+    "q": "What does Ground Sampling Distance (GSD) represent?",
+    "options": [
+      "The total area of a field",
+      "The speed of the drone during flight",
+      "The number of sensors on a drone",
+      "The amount of ground area represented by a single pixel"
+    ],
+    "correct": 3,
+    "explain": "GSD is the amount of ground area covered by one pixel in a captured image \u2014 a smaller GSD means finer detail."
+  },
+  {
+    "q": "How does increasing flight altitude affect GSD and spatial resolution?",
+    "options": [
+      "GSD decreases and resolution improves",
+      "GSD increases and spatial resolution decreases",
+      "Neither GSD nor resolution is affected by altitude",
+      "GSD becomes negative"
+    ],
+    "correct": 1,
+    "explain": "As altitude increases, each pixel covers more ground area, increasing GSD and reducing spatial resolution."
+  },
+  {
+    "q": "What happens to the area covered by each pixel if the focal length is doubled?",
+    "options": [
+      "It doubles",
+      "It stays the same",
+      "It is cut in half",
+      "It becomes zero"
+    ],
+    "correct": 2,
+    "explain": "A longer focal length narrows the field of view. Doubling the focal length halves the ground area covered by each pixel, increasing spatial resolution."
+  },
+  {
+    "q": "How does increasing image width (more pixels) affect GSD?",
+    "options": [
+      "GSD increases, reducing detail",
+      "GSD is unaffected by image width",
+      "GSD decreases, increasing detail",
+      "Image width has no relationship to GSD"
+    ],
+    "correct": 2,
+    "explain": "More pixels across the same physical area means each pixel covers less ground, decreasing (improving) the GSD and increasing image detail."
+  }
+]

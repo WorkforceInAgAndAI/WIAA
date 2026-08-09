@@ -1,0 +1,73 @@
+<section class="future-role">
+  <h3 class="future-role__title">Try it: Your Future Role</h3>
+  <p class="future-role__prompt">Take a minute to think through these three questions.</p>
+
+  <div class="future-role__questions">
+    <div class="future-role__question">
+      <label for="future-role-job">What job would you like?</label>
+      <textarea id="future-role-job" rows="2" placeholder="Type your answer here..."></textarea>
+    </div>
+    <div class="future-role__question">
+      <label for="future-role-problems">What problems would you solve?</label>
+      <textarea id="future-role-problems" rows="2" placeholder="Type your answer here..."></textarea>
+    </div>
+    <div class="future-role__question">
+      <label for="future-role-step">One step you can take this year:</label>
+      <textarea id="future-role-step" rows="2" placeholder="Type your answer here..."></textarea>
+    </div>
+  </div>
+
+  <p class="future-role__note">This isn't saved anywhere &mdash; it's just a space to think it through before you write it down elsewhere.</p>
+</section>
+
+<style>
+  .future-role {
+    margin: 40px 0;
+    padding: 28px;
+    background: #fafafa;
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 10px;
+  }
+  .future-role__title {
+    margin: 0 0 6px 0;
+    color: var(--isu-red, #c41e3a);
+    font-size: 1.15em;
+  }
+  .future-role__prompt {
+    margin: 0 0 20px 0;
+    color: var(--text-secondary, #666);
+    font-size: 0.95em;
+  }
+  .future-role__questions {
+    display: grid;
+    gap: 18px;
+  }
+  .future-role__question {
+    background: white;
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 8px;
+    padding: 18px;
+  }
+  .future-role__question label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: var(--text-primary, #1a1a1a);
+  }
+  .future-role__question textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px;
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 0.95em;
+    resize: vertical;
+  }
+  .future-role__note {
+    margin: 16px 0 0 0;
+    font-size: 0.8em;
+    color: #999;
+    font-style: italic;
+  }
+</style>

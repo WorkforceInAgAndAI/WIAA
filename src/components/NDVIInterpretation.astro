@@ -1,0 +1,26 @@
+<section class="scenario-reveal">
+  <h3 class="scenario-reveal__title">Try it: Interpret the Change</h3>
+  <p class="scenario-reveal__prompt">Think through each scenario, then reveal a sample interpretation.</p>
+
+  <details class="lesson-reveal">
+    <summary>A plot's NDVI rises from 0.25 to 0.60 between two flights. What could this signify?</summary>
+    <p>A rising NDVI generally signals improving plant health — the vegetation is reflecting more NIR light and less red light than before. This could mean the crop has grown further into a healthy growth stage, recovered from an earlier stress event (like a nutrient deficiency or water stress), or simply matured with fuller canopy coverage since the first flight.</p>
+  </details>
+
+  <details class="lesson-reveal">
+    <summary>One plot has a very low NDVI value at both time points. What could this mean?</summary>
+    <p>A consistently very low NDVI across both flights suggests that plot has little to no live vegetation present at all — most likely bare soil, a gap in the stand, or a spot where the crop failed to establish. Because the value stayed low rather than changing, it points to a persistent condition rather than a temporary stress event.</p>
+  </details>
+</section>
+
+<style>
+  .scenario-reveal { margin: 40px 0; padding: 28px; background: #fafafa; border: 1px solid var(--border-color, #e5e7eb); border-radius: 10px; }
+  .scenario-reveal__title { margin: 0 0 6px 0; color: var(--isu-red, #c41e3a); font-size: 1.15em; }
+  .scenario-reveal__prompt { margin: 0 0 20px 0; color: var(--text-secondary, #666); font-size: 0.95em; }
+  .lesson-reveal { margin: 14px 0; padding: 4px 20px; background: #fff8e1; border: 1px solid var(--isu-gold, #f8c600); border-radius: 8px; }
+  .lesson-reveal summary { cursor: pointer; padding: 14px 0; font-weight: 600; color: var(--isu-dark-red, #a01729); list-style: none; }
+  .lesson-reveal summary::-webkit-details-marker { display: none; }
+  .lesson-reveal summary::before { content: '+ '; color: var(--isu-red, #c41e3a); font-weight: 800; }
+  .lesson-reveal[open] summary::before { content: '\2013 '; }
+  .lesson-reveal p { padding-bottom: 16px; margin: 0; color: var(--text-primary, #1a1a1a); line-height: 1.6; }
+</style>

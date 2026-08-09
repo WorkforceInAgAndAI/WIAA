@@ -1,0 +1,35 @@
+[
+  {
+    "q": "Before acting against weeds in a field, what three things does an agronomist need to know?",
+    "options": [
+      "The type of weeds, their location, and how many are present",
+      "The weather, the soil pH, and the farmer's name",
+      "The drone's battery level, altitude, and speed",
+      "The crop's planting date, harvest date, and yield"
+    ],
+    "correct": 0,
+    "explain": "Before applying herbicides, an agronomist needs to know the type of weeds present, where they're located, and how many of each type there are."
+  },
+  {
+    "q": "In the manual scouting method, what is the field partner's role?",
+    "options": [
+      "Stay outside the field and draw the map",
+      "Fly the drone over the field",
+      "Enter the field and try to find all the weeds by hand",
+      "Apply herbicides to the field"
+    ],
+    "correct": 2,
+    "explain": "The field partner physically enters the field to search for and find weeds, while the map partner records locations from outside."
+  },
+  {
+    "q": "Why is it useful to compare manual scouting results against drone scouting results?",
+    "options": [
+      "It isn't useful, only one method should ever be used",
+      "Comparing them is only useful for grading purposes",
+      "The results are always identical, so there's nothing to compare",
+      "It shows the real-world trade-offs in speed, coverage, and accuracy between the two approaches"
+    ],
+    "correct": 3,
+    "explain": "Directly comparing both methods reveals practical differences in speed, thoroughness, and accuracy that are easy to overlook when only discussing drones in theory."
+  }
+]

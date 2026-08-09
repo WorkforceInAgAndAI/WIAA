@@ -1,0 +1,85 @@
+---
+const tasks = [
+  { id: "identify", label: "Identification", text: "Recognizing what something is in an image or dataset &mdash; for example, identifying an insect species on a leaf." },
+  { id: "classify", label: "Classification", text: "Sorting identified items into categories &mdash; for example, classifying whether an insect is a pest or beneficial to a crop." },
+  { id: "quantify", label: "Quantification", text: "Counting or measuring the extent of something &mdash; for example, counting the number of weeds in a field." },
+  { id: "predict", label: "Prediction", text: "Forecasting how a condition will change over time &mdash; for example, forecasting how a plant stress will progress." }
+];
+---
+<div class="ai-task-explorer">
+  <h4>Explore: AI Tasks</h4>
+  <p class="ai-task-explorer__prompt">Click each task to see what it means in agriculture.</p>
+  <div class="ai-task-explorer__grid">
+    {tasks.map(t => (
+      <button class="ai-task-explorer__btn" data-target={t.id}>{t.label}</button>
+    ))}
+  </div>
+  <div class="ai-task-explorer__detail" id="ai-task-explorer-detail">
+    <p>Click a task above to learn more.</p>
+  </div>
+</div>
+
+<style is:global>
+  .ai-task-explorer {
+    background: white;
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    padding: 24px;
+    margin: 30px 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  }
+  .ai-task-explorer h4 {
+    color: var(--isu-red);
+    font-size: 1.2em;
+    margin-bottom: 8px;
+    font-family: Georgia, Garamond, 'Times New Roman', serif;
+  }
+  .ai-task-explorer__prompt {
+    color: var(--text-medium);
+    margin-bottom: 16px;
+  }
+  .ai-task-explorer__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  .ai-task-explorer__btn {
+    padding: 14px;
+    border: 1px solid var(--isu-gold);
+    background: white;
+    color: var(--isu-red);
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    font-family: Georgia, Garamond, 'Times New Roman', serif;
+  }
+  .ai-task-explorer__btn.active {
+    background: var(--isu-red);
+    color: white;
+  }
+  .ai-task-explorer__detail {
+    background: #f9f7f4;
+    border-radius: 6px;
+    padding: 16px;
+    color: var(--text-dark);
+    line-height: 1.6;
+    min-height: 40px;
+  }
+</style>
+
+<script define:vars={{ tasks }}>
+  document.addEventListener('DOMContentLoaded', () => {
+    const buttons = document.querySelectorAll('.ai-task-explorer__btn');
+    const detail = document.getElementById('ai-task-explorer-detail');
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        buttons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const target = btn.dataset.target;
+        const task = tasks.find(t => t.id === target);
+        if (detail && task) detail.innerHTML = `<p>${task.text}</p>`;
+      });
+    });
+  });
+</script>

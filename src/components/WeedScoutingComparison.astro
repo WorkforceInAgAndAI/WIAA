@@ -1,0 +1,154 @@
+---
+const defaultLabels = [
+  "Species 1", "Species 2", "Species 3", "Species 4", "Species 5", "Species 6",
+];
+---
+<section class="scouting-comparison" aria-label="Weed scouting results comparison">
+  <h3 class="scouting-comparison__title">Record Your Results</h3>
+  <p class="scouting-comparison__prompt">After completing both scouting methods in the field, enter your counts below. Rename each row to match the actual weed colors/species you used.</p>
+
+  <div class="scouting-comparison__table-wrap">
+    <table class="scouting-comparison__table">
+      <thead>
+        <tr>
+          <th>Weed Species</th>
+          <th>Manual Count</th>
+          <th>Drone Count</th>
+        </tr>
+      </thead>
+      <tbody>
+        {defaultLabels.map((label, i) => (
+          <tr>
+            <td><input type="text" class="species-label" value={label} data-row={i} /></td>
+            <td><input type="number" min="0" class="manual-count" data-row={i} placeholder="0" /></td>
+            <td><input type="number" min="0" class="drone-count" data-row={i} placeholder="0" /></td>
+          </tr>
+        ))}
+      </tbody>
+      <tfoot>
+        <tr>
+          <td>Total</td>
+          <td data-manual-total>0</td>
+          <td data-drone-total>0</td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+
+  <div class="scouting-comparison__summary" data-summary>
+    Fill in both columns to see a comparison.
+  </div>
+</section>
+
+<style>
+  .scouting-comparison {
+    margin: 40px 0;
+    padding: 28px;
+    background: #fafafa;
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 10px;
+  }
+  .scouting-comparison__title {
+    margin: 0 0 6px 0;
+    color: var(--isu-red, #c41e3a);
+    font-size: 1.15em;
+  }
+  .scouting-comparison__prompt {
+    margin: 0 0 20px 0;
+    color: var(--text-secondary, #666);
+    font-size: 0.95em;
+  }
+  .scouting-comparison__table-wrap {
+    overflow-x: auto;
+    margin-bottom: 20px;
+  }
+  .scouting-comparison__table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .scouting-comparison__table th {
+    background: var(--isu-red, #c41e3a);
+    color: white;
+    padding: 12px;
+    text-align: left;
+    font-size: 0.9em;
+  }
+  .scouting-comparison__table td {
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--border-color, #e5e7eb);
+  }
+  .scouting-comparison__table tfoot td {
+    font-weight: 700;
+    background: #f5f5f5;
+    border-top: 2px solid var(--border-color, #e5e7eb);
+  }
+  .scouting-comparison__table input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 8px 10px;
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 6px;
+    font-size: 0.95em;
+  }
+  .scouting-comparison__table input[type="number"] {
+    max-width: 90px;
+  }
+  .scouting-comparison__summary {
+    background: white;
+    border: 2px solid var(--isu-red, #c41e3a);
+    border-radius: 8px;
+    padding: 18px 22px;
+    font-weight: 600;
+    color: var(--text-primary, #1a1a1a);
+    line-height: 1.6;
+  }
+</style>
+
+<script>
+  function init(root) {
+    const manualInputs = root.querySelectorAll('.manual-count');
+    const droneInputs = root.querySelectorAll('.drone-count');
+    const manualTotalEl = root.querySelector('[data-manual-total]');
+    const droneTotalEl = root.querySelector('[data-drone-total]');
+    const summaryEl = root.querySelector('[data-summary]');
+
+    function sum(inputs) {
+      let total = 0;
+      inputs.forEach((input) => {
+        const val = parseInt(input.value, 10);
+        if (!isNaN(val)) total += val;
+      });
+      return total;
+    }
+
+    function update() {
+      const manualTotal = sum(manualInputs);
+      const droneTotal = sum(droneInputs);
+      manualTotalEl.textContent = manualTotal;
+      droneTotalEl.textContent = droneTotal;
+
+      if (manualTotal === 0 && droneTotal === 0) {
+        summaryEl.textContent = 'Fill in both columns to see a comparison.';
+        return;
+      }
+
+      const diff = droneTotal - manualTotal;
+      let comparison;
+      if (diff === 0) {
+        comparison = 'Both methods found the same total number of weeds.';
+      } else if (diff > 0) {
+        comparison = `The drone method found ${diff} more weed${diff === 1 ? '' : 's'} than manual scouting.`;
+      } else {
+        comparison = `Manual scouting found ${Math.abs(diff)} more weed${Math.abs(diff) === 1 ? '' : 's'} than the drone method.`;
+      }
+      summaryEl.textContent = `Manual total: ${manualTotal} | Drone total: ${droneTotal}. ${comparison}`;
+    }
+
+    [...manualInputs, ...droneInputs].forEach((input) => input.addEventListener('input', update));
+    update();
+  }
+  document.querySelectorAll('.scouting-comparison').forEach(init);
+</script>

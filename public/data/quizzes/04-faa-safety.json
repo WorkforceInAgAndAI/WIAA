@@ -1,0 +1,167 @@
+[
+  {
+    "q": "What is the maximum weight of a small unmanned aerial system that falls under the FAA's Part 107 license?",
+    "options": [
+      "25 pounds",
+      "35 pounds",
+      "45 pounds",
+      "55 pounds"
+    ],
+    "correct": 3,
+    "explain": "Small unmanned aerial systems less than 55 pounds in weight fall under Part 107 regulations."
+  },
+  {
+    "q": "What is the maximum altitude you can fly a drone under Part 107?",
+    "options": [
+      "100 feet",
+      "200 feet",
+      "300 feet",
+      "400 feet"
+    ],
+    "correct": 3,
+    "explain": "Part 107 regulations limit drones to 400 feet above ground level."
+  },
+  {
+    "q": "Which government agency manages national airspace, including drone operations?",
+    "options": [
+      "U.S. Department of Agriculture",
+      "Federal Aviation Administration (FAA)",
+      "National Weather Service",
+      "U.S. Department of Commerce"
+    ],
+    "correct": 1,
+    "explain": "The FAA, part of the U.S. Department of Transportation, manages national airspace and enforces the rules that keep aircraft \u2014 including drones \u2014 operating safely."
+  },
+  {
+    "q": "Which of these is NOT a requirement to be eligible for a Part 107 remote pilot certificate?",
+    "options": [
+      "Be at least 16 years old",
+      "Be fluent in English",
+      "Own a drone that costs at least $500",
+      "Have no interfering mental or physical conditions"
+    ],
+    "correct": 2,
+    "explain": "There is no minimum drone cost requirement. Eligibility depends on age, English fluency, and having no interfering mental or physical conditions."
+  },
+  {
+    "q": "What must you do before taking the Part 107 Knowledge Test?",
+    "options": [
+      "Purchase FAA-approved insurance",
+      "Obtain an FAA Tracking Number (FTN)",
+      "Complete 10 hours of supervised flight",
+      "Register your drone"
+    ],
+    "correct": 1,
+    "explain": "Pilots must obtain an FAA Tracking Number (FTN) before they can register for and take the Unmanned Aircraft General \u2013 Small (UAG) Knowledge Test."
+  },
+  {
+    "q": "How often must a drone registered with the FAA be renewed?",
+    "options": [
+      "Every year",
+      "Every 2 years",
+      "Every 3 years",
+      "It never needs to be renewed"
+    ],
+    "correct": 2,
+    "explain": "Drone registration must be renewed every three years for a $5 fee."
+  },
+  {
+    "q": "What is the purpose of a drone's Remote ID?",
+    "options": [
+      "It lets the drone fly at higher altitudes",
+      "It broadcasts information so the drone can be identified by others during flight",
+      "It automatically pays for drone registration",
+      "It prevents the drone from crashing"
+    ],
+    "correct": 1,
+    "explain": "Remote ID broadcasts identifying information about the drone throughout a flight, similar to a digital license plate."
+  },
+  {
+    "q": "If a drone has no built-in or attached Remote ID, where is it still allowed to fly?",
+    "options": [
+      "Anywhere, as long as it's under 400 feet",
+      "Only within an FAA-Recognized Identification Area (FRIA)",
+      "Only at night",
+      "Only over water"
+    ],
+    "correct": 1,
+    "explain": "Without a Remote ID, a drone is limited to operating within an FAA-Recognized Identification Area (FRIA), with the pilot and drone both inside the zone."
+  },
+  {
+    "q": "According to the 10 key flight rules, who has the right of way when a drone and a manned aircraft are both in the air?",
+    "options": [
+      "The drone, since it's smaller and more maneuverable",
+      "The manned aircraft \u2014 the drone operator must give way",
+      "Whichever aircraft took off first",
+      "Right of way is determined by air traffic control"
+    ],
+    "correct": 1,
+    "explain": "Drone operators must give way to manned aircraft and do not have the right of way."
+  },
+  {
+    "q": "What is the maximum ground speed allowed for a drone under Part 107?",
+    "options": [
+      "50 mph",
+      "75 mph",
+      "100 mph",
+      "150 mph"
+    ],
+    "correct": 2,
+    "explain": "Part 107 sets a maximum speed limit of 100 miles per hour."
+  },
+  {
+    "q": "Which of these describes Class G airspace, where most drone flights occur?",
+    "options": [
+      "Controlled airspace monitored closely by air traffic control",
+      "Uncontrolled airspace, generally from the ground up to 1,200 feet AGL",
+      "Airspace reserved exclusively for military aircraft",
+      "Airspace that begins at 18,000 feet MSL"
+    ],
+    "correct": 1,
+    "explain": "Class G airspace is uncontrolled airspace, generally extending from the ground up to 1,200 feet AGL, where air traffic control does not monitor operations."
+  },
+  {
+    "q": "Class B, C, and D airspace typically surround which type of location?",
+    "options": [
+      "National parks",
+      "Farmland",
+      "Airports with active control towers",
+      "Military bases only"
+    ],
+    "correct": 2,
+    "explain": "Class B, C, and D airspace typically begin at the ground surface around airports with active control towers, with boundaries that vary based on air traffic."
+  },
+  {
+    "q": "What does a METAR report provide to a drone pilot?",
+    "options": [
+      "The drone's current battery level",
+      "A summary of local weather conditions",
+      "The drone's GPS coordinates",
+      "A record of past FAA violations"
+    ],
+    "correct": 1,
+    "explain": "A METAR (Meteorological Aerodrome Report) is a compact, coded summary of local weather conditions such as wind, visibility, precipitation, and temperature."
+  },
+  {
+    "q": "Within how many days must a drone operator report an accident that causes severe injury or $500+ in damage?",
+    "options": [
+      "24 hours",
+      "3 days",
+      "10 days",
+      "30 days"
+    ],
+    "correct": 2,
+    "explain": "Accidents causing severe injury or $500 or more in damage must be reported to the FAA within 10 days."
+  },
+  {
+    "q": "Which of these is generally illegal under Part 107, even if the drone stays under 400 feet?",
+    "options": [
+      "Flying over an empty field",
+      "Flying over a crowded stadium",
+      "Flying during the day",
+      "Flying near a farm"
+    ],
+    "correct": 1,
+    "explain": "Flying over crowds of people, such as at a crowded stadium, is prohibited regardless of altitude."
+  }
+]

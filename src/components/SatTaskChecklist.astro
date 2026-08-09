@@ -1,0 +1,66 @@
+---
+---
+<div class="task-checklist" id="task-checklist">
+  <p class="task-checklist__status"><span id="task-count">0</span> of 15 tasks explored</p>
+  <p class="task-checklist__note">Click each task above that you have experience working on.</p>
+</div>
+
+<style>
+  .task-checklist {
+    background: #f9f7f4;
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin-top: 20px;
+    text-align: center;
+  }
+  .task-checklist__status {
+    font-weight: 700;
+    color: var(--isu-red);
+    font-size: 1.1em;
+    margin-bottom: 4px;
+  }
+  .task-checklist__note {
+    color: var(--text-medium);
+    font-size: 0.9em;
+    margin: 0;
+  }
+</style>
+
+<style is:global>
+  .task-list li {
+    cursor: pointer;
+    padding: 10px 14px;
+    border: 1px solid var(--border-light);
+    border-radius: 4px;
+    margin-bottom: 8px;
+    list-style: none;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .task-list li:hover {
+    border-color: var(--isu-gold);
+  }
+  .task-list li.checked {
+    background: rgba(46, 125, 50, 0.08);
+    border-color: #2e7d32;
+    color: #2e7d32;
+    text-decoration: line-through;
+  }
+  .task-list {
+    padding-left: 0;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const items = document.querySelectorAll('.task-list li');
+    const counter = document.getElementById('task-count');
+    let checkedCount = 0;
+    items.forEach(item => {
+      item.addEventListener('click', () => {
+        item.classList.toggle('checked');
+        checkedCount = document.querySelectorAll('.task-list li.checked').length;
+        if (counter) counter.textContent = String(checkedCount);
+      });
+    });
+  });
+</script>

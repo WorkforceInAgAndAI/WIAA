@@ -1,0 +1,111 @@
+---
+const scenarios = [
+  { id: "low", label: "Low Overlap (30%)", squares: 3, gap: true },
+  { id: "high", label: "High Overlap (80%)", squares: 8, gap: false },
+];
+---
+<section class="overlap-demo" aria-label="Overlap comparison activity">
+  <h3 class="overlap-demo__title">Try it: See the Difference Overlap Makes</h3>
+  <p class="overlap-demo__prompt">Each square below represents one captured image along a flight line. Click a scenario to see how the images line up.</p>
+
+  <div class="overlap-demo__buttons">
+    {scenarios.map((s) => (
+      <button type="button" class="overlap-demo__btn" data-scenario={s.id}>{s.label}</button>
+    ))}
+  </div>
+
+  <div class="overlap-demo__strip" data-strip>
+    <p class="overlap-demo__hint">Choose a scenario above to see the image strip.</p>
+  </div>
+
+  <div class="overlap-demo__answer" data-answer style="display: none;">
+    <p></p>
+  </div>
+</section>
+
+<style>
+  .overlap-demo {
+    margin: 40px 0;
+    padding: 28px;
+    background: #fafafa;
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 10px;
+  }
+  .overlap-demo__title { margin: 0 0 6px 0; color: var(--isu-red, #c41e3a); font-size: 1.15em; }
+  .overlap-demo__prompt { margin: 0 0 20px 0; color: var(--text-secondary, #666); font-size: 0.95em; }
+  .overlap-demo__buttons { display: flex; gap: 10px; margin-bottom: 20px; }
+  .overlap-demo__btn {
+    all: unset;
+    cursor: pointer;
+    padding: 10px 18px;
+    background: white;
+    border: 2px solid var(--border-color, #e5e7eb);
+    border-radius: 8px;
+    font-weight: 600;
+    color: var(--text-primary, #1a1a1a);
+  }
+  .overlap-demo__btn:hover { border-color: var(--isu-red, #c41e3a); }
+  .overlap-demo__btn.is-active { background: var(--isu-red, #c41e3a); color: white; border-color: var(--isu-red, #c41e3a); }
+  .overlap-demo__strip {
+    display: flex;
+    align-items: center;
+    min-height: 90px;
+    background: white;
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 16px;
+  }
+  .overlap-demo__hint { margin: 0; color: #999; font-style: italic; }
+  .overlap-square {
+    width: 70px;
+    height: 70px;
+    border-radius: 6px;
+    background: linear-gradient(135deg, #c41e3a, #a01729);
+    opacity: 0.6;
+    flex-shrink: 0;
+  }
+  .overlap-demo__answer {
+    background: white;
+    border: 2px solid var(--isu-gold, #f8c600);
+    border-radius: 8px;
+    padding: 16px 20px;
+  }
+  .overlap-demo__answer p { margin: 0; color: var(--text-primary, #1a1a1a); line-height: 1.6; }
+</style>
+
+<script define:vars={{ scenarios }}>
+  function init(root) {
+    const strip = root.querySelector('[data-strip]');
+    const answerBox = root.querySelector('[data-answer]');
+    const answerText = answerBox.querySelector('p');
+    const buttons = root.querySelectorAll('.overlap-demo__btn');
+
+    const answers = {
+      low: "With low overlap, there are visible gaps between images — the software has little shared area to match between frames, making it harder (or impossible) to stitch them together accurately. Flights are faster, but stitching is riskier.",
+      high: "With high overlap, each image shares most of its area with its neighbors — giving the stitching software plenty of matching detail to align everything precisely. It takes longer to fly, but the result is far more reliable.",
+    };
+
+    buttons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        buttons.forEach((b) => b.classList.remove('is-active'));
+        btn.classList.add('is-active');
+        const scenario = scenarios.find((s) => s.id === btn.dataset.scenario);
+
+        strip.innerHTML = '';
+        const marginPx = scenario.gap ? 20 : -35;
+        for (let i = 0; i < scenario.squares; i++) {
+          const sq = document.createElement('div');
+          sq.className = 'overlap-square';
+          sq.style.marginLeft = i === 0 ? '0' : `${marginPx}px`;
+          sq.style.zIndex = String(scenario.squares - i);
+          strip.appendChild(sq);
+        }
+
+        answerBox.style.display = 'block';
+        answerText.textContent = answers[scenario.id];
+      });
+    });
+  }
+  document.querySelectorAll('.overlap-demo').forEach(init);
+</script>

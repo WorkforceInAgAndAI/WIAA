@@ -1,0 +1,165 @@
+---
+const strategies = [
+  { name: "Tillage", pest: "Weeds" },
+  { name: "Herbicides", pest: "Weeds" },
+  { name: "Biological insects", pest: "Insects" },
+  { name: "Insecticides", pest: "Insects" },
+  { name: "Fungicides", pest: "Diseases" }
+];
+const pests = ["Weeds", "Insects", "Diseases"];
+---
+<div class="mgmt-match" id="mgmt-match">
+  <h4>Activity 24: Management Strategy</h4>
+  <p class="mgmt-match__prompt">Match each management strategy to the pest type it primarily addresses.</p>
+  <div class="mgmt-match__columns">
+    <div class="mgmt-match__col">
+      {strategies.map(s => (
+        <button class="mgmt-match__strategy" data-pest={s.pest}>{s.name}</button>
+      ))}
+    </div>
+    <div class="mgmt-match__col">
+      {pests.map(p => (
+        <div class="mgmt-match__pest" data-pest={p}>
+          <span>{p}</span>
+          <div class="mgmt-match__slots" data-slots={p}></div>
+        </div>
+      ))}
+    </div>
+  </div>
+  <p class="mgmt-match__status" id="mgmt-match-status"></p>
+</div>
+
+<style is:global>
+  .mgmt-match {
+    background: white;
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    padding: 24px;
+    margin: 30px 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  }
+  .mgmt-match h4 {
+    color: var(--isu-red);
+    font-size: 1.2em;
+    margin-bottom: 8px;
+    font-family: Georgia, Garamond, 'Times New Roman', serif;
+  }
+  .mgmt-match__prompt {
+    color: var(--text-dark);
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+  .mgmt-match__columns {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .mgmt-match__col {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .mgmt-match__strategy {
+    padding: 10px 14px;
+    border: 1px solid var(--border-light);
+    background: white;
+    color: var(--text-dark);
+    text-align: left;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 13px;
+    font-family: Georgia, Garamond, 'Times New Roman', serif;
+  }
+  .mgmt-match__strategy.selected {
+    border-color: var(--isu-red);
+    background: rgba(196, 30, 58, 0.06);
+  }
+  .mgmt-match__strategy.placed {
+    display: none;
+  }
+  .mgmt-match__pest {
+    border: 1px solid var(--border-light);
+    border-radius: 6px;
+    padding: 12px;
+  }
+  .mgmt-match__pest span {
+    display: block;
+    font-weight: 700;
+    color: var(--isu-red);
+    margin-bottom: 8px;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .mgmt-match__slots {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-height: 20px;
+  }
+  .mgmt-match__slots .placed-item {
+    padding: 8px 10px;
+    background: #f9f7f4;
+    border-radius: 4px;
+    font-size: 12px;
+    color: var(--text-medium);
+  }
+  .mgmt-match__status {
+    margin-top: 16px;
+    font-weight: 600;
+    color: var(--isu-red);
+    min-height: 1.2em;
+  }
+  @media (min-width: 768px) {
+    .mgmt-match__columns {
+      flex-direction: row;
+    }
+    .mgmt-match__col {
+      flex: 1;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    let selected: HTMLElement | null = null;
+    let placedCount = 0;
+    const total = 5;
+    const status = document.getElementById('mgmt-match-status');
+
+    document.querySelectorAll('.mgmt-match__strategy').forEach(btn => {
+      btn.addEventListener('click', () => {
+        if (btn.classList.contains('placed')) return;
+        if (selected) selected.classList.remove('selected');
+        selected = btn as HTMLElement;
+        selected.classList.add('selected');
+      });
+    });
+
+    document.querySelectorAll('.mgmt-match__pest').forEach(pestEl => {
+      pestEl.addEventListener('click', () => {
+        if (!selected) return;
+        const correctPest = selected.dataset.pest;
+        const thisPest = (pestEl as HTMLElement).dataset.pest;
+        const slots = pestEl.querySelector('.mgmt-match__slots');
+        if (correctPest === thisPest) {
+          const placed = document.createElement('div');
+          placed.className = 'placed-item';
+          placed.textContent = selected.textContent;
+          slots?.appendChild(placed);
+          selected.classList.add('placed');
+          selected.classList.remove('selected');
+          placedCount++;
+          if (status) {
+            status.textContent = placedCount === total ? 'All matched! Nice work.' : `${placedCount} of ${total} placed.`;
+          }
+          selected = null;
+        } else {
+          if (status) status.textContent = 'Not quite, try again.';
+          selected.classList.remove('selected');
+          selected = null;
+        }
+      });
+    });
+  });
+</script>

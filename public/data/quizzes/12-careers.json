@@ -1,0 +1,57 @@
+[
+  {
+    "q": "Why are jobs in agriculture and AI growing?",
+    "options": [
+      "Fewer people want to farm",
+      "Drones and AI are just temporary fads",
+      "Farming does not need technology",
+      "Population is increasing while farmland is decreasing, requiring new technology"
+    ],
+    "correct": 3,
+    "explain": "Growing population plus less farmland creates demand for technology solutions that increase agricultural productivity."
+  },
+  {
+    "q": "What can you do right now to prepare for a career in agricultural technology?",
+    "options": [
+      "Wait until college",
+      "Only study soybeans",
+      "Focus entirely on computer science",
+      "Take STEM classes and gain agriculture experience"
+    ],
+    "correct": 3,
+    "explain": "You can start building valuable skills immediately through STEM classes and agriculture experience."
+  },
+  {
+    "q": "According to the workbook, what role can AI play as a leveler in agriculture?",
+    "options": [
+      "It delivers scalable, farm-size-agnostic decision tools, making advanced analytics affordable across diverse production systems",
+      "It replaces the need for any human decision-making",
+      "It only benefits the largest farming operations",
+      "It has no measurable effect on farm profitability"
+    ],
+    "correct": 0,
+    "explain": "AI has the potential to make advanced analytics affordable and useful across farms of many different sizes, not just the largest operations."
+  },
+  {
+    "q": "Which of these is an example of an agriculture-focused college path?",
+    "options": [
+      "Computer science",
+      "Mechanical engineering",
+      "Plant breeding",
+      "Data science"
+    ],
+    "correct": 2,
+    "explain": "Plant breeding is one of the agriculture-focused paths listed, alongside agronomy, weed science, and genetics."
+  },
+  {
+    "q": "Why might a data scientist working with genetic data benefit from a background in genetics?",
+    "options": [
+      "Genetics knowledge has no relevance to data science",
+      "It's required to operate a drone",
+      "It helps them understand and correctly interpret the data they're analyzing",
+      "Genetics only matters for mechanical engineering"
+    ],
+    "correct": 2,
+    "explain": "Skills and knowledge in genetics are useful for a data scientist working with genetic data, since understanding the subject matter improves the quality of the analysis."
+  }
+]

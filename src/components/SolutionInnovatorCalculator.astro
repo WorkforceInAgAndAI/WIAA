@@ -1,0 +1,389 @@
+---
+const ACRES = 350;
+const START_BUDGET = 75000;
+const START_TIME = 432;
+const ACCURACY_THRESHOLD = 75;
+
+const platforms = {
+  satellite: [
+    { id: "none", name: "None" },
+    { id: "sentinel2", name: "Sentinel-2 (Free)", cost: 0, time: 240 },
+    { id: "pleiades", name: "Pléiades Neo ($8.33/acre)", costPerAcre: 8.33, time: 12 },
+    { id: "skysat", name: "SkySat ($2.46/acre)", costPerAcre: 2.46, time: 3 },
+    { id: "landsat9", name: "Landsat 9 (Free)", cost: 0, time: 384 },
+  ],
+  drone: [
+    { id: "none", name: "None" },
+    { id: "inspire2", name: "DJI Inspire 2 ($5,000)", cost: 5000, time: 2.5 },
+    { id: "astro", name: "Freefly Astro ($40,000)", cost: 40000, time: 3.5 },
+    { id: "phantom4", name: "DJI Phantom 4 Pro ($2,000)", cost: 2000, time: 2.5 },
+    { id: "matrice600", name: "DJI Matrice 600 ($6,000)", cost: 6000, time: 2.5 },
+    { id: "matrice300", name: "DJI Matrice 300 ($11,000)", cost: 11000, time: 2.5 },
+  ],
+  rover: [
+    { id: "none", name: "None" },
+    { id: "amiga", name: "The Amiga ($12,990)", cost: 12990, time: 15 },
+    { id: "terrasentia", name: "TerraSentia – Earth Sense ($13,000)", cost: 13000, time: 26.5 },
+  ],
+};
+
+const sensors = [
+  { id: "none", name: "None" },
+  { id: "rgb", name: "RGB Camera ($2,000, 80% acc.)", cost: 2000, time: 24, accuracy: 80 },
+  { id: "multispectral", name: "Multispectral Camera ($13,950, 87% acc.)", cost: 13950, time: 24, accuracy: 87 },
+  { id: "hyperspectral", name: "Hyperspectral Camera ($65,000, 98% acc.)", cost: 65000, time: 120, accuracy: 98 },
+  { id: "lidar", name: "LiDAR Sensor ($20,000, 40% acc.)", cost: 20000, time: 96, accuracy: 40 },
+  { id: "thermal", name: "Thermal Sensor ($2,000, 50% acc.)", cost: 2000, time: 24, accuracy: 50 },
+];
+
+const idStrategies = [
+  { id: "none", name: "None" },
+  { id: "pestid", name: "Pest ID App ($0, 96% acc.)", cost: 0, time: 0, accuracy: 96 },
+  { id: "extension", name: "Extension Agronomist ($250, 97% acc.)", cost: 250, time: 144, accuracy: 97 },
+  { id: "scout", name: "Crop Scout ($500, 92% acc.)", cost: 500, time: 48, accuracy: 92 },
+];
+
+const mgmtStrategies = [
+  { id: "none", name: "None" },
+  { id: "cultivation", name: "One Pass Cultivation ($7,000, 92% acc.) — weed only", cost: 7000, time: 7, accuracy: 92, supports: ["weed"] },
+  { id: "tractor", name: "Tractor Sprayer ($3,800, 82% acc.) — insect & weed", cost: 3800, time: 5, accuracy: 82, supports: ["insect", "weed"] },
+  { id: "biological", name: "Biological Control ($5,400, 75% acc.) — insect only", cost: 5400, time: 2, accuracy: 75, supports: ["insect"] },
+  { id: "sprayerdrone", name: "Sprayer Drone ($22,000, 96% acc.) — insect & weed", cost: 22000, time: 10, accuracy: 96, supports: ["insect", "weed"] },
+];
+
+const mgmtInsectOptions = mgmtStrategies.filter((m) => m.id === "none" || m.supports?.includes("insect"));
+const mgmtWeedOptions = mgmtStrategies.filter((m) => m.id === "none" || m.supports?.includes("weed"));
+---
+<section class="solution-calc" aria-label="Solution Innovator budget calculator" data-acres={ACRES} data-start-budget={START_BUDGET} data-start-time={START_TIME} data-threshold={ACCURACY_THRESHOLD}>
+  <h3 class="solution-calc__title">Build Your Workflow</h3>
+
+  <div class="solution-calc__starting">
+    <div class="starting-stat"><span>Starting Budget</span><strong>${START_BUDGET.toLocaleString()}</strong></div>
+    <div class="starting-stat"><span>Starting Time</span><strong>{START_TIME} hours</strong></div>
+    <div class="starting-stat"><span>Accuracy Needed</span><strong>&gt;{ACCURACY_THRESHOLD}%</strong></div>
+  </div>
+
+  <div class="solution-calc__section">
+    <h4>1. Platform(s) — up to one of each</h4>
+    {Object.entries(platforms).map(([type, options]) => (
+      <div class="platform-row">
+        <label class="platform-row__label">{type.charAt(0).toUpperCase() + type.slice(1)}</label>
+        <select class="platform-select" data-platform-type={type}>
+          {options.map((opt) => <option value={opt.id}>{opt.name}</option>)}
+        </select>
+        <select class="sensor-select" data-sensor-for={type} disabled>
+          {sensors.map((s) => <option value={s.id}>{s.name}</option>)}
+        </select>
+      </div>
+    ))}
+  </div>
+
+  <div class="solution-calc__section">
+    <h4>2. Identification Strategy — choose one</h4>
+    <select class="id-select">
+      {idStrategies.map((opt) => <option value={opt.id}>{opt.name}</option>)}
+    </select>
+  </div>
+
+  <div class="solution-calc__section">
+    <h4>3. Management Strategy — must address both pests</h4>
+    <div class="mgmt-row">
+      <label>Insect Management</label>
+      <select class="mgmt-select" data-pest="insect">
+        {mgmtInsectOptions.map((opt) => <option value={opt.id}>{opt.name}</option>)}
+      </select>
+    </div>
+    <div class="mgmt-row">
+      <label>Weed Management</label>
+      <select class="mgmt-select" data-pest="weed">
+        {mgmtWeedOptions.map((opt) => <option value={opt.id}>{opt.name}</option>)}
+      </select>
+    </div>
+    <p class="mgmt-note">Tip: if a tool handles both insects and weeds (Tractor Sprayer or Sprayer Drone), selecting it for both counts its cost and time only once — your insecticide and herbicide can be tank-mixed.</p>
+  </div>
+
+  <div class="solution-calc__results">
+    <div class="result-card" data-result="budget">
+      <span>Remaining Budget</span>
+      <strong data-value>${START_BUDGET.toLocaleString()}</strong>
+    </div>
+    <div class="result-card" data-result="time">
+      <span>Remaining Time</span>
+      <strong data-value>{START_TIME} hours</strong>
+    </div>
+    <div class="result-card" data-result="accuracy">
+      <span>Combined Accuracy</span>
+      <strong data-value>—</strong>
+    </div>
+    <div class="result-card" data-result="yieldloss">
+      <span>Estimated Yield Loss</span>
+      <strong data-value>$0</strong>
+    </div>
+  </div>
+
+  <p class="solution-calc__verdict" data-verdict>Select your tools above to see how your workflow stacks up.</p>
+
+  <button type="button" class="solution-calc__reset" data-reset>Reset workflow</button>
+</section>
+
+<style>
+  .solution-calc {
+    margin: 40px 0;
+    padding: 28px;
+    background: #fafafa;
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 10px;
+  }
+  .solution-calc__title {
+    margin: 0 0 20px 0;
+    color: var(--isu-red, #c41e3a);
+    font-size: 1.2em;
+  }
+  .solution-calc__starting {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 12px;
+    margin-bottom: 28px;
+  }
+  .starting-stat {
+    background: white;
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 8px;
+    padding: 12px 16px;
+    text-align: center;
+  }
+  .starting-stat span { display: block; font-size: 0.8em; color: var(--text-secondary, #666); margin-bottom: 4px; }
+  .starting-stat strong { font-size: 1.1em; color: var(--isu-red, #c41e3a); }
+
+  .solution-calc__section {
+    background: white;
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 16px;
+  }
+  .solution-calc__section h4 {
+    margin: 0 0 16px 0;
+    color: var(--isu-red, #c41e3a);
+    font-size: 1.05em;
+  }
+
+  .platform-row {
+    display: grid;
+    grid-template-columns: 100px 1fr 1fr;
+    gap: 10px;
+    align-items: center;
+    margin: 10px 0;
+  }
+  .platform-row__label { font-weight: 600; color: var(--text-primary, #1a1a1a); }
+  @media (max-width: 700px) {
+    .platform-row { grid-template-columns: 1fr; }
+  }
+
+  select {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 8px 10px;
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 6px;
+    font-size: 0.9em;
+  }
+  select:disabled { background: #f0f0f0; color: #999; }
+
+  .mgmt-row { display: grid; grid-template-columns: 160px 1fr; gap: 10px; align-items: center; margin: 10px 0; }
+  .mgmt-row label { font-weight: 600; color: var(--text-primary, #1a1a1a); }
+  @media (max-width: 700px) {
+    .mgmt-row { grid-template-columns: 1fr; }
+  }
+  .mgmt-note { margin: 12px 0 0 0; font-size: 0.85em; color: var(--text-secondary, #666); font-style: italic; }
+
+  .solution-calc__results {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 14px;
+    margin: 24px 0 16px 0;
+  }
+  .result-card {
+    background: white;
+    border: 2px solid var(--border-color, #e5e7eb);
+    border-radius: 10px;
+    padding: 16px;
+    text-align: center;
+    transition: border-color 0.2s;
+  }
+  .result-card span { display: block; font-size: 0.85em; color: var(--text-secondary, #666); margin-bottom: 6px; }
+  .result-card strong { font-size: 1.3em; color: var(--text-primary, #1a1a1a); }
+  .result-card.is-good { border-color: #2e7d32; }
+  .result-card.is-good strong { color: #2e7d32; }
+  .result-card.is-bad { border-color: #c41e3a; }
+  .result-card.is-bad strong { color: #c41e3a; }
+
+  .solution-calc__verdict {
+    background: white;
+    border: 2px solid var(--isu-gold, #f8c600);
+    border-radius: 8px;
+    padding: 16px 20px;
+    font-weight: 600;
+    color: var(--text-primary, #1a1a1a);
+    line-height: 1.6;
+  }
+
+  .solution-calc__reset {
+    all: unset;
+    cursor: pointer;
+    margin-top: 16px;
+    display: inline-block;
+    padding: 8px 18px;
+    border: 1px solid var(--isu-red, #c41e3a);
+    color: var(--isu-red, #c41e3a);
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.9em;
+  }
+  .solution-calc__reset:hover { background: var(--isu-red, #c41e3a); color: white; }
+</style>
+
+<script define:vars={{ platforms, sensors, idStrategies, mgmtStrategies }}>
+  function init(root) {
+    const acres = parseFloat(root.dataset.acres);
+    const startBudget = parseFloat(root.dataset.startBudget);
+    const startTime = parseFloat(root.dataset.startTime);
+    const threshold = parseFloat(root.dataset.threshold);
+
+    const platformSelects = root.querySelectorAll('.platform-select');
+    const idSelect = root.querySelector('.id-select');
+    const mgmtSelects = root.querySelectorAll('.mgmt-select');
+
+    function findOption(list, id) {
+      return list.find((o) => o.id === id);
+    }
+
+    platformSelects.forEach((sel) => {
+      sel.addEventListener('change', () => {
+        const type = sel.dataset.platformType;
+        const sensorSelect = root.querySelector(`[data-sensor-for="${type}"]`);
+        if (sel.value === 'none') {
+          sensorSelect.disabled = true;
+          sensorSelect.value = 'none';
+        } else {
+          sensorSelect.disabled = false;
+        }
+        recalc();
+      });
+    });
+
+    root.querySelectorAll('.sensor-select').forEach((sel) => sel.addEventListener('change', recalc));
+    idSelect.addEventListener('change', recalc);
+    mgmtSelects.forEach((sel) => sel.addEventListener('change', recalc));
+
+    function recalc() {
+      let totalCost = 0;
+      let totalTime = 0;
+      let accuracyFactors = [];
+
+      Object.keys(platforms).forEach((type) => {
+        const platSelect = root.querySelector(`.platform-select[data-platform-type="${type}"]`);
+        const chosen = findOption(platforms[type], platSelect.value);
+        if (chosen && chosen.id !== 'none') {
+          const cost = chosen.costPerAcre != null ? chosen.costPerAcre * acres : (chosen.cost || 0);
+          totalCost += cost;
+          totalTime += chosen.time || 0;
+
+          const sensorSelect = root.querySelector(`[data-sensor-for="${type}"]`);
+          const chosenSensor = findOption(sensors, sensorSelect.value);
+          if (chosenSensor && chosenSensor.id !== 'none') {
+            totalCost += chosenSensor.cost || 0;
+            totalTime += chosenSensor.time || 0;
+            accuracyFactors.push(chosenSensor.accuracy);
+          }
+        }
+      });
+
+      const chosenId = findOption(idStrategies, idSelect.value);
+      if (chosenId && chosenId.id !== 'none') {
+        totalCost += chosenId.cost || 0;
+        totalTime += chosenId.time || 0;
+        accuracyFactors.push(chosenId.accuracy);
+      }
+
+      const mgmtChosenIds = new Set();
+      mgmtSelects.forEach((sel) => {
+        if (sel.value !== 'none') mgmtChosenIds.add(sel.value);
+      });
+      mgmtChosenIds.forEach((id) => {
+        const chosen = findOption(mgmtStrategies, id);
+        if (chosen) {
+          totalCost += chosen.cost || 0;
+          totalTime += chosen.time || 0;
+          accuracyFactors.push(chosen.accuracy);
+        }
+      });
+
+      let combinedAccuracy = null;
+      if (accuracyFactors.length > 0) {
+        combinedAccuracy = accuracyFactors.reduce((acc, val) => acc * (val / 100), 1) * 100;
+      }
+
+      const remainingBudget = startBudget - totalCost;
+      const remainingTime = startTime - totalTime;
+      const daysUsed = totalTime > 0 ? Math.ceil(totalTime / 24) : 0;
+      const yieldLoss = daysUsed * 1000;
+
+      const budgetCard = root.querySelector('[data-result="budget"]');
+      const timeCard = root.querySelector('[data-result="time"]');
+      const accuracyCard = root.querySelector('[data-result="accuracy"]');
+      const yieldCard = root.querySelector('[data-result="yieldloss"]');
+
+      budgetCard.querySelector('[data-value]').textContent = `$${remainingBudget.toLocaleString()}`;
+      budgetCard.classList.toggle('is-good', remainingBudget >= 0);
+      budgetCard.classList.toggle('is-bad', remainingBudget < 0);
+
+      timeCard.querySelector('[data-value]').textContent = `${remainingTime.toFixed(1)} hours`;
+      timeCard.classList.toggle('is-good', remainingTime >= 0);
+      timeCard.classList.toggle('is-bad', remainingTime < 0);
+
+      if (combinedAccuracy === null) {
+        accuracyCard.querySelector('[data-value]').textContent = '—';
+        accuracyCard.classList.remove('is-good', 'is-bad');
+      } else {
+        accuracyCard.querySelector('[data-value]').textContent = `${combinedAccuracy.toFixed(1)}%`;
+        accuracyCard.classList.toggle('is-good', combinedAccuracy >= threshold);
+        accuracyCard.classList.toggle('is-bad', combinedAccuracy < threshold);
+      }
+
+      yieldCard.querySelector('[data-value]').textContent = `$${yieldLoss.toLocaleString()} (${daysUsed} day${daysUsed === 1 ? '' : 's'})`;
+
+      const verdict = root.querySelector('[data-verdict]');
+      const insectCovered = [...mgmtChosenIds].some((id) => findOption(mgmtStrategies, id)?.supports?.includes('insect'));
+      const weedCovered = [...mgmtChosenIds].some((id) => findOption(mgmtStrategies, id)?.supports?.includes('weed'));
+
+      if (totalCost === 0 && totalTime === 0) {
+        verdict.textContent = 'Select your tools above to see how your workflow stacks up.';
+      } else if (!insectCovered || !weedCovered) {
+        verdict.textContent = `Your plan is missing management for ${!insectCovered ? 'insects' : ''}${!insectCovered && !weedCovered ? ' and ' : ''}${!weedCovered ? 'weeds' : ''}. Both pests need a management strategy.`;
+      } else if (remainingBudget < 0 && remainingTime < 0) {
+        verdict.textContent = 'This workflow is over budget and over time. Try a lower-cost, faster combination.';
+      } else if (remainingBudget < 0) {
+        verdict.textContent = 'This workflow is over budget. Look for a lower-cost platform, sensor, or management tool.';
+      } else if (remainingTime < 0) {
+        verdict.textContent = 'This workflow takes more than your available 432 hours. Try faster tools.';
+      } else if (combinedAccuracy !== null && combinedAccuracy < threshold) {
+        verdict.textContent = `Your combined accuracy (${combinedAccuracy.toFixed(1)}%) is below the ${threshold}% requirement. Consider a more accurate sensor or identification method.`;
+      } else {
+        verdict.textContent = `This workflow fits your budget and time, and meets the ${threshold}% accuracy requirement. Estimated total cost including yield loss: $${(totalCost + yieldLoss).toLocaleString()}.`;
+      }
+    }
+
+    recalc();
+
+    const resetBtn = root.querySelector('[data-reset]');
+    resetBtn.addEventListener('click', () => {
+      platformSelects.forEach((sel) => { sel.value = 'none'; sel.dispatchEvent(new Event('change')); });
+      root.querySelectorAll('.sensor-select').forEach((sel) => { sel.value = 'none'; sel.disabled = true; });
+      idSelect.value = 'none';
+      mgmtSelects.forEach((sel) => { sel.value = 'none'; });
+      recalc();
+    });
+  }
+  document.querySelectorAll('.solution-calc').forEach(init);
+</script>

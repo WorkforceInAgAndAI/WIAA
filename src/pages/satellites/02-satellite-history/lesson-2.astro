@@ -1,0 +1,102 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import SatSidebar from '../../../components/SatSidebar.astro';
+import SatLessonNav from '../../../components/SatLessonNav.astro';
+import SatResolutionCompare from '../../../components/SatResolutionCompare.astro';
+import SatAdvancementsReflection from '../../../components/SatAdvancementsReflection.astro';
+
+const content = await import('../../../content/satellites/02-satellite-history/lesson-2.md');
+const { Content } = content;
+const { title, chapter, lesson } = content.frontmatter;
+---
+
+<BaseLayout title={title}>
+  <div class="container" style="max-width: 1400px; margin: 30px auto; padding: 0 20px;">
+    <div style="display: grid; grid-template-columns: 250px 1fr; gap: 24px; align-items: start;">
+      <SatSidebar currentChapter={chapter} currentLesson={lesson} />
+      <div class="content-area">
+        <div class="content-header">
+          <p class="chapter-label">Chapter {chapter}: Satellite History</p>
+          <h1>{title}</h1>
+        </div>
+        <article class="lesson-content">
+          <Content />
+        </article>
+        <SatResolutionCompare />
+        <SatAdvancementsReflection />
+        <SatLessonNav
+          prev={{ href: '/satellites/02-satellite-history/lesson-1', label: 'Previous' }}
+          next={{ href: '/satellites/02-satellite-history/review', label: 'Next' }}
+          progress={`${chapter}.${lesson} / 11 Chapters`}
+        />
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+<style is:global>
+  :root {
+    --isu-red: #c41e3a;
+    --isu-gold: #f8c600;
+    --border-light: #ddd;
+    --text-dark: #1a1a1a;
+    --text-medium: #666;
+    --isu-dark-red: #a01729;
+  }
+  .lesson-content img {
+    max-width: 800px !important;
+    height: auto !important;
+    display: block !important;
+    margin: 20px auto !important;
+  }
+  @media (max-width: 767px) {
+    .lesson-content img {
+      max-width: 280px !important;
+    }
+  }
+  .lesson-content p {
+    line-height: 1.8;
+    color: var(--text-dark);
+    margin-bottom: 18px;
+  }
+  .definitions-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    margin-bottom: 35px;
+  }
+  .definition-card {
+    background: white;
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    padding: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    transition: all 0.3s ease;
+  }
+  .definition-card:hover {
+    box-shadow: 0 4px 16px rgba(196, 30, 58, 0.12);
+    border-color: var(--isu-red);
+  }
+  .definition-card h3 {
+    color: var(--isu-red);
+    font-size: 1.3em;
+    margin-bottom: 6px;
+  }
+  @media (min-width: 768px) {
+    .definitions-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    .definition-card {
+      padding: 28px;
+    }
+  }
+</style>
+<style>
+  @media (max-width: 768px) {
+    div[style*="grid-template-columns"] {
+      display: flex !important;
+      flex-direction: column-reverse !important;
+      gap: 16px !important;
+    }
+  }
+</style>

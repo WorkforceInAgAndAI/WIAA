@@ -1,0 +1,175 @@
+---
+const satellites = [
+  { id: "landsat", name: "Landsat 9", temporal: 16, spatial: 15, spectral: 11, radiometric: 14, color: "#c41e3a" },
+  { id: "sentinel", name: "Sentinel-2", temporal: 5, spatial: 10, spectral: 13, radiometric: 12, color: "#2e7d32" },
+  { id: "pleiades", name: "Pleiades Neo", temporal: 0.5, spatial: 0.3, spectral: 7, radiometric: 12, color: "#1565c0" },
+  { id: "skysat", name: "SkySat", temporal: 0.15, spatial: 0.57, spectral: 5, radiometric: 16, color: "#f8c600" }
+];
+const metrics = [
+  { key: "temporal", label: "Temporal", unit: "days to revisit", lowerBetter: true },
+  { key: "spatial", label: "Spatial", unit: "m/pixel (finest)", lowerBetter: true },
+  { key: "spectral", label: "Spectral", unit: "bands", lowerBetter: false },
+  { key: "radiometric", label: "Radiometric", unit: "bit depth", lowerBetter: false }
+];
+const maxByMetric: Record<string, number> = {};
+metrics.forEach(m => {
+  maxByMetric[m.key] = Math.max(...satellites.map(s => (s as any)[m.key]));
+});
+---
+<div class="sat-compare">
+  <h4>Explore: Satellite Trade-offs</h4>
+  <p class="sat-compare__note">
+    Toggle satellites on or off to compare. For temporal and spatial, a shorter bar is better
+    (faster revisit, finer detail). For spectral and radiometric, a longer bar is better (more
+    bands, more shades). Spatial values use each satellite's finest available resolution &mdash;
+    see Table 2 above for the full band-by-band breakdown.
+  </p>
+  <div class="sat-compare__picker">
+    {satellites.map(s => (
+      <label class="sat-compare__check" style={`--sat-color: ${s.color}`}>
+        <input type="checkbox" class="sat-compare__cb" data-sat={s.id} checked />
+        {s.name}
+      </label>
+    ))}
+  </div>
+
+  <div class="sat-compare__cards" id="sat-compare-cards">
+    {satellites.map(s => (
+      <div class="sat-card" data-sat-card={s.id} style={`--sat-color: ${s.color}`}>
+        <h5 class="sat-card__title">{s.name}</h5>
+        <div class="sat-card__metrics">
+          {metrics.map(m => {
+            const val = (s as any)[m.key];
+            const pct = Math.max(6, (val / maxByMetric[m.key]) * 100);
+            const display = val < 1 ? val.toFixed(2) : String(val);
+            return (
+              <div class="sat-card__metric">
+                <div class="sat-card__metric-label">
+                  <span>{m.label}</span>
+                  <span class="sat-card__metric-value">{display} {m.unit}</span>
+                </div>
+                <div class="sat-card__track">
+                  <div class="sat-card__bar" style={`width: ${pct}%`}></div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
+
+<style is:global>
+  .sat-compare {
+    background: white;
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    padding: 24px;
+    margin: 30px 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  }
+  .sat-compare h4 {
+    color: var(--isu-red);
+    font-size: 1.2em;
+    margin-bottom: 8px;
+    font-family: Georgia, Garamond, 'Times New Roman', serif;
+  }
+  .sat-compare__note {
+    color: var(--text-medium);
+    font-size: 0.85em;
+    line-height: 1.6;
+    margin-bottom: 18px;
+  }
+  .sat-compare__picker {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 24px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--border-light);
+  }
+  .sat-compare__check {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--sat-color);
+    cursor: pointer;
+    padding: 6px 12px;
+    border: 1px solid var(--sat-color);
+    border-radius: 20px;
+  }
+  .sat-compare__cards {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .sat-card {
+    border: 1px solid var(--border-light);
+    border-top: 4px solid var(--sat-color);
+    border-radius: 8px;
+    padding: 18px 20px;
+    background: #fdfdfc;
+    transition: opacity 0.2s;
+  }
+  .sat-card.sat-card--hidden {
+    display: none;
+  }
+  .sat-card__title {
+    color: var(--sat-color);
+    font-size: 1.1em;
+    margin-bottom: 14px;
+    font-family: Georgia, Garamond, 'Times New Roman', serif;
+  }
+  .sat-card__metrics {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .sat-card__metric-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: var(--text-dark);
+    margin-bottom: 4px;
+  }
+  .sat-card__metric-value {
+    color: var(--text-medium);
+  }
+  .sat-card__track {
+    background: #eee;
+    border-radius: 4px;
+    height: 10px;
+    overflow: hidden;
+  }
+  .sat-card__bar {
+    background: var(--sat-color);
+    height: 100%;
+    border-radius: 4px;
+  }
+  @media (min-width: 768px) {
+    .sat-compare__cards {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const checkboxes = document.querySelectorAll('.sat-compare__cb');
+    checkboxes.forEach(cb => {
+      cb.addEventListener('change', () => {
+        const satId = (cb as HTMLInputElement).dataset.sat;
+        const card = document.querySelector(`[data-sat-card="${satId}"]`);
+        if (!card) return;
+        if ((cb as HTMLInputElement).checked) {
+          card.classList.remove('sat-card--hidden');
+        } else {
+          card.classList.add('sat-card--hidden');
+        }
+      });
+    });
+  });
+</script>

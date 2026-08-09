@@ -1,0 +1,126 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import SatSidebar from '../../../components/SatSidebar.astro';
+import SatLessonNav from '../../../components/SatLessonNav.astro';
+
+const content = await import('../../../content/satellites/10-solution-innovator/lesson-4.md');
+const { Content } = content;
+const { title, chapter, lesson } = content.frontmatter;
+---
+
+<BaseLayout title={title}>
+  <div class="container" style="max-width: 1400px; margin: 30px auto; padding: 0 20px;">
+    <div style="display: grid; grid-template-columns: 250px 1fr; gap: 24px; align-items: start;">
+      <SatSidebar currentChapter={chapter} currentLesson={lesson} />
+      <div class="content-area">
+        <div class="content-header">
+          <p class="chapter-label">Chapter {chapter}: Solution Innovator</p>
+          <h1>{title}</h1>
+        </div>
+        <article class="lesson-content">
+          <Content />
+        </article>
+        <SatLessonNav
+          prev={{ href: '/satellites/10-solution-innovator/lesson-3', label: 'Previous' }}
+          next={{ href: '/satellites/10-solution-innovator/lesson-5', label: 'Next' }}
+          progress={`${chapter}.${lesson} / 11 Chapters`}
+        />
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+<style is:global>
+  :root {
+    --isu-red: #c41e3a;
+    --isu-gold: #f8c600;
+    --border-light: #ddd;
+    --text-dark: #1a1a1a;
+    --text-medium: #666;
+    --isu-dark-red: #a01729;
+  }
+  .lesson-content p {
+    line-height: 1.8;
+    color: var(--text-dark);
+    margin-bottom: 18px;
+  }
+  .section-intro {
+    font-size: 1.05em;
+    color: var(--text-medium);
+    font-style: italic;
+    margin-bottom: 24px;
+  }
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    margin-bottom: 30px;
+  }
+  .benefit-card {
+    background: white;
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    padding: 24px;
+    padding-left: 80px;
+    position: relative;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  }
+  .benefit-number {
+    position: absolute;
+    left: 24px;
+    top: 24px;
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, var(--isu-red), var(--isu-dark-red));
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.3em;
+  }
+  .benefit-card h4 {
+    color: var(--isu-red);
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 1.1em;
+  }
+  .benefit-card p {
+    color: var(--text-medium);
+    line-height: 1.6;
+    margin: 0;
+  }
+  .impact-callout {
+    background: linear-gradient(135deg, rgba(196, 30, 58, 0.08) 0%, rgba(255, 184, 28, 0.08) 100%);
+    border-left: 5px solid var(--isu-red);
+    border-radius: 6px;
+    padding: 24px;
+    margin-bottom: 30px;
+  }
+  .impact-callout h4 {
+    color: var(--isu-red);
+    margin-top: 0;
+    margin-bottom: 12px;
+    font-size: 1.15em;
+  }
+  .impact-callout p {
+    color: var(--text-dark);
+    line-height: 1.7;
+    margin: 0;
+  }
+  @media (min-width: 768px) {
+    .benefits-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+  }
+</style>
+<style>
+  @media (max-width: 768px) {
+    div[style*="grid-template-columns"] {
+      display: flex !important;
+      flex-direction: column-reverse !important;
+      gap: 16px !important;
+    }
+  }
+</style>

@@ -1,0 +1,75 @@
+[
+  {
+    "q": "What is it called when tools like satellites are used for precise applications of water, nutrients, or pest management?",
+    "options": ["Remote sensing", "Precision agriculture", "Field scouting", "Crop rotation"],
+    "correct": 1,
+    "explain": "Using tools such as satellites for precise applications is called precision agriculture, which can help farmers reduce cost, decrease pest resistance, and increase profitability."
+  },
+  {
+    "q": "How do plant breeders use satellite imagery?",
+    "options": [
+      "To physically plant seeds",
+      "To distinguish genotypes under different stresses and monitor field trials in near real-time",
+      "To replace soil sampling entirely",
+      "To harvest crops automatically"
+    ],
+    "correct": 1,
+    "explain": "Satellites help breeders distinguish genotypes under different stresses and provide near real-time monitoring of field trials across testing locations, tracking genotype progression over multiple years."
+  },
+  {
+    "q": "How can FIRMS be useful to farmers in fire-prone areas?",
+    "options": [
+      "It predicts crop yields",
+      "It helps track nearby fires and determine when to take proactive measures",
+      "It measures soil moisture",
+      "It calculates vegetation indices"
+    ],
+    "correct": 1,
+    "explain": "In fire prone areas, FIRMS can be especially useful to farmers to track nearby fires and determine when to take proactive measures to prevent the spread of fires to their fields."
+  },
+  {
+    "q": "What parameters does the U.S. Drought Monitor measure using satellite sensors?",
+    "options": [
+      "Only precipitation",
+      "Precipitation, soil moisture, ground water, land surface temperature, vegetative indices, and evapotranspiration",
+      "Only vegetation indices",
+      "Wind speed and cloud cover"
+    ],
+    "correct": 1,
+    "explain": "Precipitation, soil moisture, ground water, land surface temperature, vegetative indices, and evapotranspiration are all parameters measured by different sensors across different satellite platforms for the Drought Monitor."
+  },
+  {
+    "q": "How many years of historical data are accessible through Google Earth Engine?",
+    "options": ["Up to 10 years", "Up to 25 years", "Up to 40 years", "Up to 100 years"],
+    "correct": 2,
+    "explain": "Up to 40 years of historical data is accessible in the Google Earth Engine dataset."
+  },
+  {
+    "q": "What does GEOGLAM stand for and what is its purpose?",
+    "options": [
+      "Group on Earth Observations Global Agricultural Monitoring; monitors crop health and predicts yields globally",
+      "Global Environmental Observation and Land Analysis Monitor; tracks weather only",
+      "Geospatial Earth Observation and Growth Analysis Model; maps deforestation",
+      "General Earth Observation and Agricultural Livestock Monitor; tracks livestock"
+    ],
+    "correct": 0,
+    "explain": "GEOGLAM (Group on Earth Observations Global Agricultural Monitoring) is an international collaboration pulling data from Landsat, Sentinel, and MODIS satellites to monitor crop health and predict yields on a global scale."
+  },
+  {
+    "q": "What percentage of global agriculture does GEOGLAM's monthly assessment cover?",
+    "options": ["50%", "75%", "90%", "97%"],
+    "correct": 3,
+    "explain": "GEOGLAM releases a monthly assessment for 97% of agriculture globally."
+  },
+  {
+    "q": "How can GEOGLAM's yield predictions help farmers?",
+    "options": [
+      "By automatically harvesting crops",
+      "By helping decide when to harvest, whether to grow the crop to maturity, or whether to grow a secondary cash crop",
+      "By replacing soil testing",
+      "By controlling irrigation systems"
+    ],
+    "correct": 1,
+    "explain": "Farmers can use GEOGLAM globally to estimate crop yields before harvest, which can be useful in deciding when to harvest the crop, if the crop should be grown to maturity, or if a secondary cash crop should be grown."
+  }
+]

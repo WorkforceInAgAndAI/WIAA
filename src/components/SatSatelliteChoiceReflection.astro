@@ -1,0 +1,75 @@
+---
+const scenarios = [
+  "You are a soybean farmer, and you need daily monitoring data of your field to determine when you should water your crop.",
+  "You are a plant breeder and need high spatial resolution to determine the best heat-resistant variety.",
+  "You are a student and want to explore historical data of the waterways in your area."
+];
+---
+<div class="sat-choice">
+  <h4>Activity 13: Which Satellite to Use</h4>
+  <p class="sat-choice__prompt">For each scenario, choose the satellite you think is best suited for the job, and explain why.</p>
+  {scenarios.map((s, i) => (
+    <div class="sat-choice__item">
+      <p class="sat-choice__scenario">{s}</p>
+      <input type="text" class="sat-choice__answer" placeholder="Which satellite would you choose?" />
+      <textarea class="sat-choice__reasoning" rows="2" placeholder="Why?"></textarea>
+    </div>
+  ))}
+</div>
+
+<style is:global>
+  .sat-choice {
+    background: white;
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    padding: 24px;
+    margin: 30px 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  }
+  .sat-choice h4 {
+    color: var(--isu-red);
+    font-size: 1.2em;
+    margin-bottom: 8px;
+    font-family: Georgia, Garamond, 'Times New Roman', serif;
+  }
+  .sat-choice__prompt {
+    color: var(--text-dark);
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+  .sat-choice__item {
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border-light);
+  }
+  .sat-choice__item:last-child {
+    border-bottom: none;
+  }
+  .sat-choice__scenario {
+    color: var(--text-dark);
+    line-height: 1.6;
+    margin-bottom: 10px;
+  }
+  .sat-choice__answer {
+    width: 100%;
+    border: 1px solid var(--border-light);
+    border-radius: 4px;
+    padding: 10px;
+    font-family: Georgia, Garamond, 'Times New Roman', serif;
+    font-size: 14px;
+    color: var(--text-dark);
+    box-sizing: border-box;
+    margin-bottom: 8px;
+  }
+  .sat-choice__reasoning {
+    width: 100%;
+    border: 1px solid var(--border-light);
+    border-radius: 4px;
+    padding: 10px;
+    font-family: Georgia, Garamond, 'Times New Roman', serif;
+    font-size: 14px;
+    color: var(--text-dark);
+    resize: vertical;
+    box-sizing: border-box;
+  }
+</style>

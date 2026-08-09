@@ -1,0 +1,115 @@
+---
+const tools = [
+  "RGB camera", "Multispectral camera", "Hyperspectral sensor", "Thermal sensor",
+  "Radiometer", "LiDAR", "Radar", "Scatterometer"
+];
+---
+<div class="build-sat">
+  <h4>Activity 12: Your Own Satellite</h4>
+  <p class="build-sat__prompt">You are a farmer with access to many satellite sensors. To monitor the crops throughout your farm, you get to develop your own satellite. Choose up to 5 tools you would like to add to your satellite.</p>
+  <div class="build-sat__picker" id="build-sat-picker">
+    {tools.map(t => (
+      <button class="build-sat__tool" data-tool={t}>{t}</button>
+    ))}
+  </div>
+  <p class="build-sat__count"><span id="build-sat-count">0</span> of 5 selected</p>
+  <textarea class="build-sat__reasoning" rows="3" placeholder="Why did you choose these tools?"></textarea>
+</div>
+
+<style is:global>
+  .build-sat {
+    background: white;
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    padding: 24px;
+    margin: 30px 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  }
+  .build-sat h4 {
+    color: var(--isu-red);
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    font-family: Georgia, Garamond, 'Times New Roman', serif;
+  }
+  .build-sat__prompt {
+    color: var(--text-dark);
+    line-height: 1.6;
+    margin-bottom: 16px;
+  }
+  .build-sat__picker {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+  .build-sat__tool {
+    padding: 10px 16px;
+    border: 1px solid var(--isu-gold);
+    background: white;
+    color: var(--isu-red);
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 13px;
+    font-family: Georgia, Garamond, 'Times New Roman', serif;
+  }
+  .build-sat__tool.selected {
+    background: var(--isu-red);
+    color: white;
+    border-color: var(--isu-red);
+  }
+  .build-sat__tool.disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+  .build-sat__count {
+    color: var(--text-medium);
+    font-size: 13px;
+    margin-bottom: 16px;
+  }
+  .build-sat__reasoning {
+    width: 100%;
+    border: 1px solid var(--border-light);
+    border-radius: 4px;
+    padding: 12px;
+    font-family: Georgia, Garamond, 'Times New Roman', serif;
+    font-size: 15px;
+    color: var(--text-dark);
+    resize: vertical;
+    box-sizing: border-box;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const buttons = document.querySelectorAll('.build-sat__tool');
+    const countEl = document.getElementById('build-sat-count');
+    let selected: HTMLElement[] = [];
+
+    function refresh() {
+      if (countEl) countEl.textContent = String(selected.length);
+      buttons.forEach(b => {
+        const btn = b as HTMLElement;
+        if (!selected.includes(btn) && selected.length >= 5) {
+          btn.classList.add('disabled');
+        } else {
+          btn.classList.remove('disabled');
+        }
+      });
+    }
+
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const el = btn as HTMLElement;
+        if (selected.includes(el)) {
+          selected = selected.filter(b => b !== el);
+          el.classList.remove('selected');
+        } else if (selected.length < 5) {
+          selected.push(el);
+          el.classList.add('selected');
+        }
+        refresh();
+      });
+    });
+    refresh();
+  });
+</script>

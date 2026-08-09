@@ -1,0 +1,124 @@
+---
+const plots = [
+  { id: "plot1", label: "Plot 1", red: 18, nir: 53 },
+  { id: "plot2", label: "Plot 2", red: 20, nir: 49 },
+  { id: "plot3", label: "Plot 3", red: 15, nir: 58 },
+  { id: "plot4", label: "Plot 4", red: 10, nir: 65 },
+];
+---
+<section class="ndvi-calc" aria-label="NDVI calculation activity">
+  <h3 class="ndvi-calc__title">Try it: Calculate NDVI for Each Plot</h3>
+  <p class="ndvi-calc__prompt">These are the workbook's four plots. NDVI is calculated automatically as you go — the healthiest and least healthy plots are highlighted below.</p>
+
+  <div class="ndvi-calc__grid">
+    {plots.map((p) => (
+      <div class="ndvi-plot" data-plot={p.id}>
+        <h4>{p.label}</h4>
+        <label>
+          <span>Red reflectance</span>
+          <input type="number" data-red value={p.red} />
+        </label>
+        <label>
+          <span>NIR reflectance</span>
+          <input type="number" data-nir value={p.nir} />
+        </label>
+        <div class="ndvi-plot__result">
+          <span>NDVI</span>
+          <span data-ndvi-value>—</span>
+        </div>
+        <span class="ndvi-plot__badge" data-badge></span>
+      </div>
+    ))}
+  </div>
+</section>
+
+<style>
+  .ndvi-calc { margin: 40px 0; padding: 28px; background: #fafafa; border: 1px solid var(--border-color, #e5e7eb); border-radius: 10px; }
+  .ndvi-calc__title { margin: 0 0 6px 0; color: var(--isu-red, #c41e3a); font-size: 1.15em; }
+  .ndvi-calc__prompt { margin: 0 0 20px 0; color: var(--text-secondary, #666); font-size: 0.95em; }
+  .ndvi-calc__grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
+  @media (min-width: 700px) { .ndvi-calc__grid { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 1100px) { .ndvi-calc__grid { grid-template-columns: 1fr 1fr 1fr 1fr; } }
+  .ndvi-plot { background: white; border: 2px solid var(--border-color, #e5e7eb); border-radius: 10px; padding: 20px; position: relative; transition: border-color 0.2s; }
+  .ndvi-plot h4 { margin: 0 0 14px 0; color: var(--isu-red, #c41e3a); }
+  .ndvi-plot label { display: block; margin-bottom: 10px; font-size: 0.85em; font-weight: 600; color: var(--text-primary, #1a1a1a); }
+  .ndvi-plot label span { display: block; margin-bottom: 4px; }
+  .ndvi-plot input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 8px 10px;
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 6px;
+    font-size: 0.95em;
+  }
+  .ndvi-plot__result {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px solid var(--border-color, #e5e7eb);
+    font-weight: 700;
+    color: var(--isu-red, #c41e3a);
+  }
+  .ndvi-plot__badge {
+    display: block;
+    margin-top: 10px;
+    text-align: center;
+    padding: 6px;
+    border-radius: 6px;
+    font-size: 0.8em;
+    font-weight: 700;
+    min-height: 1em;
+  }
+  .ndvi-plot.is-max { border-color: #2e7d32; }
+  .ndvi-plot.is-max .ndvi-plot__badge { background: #e8f5e9; color: #2e7d32; }
+  .ndvi-plot.is-min { border-color: #c41e3a; }
+  .ndvi-plot.is-min .ndvi-plot__badge { background: #fdecea; color: #c41e3a; }
+</style>
+
+<script>
+  function init(root) {
+    const plotEls = root.querySelectorAll('.ndvi-plot');
+
+    function recalc() {
+      let maxVal = -Infinity;
+      let minVal = Infinity;
+      let maxEl = null;
+      let minEl = null;
+      const results = [];
+
+      plotEls.forEach((plotEl) => {
+        const red = parseFloat(plotEl.querySelector('[data-red]').value);
+        const nir = parseFloat(plotEl.querySelector('[data-nir]').value);
+        const valueEl = plotEl.querySelector('[data-ndvi-value]');
+        if (isNaN(red) || isNaN(nir) || (red + nir) === 0) {
+          valueEl.textContent = '—';
+          return;
+        }
+        const ndvi = (nir - red) / (nir + red);
+        valueEl.textContent = ndvi.toFixed(3);
+        results.push({ plotEl, ndvi });
+        if (ndvi > maxVal) { maxVal = ndvi; maxEl = plotEl; }
+        if (ndvi < minVal) { minVal = ndvi; minEl = plotEl; }
+      });
+
+      plotEls.forEach((plotEl) => {
+        plotEl.classList.remove('is-max', 'is-min');
+        plotEl.querySelector('[data-badge]').textContent = '';
+      });
+      if (maxEl && results.length > 1) {
+        maxEl.classList.add('is-max');
+        maxEl.querySelector('[data-badge]').textContent = 'Healthiest';
+      }
+      if (minEl && results.length > 1) {
+        minEl.classList.add('is-min');
+        minEl.querySelector('[data-badge]').textContent = 'Least healthy';
+      }
+    }
+
+    root.querySelectorAll('input').forEach((input) => input.addEventListener('input', recalc));
+    recalc();
+  }
+  document.querySelectorAll('.ndvi-calc').forEach(init);
+</script>

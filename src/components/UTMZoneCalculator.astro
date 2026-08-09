@@ -1,0 +1,95 @@
+---
+const examples = [
+  { label: "ISU Field Farm", longitude: -93.78761 },
+  { label: "Anchorage, Alaska", longitude: -149.893 },
+];
+---
+<section class="utm-calc" aria-label="UTM zone calculator">
+  <h3 class="utm-calc__title">Try it: Find the UTM Zone</h3>
+  <p class="utm-calc__prompt">UTM zones are 6° wide, numbered starting at 180°W. The formula is: <span class="mono">zone = floor((longitude + 180) / 6) + 1</span>. Try it with these two real locations, or enter your own.</p>
+
+  <div class="utm-calc__examples">
+    {examples.map((ex) => (
+      <button type="button" class="utm-calc__example" data-longitude={ex.longitude}>{ex.label} ({ex.longitude}°)</button>
+    ))}
+  </div>
+
+  <div class="utm-calc__input">
+    <label for="utm-longitude-input">Longitude (degrees, negative for West)</label>
+    <input type="number" id="utm-longitude-input" step="0.00001" placeholder="e.g. -93.78761" />
+  </div>
+
+  <div class="utm-calc__result" data-result>Enter a longitude above to calculate its UTM zone.</div>
+</section>
+
+<style>
+  .utm-calc {
+    margin: 40px 0;
+    padding: 28px;
+    background: #fafafa;
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 10px;
+  }
+  .utm-calc__title { margin: 0 0 6px 0; color: var(--isu-red, #c41e3a); font-size: 1.15em; }
+  .utm-calc__prompt { margin: 0 0 20px 0; color: var(--text-secondary, #666); font-size: 0.95em; line-height: 1.6; }
+  .mono { font-family: monospace; background: #eee; padding: 1px 6px; border-radius: 4px; }
+  .utm-calc__examples { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; }
+  .utm-calc__example {
+    all: unset;
+    cursor: pointer;
+    padding: 8px 16px;
+    background: white;
+    border: 2px solid var(--isu-gold, #f8c600);
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 0.9em;
+    color: var(--text-primary, #1a1a1a);
+  }
+  .utm-calc__example:hover { background: #fff8e1; }
+  .utm-calc__input { margin-bottom: 20px; }
+  .utm-calc__input label { display: block; font-weight: 600; margin-bottom: 8px; color: var(--text-primary, #1a1a1a); }
+  .utm-calc__input input {
+    width: 100%;
+    max-width: 300px;
+    box-sizing: border-box;
+    padding: 10px 12px;
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 6px;
+    font-size: 1em;
+  }
+  .utm-calc__result {
+    background: white;
+    border: 2px solid var(--isu-red, #c41e3a);
+    border-radius: 8px;
+    padding: 16px 20px;
+    font-weight: 600;
+    color: var(--text-primary, #1a1a1a);
+  }
+</style>
+
+<script>
+  function init(root) {
+    const input = root.querySelector('#utm-longitude-input');
+    const result = root.querySelector('[data-result]');
+
+    function calc(lon) {
+      if (isNaN(lon) || lon < -180 || lon > 180) {
+        result.textContent = 'Enter a valid longitude between -180 and 180.';
+        return;
+      }
+      const zone = Math.floor((lon + 180) / 6) + 1;
+      result.textContent = `Longitude ${lon}° falls in UTM zone ${zone}.`;
+    }
+
+    input.addEventListener('input', () => calc(parseFloat(input.value)));
+
+    root.querySelectorAll('.utm-calc__example').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const lon = parseFloat(btn.dataset.longitude);
+        input.value = lon;
+        calc(lon);
+      });
+    });
+  }
+  document.querySelectorAll('.utm-calc').forEach(init);
+</script>

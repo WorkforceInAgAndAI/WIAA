@@ -1,0 +1,78 @@
+<section class="scouting-reflection">
+  <h3 class="scouting-reflection__title">Try it: Reflect on Your Mission</h3>
+  <p class="scouting-reflection__prompt">Answer these after completing both scouting methods.</p>
+
+  <div class="scouting-reflection__group">
+    <h4>Manual Scouting</h4>
+    <label for="manual-challenge">What was challenging about manually scouting a field?</label>
+    <textarea id="manual-challenge" rows="2" placeholder="Type your answer here..."></textarea>
+    <label for="manual-useful">Why might manually scouting a field be useful?</label>
+    <textarea id="manual-useful" rows="2" placeholder="Type your answer here..."></textarea>
+  </div>
+
+  <div class="scouting-reflection__group">
+    <h4>Drone Scouting</h4>
+    <label for="drone-challenge">What was challenging about using a drone to scout the field?</label>
+    <textarea id="drone-challenge" rows="2" placeholder="Type your answer here..."></textarea>
+    <label for="drone-reasons">List two reasons a drone can help agronomists scout for weeds more easily than manual scouting.</label>
+    <textarea id="drone-reasons" rows="3" placeholder="Type your answer here..."></textarea>
+  </div>
+
+  <p class="scouting-reflection__note">This isn't saved anywhere &mdash; it's just a space to think it through before you write it down elsewhere.</p>
+</section>
+
+<style>
+  .scouting-reflection {
+    margin: 40px 0;
+    padding: 28px;
+    background: #fafafa;
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 10px;
+  }
+  .scouting-reflection__title {
+    margin: 0 0 6px 0;
+    color: var(--isu-red, #c41e3a);
+    font-size: 1.15em;
+  }
+  .scouting-reflection__prompt {
+    margin: 0 0 20px 0;
+    color: var(--text-secondary, #666);
+    font-size: 0.95em;
+  }
+  .scouting-reflection__group {
+    background: white;
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 16px;
+  }
+  .scouting-reflection__group h4 {
+    margin: 0 0 14px 0;
+    color: var(--isu-red, #c41e3a);
+  }
+  .scouting-reflection__group label {
+    display: block;
+    font-weight: 600;
+    margin: 14px 0 8px 0;
+    color: var(--text-primary, #1a1a1a);
+  }
+  .scouting-reflection__group label:first-of-type {
+    margin-top: 0;
+  }
+  .scouting-reflection__group textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px;
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 0.95em;
+    resize: vertical;
+  }
+  .scouting-reflection__note {
+    margin: 8px 0 0 0;
+    font-size: 0.8em;
+    color: #999;
+    font-style: italic;
+  }
+</style>

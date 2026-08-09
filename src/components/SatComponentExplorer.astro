@@ -1,0 +1,93 @@
+---
+const parts = [
+  { id: "control", label: "Control Center", text: "The computer systems and clock work as the central control center. This acts as the brain of the satellite and controls all other parts of the satellite." },
+  { id: "frame", label: "Frame", text: "The control center and all other components are contained in the frame of the satellite. This helps to protect the satellite components from damage." },
+  { id: "power", label: "Power", text: "Solar panels convert solar energy into electrical energy. The battery stores the energy for when solar energy is blocked from the satellite." },
+  { id: "orientation", label: "Orientation Sensors", text: "The Gyroscope, accelerometer, and photosensors determine the orientation and movement of the satellite. The servo motor adjusts the satellite to the intended orientation." },
+  { id: "communication", label: "Communication", text: "The radio transceiver sends and receives radio signals, and the antenna supports the transceiver to broadcast signals from the ground station." },
+  { id: "payload", label: "Payload", text: "The primary data collection devices &mdash; cameras, light sensors, and environmental sensors that measure temperature, humidity, or air pressure." }
+];
+---
+<div class="comp-explorer">
+  <h4>Explore: Satellite Components</h4>
+  <p class="comp-explorer__prompt">Click each part to see what it does.</p>
+  <div class="comp-explorer__grid">
+    {parts.map(p => (
+      <button class="comp-explorer__btn" data-target={p.id}>{p.label}</button>
+    ))}
+  </div>
+  <div class="comp-explorer__detail" id="comp-explorer-detail">
+    <p>Click a component above to learn more.</p>
+  </div>
+</div>
+
+<style is:global>
+  .comp-explorer {
+    background: white;
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    padding: 24px;
+    margin: 30px 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  }
+  .comp-explorer h4 {
+    color: var(--isu-red);
+    font-size: 1.2em;
+    margin-bottom: 8px;
+    font-family: Georgia, Garamond, 'Times New Roman', serif;
+  }
+  .comp-explorer__prompt {
+    color: var(--text-medium);
+    margin-bottom: 16px;
+  }
+  .comp-explorer__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  .comp-explorer__btn {
+    padding: 12px;
+    border: 1px solid var(--isu-gold);
+    background: white;
+    color: var(--isu-red);
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: Georgia, Garamond, 'Times New Roman', serif;
+  }
+  .comp-explorer__btn.active {
+    background: var(--isu-red);
+    color: white;
+  }
+  .comp-explorer__detail {
+    background: #f9f7f4;
+    border-radius: 6px;
+    padding: 16px;
+    color: var(--text-dark);
+    line-height: 1.6;
+    min-height: 40px;
+  }
+  @media (min-width: 768px) {
+    .comp-explorer__grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>
+
+<script define:vars={{ parts }}>
+  document.addEventListener('DOMContentLoaded', () => {
+    const buttons = document.querySelectorAll('.comp-explorer__btn');
+    const detail = document.getElementById('comp-explorer-detail');
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        buttons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const target = btn.dataset.target;
+        const part = parts.find(p => p.id === target);
+        if (detail && part) detail.innerHTML = `<p>${part.text}</p>`;
+      });
+    });
+  });
+</script>

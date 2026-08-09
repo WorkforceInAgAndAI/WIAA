@@ -1,0 +1,112 @@
+[
+  {
+    "q": "How can AI help a farmer process drone imagery?",
+    "options": [
+      "AI can quickly analyze thousands of images to identify weeds and stressed areas",
+      "AI can grow plants faster",
+      "AI can operate farming equipment automatically",
+      "AI can predict the weather perfectly"
+    ],
+    "correct": 0,
+    "explain": "AI excels at analyzing large amounts of data quickly to identify problems like weeds and stressed areas in fields."
+  },
+  {
+    "q": "Which AI tool would you use to count weeds in a field image?",
+    "options": [
+      "Vision Model",
+      "Classification Model",
+      "Quantification Model",
+      "Prediction Model"
+    ],
+    "correct": 2,
+    "explain": "Quantification models provide numeric outputs, perfect for counting objects."
+  },
+  {
+    "q": "When developing AI models, when is human-in-the-loop especially important?",
+    "options": [
+      "Data collection",
+      "Labeling data",
+      "Training the model",
+      "Model testing"
+    ],
+    "correct": 1,
+    "explain": "Humans can use their domain expertise to label data accurately and precisely so the model is trained on quality data and is more likely to perform precisely and accurately in real-world conditions."
+  },
+  {
+    "q": "What is machine learning?",
+    "options": [
+      "AI that learns patterns from data",
+      "AI that only works with images",
+      "A type of drone sensor",
+      "A programming language"
+    ],
+    "correct": 0,
+    "explain": "Machine learning is AI that learns patterns from data, forming the foundation for more specialized types of AI like deep learning."
+  },
+  {
+    "q": "What are the four core tasks AI supports in agriculture?",
+    "options": [
+      "Planting, watering, harvesting, and selling",
+      "Flying, landing, charging, and storing",
+      "Identification, classification, quantification, and prediction",
+      "Mapping, spraying, mowing, and tilling"
+    ],
+    "correct": 2,
+    "explain": "AI-detected patterns in imagery lead to identification, classification, quantification, and prediction of stress and stress activity."
+  },
+  {
+    "q": "What makes a model 'multimodal'?",
+    "options": [
+      "It can only process one type of data very quickly",
+      "It requires multiple drones to operate",
+      "It can only be used once",
+      "It works with multiple data types simultaneously, such as text and images"
+    ],
+    "correct": 3,
+    "explain": "Multimodal models combine multiple data types \u2014 like image and text \u2014 at the same time to reach a single conclusion."
+  },
+  {
+    "q": "What is an 'agentic AI system'?",
+    "options": [
+      "A single AI model working completely alone",
+      "Multimodal models combined with external data to act on real-time information",
+      "An AI model that only works with real estate agents",
+      "A type of drone camera"
+    ],
+    "correct": 1,
+    "explain": "An agentic AI system combines multimodal models with external data, such as temperature or lifecycle information, to make real-time determinations."
+  },
+  {
+    "q": "What is the correct order of the AI development process?",
+    "options": [
+      "Deploy, train, test, label, collect",
+      "Collect data, label data, train the model, test the model, deploy the model",
+      "Test the model, collect data, deploy, label, train",
+      "Label data, deploy, collect data, train, test"
+    ],
+    "correct": 1,
+    "explain": "The process moves from data collection, to labeling, to training, to testing, and finally to deployment \u2014 forming a cycle of continual improvement."
+  },
+  {
+    "q": "Why does human expertise matter so much during data labeling specifically?",
+    "options": [
+      "It doesn't matter \u2014 any labels work fine",
+      "Humans are required to physically operate the AI model at all times",
+      "Accurate labels ensure the model learns correct patterns, improving real-world performance",
+      "Labeling has nothing to do with model accuracy"
+    ],
+    "correct": 2,
+    "explain": "Since the model learns directly from labeled data, accurate labeling by domain experts is critical for the model to perform precisely and accurately in real-world conditions."
+  },
+  {
+    "q": "What happens if some of the data used to train an AI model is labeled incorrectly?",
+    "options": [
+      "The model automatically corrects the error on its own",
+      "Nothing changes \u2014 mislabeled data has no effect",
+      "The model stops working entirely",
+      "The model learns the wrong pattern, which can reduce its real-world accuracy"
+    ],
+    "correct": 3,
+    "explain": "Mislabeled training data teaches the model incorrect associations, which can lead to unreliable predictions once the model is deployed."
+  }
+]

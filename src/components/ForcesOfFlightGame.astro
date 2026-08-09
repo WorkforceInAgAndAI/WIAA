@@ -1,0 +1,209 @@
+---
+// Click-to-match game: pick a force, then pick its matching definition.
+
+const pairs = [
+  { id: "lift", term: "Lift", def: "The controlled upward force created by the UAS's propellers." },
+  { id: "weight", term: "Weight", def: "The downward pull on a UAS caused by gravity." },
+  { id: "thrust", term: "Thrust", def: "The force that propels the UAS forward, often controlled remotely by the pilot." },
+  { id: "drag", term: "Drag", def: "The resistance created against a UAS as it moves through the surrounding air." },
+];
+
+const shuffledDefs = [...pairs].sort(() => Math.random() - 0.5);
+---
+<section class="match-activity" aria-label="Forces of flight matching activity">
+  <h3 class="match-activity__title">Try it: Match each force to its definition</h3>
+  <p class="match-activity__prompt">Select a force on the left, then select the definition that matches it on the right.</p>
+
+  <div class="match-activity__status" data-status role="status" aria-live="polite">
+    0 / {pairs.length} matched
+  </div>
+
+  <div class="match-grid">
+    <div class="match-column">
+      {pairs.map((p) => (
+        <button class="match-tile match-tile--term" type="button" data-id={p.id} data-role="term">
+          {p.term}
+        </button>
+      ))}
+    </div>
+    <div class="match-column">
+      {shuffledDefs.map((p) => (
+        <button class="match-tile match-tile--def" type="button" data-id={p.id} data-role="def">
+          {p.def}
+        </button>
+      ))}
+    </div>
+  </div>
+
+  <button class="match-activity__reset" type="button" data-reset>Reset activity</button>
+</section>
+
+<style>
+  .match-activity {
+    margin: 40px 0;
+    padding: 28px;
+    background: #fafafa;
+    border: 1px solid var(--border-light, #ddd);
+    border-radius: 10px;
+  }
+  .match-activity__title {
+    margin: 0 0 6px 0;
+    color: var(--isu-red, #c41e3a);
+    font-size: 1.15em;
+  }
+  .match-activity__prompt {
+    margin: 0 0 14px 0;
+    color: var(--text-medium, #666);
+    font-size: 0.95em;
+  }
+  .match-activity__status {
+    display: inline-block;
+    margin-bottom: 18px;
+    padding: 6px 14px;
+    background: white;
+    border: 1px solid var(--border-light, #ddd);
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 0.9em;
+    color: var(--text-dark, #1a1a1a);
+  }
+  .match-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  @media (min-width: 700px) {
+    .match-grid {
+      grid-template-columns: 1fr 2fr;
+    }
+  }
+  .match-column {
+    display: grid;
+    gap: 10px;
+  }
+  .match-tile {
+    all: unset;
+    cursor: pointer;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 14px 16px;
+    background: white;
+    border: 2px solid var(--border-light, #ddd);
+    border-radius: 8px;
+    font-size: 0.95em;
+    line-height: 1.4;
+    color: var(--text-dark, #1a1a1a);
+    transition: border-color 0.2s, background 0.2s, transform 0.15s;
+  }
+  .match-tile:hover {
+    border-color: var(--isu-red, #c41e3a);
+  }
+  .match-tile:focus-visible {
+    outline: 3px solid var(--isu-gold, #f8c600);
+  }
+  .match-tile--term {
+    font-weight: 700;
+    text-align: center;
+  }
+  .match-tile.is-selected {
+    border-color: var(--isu-gold, #f8c600);
+    background: #fff8e1;
+  }
+  .match-tile.is-correct {
+    border-color: #2e7d32;
+    background: #e8f5e9;
+    color: #2e7d32;
+    cursor: default;
+    pointer-events: none;
+  }
+  .match-tile.is-wrong {
+    animation: shake 0.3s;
+    border-color: #c41e3a;
+    background: #fdecea;
+  }
+  @keyframes shake {
+    25% { transform: translateX(-4px); }
+    75% { transform: translateX(4px); }
+  }
+  .match-activity__reset {
+    all: unset;
+    cursor: pointer;
+    margin-top: 20px;
+    display: inline-block;
+    padding: 8px 18px;
+    border: 1px solid var(--isu-red, #c41e3a);
+    color: var(--isu-red, #c41e3a);
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.9em;
+  }
+  .match-activity__reset:hover {
+    background: var(--isu-red, #c41e3a);
+    color: white;
+  }
+</style>
+
+<script>
+  function initMatchActivity(root) {
+    const total = root.querySelectorAll('[data-role="term"]').length;
+    const statusEl = root.querySelector('[data-status]');
+    let selectedTerm = null;
+    let matchedCount = 0;
+
+    function updateStatus() {
+      statusEl.textContent = `${matchedCount} / ${total} matched`;
+      if (matchedCount === total) {
+        statusEl.textContent = `All matched! Nice work.`;
+      }
+    }
+
+    function clearSelection() {
+      root.querySelectorAll('.match-tile--term.is-selected').forEach((el) => {
+        el.classList.remove('is-selected');
+      });
+      selectedTerm = null;
+    }
+
+    root.querySelectorAll('.match-tile').forEach((tile) => {
+      tile.addEventListener('click', () => {
+        const role = tile.dataset.role;
+
+        if (role === 'term') {
+          if (tile.classList.contains('is-correct')) return;
+          clearSelection();
+          tile.classList.add('is-selected');
+          selectedTerm = tile;
+          return;
+        }
+
+        if (!selectedTerm || tile.classList.contains('is-correct')) return;
+
+        if (tile.dataset.id === selectedTerm.dataset.id) {
+          tile.classList.add('is-correct');
+          selectedTerm.classList.add('is-correct');
+          selectedTerm.classList.remove('is-selected');
+          matchedCount += 1;
+          selectedTerm = null;
+          updateStatus();
+        } else {
+          tile.classList.add('is-wrong');
+          setTimeout(() => tile.classList.remove('is-wrong'), 300);
+        }
+      });
+    });
+
+    const resetBtn = root.querySelector('[data-reset]');
+    resetBtn.addEventListener('click', () => {
+      matchedCount = 0;
+      selectedTerm = null;
+      root.querySelectorAll('.match-tile').forEach((tile) => {
+        tile.classList.remove('is-correct', 'is-selected', 'is-wrong');
+      });
+      updateStatus();
+    });
+
+    updateStatus();
+  }
+
+  document.querySelectorAll('.match-activity').forEach(initMatchActivity);
+</script>

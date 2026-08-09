@@ -1,0 +1,101 @@
+[
+  {
+    "q": "A pilot who needs highly detailed data on individual plants should generally fly at:",
+    "options": [
+      "A lower altitude and slower speed",
+      "A higher altitude and faster speed",
+      "The same altitude regardless of the goal",
+      "Only at night"
+    ],
+    "correct": 0,
+    "explain": "Lower altitude and slower speed capture more detail per image, which is important for highly detailed, individual-plant-level data."
+  },
+  {
+    "q": "Why should missions collecting spectral imagery be flown around solar noon?",
+    "options": [
+      "The drone's battery charges faster in direct sun",
+      "It ensures consistent lighting conditions across the mission",
+      "It avoids interference from other aircraft",
+      "It is required by FAA regulation"
+    ],
+    "correct": 1,
+    "explain": "Flying around solar noon (10 AM\u20132 PM) with minimal cloud cover keeps lighting conditions consistent, which matters for reliable spectral data."
+  },
+  {
+    "q": "What must be collected when a Ground Control Point (GCP) is placed in a field?",
+    "options": [
+      "Its color",
+      "Its GPS position",
+      "Its weight",
+      "Its temperature"
+    ],
+    "correct": 1,
+    "explain": "The GCP's GPS position must be recorded so it can be used to align images accurately during stitching."
+  },
+  {
+    "q": "Where should GCPs generally be placed in a field?",
+    "options": [
+      "Only in the exact center of the field",
+      "Randomly, location does not matter",
+      "Only outside the field boundary",
+      "In the corners of the area of interest, and potentially throughout the field"
+    ],
+    "correct": 3,
+    "explain": "GCPs should be placed in the corners of the area of interest, and potentially in additional locations throughout the field depending on its size."
+  },
+  {
+    "q": "When is color correction especially useful?",
+    "options": [
+      "Only for very short flights",
+      "Only when flying at night",
+      "During long flights where lighting conditions may change, or when comparing flights from different times",
+      "Color correction is never necessary for drone imagery"
+    ],
+    "correct": 2,
+    "explain": "Color correction helps account for shifting lighting conditions during long flights, or when comparing imagery captured at different points in time."
+  },
+  {
+    "q": "What coordinate system do drones typically use by default to record image position?",
+    "options": [
+      "UTM",
+      "RTK",
+      "GCP",
+      "WGS84"
+    ],
+    "correct": 3,
+    "explain": "Drones typically record position using WGS84, a global coordinate system based on longitude, latitude, and elevation."
+  },
+  {
+    "q": "Why can WGS84 introduce error during high-precision stitching?",
+    "options": [
+      "The real-world distance covered by one degree of longitude changes with latitude",
+      "It only works during daylight hours",
+      "It cannot record elevation data",
+      "It is not compatible with any drone sensors"
+    ],
+    "correct": 0,
+    "explain": "Because the distance between degrees of longitude narrows moving away from the equator, WGS84's degree-based measurements aren't spatially consistent everywhere, introducing error in high-precision work."
+  },
+  {
+    "q": "What does the Universal Transverse Mercator (UTM) system provide that WGS84 alone does not?",
+    "options": [
+      "A grid system with standardized, highly precise measurements",
+      "Automatic color correction",
+      "A way to fly the drone remotely",
+      "Faster image processing"
+    ],
+    "correct": 0,
+    "explain": "UTM projects a standardized grid across the globe, giving consistent, highly precise positioning that helps overcome WGS84's distance inconsistency."
+  },
+  {
+    "q": "What does an RTK (Real-Time Kinematic) system add to a drone's positioning?",
+    "options": [
+      "Longer battery life",
+      "The ability to fly without a remote controller",
+      "Enhanced precision and accuracy using satellite-based projected coordinate systems",
+      "Automatic image stitching"
+    ],
+    "correct": 2,
+    "explain": "RTK tools use projected coordinate systems and satellites to significantly enhance the precision and accuracy of each image's recorded position."
+  }
+]

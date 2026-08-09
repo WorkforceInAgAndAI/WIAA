@@ -1,0 +1,92 @@
+---
+const scenarios = [
+  "Developmental progress of a satellite in a field this summer.",
+  "Identifying specific areas where pests are located in a field.",
+  "Detection of early disease symptom development before visible by human perception.",
+  "Classification of crops with expected disease symptoms before visible to human eye."
+];
+const options = ["Temporal", "Spatial", "Spectral", "Radiometric"];
+---
+<div class="scenario-priority">
+  <h4>Activity 10: Choose the Scenario</h4>
+  <p class="scenario-priority__prompt">For each scenario, choose the resolution type you believe is highest priority to consider.</p>
+  {scenarios.map((s, i) => (
+    <div class="scenario-priority__item">
+      <p class="scenario-priority__text">{s}</p>
+      <div class="scenario-priority__options">
+        {options.map(o => (
+          <button class="scenario-priority__btn" data-group={i} data-value={o}>{o}</button>
+        ))}
+      </div>
+    </div>
+  ))}
+</div>
+
+<style>
+  .scenario-priority {
+    background: white;
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    padding: 24px;
+    margin: 30px 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  }
+  .scenario-priority h4 {
+    color: var(--isu-red);
+    font-size: 1.2em;
+    margin-bottom: 8px;
+    font-family: Georgia, Garamond, 'Times New Roman', serif;
+  }
+  .scenario-priority__prompt {
+    color: var(--text-dark);
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+  .scenario-priority__item {
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border-light);
+  }
+  .scenario-priority__item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+  .scenario-priority__text {
+    color: var(--text-dark);
+    line-height: 1.6;
+    margin-bottom: 12px;
+  }
+  .scenario-priority__options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .scenario-priority__btn {
+    padding: 8px 16px;
+    border: 1px solid var(--isu-gold);
+    background: white;
+    color: var(--isu-red);
+    border-radius: 20px;
+    cursor: pointer;
+    font-family: Georgia, Garamond, 'Times New Roman', serif;
+    font-size: 13px;
+  }
+  .scenario-priority__btn.selected {
+    background: var(--isu-red);
+    color: white;
+    border-color: var(--isu-red);
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.scenario-priority__btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const group = (btn as HTMLElement).dataset.group;
+        document.querySelectorAll(`[data-group="${group}"]`).forEach(b => b.classList.remove('selected'));
+        btn.classList.add('selected');
+      });
+    });
+  });
+</script>

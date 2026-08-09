@@ -1,0 +1,112 @@
+[
+  {
+    "q": "What is the trade-off when a drone flies higher to cover a field faster?",
+    "options": [
+      "There is no trade-off, higher is always better",
+      "Faster coverage comes at the cost of lower spatial resolution and less detail",
+      "Flying higher makes the images sharper",
+      "Flying higher uses more battery than flying low"
+    ],
+    "correct": 1,
+    "explain": "Flying higher covers ground faster but increases the ground sampling distance, reducing the amount of detail captured per pixel."
+  },
+  {
+    "q": "What is the main purpose of Ground Control Points (GCPs)?",
+    "options": [
+      "To power the drone during flight",
+      "To calibrate the camera's color balance",
+      "To measure wind speed during the flight",
+      "To align captured images to their correct real-world GPS location"
+    ],
+    "correct": 3,
+    "explain": "GCPs are recorded ground locations used during processing to align the stitched imagery to its correct position in the real world."
+  },
+  {
+    "q": "Why are UTM zones used instead of just latitude and longitude for precise measurement?",
+    "options": [
+      "Latitude and longitude are angular and their real-world distance shrinks toward the poles, while UTM projects a flat, meter-based grid",
+      "UTM zones are easier to pronounce",
+      "UTM zones only work near the equator",
+      "Latitude and longitude cannot be used for agriculture"
+    ],
+    "correct": 0,
+    "explain": "UTM zones divide the Earth into strips projected as a flat grid measured in meters, avoiding the distance inconsistency of angular latitude/longitude measurements."
+  },
+  {
+    "q": "What does a reflectance calibration panel do during a drone flight?",
+    "options": [
+      "It charges the drone's battery",
+      "It blocks GPS interference",
+      "It provides a known reflectance value that lets the software calculate a conversion factor for that day's lighting conditions",
+      "It records wind speed"
+    ],
+    "correct": 2,
+    "explain": "Since the panel's exact reflectance is known in every band, comparing it to what the sensor recorded lets the software calculate how to scale the rest of the image to true reflectance values."
+  },
+  {
+    "q": "What is an orthomosaic?",
+    "options": [
+      "A single raw photo taken by the drone",
+      "Many overlapping photos stitched together and geometrically corrected into one accurate image",
+      "A 3D point cloud",
+      "A type of vegetation index"
+    ],
+    "correct": 1,
+    "explain": "An orthomosaic is created by stitching many overlapping photos together and correcting them geometrically into a single accurate image of the area."
+  },
+  {
+    "q": "What is the difference between a point cloud and a mesh?",
+    "options": [
+      "A point cloud is a set of unconnected 3D positions; a mesh connects those points into a 3D surface",
+      "They are the same thing",
+      "A point cloud only works with RGB cameras",
+      "A mesh is 2D and a point cloud is 3D"
+    ],
+    "correct": 0,
+    "explain": "A point cloud consists of unconnected 3D positions mapped from overlapping images. Once those points are connected, they form a mesh, a 3D surface."
+  },
+  {
+    "q": "What does thresholding an image accomplish in field analysis?",
+    "options": [
+      "It increases the image's resolution",
+      "It adds color to a black-and-white image",
+      "It removes GPS data from the image",
+      "It reduces an image with many pixel values down to two values, separating vegetation from soil or background"
+    ],
+    "correct": 3,
+    "explain": "Thresholding compares every pixel to a set threshold value, sorting pixels into two categories, typically canopy versus soil, so only the relevant pixels are used for further analysis."
+  },
+  {
+    "q": "Why might an agronomist need to extract individual plots rather than analyze a whole field at once?",
+    "options": [
+      "Plot extraction is always required, with no exceptions",
+      "When comparing specific varieties or treatments, individual plot-level averages are needed rather than one whole-field value",
+      "Whole-field analysis is technically impossible",
+      "Plot extraction removes the need for any imagery processing"
+    ],
+    "correct": 1,
+    "explain": "An agronomist comparing crop varieties or treatments needs individual plot-level index averages, while someone scouting for field-wide stress patterns may only need whole-field analysis."
+  },
+  {
+    "q": "How is a plot's average vegetation index value calculated?",
+    "options": [
+      "By using only the single brightest pixel in the plot",
+      "By averaging the index value of every pixel within that plot's boundary",
+      "By counting the number of pixels in the plot",
+      "By measuring the plot's physical area only"
+    ],
+    "correct": 1,
+    "explain": "Borders are drawn around each plot, and the index value of every pixel inside that boundary is averaged into a single value representing that plot."
+  },
+  {
+    "q": "What is the benefit of high image overlap during a drone flight, beyond helping images stitch together?",
+    "options": [
+      "It reduces flight time significantly",
+      "It eliminates the need for GCPs",
+      "It gives the stitching software backup data from neighboring images if one frame has a blur, shadow, or obstruction",
+      "It automatically calibrates the camera"
+    ],
+    "correct": 2,
+    "explain": "High overlap means multiple images capture the same ground, so if one image has an issue like blur or a shadow, the software can rely on overlapping images of the same area instead."
+  }
+]

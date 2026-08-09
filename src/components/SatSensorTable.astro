@@ -1,0 +1,98 @@
+---
+const passive = [
+  { name: "RGB camera", measures: "Broad regions of red, green, and blue spectral bands.", app: "Crop monitoring." },
+  { name: "Multispectral camera", measures: "6-10 spectral bands of the electromagnetic spectrum. Often red, green, blue, red edge, and near infrared.", app: "Crop health monitoring." },
+  { name: "Hyperspectral sensor", measures: "Hundreds to thousands of narrow spectral bands.", app: "Crop health monitoring." },
+  { name: "Thermal sensor", measures: "Thermal infrared radiation.", app: "Crop stress and temperature sensing." },
+  { name: "Radiometer", measures: "Intensity of electromagnetic radiation.", app: "Solar radiation.", cite: "25" }
+];
+const active = [
+  { name: "LiDAR", measures: "Distance between objects and the sensor based on the timing of laser pulse emission and receival.", app: "Crop canopy and above ground external structure.", cite: "26" },
+  { name: "Radar", measures: "Distance between objects and the sensor is based on the timing of microwave pulse emission and receival. Often for speeds, terrain, water, or underground features.", app: "Soil moisture.", cite: "26" },
+  { name: "Scatterometer", measures: "Distance between objects and the sensor is based on the timing of microwave pulse emission and receival. Often for surfaces or wind speeds and directions.", app: "Wind and soil conditions.", cite: "26" }
+];
+---
+<div class="sensor-table" id="sensor-table">
+  <div class="sensor-table__toggle">
+    <button class="sensor-table__tab active" data-show="passive">Passive Sensors</button>
+    <button class="sensor-table__tab" data-show="active">Active Sensors</button>
+  </div>
+
+  <div class="sensor-table__panel" data-panel="passive">
+    {passive.map(s => (
+      <div class="sensor-table__row">
+        <h5>{s.name}{s.cite && <sup>{s.cite}</sup>}</h5>
+        <p><strong>Measures:</strong> {s.measures}</p>
+        <p><strong>Application:</strong> {s.app}</p>
+      </div>
+    ))}
+  </div>
+  <div class="sensor-table__panel" data-panel="active" style="display: none;">
+    {active.map(s => (
+      <div class="sensor-table__row">
+        <h5>{s.name}<sup>{s.cite}</sup></h5>
+        <p><strong>Measures:</strong> {s.measures}</p>
+        <p><strong>Application:</strong> {s.app}</p>
+      </div>
+    ))}
+  </div>
+</div>
+
+<style is:global>
+  .sensor-table {
+    margin: 20px 0 30px;
+  }
+  .sensor-table__toggle {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  .sensor-table__tab {
+    padding: 10px 20px;
+    border: 1px solid var(--isu-red);
+    background: white;
+    color: var(--isu-red);
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: Georgia, Garamond, 'Times New Roman', serif;
+    font-size: 14px;
+  }
+  .sensor-table__tab.active {
+    background: var(--isu-red);
+    color: white;
+  }
+  .sensor-table__row {
+    background: white;
+    border: 1px solid var(--border-light);
+    border-radius: 6px;
+    padding: 16px;
+    margin-bottom: 10px;
+  }
+  .sensor-table__row h5 {
+    color: var(--isu-red);
+    margin-bottom: 8px;
+    font-size: 1.05em;
+  }
+  .sensor-table__row p {
+    color: var(--text-medium);
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 4px;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const tabs = document.querySelectorAll('.sensor-table__tab');
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        const show = tab.dataset.show;
+        document.querySelectorAll('.sensor-table__panel').forEach(p => {
+          (p as HTMLElement).style.display = p.getAttribute('data-panel') === show ? 'block' : 'none';
+        });
+      });
+    });
+  });
+</script>

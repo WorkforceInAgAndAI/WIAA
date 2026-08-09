@@ -1,0 +1,157 @@
+---
+const weeds = [
+  { id: "flowerofanhour", label: "Flower of an Hour", img: "/WIAA/images/flowerofanhour.jpg" },
+  { id: "morningglory", label: "Ivy-Leaved Morning Glory", img: "/WIAA/images/morningglory.jpg" },
+  { id: "canadathistle", label: "Canada Thistle", img: "/WIAA/images/canadathistle.jpg" },
+  { id: "waterhemp", label: "Waterhemp", img: "/WIAA/images/waterhemp.jpg" },
+  { id: "spottedspurge", label: "Spotted Spurge", img: "/WIAA/images/spottedspurge.jpg" },
+  { id: "asiancopperleaf", label: "Asian Copper Leaf", img: "/WIAA/images/asiancopperleaf.jpg" },
+  { id: "lambsquarters", label: "Common Lambsquarters", img: "/WIAA/images/lambsquarters.jpg" },
+  { id: "carpetweed", label: "Carpetweed", img: "/WIAA/images/carpetweed.jpg" },
+];
+const shuffledLabels = [...weeds].sort(() => Math.random() - 0.5);
+---
+<section class="weed-match" aria-label="Weed identification matching activity">
+  <h3 class="weed-match__title">Try it: Use Your Natural Intelligence to Label These Weeds</h3>
+  <p class="weed-match__prompt">Before AI does it for you &mdash; click a photo, then click its matching name from the word bank.</p>
+<div class="weed-match__qr">
+    <img src="/WIAA/images/solution_QR.jpg" alt="QR code to open the Pest ID app" />
+    <p>Scan to open the Pest ID app and check your answers against AI identification.</p>
+  </div>
+  <div class="weed-match__status" data-status role="status" aria-live="polite">0 / {weeds.length} matched</div>
+
+  <div class="weed-match__images">
+    {weeds.map((w) => (
+      <button class="weed-tile weed-tile--img" type="button" data-id={w.id} data-role="img">
+        <img src={w.img} alt={`Unidentified weed sample ${w.id}`} />
+      </button>
+    ))}
+  </div>
+
+  <div class="weed-match__bank">
+    {shuffledLabels.map((w) => (
+      <button class="weed-tile weed-tile--label" type="button" data-id={w.id} data-role="label">{w.label}</button>
+    ))}
+  </div>
+
+  <button class="weed-match__reset" type="button" data-reset>Reset activity</button>
+</section>
+
+<style>
+  .weed-match { margin: 40px 0; padding: 28px; background: #fafafa; border: 1px solid var(--border-color, #e5e7eb); border-radius: 10px; }
+  .weed-match__title { margin: 0 0 6px 0; color: var(--isu-red, #c41e3a); font-size: 1.15em; }
+  .weed-match__prompt { margin: 0 0 14px 0; color: var(--text-secondary, #666); font-size: 0.95em; }
+  .weed-match__status { display: inline-block; margin-bottom: 20px; padding: 6px 14px; background: white; border: 1px solid var(--border-color, #e5e7eb); border-radius: 999px; font-weight: 600; font-size: 0.9em; color: var(--text-primary, #1a1a1a); }
+  .weed-match__images {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .weed-tile--img {
+    all: unset;
+    cursor: pointer;
+    display: block;
+    border: 3px solid var(--border-color, #e5e7eb);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+.weed-match__qr {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: white;
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 20px;
+  }
+  .weed-match__qr img {
+    width: 90px;
+    height: 90px;
+    flex-shrink: 0;
+    border-radius: 6px;
+  }
+  .weed-match__qr p {
+    margin: 0;
+    font-size: 0.9em;
+    color: var(--text-secondary, #666);
+    line-height: 1.5;
+  }
+  .weed-tile--img img { display: block; width: 100%; height: 110px; object-fit: cover; }
+  .weed-tile--img:hover { border-color: var(--isu-red, #c41e3a); }
+  .weed-tile--img.is-selected { border-color: var(--isu-gold, #f8c600); }
+  .weed-tile--img.is-correct { border-color: #2e7d32; pointer-events: none; }
+  .weed-match__bank { display: flex; flex-wrap: wrap; gap: 10px; }
+  .weed-tile--label {
+    all: unset;
+    cursor: pointer;
+    padding: 8px 16px;
+    background: white;
+    border: 2px solid var(--border-color, #e5e7eb);
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 0.9em;
+    color: var(--text-primary, #1a1a1a);
+    transition: all 0.2s;
+  }
+  .weed-tile--label:hover { border-color: var(--isu-red, #c41e3a); }
+  .weed-tile--label.is-correct { border-color: #2e7d32; background: #e8f5e9; color: #2e7d32; pointer-events: none; }
+  .weed-tile--label.is-wrong { animation: shake 0.3s; border-color: #c41e3a; }
+  @keyframes shake { 25% { transform: translateX(-4px); } 75% { transform: translateX(4px); } }
+  .weed-match__reset { all: unset; cursor: pointer; margin-top: 20px; display: inline-block; padding: 8px 18px; border: 1px solid var(--isu-red, #c41e3a); color: var(--isu-red, #c41e3a); border-radius: 6px; font-weight: 600; font-size: 0.9em; }
+  .weed-match__reset:hover { background: var(--isu-red, #c41e3a); color: white; }
+</style>
+
+<script>
+  function init(root) {
+    const total = root.querySelectorAll('[data-role="img"]').length;
+    const statusEl = root.querySelector('[data-status]');
+    let selectedImg = null;
+    let matched = 0;
+
+    function updateStatus() {
+      statusEl.textContent = matched === total ? 'All identified! Nice work.' : `${matched} / ${total} matched`;
+    }
+    function clearSelection() {
+      root.querySelectorAll('.weed-tile--img.is-selected').forEach((el) => el.classList.remove('is-selected'));
+      selectedImg = null;
+    }
+
+    root.querySelectorAll('.weed-tile').forEach((tile) => {
+      tile.addEventListener('click', () => {
+        const role = tile.dataset.role;
+        if (role === 'img') {
+          if (tile.classList.contains('is-correct')) return;
+          clearSelection();
+          tile.classList.add('is-selected');
+          selectedImg = tile;
+          return;
+        }
+        if (!selectedImg || tile.classList.contains('is-correct')) return;
+        if (tile.dataset.id === selectedImg.dataset.id) {
+          tile.classList.add('is-correct');
+          selectedImg.classList.add('is-correct');
+          selectedImg.classList.remove('is-selected');
+          matched += 1;
+          selectedImg = null;
+          updateStatus();
+        } else {
+          tile.classList.add('is-wrong');
+          setTimeout(() => tile.classList.remove('is-wrong'), 300);
+        }
+      });
+    });
+
+    const resetBtn = root.querySelector('[data-reset]');
+    resetBtn.addEventListener('click', () => {
+      matched = 0;
+      selectedImg = null;
+      root.querySelectorAll('.weed-tile').forEach((t) => t.classList.remove('is-correct', 'is-selected', 'is-wrong'));
+      updateStatus();
+    });
+    updateStatus();
+  }
+  document.querySelectorAll('.weed-match').forEach(init);
+</script>

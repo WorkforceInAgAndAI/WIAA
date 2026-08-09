@@ -1,0 +1,171 @@
+---
+const sensors = {
+  rgb: {
+    title: "RGB Camera",
+    details: [
+      "Captures red, green, and blue light reflectance",
+      "Produces images similar to what your eyes see, or your phone camera captures",
+      "<strong>Use:</strong> General field scouting, visual assessment",
+      "A passive sensor — it detects light it did not produce",
+    ],
+  },
+  multispectral: {
+    title: "Multispectral Camera",
+    details: [
+      "Uses 6 to 10 sensors that each detect light from a specific broad area of the electromagnetic spectrum",
+      "Commonly captures red, green, blue, red edge, and near-infrared (NIR) reflectance",
+      "<strong>Use:</strong> Calculating plant health indices",
+    ],
+  },
+  hyperspectral: {
+    title: "Hyperspectral Camera",
+    details: [
+      "Detects light reflected from hundreds of narrow bands across the electromagnetic spectrum",
+      "Also captures red, green, blue, red edge, and near-infrared (NIR) reflectance — with far more precision",
+      "<strong>Use:</strong> Calculating detailed plant health indices",
+      "If an RGB camera is like 3 instruments, a hyperspectral camera is like a full orchestra",
+    ],
+  },
+  thermal: {
+    title: "Thermal Camera",
+    details: [
+      "Doesn't measure reflected light — it measures heat released or reflected from an object",
+      "<strong>Use:</strong> Water stress detection",
+    ],
+  },
+  lidar: {
+    title: "LiDAR Sensor",
+    details: [
+      "Emits a laser that travels to an object, reflects back, and returns to the sensor",
+      "Measures the distance between the object and the sensor to build 3D maps",
+      "<strong>Use:</strong> Terrain mapping, canopy height measurement",
+      "An active sensor — it emits the same light it captures",
+    ],
+  },
+};
+---
+<section class="sensor-explorer">
+  <div class="sensor-explorer__viewer">
+    <img src="/WIAA/images/drones_and_sensors.jpg" alt="Drone Sensors" />
+<p class="image-caption">Types of drone sensors.<sup>11-15</sup></p>
+
+    <div class="sensor-explorer__buttons">
+      {Object.entries(sensors).map(([key, s]) => (
+        <button class="sensor-btn" data-sensor={key}>{s.title}</button>
+      ))}
+    </div>
+  </div>
+
+  <div class="sensor-explorer__panel">
+    <div class="sensor-explorer__description" data-description>
+      <p class="hint-text">Click a sensor to the side to learn more</p>
+    </div>
+  </div>
+</section>
+
+<script define:vars={{ sensors }}>
+  function init(root) {
+    const panel = root.querySelector('[data-description]');
+    root.querySelectorAll('.sensor-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        root.querySelectorAll('.sensor-btn').forEach((b) => b.classList.remove('active'));
+        btn.classList.add('active');
+        const sensor = sensors[btn.dataset.sensor];
+        const items = sensor.details.map((d) => `<li>${d}</li>`).join('');
+        panel.innerHTML = `<h3>${sensor.title}</h3><ul>${items}</ul>`;
+      });
+    });
+  }
+  document.querySelectorAll('.sensor-explorer').forEach(init);
+</script>
+
+<style>
+  .sensor-explorer {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+    margin: 40px 0;
+    align-items: start;
+  }
+  @media (min-width: 900px) {
+    .sensor-explorer { grid-template-columns: 1fr 1fr; }
+  }
+  .sensor-explorer__viewer {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  }
+  .sensor-explorer__viewer img {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+  }
+  .sensor-explorer__buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 20px;
+    background: #f9f9f9;
+    border-top: 1px solid var(--border-color, #e5e7eb);
+    justify-content: center;
+  }
+  .sensor-btn {
+    padding: 10px 16px;
+    background: white;
+    border: 2px solid var(--border-color, #e5e7eb);
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.9em;
+    color: var(--text-primary, #1a1a1a);
+    transition: all 0.3s ease;
+  }
+  .sensor-btn:hover {
+    border-color: var(--isu-red, #c41e3a);
+    color: var(--isu-red, #c41e3a);
+    background: rgba(196, 30, 58, 0.05);
+  }
+  .sensor-btn.active {
+    background: var(--isu-red, #c41e3a);
+    color: white;
+    border-color: var(--isu-red, #c41e3a);
+  }
+  .sensor-explorer__panel {
+    background: linear-gradient(135deg, #ffffff 0%, #f9f9f9 100%);
+    border: 1.5px solid var(--border-color, #e5e7eb);
+    border-radius: 12px;
+    padding: 32px;
+    min-height: 320px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .sensor-explorer__description { width: 100%; }
+  .sensor-explorer__description h3 {
+    font-size: 1.5em;
+    color: var(--isu-red, #c41e3a);
+    margin-bottom: 16px;
+  }
+  .sensor-explorer__description ul { list-style: none; padding: 0; margin: 0; }
+  .sensor-explorer__description li {
+    font-size: 1.05em;
+    line-height: 1.8;
+    color: var(--text-secondary, #666);
+    margin: 12px 0;
+    padding-left: 22px;
+    position: relative;
+  }
+  .sensor-explorer__description li::before {
+    content: '•';
+    position: absolute;
+    left: 6px;
+    color: var(--isu-red, #c41e3a);
+    font-weight: bold;
+  }
+  .sensor-explorer__description strong { color: var(--text-primary, #1a1a1a); }
+  .hint-text { text-align: center; color: #999; font-style: italic; }
+</style>

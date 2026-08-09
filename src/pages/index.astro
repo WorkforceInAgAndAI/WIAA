@@ -14,20 +14,25 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
   <div class="container page-content">
     <h2 class="section-title">Featured programs</h2>
     
-    <div class="program-grid">
+<div class="program-grid">
       <div class="program-card">
         <h3>Drone program</h3>
         <p>Understand drone parts, sensors, and AI applications in agriculture.</p>
         <a href={base + '/drones'} class="btn btn-primary">Learn More</a>
       </div>
-      
+
+      <div class="program-card">
+        <h3>Satellite program</h3>
+        <p>Explore satellite technology, data resolution, and AI applications in agriculture.</p>
+        <a href={base + '/satellites'} class="btn btn-primary">Learn More</a>
+      </div>
+
       <div class="program-card">
         <h3>Outreach work</h3>
         <p>Previous outreach events and workshops.</p>
         <a href={base + '/outreach'} class="btn btn-primary">Learn More</a>
       </div>
-    </div>
-  </div>
+    </div>  </div>
 </BaseLayout>
 
 <style>

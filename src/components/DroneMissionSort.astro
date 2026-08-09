@@ -1,0 +1,182 @@
+---
+// Click-to-classify game based on workbook Activity 7: "Sort the Uses"
+// F = Fixed Wing, Q = Quadcopter, E = Either
+
+const missions = [
+  { label: "Mapping 1,500 acres", answer: "F" },
+  { label: "Checking emergence in a small plot", answer: "Q" },
+  { label: "Flying slowly over soybeans to scout for pests", answer: "Q" },
+  { label: "Covering multiple fields in one flight", answer: "F" },
+];
+
+const choices = [
+  { code: "F", label: "Fixed Wing" },
+  { code: "Q", label: "Quadcopter" },
+  { code: "E", label: "Either" },
+];
+---
+<section class="mission-sort" aria-label="Sort the drone missions activity">
+  <h3 class="mission-sort__title">Try it: Sort the Uses</h3>
+  <p class="mission-sort__prompt">For each task, choose the drone type that fits best: Fixed Wing, Quadcopter, or Either.</p>
+
+  <div class="mission-sort__status" data-status role="status" aria-live="polite">
+    0 / {missions.length} answered
+  </div>
+
+  <div class="mission-list">
+    {missions.map((m) => (
+      <div class="mission-item" data-answer={m.answer}>
+        <span class="mission-item__label">{m.label}</span>
+        <span class="mission-item__buttons">
+          {choices.map((c) => (
+            <button type="button" class="mission-btn" data-choice={c.code}>{c.label}</button>
+          ))}
+        </span>
+      </div>
+    ))}
+  </div>
+
+  <button class="mission-sort__reset" type="button" data-reset>Reset activity</button>
+</section>
+
+<style>
+  .mission-sort {
+    margin: 40px 0;
+    padding: 28px;
+    background: #fafafa;
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 10px;
+  }
+  .mission-sort__title {
+    margin: 0 0 6px 0;
+    color: var(--isu-red, #c41e3a);
+    font-size: 1.15em;
+  }
+  .mission-sort__prompt {
+    margin: 0 0 14px 0;
+    color: var(--text-secondary, #666);
+    font-size: 0.95em;
+  }
+  .mission-sort__status {
+    display: inline-block;
+    margin-bottom: 18px;
+    padding: 6px 14px;
+    background: white;
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 0.9em;
+    color: var(--text-primary, #1a1a1a);
+  }
+  .mission-list {
+    display: grid;
+    gap: 12px;
+  }
+  .mission-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+    background: white;
+    border: 2px solid var(--border-color, #e5e7eb);
+    border-radius: 8px;
+    padding: 14px 18px;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .mission-item__label {
+    font-weight: 600;
+    color: var(--text-primary, #1a1a1a);
+  }
+  .mission-item__buttons {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .mission-btn {
+    all: unset;
+    cursor: pointer;
+    padding: 6px 14px;
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 6px;
+    font-size: 0.85em;
+    font-weight: 600;
+    color: var(--text-primary, #1a1a1a);
+  }
+  .mission-btn:hover {
+    border-color: var(--isu-red, #c41e3a);
+  }
+  .mission-item.is-correct {
+    border-color: #2e7d32;
+    background: #e8f5e9;
+  }
+  .mission-item.is-correct .mission-btn {
+    pointer-events: none;
+  }
+  .mission-item.is-wrong {
+    animation: shake 0.3s;
+  }
+  @keyframes shake {
+    25% { transform: translateX(-4px); }
+    75% { transform: translateX(4px); }
+  }
+  .mission-sort__reset {
+    all: unset;
+    cursor: pointer;
+    margin-top: 20px;
+    display: inline-block;
+    padding: 8px 18px;
+    border: 1px solid var(--isu-red, #c41e3a);
+    color: var(--isu-red, #c41e3a);
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.9em;
+  }
+  .mission-sort__reset:hover {
+    background: var(--isu-red, #c41e3a);
+    color: white;
+  }
+</style>
+
+<script>
+  function initMissionSort(root) {
+    const items = root.querySelectorAll('.mission-item');
+    const statusEl = root.querySelector('[data-status]');
+    let answered = 0;
+
+    function updateStatus() {
+      statusEl.textContent = `${answered} / ${items.length} answered`;
+      if (answered === items.length) {
+        statusEl.textContent = `All sorted! Nice work.`;
+      }
+    }
+
+    items.forEach((item) => {
+      const correct = item.dataset.answer;
+      item.querySelectorAll('.mission-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          if (item.classList.contains('is-correct')) return;
+          if (btn.dataset.choice === correct) {
+            item.classList.add('is-correct');
+            answered += 1;
+            updateStatus();
+          } else {
+            item.classList.add('is-wrong');
+            setTimeout(() => item.classList.remove('is-wrong'), 300);
+          }
+        });
+      });
+    });
+
+    const resetBtn = root.querySelector('[data-reset]');
+    resetBtn.addEventListener('click', () => {
+      answered = 0;
+      items.forEach((item) => item.classList.remove('is-correct', 'is-wrong'));
+      updateStatus();
+    });
+
+    updateStatus();
+  }
+
+  document.querySelectorAll('.mission-sort').forEach(initMissionSort);
+</script>

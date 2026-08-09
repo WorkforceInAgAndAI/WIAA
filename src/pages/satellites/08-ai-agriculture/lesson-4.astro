@@ -1,0 +1,130 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import SatSidebar from '../../../components/SatSidebar.astro';
+import SatLessonNav from '../../../components/SatLessonNav.astro';
+import SatWeedAIActivity from '../../../components/SatWeedAIActivity.astro';
+import SatAILimitationsActivity from '../../../components/SatAILimitationsActivity.astro';
+
+const content = await import('../../../content/satellites/08-ai-agriculture/lesson-4.md');
+const { Content } = content;
+const { title, chapter, lesson } = content.frontmatter;
+---
+
+<BaseLayout title={title}>
+  <div class="container" style="max-width: 1400px; margin: 30px auto; padding: 0 20px;">
+    <div style="display: grid; grid-template-columns: 250px 1fr; gap: 24px; align-items: start;">
+      <SatSidebar currentChapter={chapter} currentLesson={lesson} />
+      <div class="content-area">
+        <div class="content-header">
+          <p class="chapter-label">Chapter {chapter}: AI in Agriculture</p>
+          <h1>{title}</h1>
+        </div>
+        <article class="lesson-content">
+          <Content />
+        </article>
+
+        <hr />
+        <h2>Activities: AI in Agriculture</h2>
+        <SatWeedAIActivity />
+        <SatAILimitationsActivity />
+
+        <SatLessonNav
+          prev={{ href: '/satellites/08-ai-agriculture/lesson-3', label: 'Previous' }}
+          next={{ href: '/satellites/08-ai-agriculture/review', label: 'Next' }}
+          progress={`${chapter}.${lesson} / 11 Chapters`}
+        />
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+<style is:global>
+  :root {
+    --isu-red: #c41e3a;
+    --isu-gold: #f8c600;
+    --border-light: #ddd;
+    --text-dark: #1a1a1a;
+    --text-medium: #666;
+    --isu-dark-red: #a01729;
+  }
+  .lesson-content img {
+    max-width: 800px !important;
+    height: auto !important;
+    display: block !important;
+    margin: 20px auto !important;
+  }
+  @media (max-width: 767px) {
+    .lesson-content img {
+      max-width: 280px !important;
+    }
+  }
+  .lesson-content p {
+    line-height: 1.8;
+    color: var(--text-dark);
+    margin-bottom: 18px;
+  }
+  .section-intro {
+    font-size: 1.05em;
+    color: var(--text-medium);
+    font-style: italic;
+    margin-bottom: 24px;
+  }
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    margin-bottom: 35px;
+  }
+  .benefit-card {
+    background: white;
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    padding: 24px;
+    padding-left: 80px;
+    position: relative;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  }
+  .benefit-number {
+    position: absolute;
+    left: 24px;
+    top: 24px;
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, var(--isu-red), var(--isu-dark-red));
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.3em;
+  }
+  .benefit-card h4 {
+    color: var(--isu-red);
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 1.1em;
+  }
+  .benefit-card p {
+    color: var(--text-medium);
+    line-height: 1.6;
+    margin: 0;
+  }
+  @media (min-width: 768px) {
+    .benefits-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    .benefit-card {
+      padding-left: 90px;
+    }
+  }
+</style>
+<style>
+  @media (max-width: 768px) {
+    div[style*="grid-template-columns"] {
+      display: flex !important;
+      flex-direction: column-reverse !important;
+      gap: 16px !important;
+    }
+  }
+</style>

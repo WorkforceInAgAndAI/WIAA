@@ -1,0 +1,174 @@
+---
+const types = [
+  { id: "temporal", label: "Temporal" },
+  { id: "spatial", label: "Spatial" },
+  { id: "spectral", label: "Spectral" },
+  { id: "radiometric", label: "Radiometric" }
+];
+const descriptors = [
+  { id: "temporal", level: "high", text: "Short amount of time required to pass by a specific location on Earth" },
+  { id: "temporal", level: "low", text: "High amount of time required to pass by a specific location on Earth" },
+  { id: "spatial", level: "high", text: "Small sample area of ground" },
+  { id: "spatial", level: "low", text: "Large sized area of interest" },
+  { id: "spectral", level: "high", text: "Many bands of the electromagnetic spectrum captured" },
+  { id: "spectral", level: "low", text: "Few bands of the electromagnetic spectrum captured" },
+  { id: "radiometric", level: "high", text: "High bit value and wide distribution of shades captured" },
+  { id: "radiometric", level: "low", text: "Low bit value and few variations in shades captured" }
+];
+---
+<div class="dq-match" id="dq-match">
+  <h4>Activity 8: Data Quality</h4>
+  <p class="dq-match__prompt">Match each description to its resolution type (each type has one high-resolution and one low-resolution description).</p>
+  <div class="dq-match__columns">
+    <div class="dq-match__col">
+      {descriptors.map((d, i) => (
+        <button class="dq-match__desc" data-type={d.id} data-idx={i}>{d.text}</button>
+      ))}
+    </div>
+    <div class="dq-match__col">
+      {types.map(t => (
+        <div class="dq-match__type" data-type={t.id}>
+          <span>{t.label}</span>
+          <div class="dq-match__slots" data-slots={t.id}></div>
+        </div>
+      ))}
+    </div>
+  </div>
+  <p class="dq-match__status" id="dq-match-status"></p>
+</div>
+
+<style is:global>
+  .dq-match {
+    background: white;
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    padding: 24px;
+    margin: 30px 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  }
+  .dq-match h4 {
+    color: var(--isu-red);
+    font-size: 1.2em;
+    margin-bottom: 8px;
+    font-family: Georgia, Garamond, 'Times New Roman', serif;
+  }
+  .dq-match__prompt {
+    color: var(--text-dark);
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+  .dq-match__columns {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .dq-match__col {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .dq-match__desc {
+    padding: 10px 14px;
+    border: 1px solid var(--border-light);
+    background: white;
+    color: var(--text-dark);
+    text-align: left;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 13px;
+    line-height: 1.5;
+    font-family: Georgia, Garamond, 'Times New Roman', serif;
+  }
+  .dq-match__desc.selected {
+    border-color: var(--isu-red);
+    background: rgba(196, 30, 58, 0.06);
+  }
+  .dq-match__desc.placed {
+    display: none;
+  }
+  .dq-match__type {
+    border: 1px solid var(--border-light);
+    border-radius: 6px;
+    padding: 12px;
+  }
+  .dq-match__type span {
+    display: block;
+    font-weight: 700;
+    color: var(--isu-red);
+    margin-bottom: 8px;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .dq-match__slots {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-height: 20px;
+  }
+  .dq-match__slots .placed-desc {
+    padding: 8px 10px;
+    background: #f9f7f4;
+    border-radius: 4px;
+    font-size: 12px;
+    color: var(--text-medium);
+  }
+  .dq-match__status {
+    margin-top: 16px;
+    font-weight: 600;
+    color: var(--isu-red);
+    min-height: 1.2em;
+  }
+  @media (min-width: 768px) {
+    .dq-match__columns {
+      flex-direction: row;
+    }
+    .dq-match__col {
+      flex: 1;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    let selected: HTMLElement | null = null;
+    let placedCount = 0;
+    const total = 8;
+    const status = document.getElementById('dq-match-status');
+
+    document.querySelectorAll('.dq-match__desc').forEach(btn => {
+      btn.addEventListener('click', () => {
+        if (btn.classList.contains('placed')) return;
+        if (selected) selected.classList.remove('selected');
+        selected = btn as HTMLElement;
+        selected.classList.add('selected');
+      });
+    });
+
+    document.querySelectorAll('.dq-match__type').forEach(typeEl => {
+      typeEl.addEventListener('click', () => {
+        if (!selected) return;
+        const correctType = selected.dataset.type;
+        const thisType = (typeEl as HTMLElement).dataset.type;
+        const slots = typeEl.querySelector('.dq-match__slots');
+        if (correctType === thisType) {
+          const placed = document.createElement('div');
+          placed.className = 'placed-desc';
+          placed.textContent = selected.textContent;
+          slots?.appendChild(placed);
+          selected.classList.add('placed');
+          selected.classList.remove('selected');
+          placedCount++;
+          if (status) {
+            status.textContent = placedCount === total ? 'All matched! Nice work.' : `${placedCount} of ${total} placed.`;
+          }
+          selected = null;
+        } else {
+          if (status) status.textContent = 'Not quite, try again.';
+          selected.classList.remove('selected');
+          selected = null;
+        }
+      });
+    });
+  });
+</script>

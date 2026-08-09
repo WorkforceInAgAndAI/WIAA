@@ -1,0 +1,110 @@
+---
+const scenarios = [
+  { nir: 0.85, red: 1.0 },
+  { nir: 0.40, red: 0.30 },
+  { nir: 0.20, red: 0.22 }
+];
+---
+<div class="ndvi-activity">
+  <h4>Activity 16: Calculate NDVI</h4>
+  <p class="ndvi-activity__prompt">Based on the numbers for each scenario and the NDVI equation above, solve the equation for each field trial. Type your answer, then check it.</p>
+  {scenarios.map((s, i) => (
+    <div class="ndvi-activity__row" data-nir={s.nir} data-red={s.red}>
+      <p class="ndvi-activity__scenario">Scenario {i + 1}: NIR = {s.nir} and Red = {s.red}</p>
+      <div class="ndvi-activity__controls">
+        <input type="number" step="0.001" class="ndvi-activity__input" placeholder="Your answer" />
+        <button class="ndvi-activity__check">Check</button>
+      </div>
+      <p class="ndvi-activity__feedback"></p>
+    </div>
+  ))}
+</div>
+
+<style is:global>
+  .ndvi-activity {
+    background: white;
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    padding: 24px;
+    margin: 30px 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  }
+  .ndvi-activity h4 {
+    color: var(--isu-red);
+    font-size: 1.2em;
+    margin-bottom: 8px;
+    font-family: Georgia, Garamond, 'Times New Roman', serif;
+  }
+  .ndvi-activity__prompt {
+    color: var(--text-dark);
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+  .ndvi-activity__row {
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border-light);
+  }
+  .ndvi-activity__row:last-child {
+    border-bottom: none;
+  }
+  .ndvi-activity__scenario {
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 10px;
+  }
+  .ndvi-activity__controls {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+  .ndvi-activity__input {
+    flex: 1;
+    border: 1px solid var(--border-light);
+    border-radius: 4px;
+    padding: 10px;
+    font-family: Georgia, Garamond, 'Times New Roman', serif;
+    font-size: 14px;
+  }
+  .ndvi-activity__check {
+    padding: 10px 18px;
+    border: none;
+    background: var(--isu-red);
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+    font-family: Georgia, Garamond, 'Times New Roman', serif;
+  }
+  .ndvi-activity__feedback {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--isu-red);
+    min-height: 1.2em;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.ndvi-activity__row').forEach(row => {
+      const nir = parseFloat(row.getAttribute('data-nir') || '0');
+      const red = parseFloat(row.getAttribute('data-red') || '0');
+      const correct = (nir - red) / (nir + red);
+      const input = row.querySelector('.ndvi-activity__input');
+      const feedback = row.querySelector('.ndvi-activity__feedback');
+      row.querySelector('.ndvi-activity__check')?.addEventListener('click', () => {
+        const userVal = parseFloat((input as HTMLInputElement).value);
+        if (isNaN(userVal)) {
+          if (feedback) feedback.textContent = 'Enter a number first.';
+          return;
+        }
+        const close = Math.abs(userVal - correct) < 0.01;
+        if (feedback) {
+          feedback.textContent = close
+            ? `Correct! NDVI = ${correct.toFixed(3)}`
+            : `Not quite. NDVI = (${nir} - ${red}) / (${nir} + ${red}) = ${correct.toFixed(3)}`;
+        }
+      });
+    });
+  });
+</script>

@@ -1,0 +1,225 @@
+---
+---
+<div class="res-sim" id="res-sim">
+  <h4>Explore: Adjust the Resolution Parameters</h4>
+  <p class="res-sim__note">Each slider is independent &mdash; drag any of them to see what that type of resolution looks like at different levels. Remember: in a real satellite, pushing all four to maximum at once isn't possible &mdash; it's always a trade-off.</p>
+
+  <div class="res-sim__grid">
+    <div class="res-sim__control">
+      <label>Spatial resolution (pixel size): <span id="spatial-val">10</span> m</label>
+      <input type="range" id="spatial-slider" min="0.3" max="30" step="0.1" value="10" />
+      <div class="res-sim__visual" id="spatial-visual"></div>
+    </div>
+
+    <div class="res-sim__control">
+      <label>Radiometric resolution (bit depth): <span id="radio-val">8</span>-bit (<span id="radio-count">256</span> shades)</label>
+      <input type="range" id="radio-slider" min="1" max="16" step="1" value="8" />
+      <div class="res-sim__visual" id="radio-visual"></div>
+    </div>
+
+    <div class="res-sim__control">
+      <label>Spectral resolution (bands detected): <span id="spectral-val">3</span> bands</label>
+      <input type="range" id="spectral-slider" min="1" max="200" step="1" value="3" />
+      <div class="res-sim__visual" id="spectral-visual"></div>
+    </div>
+
+    <div class="res-sim__control">
+      <label>Temporal resolution (revisit time): every <span id="temporal-val">16</span> day(s)</label>
+      <input type="range" id="temporal-slider" min="1" max="30" step="1" value="16" />
+      <div class="res-sim__visual" id="temporal-visual"></div>
+    </div>
+  </div>
+</div>
+
+<style is:global>
+  .res-sim {
+    background: white;
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    padding: 24px;
+    margin: 30px 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  }
+  .res-sim h4 {
+    color: var(--isu-red);
+    font-size: 1.2em;
+    margin-bottom: 8px;
+    font-family: Georgia, Garamond, 'Times New Roman', serif;
+  }
+  .res-sim__note {
+    color: var(--text-medium);
+    font-size: 0.9em;
+    margin-bottom: 20px;
+    line-height: 1.6;
+  }
+  .res-sim__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .res-sim__control label {
+    display: block;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 8px;
+    font-size: 14px;
+  }
+  .res-sim__control input[type="range"] {
+    width: 100%;
+    accent-color: var(--isu-red);
+    margin-bottom: 10px;
+  }
+  .res-sim__visual {
+    background: #f9f7f4;
+    border-radius: 6px;
+    min-height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+  }
+  #spatial-visual {
+    display: grid;
+    grid-auto-rows: 1fr;
+    width: 200px;
+    height: 200px;
+    gap: 1px;
+    padding: 0;
+  }
+  .pixel-block {
+    background: linear-gradient(135deg, var(--isu-red), var(--isu-gold));
+    width: 100%;
+    height: 100%;
+  }
+  #radio-visual {
+    display: flex;
+    width: 100%;
+    height: 60px;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .shade-block {
+    flex: 1;
+    height: 100%;
+  }
+  #spectral-visual {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    gap: 2px;
+    width: 100%;
+    height: 70px;
+    overflow: hidden;
+  }
+  .band-bar {
+    height: 44px;
+    width: 6px;
+    background: var(--isu-red);
+  }
+  #temporal-visual {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    width: 100%;
+  }
+  .day-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #ddd;
+  }
+  .day-dot.pass {
+    background: var(--isu-red);
+  }
+  @media (min-width: 768px) {
+    .res-sim__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const spatialSlider = document.getElementById('spatial-slider') as HTMLInputElement;
+    const spatialVal = document.getElementById('spatial-val');
+    const spatialVisual = document.getElementById('spatial-visual');
+    function updateSpatial() {
+      const val = parseFloat(spatialSlider.value);
+      if (spatialVal) spatialVal.textContent = val.toFixed(1);
+      const gridSize = Math.max(2, Math.min(12, Math.round(12 - (val / 30) * 10)));
+      if (spatialVisual) {
+        spatialVisual.style.gridTemplateColumns = `repeat(${gridSize}, 1fr)`;
+        spatialVisual.innerHTML = '';
+        for (let i = 0; i < gridSize * gridSize; i++) {
+          const block = document.createElement('div');
+          block.className = 'pixel-block';
+          spatialVisual.appendChild(block);
+        }
+      }
+    }
+    spatialSlider?.addEventListener('input', updateSpatial);
+    updateSpatial();
+
+    const radioSlider = document.getElementById('radio-slider') as HTMLInputElement;
+    const radioVal = document.getElementById('radio-val');
+    const radioCount = document.getElementById('radio-count');
+    const radioVisual = document.getElementById('radio-visual');
+    function updateRadio() {
+      const bits = parseInt(radioSlider.value, 10);
+      const shades = Math.pow(2, bits);
+      if (radioVal) radioVal.textContent = String(bits);
+      if (radioCount) radioCount.textContent = shades.toLocaleString();
+      const displaySwatches = Math.min(128, shades);
+      if (radioVisual) {
+        radioVisual.innerHTML = '';
+        for (let i = 0; i < displaySwatches; i++) {
+          const shade = Math.round((i / (displaySwatches - 1 || 1)) * 255);
+          const block = document.createElement('div');
+          block.className = 'shade-block';
+          block.style.background = `rgb(${shade},${shade},${shade})`;
+          radioVisual.appendChild(block);
+        }
+      }
+    }
+    radioSlider?.addEventListener('input', updateRadio);
+    updateRadio();
+
+    const spectralSlider = document.getElementById('spectral-slider') as HTMLInputElement;
+    const spectralVal = document.getElementById('spectral-val');
+    const spectralVisual = document.getElementById('spectral-visual');
+    function updateSpectral() {
+      const bands = parseInt(spectralSlider.value, 10);
+      if (spectralVal) spectralVal.textContent = String(bands);
+      const displayBars = Math.min(150, bands);
+      if (spectralVisual) {
+        spectralVisual.innerHTML = '';
+        for (let i = 0; i < displayBars; i++) {
+          const bar = document.createElement('div');
+          bar.className = 'band-bar';
+          bar.style.background = `hsl(${(i / displayBars) * 300}, 70%, 50%)`;
+          spectralVisual.appendChild(bar);
+        }
+      }
+    }
+    spectralSlider?.addEventListener('input', updateSpectral);
+    updateSpectral();
+
+    const temporalSlider = document.getElementById('temporal-slider') as HTMLInputElement;
+    const temporalVal = document.getElementById('temporal-val');
+    const temporalVisual = document.getElementById('temporal-visual');
+    function updateTemporal() {
+      const days = parseInt(temporalSlider.value, 10);
+      if (temporalVal) temporalVal.textContent = String(days);
+      if (temporalVisual) {
+        temporalVisual.innerHTML = '';
+        for (let i = 1; i <= 30; i++) {
+          const dot = document.createElement('div');
+          dot.className = 'day-dot' + (i % days === 0 ? ' pass' : '');
+          temporalVisual.appendChild(dot);
+        }
+      }
+    }
+    temporalSlider?.addEventListener('input', updateTemporal);
+    updateTemporal();
+  });
+</script>

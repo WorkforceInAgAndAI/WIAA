@@ -1,0 +1,133 @@
+---
+const models = {
+  vision: {
+    title: "Vision Models",
+    details: [
+      "<strong>Purpose:</strong> Models that function as eyes to identify and locate objects .",
+      "<strong>Example:</strong> Find all weeds in a field",
+    ],
+  },
+  classification: {
+    title: "Classification Models",
+    details: [
+      "<strong>Purpose:</strong> Models that break down and sort information to support decision making.",
+      "<strong>Example:</strong> Is this a grasshopper or a ladybug?",
+    ],
+  },
+  quantification: {
+    title: "Quantification Models",
+    details: [
+      "<strong>Purpose:</strong> Models that take measurements or provide specific numeric output.",
+      "<strong>Example:</strong> Count 47 Japanese beetles in this image",
+    ],
+  },
+  prediction: {
+    title: "Prediction Models",
+    details: [
+      "<strong>Purpose:</strong> Models that analyze patterns and predict future outcomes.",
+      "<strong>Example:</strong> This pest will reproduce in 5 days based on temperature",
+    ],
+  },
+  language: {
+    title: "Language & Explanation Models",
+    details: [
+      "<strong>Purpose:</strong> Models that explain results and generate reports to be understood in plain language.",
+      "<strong>Example:</strong> Explain why this plant is diseased based on visual analysis",
+    ],
+  },
+};
+---
+<section class="model-explorer">
+  <div class="model-explorer__buttons">
+    {Object.entries(models).map(([key, m]) => (
+      <button class="model-btn" data-model={key}>{m.title}</button>
+    ))}
+  </div>
+  <div class="model-explorer__panel">
+    <div class="model-explorer__description" data-description>
+      <p class="hint-text">Click a model above to learn more</p>
+    </div>
+  </div>
+</section>
+
+<script define:vars={{ models }}>
+  function init(root) {
+    const panel = root.querySelector('[data-description]');
+    root.querySelectorAll('.model-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        root.querySelectorAll('.model-btn').forEach((b) => b.classList.remove('active'));
+        btn.classList.add('active');
+        const model = models[btn.dataset.model];
+        const items = model.details.map((d) => `<li>${d}</li>`).join('');
+        panel.innerHTML = `<h3>${model.title}</h3><ul>${items}</ul>`;
+      });
+    });
+  }
+  document.querySelectorAll('.model-explorer').forEach(init);
+</script>
+
+<style>
+  .model-explorer { margin: 40px 0; }
+  .model-explorer__buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 12px 12px 0 0;
+    justify-content: center;
+    border: 1.5px solid var(--border-color, #e5e7eb);
+    border-bottom: none;
+  }
+  .model-btn {
+    padding: 10px 16px;
+    background: white;
+    border: 2px solid var(--border-color, #e5e7eb);
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.9em;
+    color: var(--text-primary, #1a1a1a);
+    transition: all 0.3s ease;
+  }
+  .model-btn:hover {
+    border-color: var(--isu-red, #c41e3a);
+    color: var(--isu-red, #c41e3a);
+    background: rgba(196, 30, 58, 0.05);
+  }
+  .model-btn.active {
+    background: var(--isu-red, #c41e3a);
+    color: white;
+    border-color: var(--isu-red, #c41e3a);
+  }
+  .model-explorer__panel {
+    background: linear-gradient(135deg, #ffffff 0%, #f9f9f9 100%);
+    border: 1.5px solid var(--border-color, #e5e7eb);
+    border-radius: 0 0 12px 12px;
+    padding: 32px;
+    min-height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .model-explorer__description { width: 100%; }
+  .model-explorer__description h3 { font-size: 1.5em; color: var(--isu-red, #c41e3a); margin-bottom: 16px; }
+  .model-explorer__description ul { list-style: none; padding: 0; margin: 0; }
+  .model-explorer__description li {
+    font-size: 1.05em;
+    line-height: 1.8;
+    color: var(--text-secondary, #666);
+    margin: 12px 0;
+    padding-left: 22px;
+    position: relative;
+  }
+  .model-explorer__description li::before {
+    content: '•';
+    position: absolute;
+    left: 6px;
+    color: var(--isu-red, #c41e3a);
+    font-weight: bold;
+  }
+  .model-explorer__description strong { color: var(--text-primary, #1a1a1a); }
+  .hint-text { text-align: center; color: #999; font-style: italic; }
+</style>

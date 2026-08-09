@@ -1,0 +1,146 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Sidebar from '../../../components/Sidebar.astro';
+import LessonNav from '../../../components/LessonNav.astro';
+import NDVICalculator from '../../../components/NDVICalculator.astro';
+import NDVIInterpretation from '../../../components/NDVIInterpretation.astro';
+
+const content = await import('../../../content/drones/07-vegetation-indices/lesson-2.md');
+const { Content } = content;
+const { title, chapter, lesson } = content.frontmatter;
+---
+
+<BaseLayout title={title}>
+  <div class="container" style="max-width: 1400px; margin: 30px auto; padding: 0 20px;">
+    <div style="display: grid; grid-template-columns: 250px 1fr; gap: 24px; align-items: start;">
+      <Sidebar currentChapter={chapter} currentLesson={lesson} />
+      <div class="content-area">
+        <div class="content-header">
+          <p class="chapter-label">Chapter {chapter}: Vegetation Indices</p>
+          <h1>{title}</h1>
+        </div>
+        <article class="lesson-content">
+          <Content />
+        </article>
+        <NDVICalculator />
+        <NDVIInterpretation />
+        <LessonNav 
+          prev={{ href: '/drones/07-vegetation-indices/lesson-1', label: 'Previous' }}
+          next={{ href: '/drones/07-vegetation-indices/review', label: 'Next' }}
+          progress={`${chapter}.${lesson} / 12 Chapters`}
+        />
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+<style is:global>
+  :root {
+    --isu-red: #c41e3a;
+    --isu-gold: #f8c600;
+    --isu-dark-red: #a01729;
+    --text-primary: #1a1a1a;
+    --text-secondary: #666666;
+    --border-color: #e5e7eb;
+  }
+
+  .lesson-content img {
+    max-width: 800px !important;
+    height: auto !important;
+    display: block !important;
+    margin: 30px auto !important;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--border-color);
+  }
+  @media (max-width: 767px) {
+    .lesson-content img {
+      max-width: 100% !important;
+    }
+  }
+
+  .lesson-intro {
+    background: linear-gradient(135deg, #f5f5f5 0%, #ffffff 100%);
+    padding: 24px;
+    border-left: 4px solid var(--isu-red);
+    border-radius: 4px;
+    margin-bottom: 30px;
+    font-size: 1.1em;
+    line-height: 1.8;
+    color: var(--text-primary);
+  }
+
+  .section-intro {
+    font-size: 1.1em;
+    line-height: 1.8;
+    color: var(--text-secondary);
+    background: linear-gradient(135deg, rgba(196, 30, 58, 0.04), rgba(248, 198, 0, 0.04));
+    padding: 24px;
+    border-left: 4px solid var(--isu-red);
+    border-radius: 8px;
+    margin: 0 0 32px 0;
+  }
+
+  .lesson-content h2 {
+    font-size: 1.8em;
+    font-weight: 700;
+    color: var(--isu-red);
+    margin: 45px 0 28px 0;
+    letter-spacing: -0.5px;
+  }
+
+  /* NDVI formula display */
+  .formula-box {
+    background: white;
+    border: 2px solid var(--isu-red);
+    border-radius: 10px;
+    padding: 40px;
+    margin: 32px 0 48px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .formula {
+    font-size: 1.6em;
+    font-style: italic;
+    color: var(--text-primary);
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    text-align: center;
+  }
+  @media (max-width: 600px) {
+    .formula { font-size: 1.2em; }
+    .formula-box { padding: 24px; }
+  }
+
+  /* Interpretation list */
+  .interpretation-list {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0 40px 0;
+  }
+  .interpretation-list li {
+    font-size: 1.05em;
+    line-height: 1.8;
+    color: var(--text-primary);
+    margin: 14px 0;
+    padding-left: 24px;
+    position: relative;
+  }
+  .interpretation-list li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--isu-red);
+    font-weight: bold;
+    font-size: 1.2em;
+  }
+</style>
+<style>
+  @media (max-width: 768px) {
+    div[style*="grid-template-columns"] {
+      display: flex !important;
+      flex-direction: column-reverse !important;
+      gap: 16px !important;
+    }
+  }
+</style>

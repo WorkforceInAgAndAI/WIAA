@@ -1,0 +1,130 @@
+---
+---
+<div class="cost-estimator">
+  <h4>Explore: Estimate Data Cost</h4>
+  <p class="cost-estimator__prompt">Choose a data source and area size to estimate cost, based on the pricing described above.</p>
+
+  <div class="cost-estimator__controls">
+    <label>Data source:</label>
+    <div class="cost-estimator__options">
+      <button class="cost-estimator__opt active" data-min="22.50" data-max="22.50">Pléiades Neo archival ($22.50/km&sup2;)</button>
+      <button class="cost-estimator__opt" data-min="6" data-max="40">SkySat individual task ($6-$40/km&sup2;)</button>
+    </div>
+  </div>
+
+  <div class="cost-estimator__slider">
+    <label>Area needed: <span id="cost-area-val">10</span> km&sup2;</label>
+    <input type="range" id="cost-area-slider" min="1" max="500" step="1" value="10" />
+  </div>
+
+  <div class="cost-estimator__result" id="cost-result">Estimated cost: $225.00</div>
+  <p class="cost-estimator__note">Note: SkySat also offers a flat annual subscription for global monitoring data between $2,700 and $9,650, unrelated to area size.</p>
+</div>
+
+<style is:global>
+  .cost-estimator {
+    background: white;
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    padding: 24px;
+    margin: 30px 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  }
+  .cost-estimator h4 {
+    color: var(--isu-red);
+    font-size: 1.2em;
+    margin-bottom: 8px;
+    font-family: Georgia, Garamond, 'Times New Roman', serif;
+  }
+  .cost-estimator__prompt {
+    color: var(--text-medium);
+    margin-bottom: 16px;
+  }
+  .cost-estimator__controls label,
+  .cost-estimator__slider label {
+    display: block;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 8px;
+    font-size: 14px;
+  }
+  .cost-estimator__options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+  .cost-estimator__opt {
+    padding: 10px 16px;
+    border: 1px solid var(--isu-gold);
+    background: white;
+    color: var(--isu-red);
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 13px;
+    font-family: Georgia, Garamond, 'Times New Roman', serif;
+  }
+  .cost-estimator__opt.active {
+    background: var(--isu-red);
+    color: white;
+    border-color: var(--isu-red);
+  }
+  .cost-estimator__slider {
+    margin-bottom: 16px;
+  }
+  .cost-estimator__slider input[type="range"] {
+    width: 100%;
+    accent-color: var(--isu-red);
+  }
+  .cost-estimator__result {
+    background: #f9f7f4;
+    border-radius: 6px;
+    padding: 16px;
+    text-align: center;
+    font-weight: 700;
+    color: var(--isu-dark-red);
+    font-size: 1.1em;
+    margin-bottom: 12px;
+  }
+  .cost-estimator__note {
+    color: var(--text-light);
+    font-size: 0.85em;
+    font-style: italic;
+    margin: 0;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const opts = document.querySelectorAll('.cost-estimator__opt');
+    const slider = document.getElementById('cost-area-slider') as HTMLInputElement;
+    const areaVal = document.getElementById('cost-area-val');
+    const result = document.getElementById('cost-result');
+    let min = 22.5, max = 22.5;
+
+    function update() {
+      const area = parseFloat(slider.value);
+      if (areaVal) areaVal.textContent = String(area);
+      const low = (min * area).toFixed(2);
+      const high = (max * area).toFixed(2);
+      if (result) {
+        result.textContent = min === max
+          ? `Estimated cost: $${low}`
+          : `Estimated cost: $${low} - $${high}`;
+      }
+    }
+
+    opts.forEach(opt => {
+      opt.addEventListener('click', () => {
+        opts.forEach(o => o.classList.remove('active'));
+        opt.classList.add('active');
+        min = parseFloat((opt as HTMLElement).dataset.min || '0');
+        max = parseFloat((opt as HTMLElement).dataset.max || '0');
+        update();
+      });
+    });
+
+    slider?.addEventListener('input', update);
+    update();
+  });
+</script>

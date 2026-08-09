@@ -1,0 +1,220 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Sidebar from '../../../components/Sidebar.astro';
+import LessonNav from '../../../components/LessonNav.astro';
+
+const content = await import('../../../content/drones/11-drone-mission/lesson-1.md');
+const { Content } = content;
+const { title, chapter, lesson } = content.frontmatter;
+---
+
+<BaseLayout title={title}>
+  <div class="container" style="max-width: 1400px; margin: 30px auto; padding: 0 20px;">
+    <div style="display: grid; grid-template-columns: 250px 1fr; gap: 24px; align-items: start;">
+      <Sidebar currentChapter={chapter} currentLesson={lesson} />
+      <div class="content-area">
+        <div class="content-header">
+          <p class="chapter-label">Chapter {chapter}: Drone Mission</p>
+          <h1>{title}</h1>
+        </div>
+        <article class="lesson-content">
+          <Content />
+        </article>
+        <LessonNav 
+          prev={{ href: '/drones/10-solution-innovator/review', label: 'Previous' }}
+          next={{ href: '/drones/11-drone-mission/lesson-2', label: 'Next' }}
+          progress={`${chapter}.${lesson} / 12 Chapters`}
+        />
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+<style is:global>
+  :root {
+    --isu-red: #c41e3a;
+    --isu-gold: #f8c600;
+    --isu-dark-red: #a01729;
+    --text-primary: #1a1a1a;
+    --text-secondary: #666666;
+    --border-color: #e5e7eb;
+  }
+
+  .rotated-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 80px auto;
+  }
+  .rotated-image img {
+    transform: rotate(-90deg);
+    max-width: 700px !important;
+    margin: 0 !important;
+  }
+
+  .print-btn-wrap {
+    text-align: center;
+    margin: -40px 0 32px 0;
+  }
+  .print-btn {
+    all: unset;
+    cursor: pointer;
+    display: inline-block;
+    padding: 10px 24px;
+    background: var(--isu-red);
+    color: white;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.95em;
+  }
+  .print-btn:hover {
+    background: var(--isu-dark-red);
+  }
+
+@media print {
+    @page {
+      margin: 0.5in;
+    }
+    body * {
+      visibility: hidden;
+    }
+    .rotated-image,
+    .rotated-image * {
+      visibility: visible;
+    }
+    .rotated-image {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      page-break-inside: avoid;
+      page-break-after: avoid;
+    }
+    .rotated-image img {
+      max-width: 80vh !important;
+      max-height: 80vw !important;
+      width: auto !important;
+      height: auto !important;
+      margin: 0 !important;
+    }
+    .print-btn-wrap {
+      display: none;
+    }
+  }
+
+  .lesson-content img {
+    max-width: 900px !important;
+    height: auto !important;
+    display: block !important;
+    margin: 40px auto !important;
+  }
+  @media (max-width: 767px) {
+    .lesson-content img {
+      max-width: 100% !important;
+    }
+  }
+
+  .lesson-intro {
+    background: linear-gradient(135deg, #f5f5f5 0%, #ffffff 100%);
+    padding: 24px;
+    border-left: 4px solid var(--isu-red);
+    border-radius: 4px;
+    margin-bottom: 30px;
+    font-size: 1.1em;
+    line-height: 1.8;
+    color: var(--text-primary);
+  }
+
+  .lesson-content h2 {
+    font-size: 1.8em;
+    font-weight: 700;
+    color: var(--isu-red);
+    margin: 45px 0 28px 0;
+    letter-spacing: -0.5px;
+  }
+
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    margin: 28px 0;
+  }
+  .benefit-card {
+    background: white;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 24px;
+    padding-left: 80px;
+    position: relative;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    transition: all 0.3s ease;
+  }
+  .benefit-card:hover {
+    box-shadow: 0 4px 16px rgba(196, 30, 58, 0.12);
+    border-color: var(--isu-red);
+  }
+  .benefit-number {
+    position: absolute;
+    left: 24px;
+    top: 24px;
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, var(--isu-red), var(--isu-dark-red));
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.2em;
+  }
+  .benefit-card h4 {
+    color: var(--isu-red);
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 1.1em;
+  }
+  .benefit-card p {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 0;
+  }
+  @media (min-width: 768px) {
+    .benefits-grid { grid-template-columns: 1fr 1fr; gap: 24px; }
+  }
+  @media (min-width: 969px) {
+    .benefits-grid { grid-template-columns: 1fr 1fr 1fr; }
+  }
+
+  .impact-callout {
+    background: linear-gradient(135deg, rgba(196, 30, 58, 0.08) 0%, rgba(255, 184, 28, 0.08) 100%);
+    border-left: 5px solid var(--isu-red);
+    border-radius: 6px;
+    padding: 24px;
+    margin: 28px 0;
+  }
+  .impact-callout h4 {
+    color: var(--isu-red);
+    margin-top: 0;
+    margin-bottom: 12px;
+    font-size: 1.15em;
+  }
+  .impact-callout p {
+    color: var(--text-primary);
+    line-height: 1.7;
+    margin: 0;
+  }
+</style>
+<style>
+  @media (max-width: 768px) {
+    div[style*="grid-template-columns"] {
+      display: flex !important;
+      flex-direction: column-reverse !important;
+      gap: 16px !important;
+    }
+  }
+</style>

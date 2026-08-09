@@ -1,0 +1,183 @@
+---
+const tasks = [
+  "Collect soil samples",
+  "Measure farm structures",
+  "Detassel corn",
+  "Apply herbicides to weedy fields",
+  "Manually remove weeds from fields",
+  "Estimate nutrient deficiencies",
+  "Harvest soybeans",
+  "Assess storm damage"
+];
+---
+<div class="task-sort">
+  <h4>Activity 5: Sort the Following Tasks</h4>
+  <p class="task-sort__prompt">Click each task, then click the column where you think it belongs.</p>
+  <div class="task-sort__pool" id="task-sort-pool">
+    {tasks.map(t => (
+      <button class="task-sort__item" data-task={t}>{t}</button>
+    ))}
+  </div>
+  <div class="task-sort__columns">
+    <div class="task-sort__column" data-column="can">
+      <h5>Satellites can help</h5>
+      <div class="task-sort__dropzone" data-drop="can"></div>
+    </div>
+    <div class="task-sort__column" data-column="cannot">
+      <h5>Satellites cannot help</h5>
+      <div class="task-sort__dropzone" data-drop="cannot"></div>
+    </div>
+  </div>
+  <button class="task-sort__reset" id="task-sort-reset">Reset</button>
+
+  <div class="sat-reflection">
+    <p class="sat-reflection__prompt">Choose one task that satellites cannot help with and explain why satellites cannot help yet:</p>
+    <textarea class="sat-reflection__input" rows="4" placeholder="Type your answer here..."></textarea>
+  </div>
+</div>
+
+<style is:global>
+  .task-sort {
+    background: white;
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    padding: 24px;
+    margin: 30px 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  }
+  .task-sort h4 {
+    color: var(--isu-red);
+    font-size: 1.2em;
+    margin-bottom: 8px;
+    font-family: Georgia, Garamond, 'Times New Roman', serif;
+  }
+  .task-sort__prompt {
+    color: var(--text-dark);
+    line-height: 1.6;
+    margin-bottom: 16px;
+  }
+  .task-sort__pool {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 20px;
+    min-height: 40px;
+  }
+  .task-sort__item {
+    padding: 8px 14px;
+    border: 1px solid var(--isu-gold);
+    background: white;
+    color: var(--text-dark);
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 13px;
+    font-family: Georgia, Garamond, 'Times New Roman', serif;
+  }
+  .task-sort__item.selected {
+    background: var(--isu-gold);
+  }
+  .task-sort__item.placed {
+    display: none;
+  }
+  .task-sort__columns {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .task-sort__column h5 {
+    color: var(--isu-red);
+    margin-bottom: 8px;
+    font-size: 1em;
+  }
+  .task-sort__dropzone {
+    min-height: 60px;
+    background: #f9f7f4;
+    border: 1px dashed var(--border-light);
+    border-radius: 6px;
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    align-content: flex-start;
+  }
+  .task-sort__dropzone .task-sort__placed-item {
+    padding: 6px 12px;
+    background: white;
+    border: 1px solid var(--border-light);
+    border-radius: 16px;
+    font-size: 13px;
+  }
+  .task-sort__reset {
+    margin-top: 16px;
+    padding: 8px 16px;
+    border: 1px solid var(--border-light);
+    background: white;
+    color: var(--text-medium);
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+  }
+  .sat-reflection {
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-light);
+  }
+  .sat-reflection__prompt {
+    color: var(--text-dark);
+    line-height: 1.6;
+    margin-bottom: 12px;
+  }
+  .sat-reflection__input {
+    width: 100%;
+    border: 1px solid var(--border-light);
+    border-radius: 4px;
+    padding: 12px;
+    font-family: Georgia, Garamond, 'Times New Roman', serif;
+    font-size: 15px;
+    color: var(--text-dark);
+    resize: vertical;
+    box-sizing: border-box;
+  }
+  @media (min-width: 768px) {
+    .task-sort__columns {
+      flex-direction: row;
+    }
+    .task-sort__column {
+      flex: 1;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    let selected: HTMLElement | null = null;
+    const pool = document.getElementById('task-sort-pool');
+
+    pool?.querySelectorAll('.task-sort__item').forEach(btn => {
+      btn.addEventListener('click', () => {
+        if (selected) selected.classList.remove('selected');
+        selected = btn as HTMLElement;
+        selected.classList.add('selected');
+      });
+    });
+
+    document.querySelectorAll('.task-sort__dropzone').forEach(zone => {
+      zone.addEventListener('click', () => {
+        if (!selected) return;
+        const placed = document.createElement('span');
+        placed.className = 'task-sort__placed-item';
+        placed.textContent = selected.dataset.task || '';
+        zone.appendChild(placed);
+        selected.classList.add('placed');
+        selected.classList.remove('selected');
+        selected = null;
+      });
+    });
+
+    document.getElementById('task-sort-reset')?.addEventListener('click', () => {
+      document.querySelectorAll('.task-sort__dropzone').forEach(z => (z.innerHTML = ''));
+      document.querySelectorAll('.task-sort__item').forEach(i => i.classList.remove('placed', 'selected'));
+      selected = null;
+    });
+  });
+</script>
