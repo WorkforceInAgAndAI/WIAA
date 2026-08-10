@@ -10,7 +10,7 @@ Farmers grow crops over vast spans of land, and farmers need to be able to monit
 
 Aerial imagery is collected by cameras and sensors flying or orbiting above Earth’s surface and are used by farmers, and researchers of vast domains to collect data or view vast areas of land such as farm fields, forests, bodies of water, and urban areas.
 
-![Aerial Imagery Platforms](/WIAA/images/aerial_imagery.jpg)
+![Aerial Imagery Platforms](/WIAA/images/components_of_drone.jpg)
 <p class="image-caption">Aerial imagery platforms and associated scale of spatial resolution.<sup>1</sup></p>
 
 ## Choosing the Right Platform
