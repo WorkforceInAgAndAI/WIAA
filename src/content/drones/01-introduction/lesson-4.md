@@ -11,7 +11,7 @@ lesson: 4
 
 During operation, UAS must balance the opposing forces of lift, weight, drag, and thrust to create a stable flight.
 
-![Stress Revealed](/WIAA/public/images/forces_of_flight.jpg)
+![Stress Revealed](/WIAA/images/forces_of_flight.jpg)
 <p class="image-caption">The four forces of flight on an unmanned aerial system.</p>
 
 

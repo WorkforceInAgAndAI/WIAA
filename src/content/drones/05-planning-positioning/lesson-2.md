@@ -20,7 +20,7 @@ Before flying, ground control points (GCPs) should be placed in the corners of t
 
 <strong>Color charts</strong> may be placed in the field to be used to calibrate the imagery to a specific known value. 
 
-![Color reference cards used for calibration](/WIAA/public/images/color_card.jpg)
+![Color reference cards used for calibration](/WIAA/images/color_card.jpg)
 <p class="image-caption">Color chart for color correction used with RGB imagery.</p>
 
 

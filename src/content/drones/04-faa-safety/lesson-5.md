@@ -13,7 +13,7 @@ Drones can be flown at a maximum altitude of 400 feet above ground level (AGL). 
 
 
 
-![Airspace Classes](/WIAA/public/images/airspaces.jpg)
+![Airspace Classes](/WIAA/images/airspaces.jpg)
 <p class="image-caption">Airspace classes in the U.S. visualized by Pilot Institute.<sup>8</sup></p>
 
 

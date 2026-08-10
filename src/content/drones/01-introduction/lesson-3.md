@@ -12,7 +12,7 @@ From the ground, a field may look healthy. But from above, drones can reveal:
 
 
 
-![Stress Revealed](/WIAA/public/images/stress\_revealed.jpg)
+![Stress Revealed](/WIAA/public/images/stress_revealed.jpg)
 <p class="image-caption">Drones are helpful at revealing information hidden to our eyes during scouting.</p>
 
 

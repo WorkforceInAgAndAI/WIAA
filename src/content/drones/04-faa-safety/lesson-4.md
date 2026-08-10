@@ -14,7 +14,7 @@ When operating a drone, many regulations must be met to ensure the safety of the
 
 
 
-![Ten Key Safety Rules](/WIAA/public/images/safety.jpg)
+![Ten Key Safety Rules](/WIAA/images/safety.jpg)
 <p class="image-caption">Key items fromthe FAA's Title 14 Part 107 regulations of Small Unmanned Aircraft Systems</p>
 
 
